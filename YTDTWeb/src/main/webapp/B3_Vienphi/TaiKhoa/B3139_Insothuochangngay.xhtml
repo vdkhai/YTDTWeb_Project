@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                  xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">
+<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+	<script type="text/javascript">
+    	
+		function checkEmpty(id){
+			if ( document.getElementById(id).value == null || document.getElementById(id).value == "" ){
+			
+				if(document.getElementById(id).className.match(/focus/gi))
+              		document.getElementById(id).className = document.getElementById(id).className.replace(/focus/gi,"");
+				return false;
+			}
+			return true;
+	}
+	function enterToTab(){
+		
+		  		  if(	(document.getElementById(prefix_component + "__ghinhan") == null || document.getElementById(prefix_component + "__ghinhan").alt != 1 ) &amp;&amp; 
+		          	 	(document.getElementById(prefix_component + "__chonlai") ==null || document.getElementById(prefix_component + "__chonlai").alt != 1 ) 
+		          	 	
+		          	 	) {
+		           
+		                  if(window.event.keyCode == 13){
+		                         window.event.keyCode = 9;
+		                   }
+		           }
+		}
+		function iesvn_Required() {
+			this.aa = new Array(prefix_component + "DM_KHOA_MA", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Khoa'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+ 	 		this.ab = new Array(prefix_component + "__ngaysd", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Ngày sử dụng'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+		}
+		
+	
+
+		function iesvn_ComparedDates() {
+			this.aa = new Array([prefix_component + "__ngaysd",prefix_component + "__ngayhientai", "=="], "<h:outputFormat value='#{msg.common_compareCurDate}' > <f:param value='Ngày vào viện'/> </h:outputFormat>", new Function ("varName", "this.datePatternStrict='dd/MM/yyyy';  return this[varName];"));
+			}
+		
+		
+		
+		
+		function onSubmitTmp(){
+			
+			return onSubmit();
+		}
+		
+		function onSubmit() {
+			
+			var form = document.forms[0];
+						
+			var valid = iesvn_ValidateRequired(form)  ; 
+		    	    	
+	    	//if (valid == true){		    		
+	    	//	valid = iesvn_ValidateComparedDates(form);		    			
+	    	//}	    	    
+		   
+		    return valid;
+		}
+		
+		
+		
+	</script>
+	<body onkeydown="enterToTab();">
+	<h:form id="_form" name="_form">	
+    <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_DieuTriNoiTru.xhtml" /></div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="58%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						XEM, IN SỔ THUỐC HÀNG NGÀY TẠI KHOA
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>        	
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="985px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px" width="100%" align="center">
+    			<!-- Main Area -->
+    			<table cellspacing="0" cellpadding="0" border="0" width="66%">
+    				<tr style="height: 25px;">
+    					<td align="left"  style="padding-left: 0px;">
+	    						<h:panelGrid columns="8">
+		    						<h:outputText value="Khoa phòng" styleClass="mytext" style="padding-right: 10px;"/>
+		    						<h:inputText value="#{B3125_Insothuochangngay.dmKhoa.dmkhoaMa}" id="DM_KHOA_MA" name="DM_KHOA_MA" style=" width : 40px;" styleClass="myinput" maxlength="10">
+										<a4j:support action="#{B3125_Insothuochangngay.onblurMaKhoaAction}" event="onblur" oncomplete="" reRender="DM_TANG,DM_KHOA_MA,DM_KHOA" />
+									</h:inputText>
+		    					 			
+									<rich:comboBox value="#{B3125_Insothuochangngay.dmKhoa.dmkhoaTen}"  id="DM_KHOA" width="180px;" name="DM_KHOA" >
+										<f:selectItems value="#{B3125_Insothuochangngay.listDmKhoaNTs}"/>
+								  		<a4j:support action="#{B3125_Insothuochangngay.onblurTenKhoaAction}" event="onchange" oncomplete="" reRender="DM_TANG,DM_KHOA_MA,DM_KHOA"/>
+									</rich:comboBox> 
+		    					 	<h:outputText value="*" styleClass="mynull" />
+	    					 	</h:panelGrid>
+    					</td>  
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="left"  style="padding-left: 0px;">
+	    					<h:panelGrid columns="4">
+	    						<h:outputText value="Buồng"  styleClass="mytext" style="padding-right: 39px;"/>
+								<rich:comboBox value="#{B3125_Insothuochangngay.dmTang.dmtangTen}"  id="DM_TANG" width="200px;" name="DM_TANG" >
+							  		<f:selectItems value="#{B3125_Insothuochangngay.listDmTangs}" />
+							  		<a4j:support action="#{B3125_Insothuochangngay.onblurTenTangAction}" event="onchange" reRender="DM_TANG"/>
+								</rich:comboBox> 
+							</h:panelGrid>
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">  
+    					<td align="left"  style="padding-left: 0px;">
+    						<h:outputText value="Ngày sử dụng" styleClass="mytext" style="margin-right: 3px;"/>
+							<h:inputText value="#{B3125_Insothuochangngay.ngaySuDung}" onkeypress="return being_wellformed_Date(this, event)" 
+							onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); return is_wellformed_Date(this)' tabindex="3" type="text" id="__ngaysd" name="_ngaysd" maxlength="10" style="width:70px" class="myinput"/>
+							
+							<a hideFocus="true" href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__ngaysd'));return false;" ><h:graphicImage style="margin:0 0 -4px 0" value="/resources/calendar/cal.gif" border="0" name="popcal"/></a>
+    					
+							<h:outputText value="*" styleClass="mynull" style="margin-right: 5px; margin-left: 2px;"/>
+    					</td>					
+    				</tr>
+    				<tr style="height: 25px;">  
+    					<td align="left"  style="padding-left: 78px;">
+    						<h:selectBooleanCheckbox tabindex="25"  title="Thuốc thường - thuốc viên" label="Thuốc thường - thuốc viên" id="__thuocthuongtv"  value="#{B3125_Insothuochangngay.thuocthuongtv}">
+       						</h:selectBooleanCheckbox>
+   	 						<h:outputText value="Thuốc thường - thuốc viên"/>
+   	 						
+   	 						<h:selectBooleanCheckbox tabindex="25"  title="Thuốc thường - thuốc khác" label="Thuốc thường - thuốc khác" id="__thuocthuongtk"  value="#{B3125_Insothuochangngay.thuocthuongtk}">
+       						</h:selectBooleanCheckbox>
+   	 						<h:outputText value="Thuốc thường - thuốc khác"/>
+   	 						
+   	 						<h:selectBooleanCheckbox tabindex="25"  title="Thuốc độc" label="Thuốc độc" id="__thuocdoc"  value="#{B3125_Insothuochangngay.thuocdoc}">
+       						</h:selectBooleanCheckbox>
+   	 						<h:outputText value="Thuốc độc"/>
+   	 						
+   	 						<h:selectBooleanCheckbox tabindex="25"  title="Gây nghiện" label="Gây nghiện" id="__gaynghien"  value="#{B3125_Insothuochangngay.gaynghien}">
+       						</h:selectBooleanCheckbox>
+   	 						<h:outputText value="Gây nghiện"/>
+   	 						
+   	 						<h:selectBooleanCheckbox tabindex="25"  title="Hướng thần" label="Hướng thần" id="__huongthan"  value="#{B3125_Insothuochangngay.huongthan}">
+       						</h:selectBooleanCheckbox>
+   	 						<h:outputText value="Hướng thần"/>
+   	 						
+   	 						<h:selectBooleanCheckbox tabindex="25"  title="Y Dụng Cụ, VTTH" label="Y Dụng Cụ, VTTH" id="__ydcvtth"  value="#{B3125_Insothuochangngay.vatTuTieuHao}">
+       						</h:selectBooleanCheckbox>
+   	 						<h:outputText value="Y Dụng Cụ, VTTH"/>
+   	 						
+   	 						<h:selectBooleanCheckbox tabindex="25"  title="Đông Y" label="Đông Y" id="__dongy"  value="#{B3125_Insothuochangngay.dongy}">
+       						</h:selectBooleanCheckbox>
+   	 						<h:outputText value="Đông Y"/>
+   	 						
+   	 						<h:selectBooleanCheckbox tabindex="25"  title="Hóa chất" label="Hóa chất" id="__hoachat"  value="#{B3125_Insothuochangngay.hoachat}">
+       						</h:selectBooleanCheckbox>
+   	 						<h:outputText value="Hóa chất"/>
+   	 						
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="left"  style="padding-left: 78px;">
+    						<h:selectOneRadio id="__theonoitruthuoc" tabindex="5" value="#{B3125_Insothuochangngay.tuTrucPhieuDuTru}">
+        						<f:selectItem id="__phieudutru" itemValue="pdt" itemLabel="Phiếu dự trù" styleClass="mycheck"/>
+        						<f:selectItem id="__tutruc" itemValue="tt" itemLabel="Tủ trực" styleClass="mycheck"/>
+   			 				</h:selectOneRadio>
+    					</td>					
+    				</tr>
+    				<tr style="height: 40px;">
+    					<td align="center" style="padding-left: 125px;">    
+    						<div class="mybton_b_l" style="width: 90px; float: left;">
+    							<div style="background-position: 70px 0px; float: left; padding-right: 5px" class="mybton_b_r">
+    								<a4j:commandButton tabindex="47" id="__ghinhan" 
+    								onblur="javascript:this.alt=0" onfocus="javascript:this.alt=1"
+    								onclick="if (! onSubmitTmp()) { return false; }" name="_ghinhan" value="Ghi nhận" 
+    									action="#{B3125_Insothuochangngay.thuchienAction}" oncomplete="highlightOnFocus();onCompleteGetInfor();" reRender="DM_KHOA_MA,__ngaysd,__thuoc,__ydcvtth,__theonoitruthuoc" style="width: 70px;" styleClass="mybton_b"/>
+    							</div>
+    						</div> 
+    						<div class="mybton_b_l" style="width: 80px; float: left;">
+    							<div style="background-position: 70px 0px; float: left; padding-right: 5px" class="mybton_b_r">
+    									<a4j:commandButton tabindex="47" focus="DM_KHOA_MA" 
+    									onblur="javascript:this.alt=0" onfocus="javascript:this.alt=1"
+    									id="__chonlai"  name="_chonlai" value="Chọn lại" 
+    									action="#{B3125_Insothuochangngay.resetForm}" 
+    									oncomplete="highlightOnFocus();onCompleteGetInfor();" 
+    									reRender="DM_KHOA_MA,__ngaysd,__thuoc,__ydcvtth,__theonoitruthuoc" style="width: 70px;" 
+    									styleClass="mybton_b"/>
+    							
+    							</div>
+    						</div> 
+    					</td>
+    				</tr>    				
+    			</table> 		    						
+    		</td>
+    	</tr>	    	
+    </table>
+    
+    <h:inputHidden id="__ngayhientai" value="#{B3125_Insothuochangngay.ngayHienTai}"/>
+    
+    						
+    </h:form>
+    </body>
+     <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/vienphi/B3139_Insothuochangngay_gears.js"></script>
+  <iframe width="174" height="189" name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;"/>
+   
+</ui:define> 
+</ui:composition>
+

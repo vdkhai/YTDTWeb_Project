@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+  <pages xmlns="http://jboss.com/products/seam/pages"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.0.xsd"
+  
+         no-conversation-view-id="/MyMainForm.xhtml"
+                   login-view-id="/loginND.xhtml">
+  
+     
+      
+      <!-- 
+       <page view-id="/loginND.xhtml">
+      
+          <navigation>
+              <rule if="#{identity.loggedIn}">
+                  <redirect view-id="/MyMainForm.xhtml"/>
+              </rule>
+          </navigation>
+          
+      </page>
+        -->
+      <page view-id="/B1_Tiepdon/B111_Dangkykhambenh.xhtml"
+		login-required="true">
+		<restrict>
+			#{s:hasRole('NV_TiepDon') or s:hasRole('QT_PhongKham')}
+		</restrict>
+	  </page>
+	  
+	  <page view-id="/B1_Tiepdon/B121_Thamkhamvaxutri.xhtml"
+		login-required="true">
+		<restrict>
+			#{s:hasRole('NV_PhongKham') or s:hasRole('QT_PhongKham')}
+		</restrict>
+	  </page>
+      
+      <page view-id="/B2_Dieutri/B211_Capnhathosobenhan.xhtml"
+            login-required="true" >
+            
+            <restrict>#{s:hasRole('NV_KhoaNoiTru') or s:hasRole('QT_KhoaNoiTru')}</restrict>
+            
+         
+     </page>
+     
+     <page view-id="/B2_Dieutri/B234_Giayravien.xhtml" login-required="true" >
+     	<restrict>#{s:hasRole('NV_KhoaNoiTru') or s:hasRole('QT_KhoaNoiTru')}</restrict>
+     </page>
+     
+      <page view-id="/B3_Vienphi/ThuVienPhi/B3232_Canlamsanphongkham.xhtml"
+            login-required="true" >
+            
+            <restrict>#{s:hasRole('NV_VienPhi') or s:hasRole('QT_VienPhi')}</restrict>
+            
+         
+     </page>
+     <page view-id="/B3_Vienphi/ThuVienPhi/B3212_Capnhattientamung.xhtml"
+            login-required="true" >
+            <restrict>#{s:hasRole('NV_VienPhi') or s:hasRole('QT_VienPhi')}</restrict>
+     </page>
+     <page view-id="/B3_Vienphi/ThuVienPhi/B3213_Capnhatmiengiam.xhtml"
+            login-required="true" >
+            <restrict>#{s:hasRole('NV_VienPhi') or s:hasRole('QT_VienPhi')}</restrict>
+     </page>
+     <page view-id="/B3_Vienphi/ThuVienPhi/B3216_Chitrabottientamung.xhtml"
+            login-required="true" >
+            <restrict>#{s:hasRole('NV_VienPhi') or s:hasRole('QT_VienPhi')}</restrict>
+     </page>
+     <page view-id="/B3_Vienphi/ThuVienPhi/B3218_Xacnhantreem.xhtml"
+            login-required="true" >
+            <restrict>#{s:hasRole('NV_VienPhi') or s:hasRole('QT_VienPhi')}</restrict>
+     </page>
+     <page view-id="/B3_Vienphi/ThuVienPhi/B3234_Capnhattientamung_pcc.xhtml"
+            login-required="true" >
+            <restrict>#{s:hasRole('NV_VienPhi') or s:hasRole('QT_VienPhi')}</restrict>
+     </page>
+     
+     <page view-id="/B3_Vienphi/TaiKhoa/B3125_Lapphieudutru.xhtml"
+            login-required="true" >
+            
+            <restrict>#{s:hasRole('NV_KhoaNoiTru') or s:hasRole('QT_KhoaNoiTru')}</restrict>
+            
+         
+     </page>
+     
+     <page view-id="/B4_Duocpham/KhoChinh/B4123_Phieuxuathangkhoaphong.xhtml"
+            login-required="true" >
+            
+            <restrict>#{s:hasRole('NV_KhoaDuoc') or s:hasRole('QT_HT_Duoc') or s:hasRole('NV_KhoChinh')}</restrict>
+            
+         
+     </page>
+      
+     	<page view-id="/B4_Duocpham/KhoChinh/B4111_phieunhapkhochinh.xhtml"
+		login-required="true">
+		<restrict>
+			#{s:hasRole('NV_KhoaDuoc') or s:hasRole('QT_HT_Duoc') or s:hasRole('NV_KhoChinh')}
+		</restrict>
+	</page>
+	
+	<page view-id="/B4_Duocpham/KhoChinh/B4121_Phieuxuathangkhole.xhtml"
+		login-required="true">
+		<restrict>
+			#{s:hasRole('NV_KhoaDuoc') or s:hasRole('QT_HT_Duoc') or s:hasRole('NV_KhoLe')}
+		</restrict>
+	</page>    
+	
+	<page view-id="/B1_Tiepdon/B131_Dangkykhambenhcapcuu.xhtml"
+		login-required="true">
+		<restrict>
+			#{s:hasRole('NV_TiepDon') or s:hasRole('QT_PhongKham')}
+		</restrict>
+	</page> 
+	
+	   
+      <page view-id="*">
+      
+          <navigation from-action="#{identity.logout}">
+              <redirect view-id="/loginND.xhtml"/>
+          </navigation>
+  
+          
+      </page>
+      
+      <exception class="org.jboss.seam.security.NotLoggedInException">
+          <redirect view-id="/loginND.xhtml">
+              <message severity="warn">Bạn chưa đăng nhập vào hệ thống, cần phải đăng nhập.</message>
+          </redirect>
+      </exception>
+      
+       <exception class="org.jboss.seam.security.AuthorizationException">
+        <end-conversation/>
+        <redirect view-id="/accessdenied.xhtml">
+            <message>Bạn chưa được cấp quyền vào trang này! Xin vui lòng thông báo cho phòng kỹ thuật nếu cần, cảm ơn.</message>
+        </redirect>
+       </exception>
+       
+         <exception class="java.rmi.RemoteException">
+        <end-conversation/>
+        <redirect view-id="/accessdenied.xhtml">
+            <message>(java.rmi.RemoteException). Xin vui lòng thông báo cho phòng kỹ thuật.</message>
+        </redirect>
+       </exception>
+       
+        <exception class="java.text.ParseException">
+        <end-conversation/>
+        <redirect view-id="/accessdenied.xhtml">
+             <message>(java.text.ParseException). Xin vui lòng thông báo cho phòng kỹ thuật.</message>
+        </redirect>
+       </exception>
+       
+        <exception class="javax.xml.rpc.ServiceException">
+        <end-conversation/>
+        <redirect view-id="/accessdenied.xhtml">
+             <message>(javax.xml.rpc.ServiceException). Xin vui lòng thông báo cho phòng kỹ thuật.</message>
+        </redirect>
+       </exception>
+       
+       <exception class="javax.el.PropertyNotFoundException">
+        <end-conversation/>
+        <redirect view-id="/accessdenied.xhtml">
+             <message>Bạn cần phải đăng nhập (javax.el.PropertyNotFoundException)</message>
+        </redirect>
+       </exception>
+       
+       <exception class="javax.faces.application.ViewExpiredException">
+        <end-conversation/>
+        <redirect view-id="/accessdenied.xhtml">
+             <message>Đã hết hạn xem trang web, bạn cần phải đăng nhập lại (javax.faces.application.ViewExpiredException)</message>
+        </redirect>
+       </exception>
+       
+        <exception class="javax.servlet.ServletException">
+        <end-conversation/>
+        <redirect view-id="/accessdenied.xhtml">
+             <message>Bạn cần phải đăng nhập (javax.servlet.ServletException)</message>
+        </redirect>
+       </exception>
+       
+        <exception class="org.jboss.seam.InstantiationException">
+        <end-conversation/>
+        <redirect view-id="/accessdenied.xhtml">
+             <message>Bạn cần phải đăng nhập (org.jboss.seam.InstantiationException)</message>
+        </redirect>
+       </exception>
+       
+       
+       
+      
+  
+  </pages>
+

@@ -1,0 +1,49 @@
+﻿<rich:toolBar style="margin:-5px 0px; height:32px"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:rich="http://richfaces.org/rich">
+    
+    <rich:dropDownMenu event="onclick" style="cursor:hand">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="Xuất kho Lẻ"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.QuanLyKhoLe_XuatKhoLe_XuatHangTheoPhieuDuTru}" id="QuanLyKhoLe_XuatKhoLe_XuatHangTheoPhieuDuTru_id" submitMode="ajax" value="Xuất thuốc theo Phiếu dự trù" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.QuanLyKhoLe_XuatKhoLe_XuatHangDenTuTrucThanhLy}" id="QuanLyKhoLe_XuatKhoLe_XuatHangDenTuTrucThanhLy_id" submitMode="ajax" value="Xuất thuốc đến tủ trực, thanh lý" />				
+	</rich:dropDownMenu>
+	
+	<rich:dropDownMenu event="onclick" style="cursor:hand">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="Truy xuất thông tin kho Lẻ"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.QuanLyKhoLe_TruyXuatThongTinKhoLe_InBaoCaoNhapXuatTrongNgay}" id="QuanLyKhoLe_TruyXuatThongTinKhoLe_InBaoCaoNhapXuatTrongNgay_id" submitMode="ajax" value="In báo cáo nhập xuất trong ngày" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.QuanLyKhoLe_TruyXuatThongTinKhoLe_InTheKho}" id="QuanLyKhoLe_TruyXuatThongTinKhoLe_InTheKho_id" submitMode="ajax" value="In thẻ kho" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.QuanLyKhoLe_TruyXuatThongTinKhoLe_TinhTonKhoVaGiaTri}" id="QuanLyKhoLe_TruyXuatThongTinKhoLe_TinhTonKhoVaGiaTri_id" submitMode="ajax" value="Tính tồn kho và giá trị" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.QuanLyKhoLe_TruyXuatThongTinKhoLe_InChiTietNhapXuatMotMatHang}" id="QuanLyKhoLe_TruyXuatThongTinKhoLe_InChiTietNhapXuatMotMatHang_id" submitMode="ajax" value="In chi tiết nhập xuất một mặt hàng thuốc" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.QuanLyKhoLe_TruyXuatThongTinKhoLe_CanhBaoMatHangKhongSuDung}" id="QuanLyKhoLe_TruyXuatThongTinKhoLe_CanhBaoMatHangKhongSuDung_id" submitMode="ajax" value="Cảnh báo mặt hàng thuốc không sử dụng" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.QuanLyKhoLe_TruyXuatThongTinKhoLe_CanhBaoMatHangGanHetHan}" id="QuanLyKhoLe_TruyXuatThongTinKhoLe_CanhBaoMatHangGanHetHan_id" submitMode="ajax" value="Cảnh báo mặt hàng thuốc gần hết hạn" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.QuanLyKhoLe_TruyXuatThongTinKhoLe_CanhBaoMatHangTonKho}" id="QuanLyKhoLe_TruyXuatThongTinKhoLe__id" submitMode="ajax" value="Cảnh báo thuốc tồn kho không hạn dùng" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.QuanLyKhoLe_TruyXuatThongTinKhoLe_CanhBaoLuongTonKho}" id="QuanLyKhoLe_TruyXuatThongTinKhoLe_CanhBaoLuongTonKho_id" submitMode="ajax" value="Cảnh báo lượng tồn kho" />	
+	</rich:dropDownMenu>
+	
+	<rich:dropDownMenu event="onclick" style="cursor:hand">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="Kiểm kê kho Lẻ"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+	    <!-- <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.QuanLyKhoLe_KiemKeKhoLe_CapNhatTonDau}" id="QuanLyKhoLe_KiemKeKhoLe_CapNhatTonDau_id" submitMode="ajax" value="Cập nhật tồn đầu" /> -->
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.QuanLyKhoLe_KiemKeKhoLe_InDanhSachTonDau}" id="QuanLyKhoLe_KiemKeKhoLe_InDanhSachTonDau_id" submitMode="ajax" value="In danh sách tồn đầu" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.QuanLyKhoLe_KiemKeKhoLe_TaoBangKiemKeDinhKy}" id="QuanLyKhoLe_KiemKeKhoLe_TaoBangKiemKeDinhKy_id" submitMode="ajax" value="Tạo bảng kiểm kê định kỳ" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.QuanLyKhoLe_KiemKeKhoLe_CapNhatSoLieuKiemKeThucTe}" id="QuanLyKhoLe_KiemKeKhoLe_CapNhatSoLieuKiemKeThucTe_id" submitMode="ajax" value="Cập nhật số liệu kiểm kê thực tế" />
+		<!-- <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.QuanLyKhoLe_KiemKeKhoLe_InBangKiemKe}" id="QuanLyKhoLe_KiemKeKhoLe_InBangKiemKe_id" submitMode="ajax" value="In bảng kiểm kê" /> -->			
+	</rich:dropDownMenu>	
+</rich:toolBar>
+

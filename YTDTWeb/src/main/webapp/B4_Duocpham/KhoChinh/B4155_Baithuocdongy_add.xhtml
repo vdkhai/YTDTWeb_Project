@@ -1,0 +1,350 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:c="http://java.sun.com/jstl/core" 
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">	
+<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+<body onkeydown="enterToTab();">
+<h:form id="_form" name="_form">
+<h:inputHidden id="__loaithuoc" name="__loaithuoc" value="DY" />
+<div style="width:100%; position: absolute; z-index:99; margin-top:-6px">
+		<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoChinh.xhtml" />
+</div>
+<table style="margin-top:0px" cellspacing="0" cellpadding="0" border="0" width="777">
+	<tr>
+    	<td colspan="3" height="50px">
+    		<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    			<tr>
+    				<td height="50px" width="300px" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    					<h:graphicImage value="../../images/white_light.gif" width="43" height="16" />
+    					THÊM BÀI THUỐC ĐÔNG Y
+    				</td> 
+    				<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    				</td>
+    			</tr>
+    		</table>			
+    	</td>    		    	
+	</tr>    
+    <tr>
+    	<td width="13px" height="12px" class="mytdl"></td>
+    	<td style="background-color: #c9daea;" width="965px" height="12px" ></td>
+    	<td width="11px" height="12px" class="mytdr"></td>
+    </tr> 
+    <tr>
+    	<td colspan="3" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 5px" width="100%" >
+    		<table width="100%">
+    			<tr align="center">
+			    	<td>
+			    		<a4j:outputPanel id="message_infor">
+							<tr>
+								<td>
+									<h:messages style="color:Red;font-weight:bold;font-style:italic;text-decoration:none;"/>
+								</td>
+							</tr>
+						</a4j:outputPanel>
+			    	</td>
+			    </tr>
+    			<tr>
+    				<td>
+    					<h:outputText value="Mã" style="margin: 0px 5px 0 121px;"/>
+    					<h:inputText id="__ma" name="__ma" value="#{DmBaiThuoc_add.dmBaiThuoc.dmbaithuocMa}" 
+    						style="width:100px;" styleClass="myinput" maxlength="10" readonly="true"
+    						tabindex="1"
+    						/>
+    						
+    					<h:outputText value="*" style="color:red;margin-left:2px;"/>    					
+    					<h:inputHidden value="#{DmBaiThuoc_add.dmBaiThuoc.dmbaithuocMa}" id="__maHidden" />
+    				</td>
+    			</tr>
+    			<tr>
+    				<td>
+    					<h:outputText value="Tên" style="margin: 0 5px 0 117px;"/>    					
+    					<h:inputText
+								id="__ten" name="__ten"
+								value="#{DmBaiThuoc_add.dmBaiThuoc.dmbaithuocTen}" 
+								style="padding-right: 2px; padding-right: 2px; width : 230px;" 	
+								tabindex="2" 
+								styleClass="myinput"
+								onchange="document.getElementById(prefix_component + '__ma').value = getMaFromTen(this.value);document.getElementById(prefix_component + '__maHidden').value = getMaFromTen(this.value) ;" /> 	
+    					<h:outputText value="*" style="color:red;margin-left:2px;"/>  					
+    				</td>
+    			</tr>
+    			
+    		</table>   		
+    	</td>    	
+    </tr>
+    <tr>
+					<td align="center" colspan="3"
+						style="background-color: white; padding-top: 15px; padding-bottom: 5px;"
+						width="100%"><!-- Detail Area -->
+
+					<table cellspacing="0" cellpadding="0" border="0" width="100%">
+						<tr style="height: 25px;">
+							<td align="right" width="20%">
+								<h:outputText value="Mã thuốc" styleClass="mytext" style="margin-right:5px;" />
+							</td>
+							<td align="left">
+								<h:panelGrid columns="4">
+									<h:inputText value="#{DmBaiThuoc_add.dmtMa}" tabindex="3" id="DM_THUOC_MASO" name="_maso" style="width: 70px;" styleClass="myinput" maxlength="8" >
+										<a4j:support action="#{DmBaiThuoc_add.onblurMaThuocAction}" event="onchange" reRender="DM_THUOC_MASO,DM_THUOC"/>
+									</h:inputText> 
+									<rich:comboBox tabindex="4" value="#{DmBaiThuoc_add.dmtTen}" id="DM_THUOC" width="454px;" name="DM_THUOC" >
+										  <f:selectItems value="#{DmBaiThuoc_add.listDmThuocs}" />
+										  <a4j:support action="#{DmBaiThuoc_add.onblurTenThuocAction}" event="onselect" reRender="DM_THUOC_MASO"/>
+									</rich:comboBox> 
+									<h:outputText value="*" styleClass="mynull" style="margin-right: 5px; margin-left: 2px;" />
+								</h:panelGrid>
+							</td>
+						</tr>
+						<tr>
+							<td width="20%" align="right">
+							 <h:outputText
+								value="Số lượng đóng gói" styleClass="mytext"
+								style="margin-right: 5px; " />
+							</td>
+							<td align="left">	
+							 <h:inputText
+								id="__soluong_vi" name="_soluong_vi"
+								value="#{DmBaiThuoc_add.baithuocThuoc.baithuocthuocSoluong}" 
+								style="text-align: right; padding-right: 2px; padding-right: 2px; width : 86px;" 								
+								onfocus="numberFormatFocus(this)"
+								onkeypress="iesvn_InputInKeys('0123456789.')"
+								tabindex="5" 
+								styleClass="myinput" /> 
+							<a4j:commandButton tabindex="6" id="__themchinhsau" 
+							oncomplete="myOnblurTextbox(prefix_component + 'DMTHUOC_MASO', 'DM_THUOC');"
+							style="width: 20px;height:19px; margin-bottom:1px; margin-left: 5px" styleClass="mybton_add" 
+							action="#{DmBaiThuoc_add.themCt()}" 							
+							reRender="__myTable,__soluong_vi,DMTHUOC_MASO" focus="DMTHUOC_MASO" />	
+								</td>
+						</tr>
+		</table>
+	</td>
+	</tr>
+	<tr>
+							<td colspan="2" style="background-color: white; padding-top: 15px; padding-bottom: 5px;padding-top:10px;" >
+							<table border="0" cellspacing="0" cellpadding="0" style="width:98%;" align="center" >
+									<tr style="height:20px" class="mycol">	
+									<td align="center" style="width: 4%; border-right: solid 1px; border-color:#ffffff;">
+    						<h:outputText value="STT"/>
+    					</td>									
+										<td align="center" style="width: 9%;border-right:solid 1px #ffffff;">
+    										<h:outputText value="Mã số"/>    										
+										</td>
+										<td align="center" style="width:27%; border-right:solid 1px #ffffff;">
+    										<h:outputText value="Tên thuốc"/>    										
+										</td>
+										<td align="center" style="width: 10%;border-right:solid 1px #ffffff;">
+    										<h:outputText value="Đơn vị"/>    										
+										</td>
+										<td align="center" style="width: 13%;border-right:solid 1px #ffffff;">
+    										<h:outputText value="Số lượng"/>    										
+										</td>									
+										
+										<td align="center" style="width: 6%;">
+    										<h:outputText value="&#160;" />    										
+										</td>
+									</tr>
+									<tr>
+										<td colspan="8" style="border:solid 1px #7e9dba;" >
+					<div style="overflow-x: hidden; overflow-y: scroll; height: 105px;width: 100%">	
+					<rich:dataTable headerClass="mycol" id="__myTable" var="row" value="#{listbaithuocThuoc}"
+						cellpadding="0" cellspacing="1" rowClasses="myrow1,myrow2"
+						border="0" style="width: 100%;">
+						<rich:column style="width: 4%;" id="column_STT"  align="right" >
+				                        	
+				                            <h:outputText id="outputText26" value="#{listbaithuocThuoc.rowIndex + 1}"/>                 
+				           </rich:column>
+						<rich:column style="width:9%;" >
+							<h:outputText value="#{row.getDmthuocMaso().dmthuocMa}" />							
+						</rich:column>
+
+						<rich:column style="width:27%;" align="left" >
+							<h:outputText value="#{row.getDmthuocMaso().dmthuocTen}" rendered="#{DmBaiThuoc_add.isUpdate}" />
+							<a4j:commandLink value="#{row.getDmthuocMaso().dmthuocTen}" 
+							action="#{DmBaiThuoc_add.selectCt(listbaithuocThuoc.rowIndex)}" 
+							rendered="#{DmBaiThuoc_add.isUpdate eq false}"
+							oncomplete="myOnblurTextbox(prefix_component + 'DMTHUOC_MASO', 'DM_THUOC');" 
+							reRender="DMTHUOC_MASO, __soluong_vi"></a4j:commandLink>						
+						</rich:column>
+
+						<rich:column style="width: 10%;" >
+							<h:outputText value="#{row.getDmthuocMaso().getDmdonvitinhMaso(true).dmdonvitinhTen}"  />							
+						</rich:column>
+
+						<rich:column style="width:13%;" align="right" >
+							<h:outputText value="#{row.baithuocthuocSoluong}">
+								<f:converter converterId="com.iesvn.yte.converter.DoubleConverter2FractionDigits" />
+							</h:outputText>
+						</rich:column>
+												
+						
+						
+						
+						<rich:column style="width:6%;"  >
+							<a4j:commandButton id="__bton5" value="" styleClass="mybton_del" style="filter:alpha(opacity=100);width: 19px; height: 16px;" rendered="#{DmBaiThuoc_add.isUpdate eq false}"
+							reRender="__myTable" 
+							action="#{DmBaiThuoc_add.deleteCt(listbaithuocThuoc.rowIndex)}" />													
+						</rich:column>
+					</rich:dataTable>
+					</div>
+										</td>
+									</tr>
+								</table> 
+							</td>
+	</tr>						
+    <tr>
+    	<td colspan="3" style="background-color: #c9daea; padding-top: 5px; padding-bottom: 10px" width="100%" >
+    		<table width="100%">
+    			<tr>
+    				<td>
+    					<a4j:commandButton styleClass="mybton_b" value="Ghi nhận" id="__ghinhan" style="cursor:pointer;margin:0 0 0 110px;"
+    						onclick="if (!checkInput()){this.alt = 0; return false;}"
+    						action="#{DmBaiThuoc_add.save}"
+    						oncomplete="oncompleteGhinhan();deleteTableValue('DM_BAI_THUOC');LoadCatalogFromServer_each(DmBaiThuoc,'GetDmBaiThuocAction');deleteTableValue('BAITHUOC_THUOC');LoadCatalogFromServer_each(BaithuocThuoc,'GetBaithuocThuocAction');"
+    						reRender="message_infor,__ma,__ten,DM_THUOC_MASO,DM_THUOC,_soluong_vi,__myTable"/>
+    						
+    					<a4j:commandButton styleClass="mybton_b" value="Nhập mới" id="__nhapmoi" style="cursor:pointer;margin:0 0 0 5px;"
+    						action="#{DmBaiThuoc_add.reset}"
+    						oncomplete="myOnblurTextbox(prefix_component + 'DMTHUOC_MASO', 'DM_THUOC');oncompleteNhapmoi();"
+    						reRender="message_infor,__ma,__ten, DM_THUOC_MASO,DM_THUOC,_soluong_vi,__myTable"/>
+    						
+    					<a4j:commandButton styleClass="mybton_b" value="Quay lại" id="__quaylai" style="cursor:pointer;margin:0 0 0 5px;"
+    						action="#{DmBaiThuoc_add.goBack}"/>
+    				</td>
+    			</tr>
+    		</table>   		
+    	</td>    	
+    </tr>
+</table>
+
+
+</h:form>
+</body>
+
+
+<script type="text/javascript">
+function init() {		
+	if (window.google &amp;&amp; google.gears) {    	
+    	try {        		
+    			//setAttrForCombobox(prefix_component + "DMTHUOC_MASO","DANH_MUC_THUOC_span","DM_THUOC","getDmThuocByLoai(prefix_component + '__loaithuoc')","","document.getElementById(prefix_component + '__soluong_vi').focus()","");				
+				
+    			setTimeout(function(){setInfo()},100); 	
+        } catch (e) {
+        	alert("init error: " + e.description);
+        }
+    }  
+}
+
+function setInfo(){	
+	document.getElementById(prefix_component + '__ten').focus();
+}
+
+function iesvn_Required() {
+	this.aa = new Array(prefix_component + "__ma", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Mã bài thuốc'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+	this.ab = new Array(prefix_component + "__ten", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Tên bài thuốc'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+
+}
+
+function checkInput(){
+	var form = document.forms[0];
+	var valid = true;
+	valid = iesvn_ValidateRequired(form);	
+
+	return valid;
+}
+
+function oncompleteGhinhan(){
+	document.getElementById(prefix_component + '__ten').focus();
+}
+
+function oncompleteNhapmoi(){
+	document.getElementById(prefix_component + '__ten').focus();
+}
+
+function getMaFromTen(myTen) {
+	
+	var s1 = "ÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬÉÈẺẼẸÊẾỀỂỄỆÍÌỈĨỊÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰÝỲỶỸỴĐ";
+	var s2 = "AAAAAAAAAAAAAAAAAEEEEEEEEEEEIIIIIOOOOOOOOOOOOOOOOOUUUUUUUUUUUYYYYYD";
+
+	var s2Arr = s2.split("");
+	var ten = myTen;
+	
+	ten = trim(ten);
+	
+	var tenArr = ten.split(" ");
+	var tentemp = tenArr[tenArr.length-1];
+	var ma_part1 = "";
+
+	if (ten != "") {
+		if (tentemp.length >= 5) {
+			ma_part1 = tentemp.substr(0, 5);
+		} else if (tentemp.length == 4) {
+			ma_part1 = tentemp + "-";
+		} else if (tentemp.length == 3) {
+			ma_part1 = tentemp + "--";
+		} else if (tentemp.length == 2) {
+			ma_part1 = tentemp + "---";
+		} else if (tentemp.length == 1) {
+			ma_part1 = tentemp + "----";
+		}
+	}
+
+	ma_part1 = ma_part1.toUpperCase();
+
+	var ma_part1_arr = ma_part1.split("");
+
+	var ma_part1_ok = "";
+	
+	for ( var i = 0; i &lt; ma_part1_arr.length; i++) 
+	{
+		if (s1.indexOf(ma_part1_arr[i]) &gt;= 0) {
+			ma_part1_ok += s2Arr[s1.indexOf(ma_part1_arr[i])];
+		} else {
+			ma_part1_ok += ma_part1_arr[i];
+		}
+	}
+	
+	return ma_part1_ok;
+}
+
+function trim(str) {
+	while (str.substring(0, 1) == ' ') {
+		str = str.substring(1, str.length);
+	}
+	while (str.substring(str.length - 1, str.length) == ' ') {
+		str = str.substring(0, str.length - 1);
+	}
+	return str;
+}
+function enterToTab(){
+  	if((document.getElementById(prefix_component + "__ghinhan") == null || document.getElementById(prefix_component+"__ghinhan").alt != 1) &amp;&amp; 
+  	   (document.getElementById(prefix_component + "__nhapmoi") == null || document.getElementById(prefix_component + "__nhapmoi").alt != 1) &amp;&amp; 
+  	   (document.getElementById(prefix_component + "__quaylai") == null || document.getElementById(prefix_component+"__quaylai").alt != 1) &amp;&amp;
+  		(document.getElementById(prefix_component + "__bton5") == null || document.getElementById(prefix_component +"__bton5").alt != 1) &amp;&amp;
+  		(document.getElementById(prefix_component + "__themchinhsau") == null || document.getElementById(prefix_component+"__themchinhsau").alt != 1))
+  	{
+	    if(window.event.keyCode == 13){
+    	    window.event.keyCode = 9;
+        }
+    }
+}
+</script>
+</ui:define> 
+</ui:composition>
+
+

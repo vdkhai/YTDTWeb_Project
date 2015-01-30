@@ -1,0 +1,29 @@
+<portlet-app version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/portlet"
+  xmlns="http://java.sun.com/xml/ns/portlet">
+  <portlet>
+    <portlet-name>YTDTWeb</portlet-name>
+    <portlet-class>
+      javax.portlet.faces.GenericFacesPortlet
+    </portlet-class>
+
+    <init-param>
+      <name>javax.portlet.faces.defaultViewId.view</name>
+      <value>/B4_Duocpham/B4111_phieunhapkhochinh.xhtml</value>
+    </init-param>
+    <init-param>
+      <name>javax.portlet.faces.preserveActionParams</name>
+      <value>true</value>
+    </init-param>
+    <expiration-cache>-0</expiration-cache>
+    <portlet-info>
+       <title>YTDTWeb</title>
+    </portlet-info>
+    <supports>
+      <mime-type>text/html</mime-type>
+      <portlet-mode>VIEW</portlet-mode>
+    </supports>
+  </portlet>
+</portlet-app>
+
+

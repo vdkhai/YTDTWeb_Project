@@ -1,0 +1,157 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                template="/layout/mytemplate.xhtml"
+                xmlns:a4j="http://richfaces.org/a4j" >
+
+<ui:define name="body">	
+	<script type="text/javascript">
+		function init(){		
+			var doc = opener.document;
+			document.getElementById(prefix_component + "result").value = doc.getElementById(prefix_component + "result").value;
+			document.getElementById(prefix_component + "refresh").onclick();
+			document.getElementById("Banner_menu_div").style.display ="none";
+			//alert(document.getElementById(prefix_component + "result").value);
+		}
+		function show(__mabenhnhan,__sobenhan){
+			var doc = opener.document;
+			//doc.getElementById(prefix_component + "__mabenhnhan").value = __mabenhnhan;
+			doc.getElementById(prefix_component + "__sobenhan").value = __sobenhan;
+			doc.getElementById(prefix_component + "refresh").onclick();			
+			return true; 
+		}
+	</script>
+	<h:form id="_form" name="_form" >
+	<h:inputHidden id="result" value="#{danhsachbenhnhannoitru.result}"/>	
+	<a4j:commandButton  style="display: none" id="refresh"
+         action="#{danhsachbenhnhannoitru.fillList}"         
+         reRender="listKetqua"/>
+    <table style="margin-top:0px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="45%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						DANH SÁCH BỆNH NHÂN
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>    
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="965px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 5px; padding-bottom: 15px" width="100%" align="center">
+    			<!-- Main Area -->    		
+    			<table cellspacing="0" cellpadding="0" border="0" width="90%" style="border: solid 1px #7a9dba;">
+	    			<tr style=" height : 20px;" class="mycol">
+    					<td align="center" style="width: 17%; border-right: solid 1px; border-color:#ffffff;">
+    						<h:outputText value="Mã BN"/>
+    					</td>    					   					
+    					
+    					<td align="center" style=" border-right: solid 1px; border-color:#ffffff;">
+    						<h:outputText value="Họ và tên"/>
+    					</td>
+    					
+    					<td align="center" style="width :5%; border-right: solid 1px; border-color:#ffffff;">
+    						<h:outputText value="GT"/>
+    					</td>
+    					
+    					<td align="center" style="width: 5%; border-right: solid 1px; border-color:#ffffff;">
+    						<h:outputText value="Tuổi"/>
+    					</td>
+    					
+    					<td align="center" style="width: 8%; border-right: solid 1px; border-color:#ffffff;">
+    						<h:outputText value="Đv tuổi"/>
+    					</td>
+    					
+    					<td align="center" style="width:10%; border-right: solid 1px; border-color:#ffffff;">
+    						<h:outputText value="Ngày sinh" />
+    					</td>  
+    					 <td align="center" style="width:10%; border-right: solid 1px; border-color:#ffffff;">
+    						<h:outputText value="Dân tộc" />
+    					</td> 	 
+    					<td align="center" style="width:18%; border-color:#ffffff;">
+    						<h:outputText value="Số vào viện" />
+    					</td>    								
+    				</tr>
+	    			
+	    		<tr>
+    				<td colspan="13" >		
+	    				
+	    					
+     			<div style="overflow-y: scroll; overflow-x: hidden; height:200px; border: solid 0px #54779f; width: 100%" class="myrow2">    		
+    			
+    			
+
+    			<h:panelGroup id="listKetqua" >
+  					
+                     <rich:dataTable rows="7" id="_listSearch" value="#{listForDanhsachbenhnhan}" var="crrRow" rendered="#{listForDanhsachbenhnhan.rowCount>=0}" rowClasses="myrow1,myrow2">
+                     
+                        <rich:column style="width:107px">
+                            <a4j:commandLink 
+                            onclick="return show('#{crrRow.bnMa}','#{crrRow.tdMa}');"
+                        	value="#{crrRow.bnMa}"/>                        	                           
+
+
+                        </rich:column>
+                        <rich:column style="margin-left: 3px;" align="left">
+                           <h:outputText id="hoten" value="#{crrRow.bnHoten}" /> 
+                        </rich:column>
+                        <rich:column style="width:26px">
+                            <h:outputText id="gioitinh" value="#{crrRow.bnGtinh}" />          
+                        </rich:column>
+                        <rich:column style="width:26px">
+                             <h:outputText id="tuoi" value="#{crrRow.bnTuoi}" />      
+                        </rich:column>
+                        <rich:column style="width:47px">
+                             <h:outputText id="dvtuoi" value="#{crrRow.bnDvtuoi}" />      
+                        </rich:column>
+                         <rich:column style="width:61px">
+                         	<h:outputText id="ngaysinh" value="#{crrRow.bnNgaysinh}" />                      
+                        </rich:column>
+                         <rich:column style="width:61px;">
+                         	<h:outputText id="dantoc" value="#{crrRow.bnDantoc}" />                      
+                        </rich:column>
+                        <rich:column style="width:116px; margin-left: 3px;" align="left">
+                         	<h:outputText id="tiepdonma" value="#{crrRow.tdMa}" />                      
+                        </rich:column>
+                         
+                   </rich:dataTable>
+                   
+                   	<rich:datascroller for="_listSearch" maxPages="5"/>
+                   
+                   
+				</h:panelGroup>
+				
+    			</div>
+				</td>
+				</tr>
+				
+				</table>						
+    		</td>
+    	</tr>
+    	
+    </table>    
+   </h:form>   
+</ui:define> 
+</ui:composition>

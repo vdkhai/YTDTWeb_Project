@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:c="http://java.sun.com/jstl/core" 
+                template="/layout/mytemplate_danhmuc.xhtml">
+
+<ui:define name="body">	
+<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+<h:form id="_form" name="_form"> 
+	<div style="width:100%; position:absolute; margin-top:-6px">
+		<ui:include src="/layout/mymenu_YTDT_VienPhi_ThuVienPhi.xhtml" />
+	</div>
+	<table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+	<tr>
+    	<td colspan="3" height="50px">
+    		<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    			<tr>
+    				<td height="50px" width="400px" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    					<h:graphicImage value="../../images/white_light.gif" width="43" height="16" />
+    					BẢNG GIÁ CẬN LÂM SÀNG     
+    				</td> 
+    				<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" border="0">
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    								
+    							</td>
+    						</tr>
+    						
+    					</table> 
+    				</td>
+    			</tr>
+    		</table>			
+    	</td>    		    	
+	</tr>    
+    <tr>
+    	<td width="13px" height="12px" class="mytdl"></td>
+    	<td style="background-color: #c9daea;" width="965px" height="12px" >  		
+    	</td>
+    	<td width="11px" height="12px" class="mytdr"></td>
+    </tr>
+    <tr>
+    	<td colspan="3" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 5px" width="100%" >
+    		<table width="100%" border="0">
+				<tr align="center">
+					<td>
+						<a4j:outputPanel id="message_infor">
+							<tr>
+								<td>
+									<h:messages style="color:Red;font-weight:bold;font-style:italic;text-decoration:none;"/>
+								</td>
+							</tr>
+						</a4j:outputPanel>
+					</td>
+				</tr>
+    			<tr>
+    				<td>
+    					<h:outputText value="Mã" style="margin: 0 5px 0 15px;"/>
+    					<h:inputText id="__ma" tabindex="1" value="#{DtDmBangGiaCanLamSan.clsbanggia.dtdmclsbgMa}" style="width:100px;" styleClass="myinput"/>
+    					<h:outputText value="Tên" style="margin: 0 5px 0 15px;"/>
+    					<h:inputText id="__ten" tabindex="2" value="#{DtDmBangGiaCanLamSan.clsbanggia.dtdmclsbgDiengiai}" style="width:100px;" styleClass="myinput"/>    
+    					<h:outputText value="Phân loại" style="margin: 0 5px 0 15px;"/>
+    					
+						<h:selectOneMenu id="__phanloai" value="#{DtDmBangGiaCanLamSan.clsbanggia.getDtdmclsbgPhanloai(true).dtdmclsMaso}" tabindex="4" style="margin-left:1px;width:250px">
+    						<f:selectItems value="#{DtDmBangGiaCanLamSan.listPhanLoai}" />
+    					</h:selectOneMenu>
+    					<h:outputText value="Đã xóa" styleClass="mytext" style="margin-left: 15px;"/>
+    					<h:selectBooleanCheckbox  title="Đã xóa" id="__daxao" value="#{DtDmBangGiaCanLamSan.searchDaxoa}" style="margin-left: 5px;">
+							</h:selectBooleanCheckbox>    																						 
+						<a4j:commandLink style="text-decoration: none" tabindex="3"
+							action="#{DtDmBangGiaCanLamSan.search}"
+							reRender="__list,message_infor">
+    						<h:graphicImage value="../../images/search_1.png" style="margin:0 0 -2px 10px" border="0"/>
+    					</a4j:commandLink>
+    					<a4j:commandLink style="text-decoration: none" tabindex="4"
+    						action="#{DtDmBangGiaCanLamSan.reset}"
+    						reRender="__list,__ten,__ma,message_infor,__daxao" oncomplete="resetPhanloai();">
+    						<h:graphicImage value="../../images/reset.gif" width="16px;" style="margin:0 0 -3px 5px" border="0"/>
+    					</a4j:commandLink>					
+    				</td>
+    			</tr>
+    			
+    		</table>
+    	</td>
+    </tr>
+    	<tr>
+    	<td colspan="3" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 5px" width="100%" >
+    		<table width="100%">
+				<tr>
+    				<td align="center">
+    					<div align="left" style="overflow-y: scroll; overflow-x: scroll; height:300px; border: solid 1px #54779f; width: 100%">
+    						<rich:dataTable style="width:100%;" value="#{listDtDmClsBangGia}" id="__list" reRender="__ds" var="row" rows="10">
+    							<rich:column width="3%">
+        							<f:facet name="header"><h:outputText value=""/></f:facet>
+             						<a4j:commandLink style="text-decoration: none" 
+             								action="#{DtDmBangGiaCanLamSan_edit.init(row.dtdmclsbgMaso)}">
+                						<h:graphicImage value="../../images/edit.gif" style="border:0"/>
+             						</a4j:commandLink>
+             						<a4j:commandLink style="text-decoration: none"
+	             							onclick="if(!myconfirm('#{row.dtdmclsbgMa}')) return false;"
+	             							action="#{DtDmBangGiaCanLamSan.delete(listDtDmClsBangGia.rowIndex)}"
+	             							oncomplete="LoadCatalogFromServer_each(DtDmClsBangGia,'GetDmKyThuatAction');"
+	             							rendered="#{row.dtdmclsbgChon}"
+	             							reRender="__list,message_infor">
+                						<h:graphicImage value="../../images/delete.gif" style="border:0"/>
+             						</a4j:commandLink>
+        						</rich:column>
+								
+        						<rich:column width="7%">
+        							<f:facet name="header"><h:outputText value="Mã"/></f:facet>
+            						<h:outputText value="#{row.dtdmclsbgMa}" id="i_ma" />
+        						</rich:column>
+        						
+        						<rich:column width="25%">
+        							<f:facet name="header"><h:outputText value="Diễn giải"/></f:facet>
+            						<h:outputText value="#{row.dtdmclsbgDiengiai}" id="i_diengiai" />
+        						</rich:column>  
+        						
+        						<rich:column width="10%">
+        							<f:facet name="header"><h:outputText value="Phần dịch vụ"/></f:facet>
+            						<h:outputText value="#{row.dtdmclsbgPhandv}" id="i_phandv" >
+            							<f:convertNumber integerOnly="true"/>
+            						</h:outputText>
+        						</rich:column>
+        						
+        						<rich:column width="10%">
+        							<f:facet name="header"><h:outputText value="Đơn giá"/></f:facet>
+            						<h:outputText value="#{row.dtdmclsbgDongia}" id="i_dongia" >
+            							<f:convertNumber integerOnly="true"/>
+            						</h:outputText>
+        						</rich:column>
+        						
+        						<rich:column width="10%">
+        							<f:facet name="header"><h:outputText value="ĐG miễn phí"/></f:facet>
+            						<h:outputText value="#{row.dtdmclsbgDongiamp}" id="i_dongiamienphi" >
+            							<f:convertNumber integerOnly="true"/>
+            						</h:outputText>
+        						</rich:column>
+        						
+        						<rich:column width="10%">
+        							<f:facet name="header"><h:outputText value="ĐG bảo hiểm"/></f:facet>
+            						<h:outputText value="#{row.dtdmclsbgDongiabh}" id="i_dongiabaohiem" >
+            							<f:convertNumber integerOnly="true"/>
+            						</h:outputText>
+        						</rich:column>
+        						
+        						<rich:column width="10%">
+        							<f:facet name="header"><h:outputText value="ĐG yêu cầu"/></f:facet>
+            						<h:outputText value="#{row.dtdmclsbgDongiayc}" id="i_dongiayeucau" >
+            							<f:convertNumber integerOnly="true"/>
+            						</h:outputText>
+        						</rich:column>
+        						<rich:column width="15%">
+        							<f:facet name="header"><h:outputText value="Phân loại"/></f:facet>            						
+            						<h:outputText value="#{row.dtdmclsbgPhanloai.dtdmclsTen}" id="i_phanloai" />
+        						</rich:column>
+        						<f:facet name="footer">
+				               		<rich:datascroller id="__ds" renderIfSinglePage="false" page="#{DtDmBangGiaCanLamSan.scrollerPage}"></rich:datascroller>
+				           		</f:facet>
+							</rich:dataTable>
+    					</div> 
+    				</td>
+    			</tr> 			
+    		</table>   		
+    	</td>    	
+    </tr>    
+    <tr>
+    	<td colspan="3" style="background-color: #c9daea; padding-top: 5px; padding-bottom: 10px" width="100%" >
+    		<table width="100%">
+    			<tr>
+    				<td>
+    					<a4j:commandButton styleClass="mybton_b" value="Thêm mới" id="__themmoi" style="cursor:pointer;margin:0 0 0 25px;"
+    						tabindex="5" action="#{DtDmBangGiaCanLamSan_add.init}"/>
+    					
+    					<a4j:commandButton styleClass="mybton_b"  value="Trang chính" id="__trangchinh" style="cursor:pointer;margin:0 0 0 5px;"
+    						tabindex="6" action="#{DtDmBangGiaCanLamSan.goback}"/>
+    				</td>
+    			</tr>
+    		</table>   		
+    	</td>    	
+    </tr>
+</table>
+</h:form>
+
+<script type="text/javascript">
+
+function init(){
+	setInfo();
+}
+
+function setInfo(){	
+	document.getElementById(prefix_component + '__ma').focus();
+}
+
+function myconfirm(ma){
+	var f = confirm("<h:outputFormat value='#{msg.clsbanggia_de_co}' > <f:param value='" + ma + "'/> </h:outputFormat>");
+	return f;
+}
+function resetPhanloai() {
+	document.getElementById(prefix_component + "__phanloai").selectedIndex = 0;
+}
+</script>
+</ui:define> 
+</ui:composition>
+
+

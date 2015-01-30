@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      template="/layout/mytemplate.xhtml">
+<ui:define name="body">
+<f:loadBundle basename="com.iesvn.yte.UIResources" var="msg" />
+<script language="javascript">
+
+function iesvn_Required(){
+			
+					this.aa = new Array(prefix_component + "__tennguoidung", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Tên người dùng'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+ 	 				
+ 	 				//this.ab = new Array(prefix_component + "__matma", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Mật khẩu'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+ 	 			
+			
+		}
+		function enterToTab(){
+		/*
+				  if(	document.getElementById(prefix_component + "__ghinhan").alt != 1 
+		           		
+		           		
+		           ) {
+
+		                  if(window.event.keyCode == 13){
+		                         window.event.keyCode = 9;
+		                  }
+		           }
+		           */
+		}
+		
+		
+function onSubmit_ghinhan(){
+			
+			var form = document.forms[0];
+			var valid = iesvn_ValidateRequired(form) ; 
+	   
+	    	if (valid == true){
+	    			if(	document.getElementById(prefix_component + "__matma").value == "" ){ 
+		           		
+		           		document.getElementById(prefix_component + "__matma").focus();
+		           		valid = false;
+		            }
+		            if (valid == true){
+	    				hashPassword();
+	    			}
+	    	}
+	    	
+	    	return valid;
+	    	
+		}
+	function hashPassword() {
+		
+		document.getElementById(prefix_component + "__matma_hid").value = hex_md5(document.getElementById(prefix_component + "__matma").value);
+	}
+	
+	function capNhatDMTruocKhiVao(){
+		//alert(0);
+		//LoadCatalogFromServer_each(DmThuoc,"GetDanhMucThuocAction");
+		//LoadCatalogFromServer_each(DtDmClsBangGia,"GetDmKyThuatAction");
+		//LoadCatalogFromServer_each(DmNhaCungCap,"GetNoiBanAction");
+		//LoadCatalogFromServer_each(DmNhaSanXuat,"GetHangSanXuatAction");
+		//LoadCatalogFromServer_each(DmBenhIcd,"GetBenhIcdAction");
+		
+		//LoadCatalogFromServer_each(DtDmKhoiBhyt,"GetDtdmKhoiAction");
+		//LoadCatalogFromServer_each(DtDmTramYTeBhyt,"GetDtDmTramYTeBhytAction");
+		//LoadCatalogFromServer_each(DtDmClsKhoa,"GetDtDmClsKhoaAction");
+		//LoadCatalogFromServer_each(CauHinh,"GetCauHinhAction");
+		//LoadCatalogFromServer_each(DtDmLoiDan,"GetDtDmLoiDanAction");
+		//alert(1);
+
+}
+/*
+function iesvn_InputValidateBelongToSpecialChars() { 
+	hashPassword();
+	this.aa = new Array(prefix_component + "__tennguoidung", 
+	"<h:outputFormat value='#{msg.unformatPhone}' />",  
+	"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-.,", 
+	new Function ("varName", "return this[varName];"));
+}
+*/
+</script>
+<body onkeydown="enterToTab();" >
+<div style="background-image:url(images/#{msg.LOGIN_BV});background-repeat:no-repeat; width:100%; height:424px; text-align:left; background-position:center">
+	<div style="margin-top:160px; width:100%; height:30px; text-align:center"><h:messages styleClass="mynull"/></div>
+	
+	<h:form id="__form" name="_form" onsubmit="if (! onSubmit_ghinhan()) { this.alt = 0; return false; }">
+		<div style="margin-left:260px; padding-top:20px">
+			<table width="250" border="0" cellspacing="0" cellpadding="0">
+			  <tr>
+				<td ><h:outputText style="color:#ff0000" value="* "/><h:outputText value="Tên người dùng "/></td>
+				<td><h:inputText tabindex="1" value="#{identity.username}" id="__tennguoidung"/></td>
+			  </tr>
+			  <tr>
+				<td><h:outputText style="color:#ff0000" value="* "/><h:outputText value="Mật khẩu "/></td>
+				<td style="padding-top:5px">
+				<h:inputSecret  tabindex="2"  id="__matma" />
+				<h:inputHidden id="__matma_hid" value="#{identity.password}"/>
+				</td>
+			  </tr>
+			  <tr>
+				<td>&nbsp;</td>
+				<td style="padding-top:5px"><h:commandButton styleClass="mybton_b" tabindex="3" id="__ghinhan" value="Đăng Nhập" action="#{identity.login}" 
+				onclick="if (! onSubmit_ghinhan()) { this.alt = 0; return false; }"  
+				/></td>
+			    <h:inputHidden id="clientTime" value="#{identity.clientDateHour}"/>
+			  </tr>
+			</table>		
+		</div>	
+	</h:form>
+	
+	
+		
+	
+</div>	
+</body>
+
+<script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/MD5.JS"></script>
+	<script type="text/javascript">
+		<!--
+		function init(){
+		
+		}
+		
+		var now = new Date();
+		var prefix_component_temp = document.forms[0].id + ":";
+		
+		var curr_date = now.getDate()+"";
+		if (curr_date.length < 2){
+		   curr_date = "0" + curr_date;
+		}
+		var curr_month = (now.getMonth() + 1 )+"";
+		if (curr_month.length < 2){
+		   curr_month = "0" + curr_month;
+		}
+		
+		var curr_year = now.getFullYear();
+		var curr_hour = now.getHours()+"";
+		if (curr_hour.length < 2){
+		   curr_hour = "0" + curr_hour;
+		}
+		document.getElementById(prefix_component_temp + "clientTime").value = curr_date + "/" + curr_month + "/" + curr_year + " " + curr_hour;
+		document.getElementById(prefix_component_temp + "__tennguoidung").focus();
+		
+		//-->
+	</script>
+ </ui:define>    
+</ui:composition>
+

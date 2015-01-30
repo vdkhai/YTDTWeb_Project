@@ -1,0 +1,487 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                xmlns:rich="http://richfaces.org/rich"
+                template="/layout/mytemplate.xhtml">
+
+    <ui:define name="body">
+        <f:loadBundle basename="com.iesvn.yte.UIResources" var="msg" />
+        <script type="text/javascript">
+        var bCancel = false;
+        var enableEntToTab = true;
+        function setEnableEntToTab(value) {
+        enableEntToTab = value;
+}
+        function checkMaxLength(field,maxlen) {
+            if(field.value.length >= maxlen){
+                field.value = field.value.substring(0,maxlen);                          }
+        }
+        function enterToTab(){
+        if((document.getElementById(prefix_component +"__ghinhan").alt != 1) &amp;&amp; (document.getElementById(prefix_component +"__back").alt != 1) &amp;&amp; (document.getElementById(prefix_component +"__print").alt != 1)) {
+         if(window.event.keyCode == 13 &amp;&amp; enableEntToTab){
+                window.event.keyCode = 9;
+          }
+        }
+        }
+        </script>
+        <div id="ajax_error_display" style="position:absolute; top:30px; left:578px; width:200px; height:50px"/>
+        <div id="sync_error_display" style="position:absolute; top:40px; left:578px; width:200px; height:50px"/>
+
+        <body onkeydown="enterToTab();">
+            <h:form id="_form" name="_form">
+                <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_DieuTriNoiTru.xhtml" /></div>
+                <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+                    <tr>
+                        <td colspan="3" height="50px">
+                            <table cellspacing="0" cellpadding="0" border="0" width="100%" >
+                                <tr>
+                                    <td height="50px" width="100%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >
+                                        <h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+                                        <h:inputHidden id="B211_2" value="#{goToB211_3}"/>
+    						CẬP NHẬT BỆNH ÁN NGOẠI TRÚ YHCT
+                                    </td>
+                                    <td valign="top">
+                                        <table cellspacing="0" cellpadding="0" width="100%" >
+                                            <tr>
+                                                <td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="13px" height="12" class="mytdl">
+                        </td>
+                        <td style="background-color: #c9daea;" width="965" height="12" >
+                        </td>
+                        <td width="11px" height="12" class="mytdr">
+                        </td>
+                    </tr>
+                    <tr style=" height : 5px;">
+                        <td width="100%" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 0px" colspan="3" align="center">
+                            <a4j:outputPanel id="__messagesPanel">
+                                <h:messages styleClass="mynull"/>
+                            </a4j:outputPanel>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px" width="100%" >
+                            <!-- Main Area -->
+                            <table cellspacing="0" cellpadding="0" border="0" width="100%" align="center">
+                                <tr>
+                                    <td align="right" style="width:20%;padding-right: 0px">
+                                        <h:outputText value="#{msg.Khoa}" styleClass="mytext" style="margin-left: 15px; margin-right: 5px;"/>
+                                    </td>
+                                    <td align="left" >
+                                        <h:inputText value="#{khoaMa}"  readonly="true" id="DM_KHOA_MA" style="width: 40px;" styleClass="myreadonly"/>
+                                        <span id="DM_KHOA_span"/>
+                                        <input  readonly="readonly"  id="DM_KHOA"  style="width: 255px;" class="myreadonly"/>
+
+                                        <h:outputText value="#{msg.So_benh_an}" styleClass="mytext" style="margin-left: 72px; margin-right: 5px;"/>
+                                        <h:inputText value="#{soBenhAn}"  readonly="true" id="__sobenhan"   style=" width: 120px;" styleClass="myreadonly"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:outputText value="#{msg.Ho_ten}" styleClass="mytext" style="margin-left: 5px; margin-right: 5px"/>
+                                    </td>
+                                    <td align="left" >
+                                        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                                            <tr>
+                                                <td align="left" width="32%">
+                                                    <h:inputText value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hoTen}" readonly="true" id="__hoten"  style="float: left; width: 300px;" styleClass="myreadonly"/>
+
+                                                </td>
+                                                <td align="left" width="27%">
+
+                                                </td>
+                                                <td align="left">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        
+                                    </td>
+                                    <td>
+                                    	<h:outputText value="Khám bệnh theo y học hiện đại" styleClass="mytext" style=" font-weight:bold;margin-right: 5px;"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:outputText value="Lý do vào viện" styleClass="mytext" style="margin-left: 5px; margin-right: 5px"/>
+                                    </td>
+                                    <td>
+                                        <h:inputText maxlength="510" value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctLydovaov}" id="__lydovaov"   style="width: 91%;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td align="right">
+                                        <h:panelGrid columns="1">
+                                            <h:outputText value="QT bệnh lý" styleClass="mytext" style=" margin-right: 5px"/>
+                                            <h:outputText value="(tối đa 5 dòng)" styleClass="mytext" style="font-size:9px; margin-right: 5px"/>
+                                        </h:panelGrid>
+                                    </td>
+                                    <td>
+                                        <h:inputTextarea  value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctQtbenhly}"  rows="5"  id="__qtbenhly" name="_qtbenhly"  style="height:75px; width: 91%;"  styleClass="myinput" onkeydown="setEnableEntToTab(false)" onblur="setEnableEntToTab(true)" onkeyup="checkMaxLength(this,510)"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        
+                                    </td>
+                                    <td>
+                                    	<h:outputText value="Tiền sử bệnh" styleClass="mytext" style=" font-weight:bold;margin-right: 5px;"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td align="right">
+                                    	<h:outputText value="Bản thân" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td>
+                                        <h:inputText maxlength="510" value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctTiensubenhbt}"  id="__tiensubenh_banthan" name="_tiensubenh_banthan"  style="width: 91%;" styleClass="myinput" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td align="right">
+                                    	<h:outputText value="Gia đình" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td>
+                                        <h:inputText maxlength="510" value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctTiensubenhgd}"  id="__tiensubenh_giadinh" name="_tiensubenh_giadinh"  style="width: 91%;" styleClass="myinput" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:panelGrid columns="1">
+                                            <h:outputText value="Bộ phận bị bệnh" styleClass="mytext" style=" margin-right: 5px"/>
+                                            <h:outputText value="(tối đa 5 dòng)" styleClass="mytext" style="font-size:9px; margin-right: 5px"/>
+                                        </h:panelGrid>
+                                    </td>
+                                    <td>
+                                        <h:inputTextarea  value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctBophanbibenh}"  rows="5"  id="__bophanbibenh" style="height:75px; width: 91%;" styleClass="myinput" onkeydown="setEnableEntToTab(false)" onblur="setEnableEntToTab(true)" onkeyup="checkMaxLength(this,510)"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:panelGrid columns="1">
+                                            <h:outputText value="Xét nghiệm cần thiết" styleClass="mytext" style=" margin-right: 5px"/>
+                                            <h:outputText value="(tối đa 5 dòng)" styleClass="mytext" style="font-size:9px; margin-right: 5px"/>
+                                        </h:panelGrid>
+                                    </td>
+                                    <td>
+                                        <h:inputTextarea  value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctXetnghiemcanthiet}"  rows="5"  id="__xetnghiemcanthiet" style="height:75px; width: 91%;" styleClass="myinput" onkeydown="setEnableEntToTab(false)" onblur="setEnableEntToTab(true)" onkeyup="checkMaxLength(this,250)"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td align="right">
+                                        
+                                    </td>
+                                    <td>
+                                    	<h:outputText value="Khám bệnh theo y học cổ truyền" styleClass="mytext" style=" font-weight:bold;margin-right: 5px;"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td align="right">
+                                        <h:panelGrid columns="1">
+                                            <h:outputText value="Vong chẩn" styleClass="mytext" style=" margin-right: 5px"/>
+                                            <h:outputText value="(tối đa 4 dòng)" styleClass="mytext" style="font-size:9px; margin-right: 5px"/>
+                                        </h:panelGrid>
+                                    </td>
+                                    <td>
+                                        <h:inputTextarea  value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctVongchan}"  rows="3"  id="__vongchan" style="height:60px; width: 91%;" styleClass="myinput" onkeydown="setEnableEntToTab(false)" onblur="setEnableEntToTab(true)" onkeyup="checkMaxLength(this,250)"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:panelGrid columns="1">
+                                            <h:outputText value="Văn chẩn" styleClass="mytext" style=" margin-right: 5px"/>
+                                            <h:outputText value="(tối đa 3 dòng)" styleClass="mytext" style="font-size:9px; margin-right: 5px"/>
+                                        </h:panelGrid>
+                                    </td>
+                                    <td>
+                                        <h:inputTextarea  value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctVanchan}"  rows="3"  id="__vanchan" style="height:45px; width: 91%;" styleClass="myinput" onkeydown="setEnableEntToTab(false)" onblur="setEnableEntToTab(true)" onkeyup="checkMaxLength(this,250)"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:panelGrid columns="1">
+                                            <h:outputText value="Vấn chẩn" styleClass="mytext" style=" margin-right: 5px"/>
+                                            <h:outputText value="(tối đa 6 dòng)" styleClass="mytext" style="font-size:9px; margin-right: 5px"/>
+                                        </h:panelGrid>
+                                    </td>
+                                    <td>
+                                        <h:inputTextarea  value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctVanchan2}"  rows="3"  id="__vanchan2" style="height:90px; width: 91%;" styleClass="myinput" onkeydown="setEnableEntToTab(false)" onblur="setEnableEntToTab(true)" onkeyup="checkMaxLength(this,250)"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:panelGrid columns="1">
+                                            <h:outputText value="Thiết chẩn" styleClass="mytext" style=" margin-right: 5px"/>
+                                            <h:outputText value="(tối đa 3 dòng)" styleClass="mytext" style="font-size:9px; margin-right: 5px"/>
+                                        </h:panelGrid>
+                                    </td>
+                                    <td>
+                                        <h:inputTextarea  value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctThietchan}"  rows="3"  id="__thietchan" style="height:45px; width: 91%;" styleClass="myinput" onkeydown="setEnableEntToTab(false)" onblur="setEnableEntToTab(true)" onkeyup="checkMaxLength(this,250)"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        
+                                    </td>
+                                    <td>
+                                    	<h:outputText value="Chẩn đoán" styleClass="mytext" style=" font-weight:bold;margin-right: 5px;"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:outputText value="Bệnh danh" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctChandoanBenhdanh}"  maxlength="255"  id="__benhdanh"  style="width: 91%;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:outputText value="Bát cương" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctChandoanBatcuong}"  maxlength="255"  id="__batcuong"  style="width: 91%;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:outputText value="Tạng phủ" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctChandoanTangphu}"  maxlength="255"  id="__tangphu"  style="width: 91%;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:outputText value="Nguyên nhân" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctChandoanNguyennhan}"  maxlength="255"  id="__nguyennhan"  style="width: 91%;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        
+                                    </td>
+                                    <td>
+                                    	<h:outputText value="Phần điều trị" styleClass="mytext" style=" font-weight:bold;margin-right: 5px;"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:outputText value="Phép chữa" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctDieutriPhepchua}"  maxlength="255"  id="__phepchua"  style="width: 91%;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:outputText value="Phương thuốc" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctDieutriPhuongthuoc}"  maxlength="255"  id="__phuongthuoc"  style="width: 91%;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:outputText value="Phương huyệt" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctDieutriPhuonghuyet}"  maxlength="255"  id="__phuonghuyet"  style="width: 91%;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:outputText value="Xoa bóp" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctDieutriXoabop}"  maxlength="255"  id="__xoabop"  style="width: 91%;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:outputText value="Chế độ ăn tại nhà" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctDieutriChedoantainha}"  maxlength="255"  id="__chedoan"  style="width: 91%;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:outputText value="Chế độ hộ lý tại nhà" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctDieutriChedoholytainha}"  maxlength="255"  id="__chedoholy"  style="width: 91%;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:outputText value="Tiên lượng" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctTienluong}"  maxlength="255"  id="__tienluong"  style="width: 91%;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        
+                                    </td>
+                                    <td>
+                                    	<h:outputText value="Tổng kết" styleClass="mytext" style=" font-weight:bold;margin-right: 5px;"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:panelGrid columns="1">
+                                            <h:outputText value="Kết quả cận lâm sàng chính" styleClass="mytext" style=" margin-right: 5px"/>
+                                            <h:outputText value="(tối đa 3 dòng)" styleClass="mytext" style="font-size:9px; margin-right: 5px"/>
+                                        </h:panelGrid>
+                                    </td>
+                                    <td>
+                                        <h:inputTextarea value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctKetquaclschinh}"  rows="3"  id="__ketquacls"  style="height:45px; width: 91%;" styleClass="myinput" onkeydown="setEnableEntToTab(false)" onblur="setEnableEntToTab(true)" onkeyup="checkMaxLength(this,250)"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:panelGrid columns="1">
+                                            <h:outputText value="Kết quả giải phẫu bệnh" styleClass="mytext" style="margin-right: 5px"/>
+                                            <h:outputText value="(tối đa 3 dòng)" styleClass="mytext" style="font-size:9px; margin-right: 5px"/>
+                                        </h:panelGrid>
+                                    </td>
+                                    <td>
+                                        <h:inputTextarea value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctKetquagiaiphaubenh}"  rows="3"  id="__ketquagiaiphaubenh"  style="height:45px; width: 91%;" styleClass="myinput" onkeydown="setEnableEntToTab(false)" onblur="setEnableEntToTab(true)" onkeyup="checkMaxLength(this,250)"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:outputText value="Pháp trị YHHĐ" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctPhaptriYhhd}"  maxlength="255"  id="__phaptriyhhd"  style="width: 91%;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:outputText value="Pháp trị YHCT" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctPhaptriYhct}"  maxlength="255"  id="__phaptriyhct"  style="width: 91%;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:outputText value="Chẩn đoán ra viện YHHĐ" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctChandoanravienYhhd}"  maxlength="255"  id="__chandoanravienyhhd"  style="width: 91%;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:outputText value="Chẩn đoán ra viện YHCT" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctChandoanravienYhct}"  maxlength="255"  id="__chandoanravienyhct"  style="width: 91%;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">
+                                        <h:panelGrid columns="1">
+                                            <h:outputText value="Hướng điều trị và các chế độ tiếp theo" styleClass="mytext" style=" margin-right: 5px"/>
+                                            <h:outputText value="(tối đa 5 dòng)" styleClass="mytext" style="font-size:9px; margin-right: 5px"/>
+                                        </h:panelGrid>
+                                    </td>
+                                    <td>
+                                        <h:inputTextarea  value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.hsbactngoaitruYhctHuongdtCdtt}"  rows="5"  id="__huongdtcdtt"   style="height:75px; width: 91%;" styleClass="myinput" onkeydown="setEnableEntToTab(false)" onblur="setEnableEntToTab(true)" onkeyup="checkMaxLength(this,510)"/>
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td align="right">
+                                        <h:outputText value="Bác sĩ điều trị" styleClass="mytext" style=" margin-right: 5px"/>
+
+                                    </td>
+                                    <td>
+                                        <h:inputHidden id="DT_DM_NHAN_VIEN_MA4_pk" value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.getHsbactngoaitruYhctBsdieutri(true).dtdmnhanvienMaso}"/>
+                                        <h:inputText  value="#{B211_3_CapNhatThongTinNgoaiTruYhct.hsbaCTNgoaitruYhct.getHsbactngoaitruYhctBsdieutri(true).dtdmnhanvienMa}" id="DT_DM_NHAN_VIEN_MA4" name="DT_DM_NHAN_VIEN_MA4" style=" width: 40px"  onblur="myOnblurTextbox(this.id, 'DT_DM_NHAN_VIEN__4')" maxlength="10" styleClass="myinput"/>
+                                        <span id="DT_DM_NHAN_VIEN4_span"/>
+                                        <input class="mycbogear" id="DT_DM_NHAN_VIEN__4" name="DT_DM_NHAN_VIEN__4"  style="width: 270px;margin-right:6px;"/>
+
+                                    </td>
+                                </tr>
+                                <tr style="height: 40px;">
+                                    <td colspan="3" align="right" style="padding-left: 330px;" >
+                                        <div style="float: left;">
+                                            <a4j:commandButton   id="__ghinhan"
+                                                                 value="#{msg.Ghi_nhan}" style="width: 70px;margin-left:3px;" styleClass="mybton_b"
+                                                                 action="#{B211_3_CapNhatThongTinNgoaiTruYhct.ghinhan}" oncomplete="document.getElementById(prefix_component + 'ghiNhanException').value='#{B211_3_CapNhatThongTinNgoaiTruYhct.getGhiNhanException()}';"
+                                                                 reRender="ghiNhanException,__messagesPanel"/>
+
+
+                                        </div>
+
+                                        <div style="float: left;">
+                                            <a4j:commandButton  
+                                                id="__back" type="submit" value="#{msg.Quay_lai}"
+                                                action="#{B211_3_CapNhatThongTinNgoaiTruYhct.back}" style="width: 70px;margin-left:3px;" styleClass="mybton_b"/>
+
+
+                                        </div>
+
+                                        <div style="float: left;">
+                                            <a4j:commandButton  
+                                                id="__print" type="submit" value="#{msg.In_an}"
+                                                action="#{B211_3_CapNhatThongTinNgoaiTruYhct.thuchienAction}" style="width: 70px;margin-left:3px;" styleClass="mybton_b"/>
+
+
+                                        </div>
+                                        <h:inputHidden value="#{B211_3_CapNhatThongTinNgoaiTruYhct.ghiNhanException}"  id="ghiNhanException" name="ghiNhanException" style=" width: 100px;" styleClass="myinputso"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <iframe width="174" height="189" name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;"/>
+            </h:form>
+        </body>
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/hsba/B211_3_CapnhathongtinchitietbangoaitruYhct_gears.js"></script>
+        <script>
+          A4J.AJAX.onError = function(req,status, message){
+                  //window.alert('Custom onError handler '+message);
+                  ajax_error_display.innerHTML = khong_tim_thay_du_lieu;
+          };
+          A4J.AJAX.onExpired = function(loc,expiredMsg){
+            //window.alert('Custom onExpired handler '+message);
+            ajax_error_display.innerHTML = can_dang_nhap_lai;
+                  };
+                  var prefix_component = document.forms[0].id + ":";
+                  document.getElementById(prefix_component + "__lydovaov").focus();
+        </script>
+    </ui:define>
+</ui:composition>
+
+

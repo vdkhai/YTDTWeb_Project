@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                 xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                template="/layout/mytemplate.xhtml">
+<ui:define name="body">
+	<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+	<script type="text/javascript">
+	var bCancel = false;
+		var bSave = false;
+		function setSave() {
+			bSave = true;
+		}
+		function setCancel(){
+			bCancel = true;
+		}		
+		function mywellform(mythis){
+			var myvalid =  is_wellformed_Date(this); 
+			if (myvalid == true){
+				setNgayThangBatDauKetThuc("__thang","__nam","__tungay","__denngay");
+			}
+			
+			return myvalid;
+		}
+		function iesvn_Required() { 
+			this.ab = new Array(prefix_component + "__tungay", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Từ ngày'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+ 	 		this.ac = new Array(prefix_component + "__denngay", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Ðến ngày'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+		}	
+		function iesvn_ComparedDates() {
+			this.aa = new Array([prefix_component + "__tungay",prefix_component + "__ngayhientai", "=="], "<h:outputFormat value='#{msg.common_compareCurDate}' > <f:param value='Từ ngày'/> </h:outputFormat>", new Function ("varName", "this.datePatternStrict='dd/MM/yyyy';  return this[varName];"));
+			this.ab = new Array([prefix_component + "__denngay",prefix_component + "__ngayhientai", "=="], "<h:outputFormat value='#{msg.common_compareCurDate}' > <f:param value='Ðến ngày'/> </h:outputFormat>", new Function ("varName", "this.datePatternStrict='dd/MM/yyyy';  return this[varName];"));
+			this.ac = new Array([prefix_component + "__tungay",prefix_component + "__denngay", "=="], "<h:outputFormat value='#{msg.common_compareDates}' > <f:param value='Từ ngày'/> <f:param value='Đến ngày'/> </h:outputFormat>", new Function ("varName", "this.datePatternStrict='dd/MM/yyyy';  return this[varName];"));
+		}
+		function onSubmit_ghinhan(){
+			bSave = true;
+			return onSubmit();
+		}
+		function onSubmit() {
+			var form = document.forms[0];
+			var valid = true;			
+			if (bSave){
+		    	bSave = false;	    	    	
+		    	valid = iesvn_ValidateRequired(form)  ;   
+		    	//alert(valid);
+		    	if (valid == true){
+		    		valid = iesvn_ValidateComparedDates(form);
+		    	}  	
+		    	if(valid) {
+		    		document.getElementById("tr_update").style.display = "block";
+		    		document.getElementById("tr_msg").style.display = "none";
+		    		document.getElementById(prefix_component +"__tienhanh").disabled = true;
+		    		document.getElementById(prefix_component +"__chonlai").disabled = true;
+		    	}
+		    } 	    	    
+		    if (bCancel){
+		    	bCancel = false;
+		    }
+		    return valid;
+		}
+		
+			function enterToTab(){
+			    if((document.getElementById(prefix_component +"__tienhanh").alt != 1) &amp;&amp; 
+			    (document.getElementById(prefix_component +"__chonlai").alt != 1) 
+			) {
+			       if(window.event.keyCode == 13){
+			            window.event.keyCode = 9;
+			       }
+			    }
+			}
+			function init() {} 
+			function showHideMsg(type) {
+				if (type == 1) { // cap nhat
+					document.getElementById("tr_update").style.display = "none";
+		    		document.getElementById("tr_msg").style.display = "block";
+				} else { // nhap moi
+					document.getElementById("tr_update").style.display = "none";
+		    		document.getElementById("tr_msg").style.display = "none";
+				}
+				document.getElementById(prefix_component +"__tienhanh").disabled = false;
+	    		document.getElementById(prefix_component +"__chonlai").disabled = false;
+			}
+	</script>
+	<body onkeydown="enterToTab();">
+	<h:form id="_form" name="_form">	
+	<h:inputHidden id="__ngayhientai" name="_ngayhientai" value="#{B3247_CapNhatVienPhiNoiTru.ngayhientai}"/>	
+    <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_VienPhi_ThuVienPhi.xhtml" /></div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="62%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						CẬP NHẬT VIỆN PHÍ NỘI TRÚ
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>        	
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="985px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px" width="100%" align="center">
+    			<!-- Main Area -->
+    			<table cellspacing="0" cellpadding="0" border="0" width="68%">
+    				<tr style=" height : 25px;display:none" id="tr_msg">
+			    		<td width="100%" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 0px" align="center">  
+			    		    <a4j:outputPanel id="__message">
+								<h:messages styleClass="mynull" />
+							</a4j:outputPanel>
+			    		</td>    		
+			    	</tr>
+    			    <tr style="height: 25px;display:none" id="tr_update">
+    					<td align="center" >
+    					    <h:graphicImage value="/images/loading.gif" width="16" height="16" />
+    						<h:outputText value="Đang cập nhật dữ liệu. Vui lòng không tắt trình duyệt cho đến khi việc cập nhật hoàn tất." styleClass="mytext_b" style="margin-left: 5px;margin-right: 5px;"/>
+    						
+    					</td>  
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="center" >
+    						
+    						<h:outputText value="Cập nhật thanh toán viện phí của bệnh nhân nội trú (theo thời gian ra viện)" styleClass="mytext" style="margin-right: 5px;"/>
+    						
+    						
+    					</td>  
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="left" >
+    						<h:outputText value="Tháng, năm" styleClass="mytext" style="margin-left: 65px;margin-right: 5px;"/>
+    						<h:inputText value="#{B3247_CapNhatVienPhiNoiTru.thoigian_thang}" maxlength="2" 
+    						tabindex="1" id="__thang" name="_thangvaovien" style="width: 35px;margin-right:4px;" styleClass="myinput" onchange='setNgayThangBatDauKetThuc("__thang","__nam","__tungay","__denngay");'/>
+    						<h:inputText value="#{B3247_CapNhatVienPhiNoiTru.thoigian_nam}" maxlength="4" 
+    						onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,"");setNgayThangBatDauKetThuc("__thang","__nam","__tungay","__denngay");'  
+    						tabindex="2" id="__nam" name="_namvaovien" style="width: 50px;" styleClass="myinput"/>
+    					</td>  
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="left" style="padding-left:23px;" >
+    						<h:outputText value="Từ ngày" styleClass="mytext" style="margin-left:65px;margin-right:4px;" />
+    						<h:inputText onkeypress="return being_wellformed_Date(this, event)" onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,"");return is_wellformed_Date(this)'  styleClass="myinput" tabindex="3" type="text" id="__tungay" name="_tungay" value="#{B3247_CapNhatVienPhiNoiTru.tungay}" maxlength="10" style="width:70px;"/>
+    						<a hideFocus="true" href="java_script:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__tungay'));document.getElementById(prefix_component + '__denngay').focus();return false;"><h:graphicImage style="margin:0 0 -3px 0" value="/resources/calendar/cal.gif" border="0" name="popcal"/></a>
+    						<h:outputText value="*" styleClass="mynull" />
+    					
+    						<h:outputText value="Ðến ngày" styleClass="mytext" style="margin-right:4px;margin-left:15px;" />
+    						<h:inputText onkeypress="return being_wellformed_Date(this, event)" onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,"");return is_wellformed_Date(this)' tabindex="4" type="text" id="__denngay" name="_denngay" value="#{B3247_CapNhatVienPhiNoiTru.denngay}" maxlength="10" styleClass="myinput" style="width:70px;"/>
+    						<a hideFocus="true" href="java_script:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__denngay'));return false;"><h:graphicImage style="margin:0 0 -3px 0" value="/resources/calendar/cal.gif" border="0" name="popcal"/></a>								
+    					    <h:outputText value="*" styleClass="mynull" />								
+    					</td> 
+    				</tr>
+    				
+    				
+    				
+    				<tr style="height: 40px;">
+    					<td align="center"  style="padding-left: 95px;">    
+    						<div style="float: left;">
+    							
+    								<a4j:commandButton tabindex="9" action="#{B3247_CapNhatVienPhiNoiTru.thuchienAction}" 
+    								onclick="if (! onSubmit_ghinhan()) { this.alt = 0; return false; }"  
+    								id="__tienhanh" name="_tienhanh" value="Cập nhật thanh toán viện phí" style="width: 170px; margin-left:3px;" styleClass="mybton_b"
+    								reRender="__message" oncomplete="showHideMsg(1);"/>
+    							
+    						</div> 
+    						<div style="float: left;">
+    							
+    								<a4j:commandButton tabindex="10" action="#{B3247_CapNhatVienPhiNoiTru.resetForm}" 
+    								reRender="__thang,__nam,__tungay,__denngay,__message" 
+    								oncomplete="highlightOnFocus();showHideMsg(2);"
+    								 id="__chonlai" name="_chonlai" value="Nhập mới" style="width: 70px; margin-left:3px;" styleClass="mybton_b"/>
+    							
+    						</div> 
+    					</td>
+    				</tr>    				
+    			</table> 		    						
+    		</td>
+    	</tr>	    	
+    </table>
+    </h:form>
+    </body>    
+	<iframe width="174" height="189" name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;"/>
+</ui:define> 
+</ui:composition>
+

@@ -1,0 +1,343 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:a4j="http://richfaces.org/a4j"
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">
+<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+	<script type="text/javascript">
+	var bCancel = false;
+		var bSave = false;
+		
+		function setSave() {
+			bSave = true;
+		}
+		function setCancel(){
+			bCancel = true;
+		}		
+		
+		function iesvn_Required() { 
+			this.ab = new Array(prefix_component + "__tungay", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Từ ngày'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+ 	 		this.ac = new Array(prefix_component + "__denngay", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Ðến ngày'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+		}	
+		
+		function iesvn_ComparedDates() {
+			this.aa = new Array([prefix_component + "__tungay",prefix_component + "__ngayhientai", "=="], "<h:outputFormat value='#{msg.common_compareCurDate}' > <f:param value='Từ ngày'/> </h:outputFormat>", new Function ("varName", "this.datePatternStrict='dd/MM/yyyy';  return this[varName];"));
+			this.ab = new Array([prefix_component + "__denngay",prefix_component + "__ngayhientai", "=="], "<h:outputFormat value='#{msg.common_compareCurDate}' > <f:param value='Ðến ngày'/> </h:outputFormat>", new Function ("varName", "this.datePatternStrict='dd/MM/yyyy';  return this[varName];"));
+			this.ac = new Array([prefix_component + "__tungay",prefix_component + "__denngay", "=="], "<h:outputFormat value='#{msg.common_compareDates}' > <f:param value='Từ ngày'/> <f:param value='Đến ngày'/> </h:outputFormat>", new Function ("varName", "this.datePatternStrict='dd/MM/yyyy';  return this[varName];"));
+		}
+				function onSubmit_ghinhan() {
+			bSave = true;
+			return onSubmit();
+		}
+		function onSubmit() {
+			changeCursorWait ();
+			var form = document.forms[0];
+			var valid = true;			
+			if (bSave){
+		    	bSave = false;	    	    	
+		    	valid = iesvn_ValidateRequired(form)  ;   
+		    	if (valid == true){
+		    		valid = iesvn_ValidateComparedDates(form);
+		    	}  	
+		    } 	    	    
+		    if (bCancel){
+		    	bCancel = false;
+		    }
+		    if (valid == false){
+	    		changeCursorDefault ();
+	    	}
+		    return valid;
+		}
+		
+	function enterToTab(){
+			    if((document.getElementById(prefix_component +"__ghinhan").alt != 1) &amp;&amp; 
+			    (document.getElementById(prefix_component +"__chonlai").alt != 1)) {
+			       if(window.event.keyCode == 13){
+			            window.event.keyCode = 9;
+			       }
+			    }
+			} 
+			
+			var popupwd = null;
+		function popup(url) 
+		{
+		changeCursorWait ();
+			searchAction();
+ 			var width  = 770;
+ 			var height = 300;
+ 			var left   = (screen.width  - width)/2;
+ 			var top    = (screen.height - height)/2;
+ 			var params = 'width='+width+', height='+height;
+ 			params += ', top='+top+', left='+left;
+ 			params += ', directories=no';
+ 			params += ', location=no';
+ 			params += ', menubar=no';
+ 			params += ', resizable=no';
+ 			params += ', scrollbars=no';
+ 			params += ', status=no';
+ 			params += ', toolbar=no';
+ 			popupwd=window.open(url,'windowname5', params);
+ 			if (window.focus) {popupwd.focus()}
+ 			changeCursorDefault ();
+ 			return false;
+		}
+		
+	</script>
+	<body onkeydown="enterToTab();">
+	<h:form id="_form" name="_form">	
+    <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_VienPhi_ThuVienPhi.xhtml" /></div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="48%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						TÌM KIẾM BỆNH NHÂN
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>        	
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="985px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 15px" width="100%" align="center">
+    			<!-- Main Area -->
+    			<table cellspacing="0" cellpadding="0" border="0" width="98%">
+    				<tr style="height: 25px;">
+    					<td align="left"  style="padding-left: 47px;">
+    							<h:outputText value="Thời gian vào viện" styleClass="mytext" style="margin-right: 5px; margin-left: 6px;"/>
+    						<h:inputText value="#{B253_Timbenhnhantheonhieutieuchi.thoigian_thang}" maxlength="2" onchange=" return validatethang();" onkeypress="iesvn_InputInKeys('0123456789.')" tabindex="1" id="__thang" name="_thangvaovien" style="width: 35px;" styleClass="myinput"/>&#160;
+    						<h:inputText value="#{B253_Timbenhnhantheonhieutieuchi.thoigian_nam}" maxlength="4" onchange="validatenam()" onkeypress="iesvn_InputInKeys('0123456789.')" onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,"");setNgayThangBatDauKetThuc("__thang","__nam","__tungay","__denngay");' tabindex="2" id="__nam" name="_namvaovien" style="width: 55px;" styleClass="myinput"/>
+    					
+    						<h:outputText value="Từ ngày" styleClass="mytext" style="margin-left:34px;margin-right:5px;" />
+    						<h:inputText onkeypress="return being_wellformed_Date(this, event)" onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,"");return is_wellformed_Date(this)' tabindex="3" type="text" id="__tungay" name="_tungay" value="#{B253_Timbenhnhantheonhieutieuchi.tungay}" maxlength="10" styleClass="myinput" style="width:70px;"/>
+    						<a hideFocus="true" href="java_script:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__tungay'));document.getElementById(prefix_component + '__denngay').focus();return false;"><h:graphicImage style="margin:0 0 -3px 0" value="/resources/calendar/cal.gif" border="0" name="popcal"/></a>
+    						<h:outputText value="*" styleClass="mynull" />
+    						
+    						<h:outputText value="Ðến ngày" styleClass="mytext" style="margin-left:10px;margin-right:5px;"/>
+    						<h:inputText onkeypress="return being_wellformed_Date(this, event)" 
+    						onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,"");return is_wellformed_Date(this)' tabindex="4" type="text" id="__denngay" name="_denngay" value="#{B253_Timbenhnhantheonhieutieuchi.denngay}" maxlength="10" styleClass="myinput" style="width:70px;"/>
+    						<a hideFocus="true" href="java_script:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__denngay'));document.getElementById(prefix_component + '__sobenhan').focus();return false;"><h:graphicImage style="margin:0 0 -3px 0" value="/resources/calendar/cal.gif" border="0" name="popcal"/></a>								
+    					    <h:outputText value="*" styleClass="mynull"/>	
+						
+						</td>					
+    				</tr>
+    				<tr style="height: 25px;">  
+    					<td align="left"  style="padding: 0 0 15px 0">
+    						<h:outputText value="Số bệnh án" styleClass="mytext" style="margin-left: 35px;margin-right: 5px;"/>
+    						<h:inputText value="#{B253_Timbenhnhantheonhieutieuchi.sobenhan}" tabindex="5" id="__sobenhan" name="_sobenhan" styleClass="myinput" style="margin-right: 0px; width : 114px;"/>
+    					
+    						<h:outputText value="Họ tên" styleClass="mytext" style="margin-left:15px;margin-right: 5px;"/>
+    						<h:inputText value="#{B253_Timbenhnhantheonhieutieuchi.hoten}" tabindex="6" id="__hoten" name="_hoten" styleClass="myinput" style="width : 160px;"/>
+    					</td>				
+    				</tr>
+    			</table>
+    			
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" style="background:white">	
+    				<tr style="height: 25px;">  
+    					<td align="left"  style="padding:15px 0 0 75px;">
+    						<h:outputText value="Tuổi" styleClass="mytext" style="margin-top:3px;float:left;margin-right: 5px;"/>
+    						<h:inputText value="#{B253_Timbenhnhantheonhieutieuchi.tuoi}"  id="__tuoi" name="_tuoi" readonly="true" class="myreadonly" style="width: 40px;float:left"/>
+    						<h:outputText value="Năm sinh" styleClass="mytext" style="margin-top:3px;float:left;margin-left:45px;margin-right: 3px;"/>
+    						<h:inputText  readonly="true" type="text" id="__namsinh" name="_namsinh" 
+    						maxlength="10" style="width:70px;float:left" 
+    						value="#{B253_Timbenhnhantheonhieutieuchi.namsinh}"
+    						class="myreadonly"/>
+    						<h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0;float:left" border="0" name="popcal"/>
+    					
+    						<h:outputText value="Giới tính"  styleClass="mytext" style="margin-left:35px;margin-top:3px;float:left;" />    						
+    						<h:selectOneRadio id="gioitinh" value="#{B253_Timbenhnhantheonhieutieuchi.gioi}" readonly="true" style="float:left;" >
+        						<f:selectItem id="NAM"  itemDisabled="true" itemValue="true" itemLabel="Nam&#160;&#160;" styleClass="mycheck" />
+        						<f:selectItem id="NU" itemDisabled="true" itemValue="false" itemLabel="Nữ" styleClass="mycheck"/>
+    						</h:selectOneRadio>
+    					</td>				
+    				</tr>
+    				<tr style="height: 25px;">  
+    					<td align="left" style="padding-left: 9px;">
+    						<h:outputText value="Địa chỉ" styleClass="mytext" style="margin-right:5px;margin-left:52px;" />
+    						
+    						<h:inputText readonly="true" value="#{B253_Timbenhnhantheonhieutieuchi.matinh}" id="DM_TINH_MA" name="DM_TINH_MA" style=" width : 30px" maxlength="11" styleClass="myreadonly"/>
+    					 	<h:inputText readonly="true"  value="#{B253_Timbenhnhantheonhieutieuchi.tentinh}" id="DM_TINH" name="DM_TINH"  style="width: 160px;" class="myreadonly"/>
+    					 	
+    					 	<h:inputText readonly="true" value="#{B253_Timbenhnhantheonhieutieuchi.mahuyen}" id="DM_HUYEN_MA" name="DM_HUYEN_MA" style=" width : 40px;margin-left:3px;" maxlength="11" styleClass="myreadonly"/>
+    					 	<h:inputText readonly="true"  value="#{B253_Timbenhnhantheonhieutieuchi.tenhuyen}" id="DM_HUYEN" name="DM_HUYEN"  style="width: 150px;" class="myreadonly"/>    						
+    					</td>				
+    				</tr>
+    				<tr style="height: 25px;">  
+    					<td align="left" style="padding-left: 104px;">
+    						<h:inputText readonly="true"  value="#{B253_Timbenhnhantheonhieutieuchi.maxa}"  id="DM_XA_MA" name="DM_XA_MA" style=" width : 60px;" maxlength="11"  styleClass="myreadonly"/>
+    					 	<h:inputText readonly="true"  value="#{B253_Timbenhnhantheonhieutieuchi.tenxa}" id="DM_XA" name="DM_XA"  style="width: 160px;" class="myreadonly"/>
+    					 	
+    					 	<h:inputText  readonly="true"  
+    					 	value="#{B253_Timbenhnhantheonhieutieuchi.diachi}"  id="__sonha" name="_sonha" 
+    					 	style=" width : 287px;margin-left:3px;" class="myreadonly" />
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">  
+    					<td align="left"  style="padding-left: 28px;">
+    						<h:outputText value="Nghề nghiệp" styleClass="mytext" style="margin-right:5px;" />
+    						
+    						<h:inputText  readonly="true"  value="#{B253_Timbenhnhantheonhieutieuchi.manghenghiep}"  id="DM_NGHE_NGHIEP_MA" 
+    						name="DM_NGHE_NGHIEP_MA" style=" width : 20px" 
+    						maxlength="11"  styleClass="myreadonly"/>
+    					 	
+    					 	<h:inputText  value="#{B253_Timbenhnhantheonhieutieuchi.tennghenghiep}" readonly="true" id="DM_NGHE_NGHIEP" name="DM_NGHE_NGHIEP" 
+    					 	style="width: 200px;" class="myreadonly"/>	
+    					
+    						<h:outputText value="Dân tộc" styleClass="mytext" style="margin-left:58px;margin-right:5px;" />
+    						
+    						<h:inputText  readonly="true"  value="#{B253_Timbenhnhantheonhieutieuchi.madantoc}"  id="DM_DAN_TOC_MA" name="DM_DAN_TOC_MA" 
+    						style=" width : 20px;" maxlength="11" styleClass="myreadonly"/>
+    					 	
+    					 	<h:inputText  readonly="true"  value="#{B253_Timbenhnhantheonhieutieuchi.tendantoc}" id="DM_DAN_TOC" name="DM_DAN_TOC" style="width: 100px;" class="myreadonly"/>
+    					</td>				
+    				</tr>
+    				<tr style="height: 25px;">  
+    					<td align="left" style="padding-left: 44px;">
+    						<h:outputText value="Đối tượng" styleClass="mytext" style="margin-right:5px;" />
+    						<h:inputText  readonly="true"  value="#{B253_Timbenhnhantheonhieutieuchi.madoituong}"  id="DM_DOI_TUONG_MA" name="DM_DOI_TUONG_MA" 
+    						style=" width : 20px" maxlength="11"  styleClass="myreadonly"/>
+    					 	
+    					 	<h:inputText  readonly="true"  value="#{B253_Timbenhnhantheonhieutieuchi.tendoituong}" id="DM_DOI_TUONG" name="DM_DOI_TUONG"  style="width: 160px;" class="myreadonly"/>	
+    					
+    						<h:outputText value="Đối tượng BHYT" styleClass="mytext" style="margin-left:51px;margin-right:5px;" />
+    						
+    						<h:inputText  readonly="true"  value="#{B253_Timbenhnhantheonhieutieuchi.madoituongBHYT}"  id="DM_DOI_TUONG1_MA" name="DM_DOI_TUONG1_MA" 
+    						style=" width : 20px" maxlength="11"  styleClass="myreadonly"/>
+    					 	
+    					 	<h:inputText  readonly="true"  value="#{B253_Timbenhnhantheonhieutieuchi.tendoituongBHYT}" id="DM_DOI_TUONG__1" name="DM_DOI_TUONG" 
+    					 	style="width: 160px;" class="myreadonly"/>
+    					 	
+    					</td>				
+    				</tr>
+    				<tr style="height: 25px;">  
+    					<td align="left" style="padding-left: 35px;" >
+    						<h:outputText value="Loại tai nạn" styleClass="mytext" style="margin-right:5px;"/>
+    						<h:inputText  readonly="true"  value="#{B253_Timbenhnhantheonhieutieuchi.maloaitainan}"  id="DM_PHAN_LOAI_TAI_NAN_MA" 
+    						name="DM_PHAN_LOAI_TAI_NAN_MA" style=" width : 40px" maxlength="11"  styleClass="myreadonly"/>
+    					 	
+    					 	<h:inputText  readonly="true"  value="#{B253_Timbenhnhantheonhieutieuchi.tenloaitainan}" id="DM_PHAN_LOAI_TAI_NAN" name="DM_PHAN_LOAI_TAI_NAN"  style="width: 200px;" class="myreadonly"/>	
+    					
+    						<h:outputText value="BV chuyển" styleClass="mytext" style="margin-left:23px;margin-right:5px;" />
+    						<h:inputText  readonly="true"  value="#{B253_Timbenhnhantheonhieutieuchi.mabvchuyen}"  id="DM_BENH_VIEN_MA" name="DM_BENH_VIEN_MA" 
+    						style=" width : 45px" maxlength="11"  styleClass="myreadonly"/>
+    					 	
+    					 	<h:inputText  readonly="true"  value="#{B253_Timbenhnhantheonhieutieuchi.tenbvchuyen}" id="DM_BENH_VIEN" name="DM_BENH_VIEN"  style="width: 250px;" class="myreadonly"/>
+    					</td>				
+    				</tr>
+    				<tr style="height: 25px;">  
+    					<td align="left"  style="padding-left: 37px;">
+    						<h:outputText value="Vào viện lúc" styleClass="mytext" style="margin-right:3px;" />
+    						<h:inputText   readonly="true" type="text"  value="#{B253_Timbenhnhantheonhieutieuchi.ngayvaovien}" id="__thoigianvaovien" name="_thoigianvaovien" maxlength="10" 
+    						style="width:70px" class="myreadonly"/>
+    						<h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/>
+    					
+    						<h:outputText value="Chẩn đoán ban đầu" styleClass="mytext" style="margin-left:124px;margin-right:5px;" />
+    						
+    						<h:inputText  readonly="true"  value="#{B253_Timbenhnhantheonhieutieuchi.machandoanbd}"  id="DM_BENH_ICD_MA" name="DM_BENH_ICD_MA" 
+    						style=" width : 45px" maxlength="11"  styleClass="myreadonly"/>
+    					 	
+    					 	<h:inputText  readonly="true"  value="#{B253_Timbenhnhantheonhieutieuchi.tenchandoanbd}" id="DM_BENH_ICD" name="DM_BENH_ICD"  style="width: 250px;" class="myreadonly"/>
+    					</td>				
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="left"  style="padding-left: 30px;">
+    						<h:outputText value="Khoa điều trị" styleClass="mytext" style="margin-right: 5px;"/>
+    						<h:inputText  readonly="true"  value="#{B253_Timbenhnhantheonhieutieuchi.makhoadieutri}"  id="DM_KHOA_MA" 
+    						name="DM_KHOA_MA" style=" width : 40px" maxlength="11"  styleClass="myreadonly"/>
+    					 	
+    					 	<h:inputText  readonly="true" id="DM_KHOA"  value="#{B253_Timbenhnhantheonhieutieuchi.tenkhoadieutri}" name="DM_KHOA"  style="width: 200px;" class="myreadonly"/>
+    						
+    						
+    						<h:outputText value="Chẩn đoán ICD10" styleClass="mytext" style="margin-right: 5px; margin-left: 32px;"/>
+    						<h:inputText  readonly="true"  value="#{B253_Timbenhnhantheonhieutieuchi.machandoanicd10}"  
+    						id="DM_BENH_ICD1_MA" name="DM_BENH_ICD1_MA"
+    						style=" width : 40px" maxlength="11"  styleClass="myreadonly"/>
+    					 	
+    					 	
+    					 	<h:inputText  readonly="true"  value="#{B253_Timbenhnhantheonhieutieuchi.tenchandoanicd10}" id="DM_BENH_ICD__1" name="DM_BENH_ICD"  style="width: 204px;" class="myreadonly"/>
+    					</td>  
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="left" style="padding-left: 34px;">
+    						
+    						<h:outputText value="Kết quả đ.trị" styleClass="mytext" style="margin-right: 5px;"/>
+    						<h:inputText  readonly="true"  value="#{B253_Timbenhnhantheonhieutieuchi.maketquadieutri}" id="DT_DM_KET_QUA_MA" name="DT_DM_KET_QUA_MA" 
+    						style=" width : 20px" maxlength="11"  styleClass="myreadonly"/>
+    					 	
+    					 	<h:inputText  readonly="true"  value="#{B253_Timbenhnhantheonhieutieuchi.tenketquadieutri}" id="DT_DM_KET_QUA" name="DT_DM_KET_QUA"  style="width: 100px;" class="myreadonly"/>
+    					</td>  
+    				</tr>
+    				<tr style="height: 25px;">  
+    					<td align="left"  style="padding-left: 42px;">
+    						<h:outputText value="Ra viện lúc" styleClass="mytext" style="margin-right: 3px;"/>
+    						<h:inputText   readonly="true"  value="#{B253_Timbenhnhantheonhieutieuchi.ngayravien}"  type="text" id="__thoigianravien" name="_thoigianravien" maxlength="10" style="width:70px" 
+    						class="myreadonly"/>
+    						<h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/>
+    					
+    						</td> 					
+    				</tr>
+    				
+    				<tr style="height: 40px;">
+    					<td align="left" valign="bottom" style="padding-left: 265px;">    
+    						<div style="float: left;">
+    							
+    								<a4j:commandButton tabindex="7" id="__ghinhan" name="_ghinhan" 
+    								value="Tìm kiếm" style="width: 70px; margin-left:3px;" styleClass="mybton_b" 
+    								onclick="popup('#{facesContext.externalContext.requestContextPath}/danhsachbenhnhannoitru.seam')"/>
+    							
+    						</div> 
+    						<div style=" float: left;">
+    							
+    								<a4j:commandButton tabindex="8" id="__chonlai" name="_chonlai" 
+    									action="#{B253_Timbenhnhantheonhieutieuchi.resetValue()}"   
+    									reRender="__sobenhan,__thang,__nam,__tungay,__denngay,__hoten,__tuoi,__namsinh,gioitinh,DM_TINH_MA,DM_TINH,DM_HUYEN_MA,DM_HUYEN,DM_XA_MA,DM_XA,DM_NGHE_NGHIEP_MA,DM_NGHE_NGHIEP,DM_DAN_TOC_MA,DM_DAN_TOC,DM_DOI_TUONG_MA,DM_DOI_TUONG,DM_DOI_TUONG1_MA,DM_DOI_TUONG__1,DM_PHAN_LOAI_TAI_NAN_MA,DM_PHAN_LOAI_TAI_NAN,DM_BENH_VIEN_MA,DM_BENH_VIEN,__thoigianvaovien,DM_BENH_ICD_MA,DM_BENH_ICD,DM_KHOA_MA,DM_KHOA,DM_BENH_ICD1_MA,DM_BENH_ICD__1,DT_DM_KET_QUA_MA,DT_DM_KET_QUA,__thoigianravien"
+    								 	focus="__thang"
+    								 	value="Nhập mới" style="width: 70px; margin-left:3px;" styleClass="mybton_b"/>
+    							
+    						</div> 
+    					</td>
+    				</tr>    				
+    			</table> 		    						
+    		</td>
+    	</tr>	    	
+    </table>
+    <h:inputHidden id="__ngayhientai" name="_ngayhientai" value="#{B253_Timbenhnhantheonhieutieuchi.ngayhientai}"/>
+    <h:inputHidden id="result"/>
+    <a4j:commandButton  style="display: none" id="refresh" 
+   	onclick="popupwd.close();"
+   	action="#{B253_Timbenhnhantheonhieutieuchi.refresh}"   	
+   	reRender="__thang,__nam,__tungay,__denngay,__hoten,__tuoi,__namsinh,gioitinh,DM_TINH_MA,DM_TINH,DM_HUYEN_MA,DM_HUYEN,DM_XA_MA,DM_XA,DM_NGHE_NGHIEP_MA,DM_NGHE_NGHIEP,DM_DAN_TOC_MA,DM_DAN_TOC,DM_DOI_TUONG_MA,DM_DOI_TUONG,DM_DOI_TUONG1_MA,DM_DOI_TUONG__1,DM_PHAN_LOAI_TAI_NAN_MA,DM_PHAN_LOAI_TAI_NAN,DM_BENH_VIEN_MA,DM_BENH_VIEN,__thoigianvaovien,DM_BENH_ICD_MA,DM_BENH_ICD,DM_KHOA_MA,DM_KHOA,DM_BENH_ICD1_MA,DM_BENH_ICD__1,DT_DM_KET_QUA_MA,DT_DM_KET_QUA,__thoigianravien"
+   	oncomplete=""
+   	focus="__thang"/>
+   
+    </h:form>
+    </body>
+     <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/hsba/B253_Timbenhnhantheonhieutieuchi_gears.js"></script>
+    <iframe width="174" height="189" name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;"/>
+   
+</ui:define> 
+</ui:composition>

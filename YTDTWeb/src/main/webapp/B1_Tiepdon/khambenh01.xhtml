@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:define name="khambenh01">	
+	<!-- Bat dau -->
+	<table width="778px" cellpadding="0" cellspacing="0" border="1">
+		<tr style="height: 25px;">
+			<td align="right" style="width: 20%; padding-right: 5px"><h:outputText
+				value="Thời gian" styleClass="mytext" /></td>
+			<td align="left" style="padding-left: 0px"><h:inputText
+				maxlength="5" onkeypress="iesvn_InputInKeys('1234567890:');"
+				value="" tabindex="1" id="GIO" name="_GIO" style="width: 33px;"
+				styleClass="myinput" onchange="temp();" onkeyup="checkHour(this);"
+				onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); checkHourBlur(this)' />
+			<h:outputText value="*" styleClass="mynull"
+				style="margin-right: 3px; margin-left: 2px;" /> <h:outputText
+				value="GG:pp" styleClass="mytext"
+				style="margin-left: 3px; margin-right: 2px" /> <input
+				onchange="temp();"
+				onkeypress="return being_wellformed_Date(this, event)"
+				onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); return is_wellformed_Date(this)'
+				tabindex="2" type="text" id="NGAYTG" name="_NGAYTG" maxlength="10"
+				style="width: 70px;" class="myinput" /><a hideFocus="true"
+				href="javascript:void(0)"
+				onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById('NGAYTG'));document.getElementById(prefix_component + 'TIEPDON_MA').focus();return false;"><h:graphicImage
+				value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0"
+				border="0" name="popcal" /></a> <h:outputText value="*"
+				styleClass="mynull" style="margin-right: 5px; margin-left: 2px;" />
+
+			</td>
+		</tr>
+		<tr style="height: 25px;">
+			<td align="right" style="padding-right: 0px"><h:outputText
+				value="Mã tiếp đón" styleClass="mytext"
+				style="margin-left: 15px; margin-right: 5px" /></td>
+			<td align="left" style="padding-left: 0px"><h:inputText
+				onkeypress="iesvn_InputInKeys('1234567890.');" value="" tabindex="3"
+				id="TIEPDON_MA" name="_TIEPDON_MA" style=" width : 130px;"
+				maxlength="17" styleClass="myinput"
+				onchange='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); checkSothe =false;sendId_TD(this.value,"GetTiepDonAction")' />
+
+
+			</td>
+		</tr>
+	</table>
+	<!-- Ket thuc -->
+</ui:define>
+</ui:composition>
+

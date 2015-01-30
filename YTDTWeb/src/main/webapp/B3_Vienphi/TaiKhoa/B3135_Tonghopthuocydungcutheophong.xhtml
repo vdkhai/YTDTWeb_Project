@@ -1,0 +1,266 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                 xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                   xmlns:c="http://java.sun.com/jstl/core"
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">
+	<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+	<script type="text/javascript">
+	
+	function checkEmpty(id){
+			if ( document.getElementById(id).value == null || document.getElementById(id).value == "" ){
+			
+				if(document.getElementById(id).className.match(/focus/gi))
+              		document.getElementById(id).className = document.getElementById(id).className.replace(/focus/gi,"");
+				return false;
+			}
+			return true;
+	}
+	function enterToTab(){
+		
+		  		  if(	(document.getElementById(prefix_component + "__add") == null || document.getElementById(prefix_component + "__add").alt != 1 ) &amp;&amp; 
+		          	 	(document.getElementById(prefix_component + "__bton5a") == null || document.getElementById(prefix_component + "__bton5a").alt != 1 ) &amp;&amp; 
+		          	 	(document.getElementById(prefix_component + "__tienhanh") == null || document.getElementById(prefix_component + "__tienhanh").alt != 1 ) &amp;&amp; 
+		          	 	(document.getElementById(prefix_component + "__chonlai") ==null || document.getElementById(prefix_component + "__chonlai").alt != 1 ) 
+		          	 	
+		          	 	) {
+		           
+		                  if(window.event.keyCode == 13){
+		                         window.event.keyCode = 9;
+		                   }
+		           }
+		}
+	var bCancel = false;
+		var bSave = false;
+		var bAddRow = false;
+		
+		function setSave() {
+			bSave = true;
+			bAddRow = false;
+		}
+		function setTemp(){
+			setSave();
+			var form = document.forms[0];
+			return onSubmit(form);
+		}
+		
+		function setAddRow() {					
+			bSave = false;
+			bAddRow = true;		
+			var form = document.forms[0];
+			return onSubmit(form);
+		}		
+		
+		function iesvn_Required() { 
+			if (bSave) {	
+				this.ab = new Array(prefix_component + "__ngaydungtu", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Ngày dùng từ'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+	 	 		this.ac = new Array(prefix_component + "__ngaydungden", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Ngày dùng đến'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+	 	 		this.ad = new Array("DM_KHOA", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Khoa'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+			} else if (bAddRow) {	
+				this.ae = new Array(prefix_component + "__sovaovien", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Số vào viện'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+	 	 		this.af = new Array(prefix_component + "__tenbenhnhan", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Tên bệnh nhân'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+			}
+		}	
+		
+		function iesvn_DateValidations(){
+	  				
+	    }
+		
+		function iesvn_ComparedDates() {
+			if (bSave) {
+				this.aa = new Array([prefix_component + "__ngaydungtu",prefix_component + "__ngaydungden", "=="], "<h:outputFormat value='#{msg.common_compareDates}' > <f:param value='Ngày dùng từ'/> <f:param value='Ngày dùng đến'/> </h:outputFormat>", new Function ("varName", "this.datePatternStrict='dd/MM/yyyy';  return this[varName];"));
+			}
+		}
+		function onSubmit(form) {
+			valid = true;	
+			if (bSave || bAddRow ) {									 	    		    		    		    	
+		    	if (valid = iesvn_ValidateRequired(form )) {	    		
+		    		if (valid = iesvn_ValidateDate(form)) {	    				    			
+		    				valid = iesvn_ValidateComparedDates(form);	    			
+		    		}	    		
+		    	}
+	    	} 
+	    	bSave = false;	    		    	        		    		    		    	  	  
+    		bAddRow = false;		    		    		    		    		    	  	     	    	    
+	    	return valid;
+		}
+	</script>
+	<body onkeydown="enterToTab();">
+	<h:form id="_form" name="_form" >
+	<h:inputHidden id="__resetFrom" value="#{resetFormB3135}"/>	
+	<h:inputHidden id="__ngayhientai" name="_ngayhientai" value="#{B3135_Tonghopthuocydungcutheophong.ngayhientai}"/>	
+    <div style="width:778px; position:absolute; z-index:99">
+    
+    
+    	<ui:include src="/layout/mymenu_YTDT_DieuTriNoiTru.xhtml" />
+    
+    </div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="62%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold; width : 550px;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						<c:if test="#{'3135'.equals(ten3135_3138)}">
+    							TỔNG HỢP THUỐC , Y DỤNG CỤ THEO TÊN THUỐC
+    						</c:if>
+    						<c:if test="#{'3138'.equals(ten3135_3138)}">
+    							TỔNG HỢP PHIẾU LĨNH THUỐC HÀNG NGÀY
+    						</c:if>
+    						
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>        	
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="985px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr style=" height : 5px;">
+    		<td width="100%" style="background-color: #c9daea;" colspan="3" align="center">  
+    		      	<a4j:outputPanel id="message_infor">
+    		      		<h:messages styleClass="mynull"/>
+    		      	</a4j:outputPanel>
+    		</td>    		
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px" width="100%" align="center">
+    			<!-- Main Area -->
+    			<table cellspacing="0" cellpadding="0" border="0" width="80%">
+    				<tr style=" height: 25px;">
+    					<td align="right"  style="width:25%; padding-left: 0px;">
+    						<h:outputText value="Khoa phòng" styleClass="mytext" style="margin-right: 5px;"/>
+    						
+    					</td> 
+    					<td align="left"  style="padding-left: 0px;">
+    							<h:inputText value="#{B3135_Tonghopthuocydungcutheophong.khoaMa}" id="DM_KHOA_MA" onblur="myOnblurTextbox(this.id,'DM_KHOA')" name="DM_KHOA_MA" style="width : 40px" maxlength="11" tabindex="1" styleClass="myinput"/>
+    					 	<span id="DM_KHOA_span"/>
+    					 	<input id="DM_KHOA" name="DM_KHOA" tabindex="2" style="width: 320px;" class="mycbogear"/>
+    						<h:outputText value="*" styleClass="mynull" />
+    					</td>  
+    				</tr>
+    				<tr style="height: 25px;">  
+    					<td align="right"  style="padding-left: 0px;" >
+    						<h:outputText value="Ngày dùng từ" styleClass="mytext" style="margin-right: 3px;"/>
+							
+    					</td>
+    					<td align="left"  style="padding-left: 0px;" >
+    						
+							<h:inputText onkeypress="return being_wellformed_Date(this, event)" onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); return is_wellformed_Date(this)' tabindex="4" type="text" id="__ngaydungtu" name="_ngaydungtu" value="#{B3135_Tonghopthuocydungcutheophong.ngaydungtu}" maxlength="10" style="width:70px;"/><a hideFocus="true" href="java_script:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__ngaydungtu'));document.getElementById(prefix_component + '__ngaydungden').focus();return false;"><h:graphicImage style="margin:0 0 -3px 0" value="/resources/calendar/cal.gif" border="0" name="popcal"/></a>
+    						<h:outputText value="*" styleClass="mynull" />								
+							
+							<h:outputText value="Đến" styleClass="mytext" style="margin-right: 3px; margin-left: 20px;"/>
+							<h:inputText onkeypress="return being_wellformed_Date(this, event)" onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); return is_wellformed_Date(this)' tabindex="5" type="text" id="__ngaydungden" name="_ngaydungden" value="#{B3135_Tonghopthuocydungcutheophong.ngaydungden}" maxlength="10" style="width:70px;"/><a hideFocus="true" href="java_script:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__ngaydungden'));document.getElementById(prefix_component + '__sovaovien').focus();return false;"><h:graphicImage style="margin:0 0 -3px 0" value="/resources/calendar/cal.gif" border="0" name="popcal"/></a>
+    						<h:outputText value="*" styleClass="mynull" />								
+    					</td>					
+    				</tr>
+    				<tr style="height: 25px;" valign= "top;">  
+    					<td align="right"  style="padding-top: 5px;" valign= "top;">
+    						<h:outputText value="Số vào viện" styleClass="mytext" style=" margin-right: 5px; margin-top: 0;" />
+    				
+    					</td>
+    					<td align="left"  style="padding-left: 0px;" >
+    						
+							<table cellspacing="0" cellpadding="0" border="0" width="80%" style="border: solid 1px #54779f;">
+    						<tr class="myrow1" >
+    							<td >
+    						<h:inputText value="#{B3135_Tonghopthuocydungcutheophong.sobenhanStr}" tabindex="6" id="__sovaovien" style="width: 30%; " 
+    						styleClass="myinput" >
+    							<a4j:support event="onblur" action="#{B3135_Tonghopthuocydungcutheophong.loadHsba}" 
+    							onsubmit="if (! checkEmpty(prefix_component + '__sovaovien')) { return false; } "
+    							reRender="__tenbenhnhan,message_infor"/>
+    						</h:inputText>
+    						<h:inputText value="#{B3135_Tonghopthuocydungcutheophong.hotenBNStr}" readonly="true" id="__tenbenhnhan" style="width: 63%; " styleClass="myinput" />
+    						
+    						<a4j:commandButton tabindex="7" id="__add" name="_add" 
+    							onclick="if (! setAddRow()) { return false; }" 
+    							onblur="javascript:this.alt=0" onfocus="javascript:this.alt=1"
+    							oncomplete="highlightOnFocus();"
+    							focus="__sovaovien"
+    							action="#{B3135_Tonghopthuocydungcutheophong.enter}" 
+    							reRender="__sovaovien,__tenbenhnhan,__listBN"  styleClass="mybton_add" style="width: 20px; height: 20px;"/>
+    							</td>
+    						</tr>
+    						<tr><td colspan="3" >
+    						<div style="overflow-x: hidden;overflow-y: scroll; height: 100px;border: solid 0px #d5d5d5;" >
+    						<h:panelGroup id="__listBN" >
+    						<rich:dataTable value="#{listBN}" var="item" width="98%" id="__datalist" nam="datalist">
+             					<rich:column style="width:17%">
+              						<h:outputText id="sovaovien" value="#{item.hsbaSovaovien}" />
+            					</rich:column>
+           						<rich:column style="width:70%">
+              						<h:outputText id="tenbenhnhan" value="#{item.benhnhanMa.benhnhanHoten}" />
+           						</rich:column>
+            					<rich:column style="width:10%">
+              						<a4j:commandButton id="__bton5a" reRender="__listBN" 
+              						action="#{B3135_Tonghopthuocydungcutheophong.deleteBN}" name="_bton5a" 
+              						onblur="javascript:this.alt=0" onfocus="javascript:this.alt=1"
+              						oncomplete="highlightOnFocus();"
+              						styleClass="mybton_del" style="filter:alpha(opacity=20);width: 19px; height:16px;"/>
+            					</rich:column>
+            					<rich:column style="width:3%">
+            					</rich:column>
+    						</rich:dataTable>
+    						</h:panelGroup>
+    						</div>
+    						</td>
+    						</tr>
+    						</table> 
+    					
+    					</td>					
+    				</tr>
+    				
+    				<tr style="height: 40px;">
+    					<td align="center"  style="padding-left: 250px;" colspan="2">    
+    						<div class="mybton_b_l" style="width: 90px; float: left;">
+    							<div style="background-position: 70px 0px; float: left; padding-right: 5px" class="mybton_b_r">
+    								<a4j:commandButton tabindex="8" id="__tienhanh" 
+    								onblur="javascript:this.alt=0" onfocus="javascript:this.alt=1"
+    								name="_tienhanh" onclick="if (! setTemp()) { return false; }" action="#{B3135_Tonghopthuocydungcutheophong.thuchienAction}" value="Tiến hành" style="width: 70px;" styleClass="mybton_b"/>
+    							</div>
+    						</div> 
+    						<div class="mybton_b_l" style="width: 85px; float: left;">
+    							<div style="background-position: 70px 0px; float: left; padding-right: 5px" class="mybton_b_r">
+    								<a4j:commandButton tabindex="9" action="#{B3135_Tonghopthuocydungcutheophong.resetForm}" 
+    								onblur="javascript:this.alt=0" onfocus="javascript:this.alt=1"
+    								focus="DM_KHOA_MA"
+    								reRender="__sovaovien,__tenbenhnhan,__listBN,__ngaydungtu,__ngaydungden,DM_KHOA_MA,message_infor" 
+    								oncomplete="highlightOnFocus();myOnblurTextbox(prefix_component + 'DM_KHOA_MA', 'DM_KHOA')" 
+    								id="__chonlai" name="_chonlai" value="Nhập mới" style="width: 70px;" styleClass="mybton_b"/>
+    							</div>
+    							
+    						</div> 
+    					</td>
+    				</tr>    				
+    			</table> 		    						
+    		</td>
+    	</tr>	    	
+    </table>
+    <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/vienphi/B3135_Tonghopthuocydungcutheophong_gears.js"></script>
+   	 <iframe width="174" height="189" name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;"/>
+    </h:form>
+    </body>
+</ui:define> 
+</ui:composition>
+

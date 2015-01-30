@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:c="http://java.sun.com/jstl/core"
+                template="/layout/mytemplate_print.xhtml">
+
+<ui:define name="body">
+	<h:form id="_form" name="_form">
+	<div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_VienPhi_ThuVienPhi.xhtml" /></div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+		<tr>
+			<td style="width:100%; text-align:center">
+				<c:if test="#{not empty B3241_Thanhtoanravien.resultReportName}">
+					<iframe style="width:100%; height:1415px" id="iframe1" src="#{facesContext.externalContext.requestContextPath}/report/result/dieutri/vienphi/report_Result.jsp?tenBaoCao=#{B3241_Thanhtoanravien.resultReportName}" />				
+				</c:if>
+			</td>	
+		</tr>
+	</table>    
+    </h:form>
+    <script type="text/javascript">
+    	function init(){}
+    	window.print();		
+    </script>    
+</ui:define> 
+</ui:composition>
+
+

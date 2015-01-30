@@ -1,0 +1,98 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:a4j="http://richfaces.org/a4j"
+                template="/layout/mytemplate_danhmuc.xhtml">
+
+<ui:define name="body">
+
+<h:form id="_form" name="_form">
+<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+<div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_QuanTriHeThong.xhtml" /></div>
+<table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+	<tr>
+    	<td colspan="3" height="50px">
+    		<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    			<tr>
+    				<td height="50px" width="300px" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    					<h:graphicImage value="../images/white_light.gif" width="43" height="16" />
+    					CẬP NHẬP NHÂN VIÊN
+    				</td> 
+    				<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    				</td>
+    			</tr>
+    		</table>			
+    	</td>    		    	
+	</tr>    
+    <tr>
+    	<td width="13px" height="12px" class="mytdl"></td>
+    	<td style="background-color: #c9daea;" width="965px" height="12px" ></td>
+    	<td width="11px" height="12px" class="mytdr"></td>
+    </tr> 
+    <tr>
+    	<td colspan="3" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 5px" width="100%" >
+    		<table width="60%">
+    			<tr>
+			    	<td align="center" colspan="2">
+			    		<a4j:outputPanel id="message_infor">
+							<h:messages style="color:Red;font-weight:bold;font-style:italic;text-decoration:none;"/>
+						</a4j:outputPanel>
+			    	</td>
+			    </tr>
+    			
+    			<tr>
+    				<td align="right">
+    					<h:outputText value="Tên" style="margin: 0 5px 0 70px;"/>
+    				</td>
+    				<td align="left">
+    					<h:inputText id="__ten" value="#{B263_NhanVien_edit.nhanvien.dtdmnhanvienTen}" style=" width : 230px;" styleClass="myinput"/>
+    					<h:outputText value="*" style="color:red;margin-left:2px;"/>  					
+    				</td>
+    			</tr>
+    			
+    			<tr>
+    				<td align="right">
+    					<h:outputText value="Mã" style="margin: 0px 5px 0 73px;"/>
+    				</td>
+    				<td align="left">
+    					<h:inputText id="__ma" style="width:100px;" styleClass="myinput" readonly="true" value="#{B263_NhanVien_edit.nhanvien.dtdmnhanvienMa}"/>
+    					<h:outputText value="*" style="color:red;margin-left:2px;"/>
+    					<h:inputHidden id="__maHidden" value="#{B263_NhanVien_edit.nhanvien.dtdmnhanvienMa}" />
+    				</td>
+    			</tr>
+    			
+    			<tr>
+    				<td colspan="2">
+    					<a4j:commandButton styleClass="mybton_b" value="Ghi nhận" id="__ghinhan" style="cursor:pointer;margin:0 0 0 50px;"
+    						onclick="if (!checkInput()) return false;"
+    						action="#{B263_NhanVien_edit.save}"
+    						oncomplete="oncompleteGhinhan();"
+    						reRender="message_infor,_form"/>
+    					
+    					<s:button styleClass="mybton_b" value="Quay lại" id="__quaylai" style="cursor:pointer;margin:0 0 0 5px;"
+    						action="/B2_Dieutri/B263_Nhanvien"/>
+    				</td>
+    			</tr>
+    		</table>
+    	</td>	
+    </tr>
+</table>
+
+
+</h:form>
+<script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/hsba/B263_NhanVien_edit_gears.js"></script>
+
+</ui:define> 
+</ui:composition>

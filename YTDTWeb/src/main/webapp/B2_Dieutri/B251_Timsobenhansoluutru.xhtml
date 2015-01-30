@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                xmlns:rich="http://richfaces.org/rich"
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">
+	<h:form id="_form" name="_form">	
+    <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_DieuTriNoiTru.xhtml" /></div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="45%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						TÌM SỐ BỆNH ÁN, SỐ LƯU TRỮ
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>        	
+    	    	<tr style=" height : 5px;">
+    		<td width="100%" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 0px" colspan="3" align="center">  
+    		      	<a4j:outputPanel id="__messagesPanel">
+        				<h:messages styleClass="mynull"/>
+					</a4j:outputPanel>
+    		</td>    		
+    	</tr>
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="985px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px" width="100%" align="center">
+    			<!-- Main Area -->
+    			<table cellspacing="0" cellpadding="0" border="0" width="46%">
+    				<tr style="height: 25px;">
+    					<td align="left"  >
+    						
+    						<h:outputText value="Khoa ra viện" styleClass="mytext" style="margin-right: 5px;"/>
+    						<h:inputHidden id="DM_KHOA_MA_pk" value="#{B251_Timsobenhansoluutru.maSoKhoa}"/>
+    						<h:inputText value="#{B251_Timsobenhansoluutru.maKhoa}" id="DM_KHOA_MA" name="DM_KHOA_MA" style=" width : 40px" maxlength="11" tabindex="1" styleClass="myinput"/>
+    					 	<span id="DM_KHOA_span"/>
+    					 	<input id="DM_KHOA" name="DM_KHOA" tabindex="2" style="width: 200px;" class="mycbogear"/>
+    					</td>  
+    				</tr>
+    				<tr style="height: 25px;">  
+    					<td align="left"  style="padding-left:5px;">
+    						<h:outputText value="Số bệnh án" styleClass="mytext" style="margin-right: 5px;"/>
+    						<h:inputText value="#{B251_Timsobenhansoluutru.sovaovien}" tabindex="3" id="__sobenhan" name="_sobenhan" styleClass="myinput" style="width: 98px; margin-right: 15px;">
+    						
+    						<a4j:support event="onblur"  action="#{B251_Timsobenhansoluutru.displayInforSoVaoVien}"  
+    						oncomplete="myOnblurTextbox(prefix_component + 'DM_KHOA_MA', 'DM_KHOA');"
+    						reRender="DM_KHOA_MA,__soluutru,__sobenhan,__messagesPanel"/>
+    						
+    						</h:inputText>
+    						
+    						
+							
+							
+							<h:outputText value="Số lưu trữ" styleClass="mytext" style="margin-right: 5px;"/>
+							
+							
+							<h:inputText value="#{B251_Timsobenhansoluutru.soluutru}" tabindex="4" id="__soluutru" name="_soluutru" styleClass="myinput" 
+							style="width: 98px;">
+							
+							<a4j:support event="onblur"  action="#{B251_Timsobenhansoluutru.displayInforSoLuuTru}"  
+    						oncomplete="myOnblurTextbox(prefix_component + 'DM_KHOA_MA', 'DM_KHOA');"
+    						reRender="DM_KHOA_MA,__soluutru,__sobenhan,__messagesPanel"/>
+    						
+							</h:inputText>
+    					</td>					
+    				</tr>
+    				 				
+    			</table> 		    						
+    		</td>
+    	</tr>	    	
+    </table>
+    <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/hsba/B251_Timsobenhansoluutru_gears.js"></script>
+    </h:form>    
+</ui:define> 
+</ui:composition>

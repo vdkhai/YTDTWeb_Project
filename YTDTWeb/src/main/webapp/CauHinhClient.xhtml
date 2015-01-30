@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/layout/myTemplateWithoutGear.xhtml">
+
+<ui:define name="body">
+ <h:form id="_form" name="_form">
+    <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_QuanTriHeThong.xhtml" /></div>
+ 	<table width="778" border="1" bordercolor="#cccccc" style="background:#ffffff">
+ 	  
+ 	  
+ 	  <tr>
+    		<td style="padding-top:5px" colspan="4" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="100%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						Danh mục chung
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>    
+    	
+    	<tr style=" height : 5px;">
+    		<td width="100%" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 0px" colspan="4" align="center">  
+    		      	
+    		      	
+    		</td>    		
+    	</tr>
+    	
+	  <tr style="background:#cccccc">
+	  	<td colspan="4"><input type="checkbox" id="DanhMucChung" name="DM" onclick="checkAll(this)" /><strong>Chọn tất cả</strong></td>
+	  </tr>
+	  
+	  <tr>
+	    <td width="18">
+	      <input type="checkbox" name="DM" id="DM_DIEU_TRI_HSBA" alt="DmDieuTriHSBA,GetDmDieuTriHSBAAction" />
+	    </td>
+	    <td width="371">Hướng điều trị ( thăm khám và xử trí)</td>
+	    <td width="18">
+	    
+	    </td>
+	    <td width="371"></td>
+	  </tr>
+	  
+	  <tr>
+	    <td width="18">
+	      <input type="checkbox" name="DM" id="DM_LOAI_XOA_HO_SO_BENH_AN" alt="DmLoaiXoaHoSoBenhAn,GetLoaiXoaHoSoBenhAnAction" />
+	    </td>
+	    <td width="371">Loại xóa hồ sơ bệnh án</td>
+	    <td width="18">
+	      <input type="checkbox" name="DM" id="DM_LOAI_BAO_CAO_HSBA_DANG_CN" alt="DmLoaiBaoCaoHSBADangCN,GetLoaiBaoCaoBADangCapNhatAction" />
+	    </td>
+	    <td width="371">Loại báo cáo HSBA đang cập nhật</td>
+	  </tr>
+	   
+	    
+	     <tr>
+	    <td width="18">
+	      <input type="checkbox" name="DM" id="DT_DM_CLIENT_DEFAULT" alt="DtDmClientDefault,GetDtDmClientDefaultAction" />
+	    </td>
+	    <td width="371">Giá trị mặc định tại client</td>
+	    <td width="18">
+	       <input type="checkbox" name="DM" id="DT_DM_CAP_CUU_PHIEN" alt="DtDmCapCuuPhien,GetCapCuuPhienAction"/>
+	    
+	    </td>
+	    <td width="371">
+	    	Cấp cứu - phiên
+	    </td>
+	  </tr>
+	   <tr>
+	    <td width="18">
+	    </td>
+	    <td width="371">Cổng quang báo: 
+	     	<input id="__congquangbao" name="_congquangbao" style="width: 50px;margin-left:5px;" class="myinput" />		    								
+	    </td>
+	    <td width="18">
+	     
+	    </td>
+	    <td width="371">Số quang báo:
+	    <input id="__soquangbao" name="_soquangbao" style="width: 50px;margin-left:5px;" class="myinput" />		    								
+	   
+	    </td>
+	  </tr>
+	   
+	</table>
+
+	
+	
+	<table width="778" border="0">
+	  <tr>
+	    <td colspan="4" style="text-align:center">
+	    
+	    <input class="mybton_b" type="button" style="margin-left:3px;" id="capNhat_id" value="Cập nhật" onclick="luutrugiatri_congquangbao();luutrugiatri_soquangbao();LoadCatalogFromServerForClient()"/>
+	 
+	    <input class="mybton_b" type="button" style="margin-left:3px;" id="tinhToanHsttk_id" value="CN HSTTK" onclick="CapNhatHsttk();"/>
+	 
+	    <input class="mybton_b" type="button" style="margin-left:3px;" id="capNhatHstt_id" value="CN HSTT" onclick="CapNhatHstt();"/>
+	    
+	     			
+	    </td>
+	  
+	  
+	  
+	  </tr>  
+	</table>
+  </h:form>	
+    
+	<script language = "javascript">
+				
+		function init(){
+			hienthigiatri_congquanbao();
+			hienthigiatri_soquanbao();
+		}
+		function hienthigiatri_congquanbao(){
+			
+				var congquangbaoClientDefault = DtDmClientDefault.getByFieldValue("Ma", "GiaTriCongQuangBao");
+				if (congquangbaoClientDefault) {
+					document.getElementById( "__congquangbao").value = congquangbaoClientDefault.Ten;					
+				}	
+			
+		
+		}
+		function hienthigiatri_soquanbao(){
+			
+				var soquangbaoClientDefault = DtDmClientDefault.getByFieldValue("Ma", "GiaTriSoQuangBao");
+				if (soquangbaoClientDefault) {
+					document.getElementById( "__soquangbao").value = soquangbaoClientDefault.Ten;					
+				}	
+			
+		
+		}
+		function luutrugiatri_congquangbao(){
+		
+			var __congquangbao = document.getElementById( "__congquangbao").value;
+			// alert("__congquangbao:"+__congquangbao);
+			if (__congquangbao != null &amp;&amp; __congquangbao != ""){
+				var congquangbaoClientDefault = DtDmClientDefault.getByFieldValue("Ma", "GiaTriCongQuangBao");
+				//alert("bacsiClientDefault:"+bacsiClientDefault);
+				if (congquangbaoClientDefault == null || congquangbaoClientDefault == false) { //insert
+					var chNames = new Array();
+					chNames[0] = "MaSo";
+					chNames[1] = "Ma";
+					chNames[2] = "Ten";
+					var chValues = new Array();
+					chValues[0] = 999999;
+					chValues[1] = "GiaTriCongQuangBao";
+					chValues[2] = __congquangbao;	
+				    insertObjectWithTrueValue(DtDmClientDefault, chNames, chValues);
+				    //alert("insert");
+				}else{ //update
+					
+					var chNames = new Array();
+					chNames[0] = "Ten";
+					
+					var chValues = new Array();
+					chValues[0] = __congquangbao;
+					
+					updateObjectWithTrueValue(DtDmClientDefault,"Ma","GiaTriCongQuangBao", chNames,chValues );
+					
+				}    	
+			}
+		
+		}
+		function luutrugiatri_soquangbao(){
+		
+			var __soquangbao = document.getElementById( "__soquangbao").value;
+			// alert("__congquangbao:"+__congquangbao);
+			if (__soquangbao != null &amp;&amp; __soquangbao != ""){
+				var soquangbaoClientDefault = DtDmClientDefault.getByFieldValue("Ma", "GiaTriSoQuangBao");
+				//alert("bacsiClientDefault:"+bacsiClientDefault);
+				if (soquangbaoClientDefault == null || soquangbaoClientDefault == false) { //insert
+					var chNames = new Array();
+					chNames[0] = "MaSo";
+					chNames[1] = "Ma";
+					chNames[2] = "Ten";
+					var chValues = new Array();
+					chValues[0] = 999999;
+					chValues[1] = "GiaTriSoQuangBao";
+					chValues[2] = __soquangbao;	
+				    insertObjectWithTrueValue(DtDmClientDefault, chNames, chValues);
+				    //alert("insert");
+				}else{ //update
+					
+					var chNames = new Array();
+					chNames[0] = "Ten";
+					
+					var chValues = new Array();
+					chValues[0] = __soquangbao;
+					
+					updateObjectWithTrueValue(DtDmClientDefault,"Ma","GiaTriSoQuangBao", chNames,chValues );
+					
+				}    	
+			}
+		
+		}
+		function checkAll(comp){
+			var subArr = document.getElementsByName(comp.name); 
+			if(comp.checked){
+				for(var i=0; i &lt; subArr.length; i++){
+					subArr[i].checked=true;
+				}
+			}
+			else{
+				for(var i=0; i &lt; subArr.length; i++){
+					subArr[i].checked=false;
+				}
+			}
+		}
+	
+	</script>
+	
+	<script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/json/json.js"></script>
+
+   <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/JStORM/JStORM.js"></script>
+   
+		<script src="#{facesContext.externalContext.requestContextPath}/resources/JStORM/JStORM.Query.js"></script>
+		<script src="#{facesContext.externalContext.requestContextPath}/resources/JStORM/JStORM.Gears.js"></script>
+		<script src="#{facesContext.externalContext.requestContextPath}/resources/JStORM/JStORM.Sql.js"></script>
+		<script src="#{facesContext.externalContext.requestContextPath}/resources/JStORM/JStORM.Field.js"></script>
+		<script src="#{facesContext.externalContext.requestContextPath}/resources/JStORM/JStORM.ModelMetaData.js"></script>
+		<script src="#{facesContext.externalContext.requestContextPath}/resources/JStORM/JStORM.Model.js"></script>
+		<script src="#{facesContext.externalContext.requestContextPath}/resources/JStORM/JStORM.Events.js"></script>
+		<script src="#{facesContext.externalContext.requestContextPath}/resources/JStORM/JStORM.SQLite.Introspection.js"></script>
+		
+	<script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/gears_init.js"></script>
+	<script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/Entities.js"></script>
+	<script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/functions_gears.js"></script>
+</ui:define> 
+</ui:composition>

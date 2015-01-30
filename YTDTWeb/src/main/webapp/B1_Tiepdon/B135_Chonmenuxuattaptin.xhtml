@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:c="http://java.sun.com/jstl/core"
+                template="/layout/myTemplateWithoutGear.xhtml">
+
+<ui:define name="body">
+	<h:form id="_form" name="_form" >	
+	
+<script language="javascript">	
+	function xuatTapTinValidate(){
+		var loaiFile = getValueCheckOrRadioList(document.forms[0].id + ":" + "__dinhdang");
+		if(loaiFile == null){
+			alert('Loại tập tin cần phải chọn.');
+			return false;
+		}
+	}
+</script>
+    <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_VienPhi_ThuVienPhi.xhtml" /></div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="100%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						ĐỀ NGHỊ TẠM ỨNG, THANH TOÁN
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>    
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="965px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 0px" width="100%" >    			
+    			    			
+    			<table align="center" cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				
+    				<tr style="height: 25px;" >
+    				<td align="right" width="50%">
+    						<h:outputText value="Chọn định dạng file cần xuất:" styleClass="mytext_b" style="margin-right: 5px;"/>
+    					</td>
+    					<td align="left" >
+    						<h:selectOneRadio id="__dinhdang" value="#{B3322_Solieuclsngoaitru.loaiFileXuat}" tabindex="1">
+        						<f:selectItem id="__word" itemValue="DOC" itemLabel="Word" styleClass="mycheck"/>
+        						<f:selectItem id="__excel" itemValue="EXCEL" itemLabel="Excel" styleClass="mycheck"/>
+        						<f:selectItem id="__pdf" itemValue="PDF" itemLabel="Pdf" styleClass="mycheck" itemDisabled="false"/>
+        						<f:selectItem id="__xml" itemValue="XML" itemLabel="XML" styleClass="mycheck"/>
+    						</h:selectOneRadio>
+    					</td>
+    					
+    				</tr> 
+    				<tr>
+    				<td align="center" colspan="2" style="padding-left:270px; padding-top: 10px; padding-bottom: 10px;">
+    						<div class="mybton_b_l" style="width: 95px; float: left; ">
+    							<div style="background-position: 80px 0px; float: left; padding-right: 5px" class="mybton_b_r">
+    								<h:inputHidden id="__xuatReportHidden" value="#{B135_Denghitamungthanhtoan.isReport}"/>
+    								<h:inputHidden id="__fileXuatName" value="#{B135_Denghitamungthanhtoan.resultReportFileName}"/>
+    								<h:commandButton tabindex="2" id="__xuattaptin" 
+    									action="#{B135_Denghitamungthanhtoan.inPhieu(B135_Denghitamungthanhtoan.loaiFileXuat)}" name="_xuattaptin" value="Xuất Tập Tin" style="width: 80px;" styleClass="mybton_b">
+	    							</h:commandButton>
+    							</div>
+    						</div>
+    						<div class="mybton_b_l" style="width: 85px; float: left;">
+    							<div style="background-position: 70px 0px; float: left; padding-right: 5px" class="mybton_b_r">
+    								<input onclick="iesvn_WindowOpen('#{facesContext.externalContext.requestContextPath}/report/result/dieutri/vienphi/printReport.jsp?filePrint=#{B135_Denghitamungthanhtoan.resultReportName}',1000,700);" tabindex="4" id="__inbaocao" type="button" value="In báo cáo" style="width: 70px;" class="mybton_b"/>
+    							</div>
+    						</div>
+    						
+    						<div class="mybton_b_l" style="width: 65px; float: left;">
+    							<div style="background-position: 55px 0px; float: left; padding-right: 5px" class="mybton_b_r">
+    								<h:commandButton tabindex="3" id="__trove" action="#{B135_Denghitamungthanhtoan.troVe()}" name="_trove" value="Trở Về" style="width: 55px;" styleClass="mybton_b">
+	    							</h:commandButton>
+    							</div>
+    						</div>
+    					</td>
+    				</tr>   				
+    			</table>   		    						
+    		</td>
+    	</tr>	
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px" width="100%" align="center" >    			    			
+    			<c:if test="#{not empty B135_Denghitamungthanhtoan.resultReportName}">
+    				<iframe style="width:95%; height:800px" scrolling="auto" id="iframe1" src="#{facesContext.externalContext.requestContextPath}/report/result/dieutri/vienphi/report_Result.jsp?tenBaoCao=#{B135_Denghitamungthanhtoan.resultReportName}" />
+    			</c:if>
+    		</td>
+		</tr>    
+    	
+    	
+    	    	
+    </table>
+    </h:form>
+    
+<script language="javascript">		
+		if(document.getElementById(document.forms[0].id + ":" + "__xuatReportHidden").value == 'true'){
+			var fileXuatName = document.getElementById(document.forms[0].id + ":" + "__fileXuatName").value;
+			if(fileXuatName != ''){
+				var win = window.open(myContextPath+'/report/result/dieutri/vienphi/xuatFile.jsp?tenTapTinBaoCao='+fileXuatName, null, "menubar=1,toolbar=1,scrollbars=1,resizable=1,width=500,height=300");
+				win.focus();			
+			}			
+		}
+</script>
+
+</ui:define> 
+</ui:composition>

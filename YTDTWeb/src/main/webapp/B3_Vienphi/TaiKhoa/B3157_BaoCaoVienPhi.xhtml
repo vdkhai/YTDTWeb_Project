@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                 xmlns:c="http://java.sun.com/jstl/core" 
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">	
+
+<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+
+	<script type="text/javascript">
+		var bSave = false;		
+
+		function iesvn_ValidateForm(form) {						
+			var valid = true;
+			if (bSave) {					
+				valid = iesvn_ValidateRequired(form) &amp;&amp; iesvn_ValidateComparedDates(form);;
+			}
+			bSave = false;							    	    
+		    return valid;
+		}
+		function iesvn_Required() {			
+			this.aa = new Array(prefix_component + "__tungay", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Từ ngày'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+			this.ab = new Array(prefix_component + "__denngay", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Đến ngày'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+		}
+		function iesvn_ComparedDates() {     				
+			this.aa = new Array([prefix_component + "__tungay",prefix_component + "__denngay", "=="], "<h:outputFormat value='#{msg.common_compareDates}' > <f:param value='Từ ngày'/> <f:param value='Đến ngày'/> </h:outputFormat>", new Function ("varName", "this.datePatternStrict='dd/MM/yyyy';  return this[varName];"));			     			
+			this.ab = new Array([prefix_component + "__denngay",prefix_component + "__ngayhientai", "=="], "<h:outputFormat value='#{msg.common_compareDates}' > <f:param value='Đến ngày'/> <f:param value='ngày hiện tại'/> </h:outputFormat>", new Function ("varName", "this.datePatternStrict='dd/MM/yyyy';  return this[varName];"));										
+		}	
+		function init() {
+		}		
+	</script>
+	<body>
+	<h:form id="_form" name="_form" onsubmit="return iesvn_ValidateForm(this)">
+	<h:inputHidden id="__hidBcVP" value="#{strBcVienPhi}"/>
+    <div style="width:778px; position:absolute; z-index:99">
+    <ui:include src="/layout/mymenu_YTDT_DieuTriNoiTru.xhtml" />    
+    
+    </div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="70%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						BÁO CÁO VIỆN PHÍ
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>    
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="965px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    			<tr style=" height : 5px;">
+    		<td width="100%" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 0px" colspan="3" align="center">  
+    		      	<a4j:outputPanel id="message_infor">
+       					 <h:messages styleClass="mynull"/>
+					</a4j:outputPanel>
+    		</td>    		
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 5px" width="100%" >
+    			<!-- Main Area -->    		
+    			<table cellspacing="0" cellpadding="0" border="0" width="97%" align="center">
+    			
+    				<tr style="height: 25px;">
+    					<td align="right" width="35%">
+    						<h:outputText  value="Từ ngày" styleClass="mytext" style="margin-left: 5px; margin-right: 5px"/>
+	    					
+	    					</td>
+	    					<td>	    					 	    					    					    							    							    											
+													    		
+	    					<h:inputText value="#{B3157_BaoCaoVienPhi.tungay}" onkeypress="return being_wellformed_Date(this, event)" 
+	    						onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); return is_wellformed_Date(this);'  
+	    						tabindex="3" type="text" id="__tungay" name="_tungay" maxlength="10" style=" width : 70px;" class="myinput"/>
+	    						<a hideFocus="true" href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__tungay'));return false;" ><h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/></a>
+	    						<h:outputText value="*" styleClass="mynull" />	
+	    					<h:outputText  value="Đến ngày" styleClass="mytext" style="margin-left: 25px; margin-right: 5px"/>
+	    					<h:inputText value="#{B3157_BaoCaoVienPhi.denngay}" onkeypress="return being_wellformed_Date(this, event)" 
+	    						onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); return is_wellformed_Date(this);'  
+	    						tabindex="3" type="text" id="__denngay" name="_denngay" maxlength="10" style=" width : 70px;" class="myinput"/>
+	    						<a hideFocus="true" href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__denngay'));return false;" ><h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/></a>
+	    						<h:outputText value="*" styleClass="mynull" />					
+	    					</td>
+	    					
+    				</tr>	
+    				<tr style="height: 25px;">
+    					<td width="100%" colspan="2" align="center">
+    							<div  id="__divIn">
+						    			<a4j:commandButton tabindex="5" id="__inphieu" name="_inphieu" onclick="bSave = true;" 						    			    		
+						    			action="#{B3157_BaoCaoVienPhi.thuchienAction()}"
+						    			value="In phiếu"  style="width: 70px;  margin-right: 3px;" styleClass="mybton_b"/>
+						    	</div>				
+	    					</td>
+	    					
+    				</tr>    					    				
+	    	  </table> 
+     		</td>
+    	</tr>	
+</table>     
+    <h:inputHidden id="__ngayhientai" value="#{B3157_BaoCaoVienPhi.ngayhientai}" />
+    							
+   </h:form>   
+    <iframe width="174" height="189" name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;"/>
+   
+   </body>
+    
+  
+</ui:define> 
+</ui:composition>
+
+

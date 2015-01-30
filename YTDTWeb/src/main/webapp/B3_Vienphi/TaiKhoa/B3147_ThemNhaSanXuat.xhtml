@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                 xmlns:c="http://java.sun.com/jstl/core" 
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">	
+
+<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+
+	<script type="text/javascript">
+		
+		var bSave = false;
+
+		function iesvn_ValidateForm(form) {						
+			var valid = true;		
+			if (bSave) {	
+				valid = iesvn_ValidateRequired(form);																			   
+		    }			
+			bSave = false; 	    	    
+		    return valid;
+		}
+		function iesvn_Required() {
+			this.aa = new Array(prefix_component + "__manhasx", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Mã nhà SX'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));				
+			this.ab = new Array(prefix_component + "__tennhasx", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Tên nhà SX'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));			 	 		
+		}	
+							
+		function init() {
+		}
+
+		
+	</script>
+	<body>
+	<h:form id="_form" name="_form" onsubmit="return iesvn_ValidateForm(this)">
+	<h:inputHidden id="__hidNhaSX" value="#{strNhaSX}"/>
+    <div style="width:778px; position:absolute; z-index:99">
+    <ui:include src="/layout/mymenu_YTDT_DieuTriNoiTru.xhtml" />    
+    
+    </div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="30%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						NHÀ SẢN XUẤT
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>    
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="965px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    			<tr style=" height : 5px;">
+    		<td width="100%" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 0px" colspan="3" align="center">  
+    		      	<a4j:outputPanel id="message_infor">
+       					 <h:messages styleClass="mynull"/>
+					</a4j:outputPanel>
+    		</td>    		
+    	</tr>
+    		
+    	<tr>
+    	<td colspan="3" style="background-color: white; padding-top: 5px; padding-bottom: 5px;" width="100%" align="center">
+    			<!-- Detail Area -->
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+	    			<tr style="height: 25px;">
+	    				<td align="right" style="padding-left: 0px; width:30%">
+    						<h:outputText value="Mã nhà SX" styleClass="mytext" style="margin-right: 5px; margin-left: 5px;"/>
+    					</td>
+    					<td align="left"> 
+    						<h:inputText id="__manhasx" value="#{B3147_TTNhaSanXuat.nsxSpdd.dtdmnsxMa}" styleClass="myinput" maxlength="5" style="width: 70px;" tabindex="1"/>
+	    					<h:outputText value="*" styleClass="mynull" style="margin-right: 5px; margin-left: 2px;" />
+	    					<h:outputText value="Tên nhà SX" styleClass="mytext" style="margin-left: 43px; margin-right: 5px"/>
+	    					<h:inputText id="__tennhasx" value="#{B3147_TTNhaSanXuat.nsxSpdd.dtdmnsxTen}" styleClass="myinput" maxlength="100" style="width: 200px;" tabindex="2"/>								    					 	
+    						<h:outputText value="*" styleClass="mynull" style="margin-right: 5px; margin-left: 2px;" />			    				 
+    					</td>
+	    			</tr>
+	    			<tr>
+    <td colspan="3" align="center" style="padding-left:280px; background-color: white; padding-bottom:10px">    
+    	<div  style="float:left;">    		
+    			<a4j:commandButton tabindex="21" id="__ghinhan" name="_ghinhan" action="#{B3147_TTNhaSanXuat.saveNhaSX}"
+    			onclick="bSave = true;"
+    			reRender="__manhasx,__tennhasx,__dataTable, message_infor"     			      			
+    			value="Ghi nhận" style="width: 70px; margin-right: 3px;" styleClass="mybton_b"/>    		
+    	</div> 
+    	<div  style="float:left;">
+    			<a4j:commandButton tabindex="22" id="__trove"     			    			
+    			name="_nhaplai"  value="Trở về" action="/B3_Vienphi/TaiKhoa/B3145_NhapKhoDinhDuong.xhtml" 
+    			style="width: 70px; margin-right: 3px;" styleClass="mybton_b"/>
+    	</div>  
+    	
+    </td>
+  </tr>	    			    				    				    			
+	    		</table>
+	    </td>
+	    </tr>
+    	<tr>
+    		<td colspan="3" style="background-color: white; padding-top: 5px; padding-bottom: 5px;" width="100%" align="center">
+    			<!-- Detail Area -->
+    			  
+	    	  <table cellspacing="0" cellpadding="0" border="0" width="93%" style="border: solid 1px #7a9dba;">
+    	  		
+    	  		<tr>
+					<td>
+    					<div style="scroll;overflow-y: scroll; height: 150px;width: 100%;" id="listKetqua">
+    						<rich:dataTable headerClass="mycol" id="__dataTable" rowClasses="myrow1,myrow2"
+	                          styleClass="myTable" value="#{B3147_TTNhaSanXuat.listNsxSpdd}" var="currentRow" width="100%" bgcolor="#cccccc">
+	                        <rich:column style="width: 10%;" id="column_STT" >
+	                        	<f:facet name="header"><h:outputText value="STT"/></f:facet>	                        	
+	                            <h:outputText id="outputText26" value="#{B3147_TTNhaSanXuat.listNsxSpdd.indexOf(currentRow) + 1}"/>                 
+	                        </rich:column>
+	                        <rich:column id="column_manhasx" align="left" style="width: 30%;"> 
+	                        	<f:facet name="header"><h:outputText value="Mã nhà SX"/></f:facet> 	                                                                         
+	                            <h:outputText id="manhasx_table" value="#{currentRow.dtdmnsxMa}" />	                            
+	                        </rich:column>
+	                         <rich:column id="column_tennhasx" align="left" style="width: 60%;"> 
+	                        	<f:facet name="header"><h:outputText value="Tên nhà SX"/></f:facet> 	                                                                         	                             
+	                             <a4j:commandLink id="tennhasx_table" value="#{currentRow.dtdmnsxTen}"	                            
+	                            action="#{B3147_TTNhaSanXuat.edit(B3147_TTNhaSanXuat.listNsxSpdd.indexOf(currentRow))}" 
+	                            reRender="__manhasx,__tennhasx,__dataTable,message_infor"
+	                            />         
+	                        </rich:column>
+	                        
+	                    </rich:dataTable>
+    				</div>
+    			</td>
+    		</tr> 	
+    	</table> 	
+    </td>
+  </tr>
+  
+</table>
+    
+   
+    <h:inputHidden id="__hidCount" value="" />
+    <h:inputHidden id="__selectedIndex" value="" />							
+   </h:form>   
+    <iframe width="174" height="189" name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;"/>
+  
+   </body>
+    
+  
+</ui:define> 
+</ui:composition>
+
+

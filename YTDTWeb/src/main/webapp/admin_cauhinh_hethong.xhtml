@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
+       xmlns:c="http://java.sun.com/jstl/core"
+      template="/layout/mytemplate.xhtml">
+<ui:define name="body">
+<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+
+<script language="JavaScript" type="text/JavaScript">  
+	
+	var bCancel = false;
+	var bSave = false;
+	
+	
+	function iesvn_Required() {
+				
+ 	}
+	function myFormValidate(){
+		 bSave = true;
+		 return onSubmit();
+	}
+	function onSubmit() {
+			var form = document.forms[0];
+			var valid = true;			
+			if (bSave){
+		    	bSave = false;	    	    	
+		     } 	    	    
+		    if (bCancel){
+		    	bCancel = false;
+		    }
+		  
+		    return valid;
+		}
+	
+	function enterToTab(){
+          	if((document.getElementById(prefix_component +"__ghinhan").alt != 1) &amp;&amp; 
+          	(document.getElementById(prefix_component +"__reset").alt != 1)) {
+                 if(window.event.keyCode == 13){
+                        window.event.keyCode = 9;
+                  }
+         	}
+		} 
+</script>
+
+<body onkeydown="enterToTab();">
+	<h:form id="_form" name="_form">		
+	
+	
+	<div style="width:778px; position:absolute; z-index:99">
+	 <c:if test='#{identity.hasRole("QT_HeThong")}'>
+	<ui:include src="/layout/mymenu_YTDT_QuanTriHeThong.xhtml" />
+		 	
+		 	  </c:if>
+	
+	</div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="37%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    							CẤU HÌNH HỆ THỐNG
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>    
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="965px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top:0px; padding-bottom: 15px" width="100%" >
+    			<!-- Main Area -->
+    			<table cellspacing="0" cellpadding="0" border="0" width="55%" align="center" >
+    				<div style="margin-top:10px; width:100%; text-align:center">
+    				<a4j:outputPanel id="__messagePanel">
+       					 <h:messages styleClass="mynull"/>
+				</a4j:outputPanel></div>
+    				<tr style="height: 25px;" >
+    					<td align="left" >
+    							Phương pháp tìm kiếm thuốc
+    						</td>
+    						<td align="left" >
+    							<h:selectOneMenu value="#{admin_cauhinh_client.phuongPhapTimKiemThuoc}" id="__pptkt"
+								name="__pptkt" style="width: 250px; height: 20px;"
+								styleClass="myinput">
+								<f:selectItem itemLabel="Từ vị trí đầu tiên" itemValue="0" />
+								<f:selectItem itemLabel="Từ vị trí trùng hợp trong chuổi" itemValue="1" />
+								
+							</h:selectOneMenu>	
+    						<h:outputText value="*" styleClass="mynull"/>
+    						</td>
+    				</tr>
+    				<tr style="height: 25px;" >
+    					<td align="left" >
+    							Phương pháp tìm kiếm CLS
+    						</td>
+    						<td align="left" >
+    							<h:selectOneMenu value="#{admin_cauhinh_client.phuongPhapTimKiemCLS}" id="__pptkcls"
+								name="__pptkcls" style="width: 250px; height: 20px;"
+								styleClass="myinput">
+								<f:selectItem itemLabel="Từ vị trí đầu tiên" itemValue="0" />
+								<f:selectItem itemLabel="Từ vị trí trùng hợp trong chuổi" itemValue="1" />
+								
+							</h:selectOneMenu>	
+    						<h:outputText value="*" styleClass="mynull"/>
+    						</td>
+    				</tr>
+    				<tr style="height: 25px;" >
+    					<td align="left" >
+    							Khởi động HT báo cáo
+    						</td>
+    						<td align="left" >
+    							
+								<a4j:commandButton  id="__khoidonghethongbaocao" name="_khoidonghethongbaocao" 
+    								oncomplete="onCompleteSetInfor()" 
+    								action="#{admin_cauhinh_client.startHeThongBaoCao()}" 
+    								reRender="__messagePanel,__pptkt,__pptkcls" value="Khởi động"
+    								focus="__pptkt" 
+    								style=" width : 60px;margin-left:3px;" styleClass="mybton_b"/>
+						
+    						</td>
+    				</tr>
+    				<tr style="height: 25px;" >
+    					<td align="left" >
+    							Copy Gear => Thư mục Share
+    						</td>
+    						<td align="left" >
+								<a4j:commandButton  id="__copygear" name="_copygear" 
+    								action="#{admin_cauhinh_client.copyGear()}" value="Copy"
+    								reRender="__messagePanel"
+    								style=" width : 60px;margin-left:3px;" styleClass="mybton_b"/>
+    						</td>
+    				</tr>
+    				<tr style="height: 35px;" >
+    					<td align="left" colspan="2" valign="bottom" style="padding-left: 110px;" >
+    						<div style="float: left;">
+    								<a4j:commandButton  id="__ghinhan" name="_ghinhan" 
+    								oncomplete="onCompleteSetInfor()" action="#{admin_cauhinh_client.ghiNhan}" 
+    								onclick="if(!myFormValidate()) return false;" 
+    								reRender="__messagePanel,__pptkt,__pptkcls" value="Ghi nhận" 
+    								focus="__pptkt" 
+    								style="width: 60px;margin-left:3px;" styleClass="mybton_b"/>
+    						</div>
+    						<div  style="float: left;">
+    								<a4j:commandButton  id="__reset" name="_reset" 
+    								oncomplete="onCompleteSetInfor()" 
+    								action="#{admin_cauhinh_client.reset()}" 
+    								reRender="__messagePanel,__pptkt,__pptkcls" value="Nhập Lại"
+    								focus="__pptkt" 
+    								style=" width : 60px;margin-left:3px;" styleClass="mybton_b"/>
+    						</div>
+    						
+    					</td>
+    				</tr>
+    			</table>   						
+    		</td>
+    	</tr>	    	
+    </table>
+
+    </h:form>
+    </body>
+	<script type="text/javascript">
+		var prefix_component = document.forms[0].id + ":";
+		
+	</script>
+	 <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/admin_cauhinh_hethong.js"></script>
+ 	<script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/MD5.JS"></script>
+ </ui:define>    
+</ui:composition>

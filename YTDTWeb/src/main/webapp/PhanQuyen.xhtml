@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:a4j="http://richfaces.org/a4j"
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">
+<script language="JavaScript" type="text/JavaScript">  
+	
+	
+	var bCancel = false;
+	var bSave = false;
+		
+	function iesvn_Required() {
+			this.aa = new Array(prefix_component + "__tennguoidung", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Người dùng'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+ 			
+ 	}
+	function myFormValidate(){
+		 bSave = true;
+		 return onSubmit();
+	}
+	function onSubmit() {
+			var form = document.forms[0];
+			var valid = true;			
+			if (bSave){
+		    	bSave = false;	    	    	
+		    	valid = iesvn_ValidateRequired(form)  ; 
+		    } 	    	    
+		    if (bCancel){
+		    	bCancel = false;
+		    }
+		    return valid;
+		}
+	
+</script>
+	<h:form id="_form" name="_form">
+	
+	<div style="width:778px; position:absolute; z-index:99">
+	<ui:include src="/layout/mymenu_YTDT_QuanTriHeThong.xhtml" /></div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="42%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						QUẢN LÝ QUYỀN TRUY CẬP
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>    
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="965px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-bottom: 5px" width="100%" >
+    			<!-- Main Area -->
+    			<table cellspacing="0" cellpadding="0" border="0" width="60%" align="center" >
+    				<div style="margin-top:10px; width:100%;text-align:center">
+		    			<a4j:outputPanel id="__messagePanel">
+		       					 <h:messages styleClass="mynull"/>
+						</a4j:outputPanel>
+					</div>
+    				<tr style="height: 25px;" >
+    					<td align="left">
+    					<h:panelGrid columns="6">
+    						<h:outputText value="Người dùng" styleClass="mytext" style="margin-right: 5px; margin-left: 15px;"/>
+    						<h:inputHidden id="__tennguoidung_pk" value="#{PhanQuyenAction.nhanVienMaso}"/>
+    						
+    						<h:inputText tabindex="1" value="#{PhanQuyenAction.nhanVienMa}"  id="__tennguoidung" name="_tennguoidung" style=" width : 65px;" styleClass="myinput" >
+    							<a4j:support action="#{PhanQuyenAction.onblurMaNhanVienAction}" event="onchange" reRender="DT_DM_NHAN_VIEN__1,__tennguoidung_pk"/>
+    						</h:inputText>
+    				
+							<rich:comboBox tabindex="2" value="#{PhanQuyenAction.nhanVienTen}" id="DT_DM_NHAN_VIEN__1" width="180px;" name="DT_DM_NHAN_VIEN" >
+								<f:selectItems value="#{PhanQuyenAction.listDtDmNhanViens}" />
+								<a4j:support action="#{PhanQuyenAction.onblurTenNhanVienAction}" onsubmit="document.getElementById(prefix_component + '__tennguoidung').value = '';" event="onselect" reRender="__tennguoidung,__tennguoidung_pk"/>
+							</rich:comboBox> 
+    					 	
+    						<h:outputText value="*" styleClass="mynull" style="margin-left:3px;" />    						
+    						<a4j:commandButton  focus="__ghinhan" tabindex="3" id="__themchinhsau" name="_themchinhsau" action="#{PhanQuyenAction.displayInfor()}" reRender="__a4jPanel,__messagePanel,__tennguoidung_pk,__tennguoidung"  value="" style="width: 20px;height:19px; margin-bottom:1px; margin-left: 12px" styleClass="mybton_add"/>
+    						</h:panelGrid>
+    					</td>
+    				</tr>
+    				
+    				
+    				
+    				<tr >
+    					<td align="left" style="padding-top: 3px;" >    						
+    						<table cellspacing="0" cellpadding="0" border="0" width="98%" style="border: solid 1px #54779f;" align="center" >
+    							<tr style="height: 20px;" class="mycol">
+    								<td align="center" style="width: 115px;border-right: solid 1px #ffffff;" >
+    									<h:outputText value="Mã vai trò"/>    									
+    								</td>
+    								<td align="center" style="width:280px;border-right: solid 1px #ffffff;">
+    									<h:outputText value="Tên vai trò"/>    									
+    								</td>
+    								<td align="left" style="padding-left:5px;" >
+    									<h:outputText value="Quyền"/>    									
+    								</td>    					
+    											    					 									
+    							</tr>    	    								
+    							<tr style="height: 20px;" >
+    								<td colspan="6">
+
+									<table cellspacing="0" cellpadding="0" border="0" width="100%"
+										style="padding: 0px; float: left;">
+										<tr>
+											<td>
+											<div style="overflow-x: hidden; overflow-y: scroll; height: 166px; width: 100%">
+											<a4j:outputPanel id="__a4jPanel">
+												<rich:dataTable value="#{ctQuyenExts}"
+													var="row" headerClass="mycol"
+													rowClasses="myrow2,myrow1" cellspacing="0" cellpadding="0"
+													border="0" width="95%" style="float:left;" id="__datatableid">
+													<rich:column width="25%">
+														<h:outputText value="#{row.vaitro.vaitroMa}" />
+													</rich:column>
+													<rich:column>
+														<h:outputText value="#{row.vaitro.vaitroTen}" />
+													</rich:column>
+													<rich:column width="13%">
+														<h:selectBooleanCheckbox value="#{row.chon}"
+															id="__chkPQQuyen" />
+													</rich:column>
+													
+												</rich:dataTable>
+											</a4j:outputPanel></div>
+											</td>
+										</tr>
+									</table>
+									</td>    					  					   				
+    							</tr>     				   				    							 		
+    						</table>
+    					</td>
+    				</tr>   
+    				
+    				  				
+    				<tr style="height: 30px;" >
+    					<td align="left" colspan="2" valign="bottom" style="padding-left: 150px;" >
+    						<div class="mybton_b_l" style="width: 80px; float: left;">
+    							<div style="background-position: 60px 0px; float: left; padding-right: 5px" class="mybton_b_r">
+    								<a4j:commandButton  id="__ghinhan" name="_ghinhan"  onclick="if (! myFormValidate()) { return false; }"    tabindex="7" action="#{PhanQuyenAction.ghiNhan}" reRender="__a4jPanel,__messagePanel,__tennguoidung_pk,__tennguoidung,DT_DM_NHAN_VIEN__1" value="Ghi nhận" style="width: 60px;" styleClass="mybton_b"/>
+    							</div>
+    						</div>
+    							<div class="mybton_b_l" style="width: 75px; float: left;">
+    							<div style="background-position: 60px 0px; float: left; padding-right: 5px" class="mybton_b_r">
+    								<a4j:commandButton  id="__reset" name="_reset" tabindex="7" action="#{PhanQuyenAction.reset()}" reRender="__a4jPanel,__messagePanel,__tennguoidung_pk,__tennguoidung,DT_DM_NHAN_VIEN__1" value="Nhập Lại" style=" width : 60px;" styleClass="mybton_b"/>
+    							</div>
+    						</div>
+    					</td>
+    				</tr>   				
+    			</table>   		    						
+    		</td>
+    	</tr>	    	
+    </table>
+    </h:form>
+    <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/phanquyen.js"></script>
+    	
+</ui:define> 
+</ui:composition>

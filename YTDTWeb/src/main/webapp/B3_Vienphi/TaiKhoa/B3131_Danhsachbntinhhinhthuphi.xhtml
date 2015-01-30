@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">
+	<h:form id="_form" name="_form">	
+    <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_VienPhi_TaiKhoa.xhtml" /></div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="100%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						DANH SÁCH BỆNH NHÂN, TÌNH HÌNH THU PHÍ
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>        	
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="985px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px" width="100%" align="center">
+    			<!-- Main Area -->
+    			<table cellspacing="0" cellpadding="0" border="0" width="46%">
+    				<tr style="height: 25px;">
+    					<td align="left"  style="padding-left: 24px;">
+    						<h:outputText value="Khoa phòng" styleClass="mytext" style="margin-right: 5px;"/>
+    						<h:inputText value="#{B3131_Danhsachbntinhhinhthuphi.Ma}" id="DM_KHOA_MA" name="DM_KHOA_MA" style="width : 40px" maxlength="11" tabindex="1" styleClass="myinput"/>
+    					 	<span id="DM_KHOA_span"/>
+    					 	<input id="DM_KHOA" name="DM_KHOA" tabindex="2" style="width: 200px;" class="mycbogear"/>
+    					</td>  
+    				</tr>
+    				<tr style="height: 25px;">  
+    					<td align="left" >
+    						<h:outputText value="In BN có số dư ≤" styleClass="mytext" style="margin-right: 5px;"/>
+							<h:inputText value="" tabindex="3" id="__sodu" name="_sodu" styleClass="myinput" style="width: 70px;"/>
+    					</td>					
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="left"  style="padding-left: 93px;" >
+    						<h:selectManyCheckbox id="__kieuin"  tabindex="4">
+        						<f:selectItem id="__theophong" itemValue="c1" itemLabel="Xếp theo phòng" styleClass="mycheck"/>
+        						<f:selectItem id="__indiachi" itemValue="c2" itemLabel="In địa chỉ BN" styleClass="mycheck"/>
+    						</h:selectManyCheckbox>
+    					</td>
+    				</tr>
+    				<tr style="height: 40px;">
+    					<td align="center"  style="padding-left: 145px;">    
+    						<div class="mybton_b_l" style="width: 90px; float: left;">
+    							<div style="background-position: 70px 0px; float: left; padding-right: 5px" class="mybton_b_r">
+    								<h:commandButton  tabindex="5" id="__tienhanh" name="_tienhanh" type="submit" value="Tiến hành" style="width: 70px;" styleClass="mybton_b"/>
+    							</div>
+    						</div> 
+    						<div class="mybton_b_l" style="width: 65px; float: left;">
+    							<div style="background-position: 50px 0px; float: left; padding-right: 5px" class="mybton_b_r">
+    								<h:commandButton tabindex="6" id="__chonlai" name="_chonlai" type="submit" value="Chọn lại" style="width: 50px;" styleClass="mybton_b"/>
+    							</div>
+    						</div> 
+    					</td>
+    				</tr>    				
+    			</table> 		    						
+    		</td>
+    	</tr>	    	
+    </table>
+    <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/vienphi/B3131_Danhsachbntinhhinhthuphi_gears.js"></script>
+    </h:form>
+</ui:define> 
+</ui:composition>
+

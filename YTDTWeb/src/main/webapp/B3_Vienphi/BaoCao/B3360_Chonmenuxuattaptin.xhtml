@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:c="http://java.sun.com/jstl/core"
+                template="/layout/myTemplateWithoutGear.xhtml">
+
+<ui:define name="body">
+	<h:form id="_form" name="_form" >		
+<script language="javascript">	
+	function xuatTapTinValidate(){
+		var loaiFile = getValueCheckOrRadioList(document.forms[0].id + ":" + "__dinhdang");
+		if(loaiFile == null){
+			alert('Loại tập tin cần phải chọn.');
+			return false;
+		}
+	}
+</script>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="32%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						KẾT QUẢ BÁO CÁO
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>    
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="965px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 0px" width="100%" >    			
+    			    			
+    			<table align="center" cellspacing="0" cellpadding="0" border="0" width="75%" >
+    				
+    				<tr style="height: 25px;" >
+    				<td align="right" width="25%">
+    						<h:outputText value="Chọn định dạng file cần xuất:" styleClass="mytext_b" style="margin-right: 5px;"/>
+    					</td>
+    					<td align="left" width="25%">
+    						<h:selectOneRadio id="__dinhdang" value="#{ChonXuatFileBaoCao_VienPhi.chonFileXuat}" tabindex="1">
+        						<f:selectItem itemValue="DOC" itemLabel="Word" styleClass="mycheck"/>
+        						<f:selectItem itemValue="EXCEL" itemLabel="Excel" styleClass="mycheck"/>
+        						<f:selectItem itemValue="XML" itemLabel="XML" styleClass="mycheck"/>
+    						</h:selectOneRadio>
+    					</td>
+    					
+    				</tr>
+    				<tr>
+    				<td align="left" colspan="2" style="padding-left: 182px; padding-top: 10px; padding-bottom: 15px">
+    								<h:inputHidden id="__xuatbaocao" value="#{ChonXuatFileBaoCao_VienPhi.reportFinish}"/>
+    								<h:inputHidden id="__duongdanfilexuatBC" value="#{ChonXuatFileBaoCao_VienPhi.duongdanFileXuat}"/>
+    								
+    								<h:commandButton tabindex="2" id="__xuattaptin" action="#{ChonXuatFileBaoCao_VienPhi.xuatFileAction}" 
+    								name="_xuattaptin" value="Xuất Tập Tin" style="width: 80px;" styleClass="mybton_b">
+	    							</h:commandButton>
+	    							
+    								<h:commandButton tabindex="3" id="__trove" name="_trove" action="#{ChonXuatFileBaoCao_VienPhi.troveAction}" 
+    								value="Trở Về" style="width: 80px; margin-left: 5px; " styleClass="mybton_b">
+	    							</h:commandButton>
+    						
+    					</td>
+    				</tr>    				
+    			</table> 
+    			<iframe style="width:98%; height:800px;zoom:130%;margin-left:5px;" scrolling="auto" id="iframe1" src="#{facesContext.externalContext.requestContextPath}#{reportPathVP}" />		    						
+    		</td>
+    	</tr>	
+    	    	
+    </table>
+    
+    </h:form>
+    
+	<script language="javascript">
+                if(document.getElementById(document.forms[0].id + ":" + "__xuatbaocao").value == 'true'){
+                        var fileXuatName = document.getElementById(document.forms[0].id + ":"+ "__duongdanfilexuatBC").value;
+                        if(fileXuatName != ''){
+                                var win = window.open(myContextPath+'/report/result/dieutri/vienphi/xuatFile.jsp?tenTapTinBaoCao='+myContextPath+fileXuatName, null,"menubar=1,toolbar=1,scrollbars=1,resizable=1,width=500,height=200");
+                                win.focus();
+                        }
+                }
+	</script>
+
+</ui:define> 
+</ui:composition>

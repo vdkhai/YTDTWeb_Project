@@ -1,0 +1,134 @@
+﻿<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/layout/myTemplateWithoutGear.xhtml">
+
+<ui:define name="body">
+ <h:form id="_form" name="_form">
+    <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_TiepDon.xhtml" /></div>
+ 	<table width="778" border="1" bordercolor="#cccccc" style="background:#ffffff">
+ 	  
+ 	  
+ 	  
+ 	  <tr>
+    		<td style="padding-top:5px" colspan="4" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="100%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						Danh mục
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>    
+    	
+    	<tr style=" height : 5px;">
+    		<td width="100%" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 0px" colspan="4" align="center">  
+    		      	
+    		      	
+    		</td>    		
+    	</tr>
+    	
+	  <tr style="background:#cccccc">
+	  	<td colspan="4"><input type="checkbox" id="DanhMucChung" name="DM" onclick="checkAll(this)" /><strong>Danh mục</strong></td>
+	  </tr>
+	  
+	
+	  <tr>
+	    <td width="18">
+	      <input type="checkbox" name="DM" id="DM_THUOC" alt="DmThuoc,GetDanhMucThuocAction" />
+	    </td>
+	    <td width="371">Thuốc</td>
+	    <td width="18">
+	      <input type="checkbox" name="DM" id="DM_BENH_ICD" alt="DmBenhIcd,GetBenhIcdAction" />
+	    </td>
+	    <td width="371">
+	    	Bệnh ICD
+	    </td>
+	  </tr>
+	  
+	  
+	  <tr>
+	    <td width="18">
+	      <input type="checkbox" name="DM" id="DT_DM_CLS" alt="DtDmCls,GetDtDmClsAction" />
+	    </td>
+	    <td width="371">Cận lâm sàng</td>
+	    <td width="18">
+	      <input type="checkbox" name="DM" id="DT_DM_CLS_BANG_GIA" alt="DtDmClsBangGia,GetDmKyThuatAction" />
+	    </td>
+	    <td width="371">CLS bảng giá</td>
+	  </tr>
+	  
+	 
+	  
+	  <tr>
+	    <td width="18">
+	      <input type="checkbox" name="DM" id="DT_DM_NHAN_VIEN" alt="DtDmNhanVien,GetNhanVienAction" />
+	    </td>
+	    <td width="371">Nhân viên</td>
+	    <td width="18">
+	     
+	    </td>
+	    <td width="371"></td>
+	  </tr>
+	  
+	
+	</table>
+
+	
+	<table width="778" border="0">
+	  <tr>
+	    <td colspan="4" style="text-align:center"><input class="mybton_b" type="button" id="capNhat_id" value="Cập nhật" onclick="LoadCatalogFromServer()"/></td>
+	  </tr>  
+	</table>
+  </h:form>	
+    
+	<script language = "javascript">		
+		function init(){}
+		function checkAll(comp){
+			var subArr = document.getElementsByName(comp.name); 
+			if(comp.checked){
+				for(var i=0; i &lt; subArr.length; i++){
+					subArr[i].checked=true;
+				}
+			}
+			else{
+				for(var i=0; i &lt; subArr.length; i++){
+					subArr[i].checked=false;
+				}
+			}
+		}
+		function init(){
+		}
+	</script>
+	
+	<script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/json/json.js"></script>
+
+   <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/JStORM/JStORM.js"></script>
+   
+		<script src="#{facesContext.externalContext.requestContextPath}/resources/JStORM/JStORM.Query.js"></script>
+		<script src="#{facesContext.externalContext.requestContextPath}/resources/JStORM/JStORM.Gears.js"></script>
+		<script src="#{facesContext.externalContext.requestContextPath}/resources/JStORM/JStORM.Sql.js"></script>
+		<script src="#{facesContext.externalContext.requestContextPath}/resources/JStORM/JStORM.Field.js"></script>
+		<script src="#{facesContext.externalContext.requestContextPath}/resources/JStORM/JStORM.ModelMetaData.js"></script>
+		<script src="#{facesContext.externalContext.requestContextPath}/resources/JStORM/JStORM.Model.js"></script>
+		<script src="#{facesContext.externalContext.requestContextPath}/resources/JStORM/JStORM.Events.js"></script>
+		<script src="#{facesContext.externalContext.requestContextPath}/resources/JStORM/JStORM.SQLite.Introspection.js"></script>
+		
+	<script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/gears_init.js"></script>
+	<script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/Entities.js"></script>
+	<script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/functions_gears.js"></script>
+	
+</ui:define> 
+</ui:composition>

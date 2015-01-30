@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:c="http://java.sun.com/jstl/core" 
+                template="/layout/mytemplate_danhmuc.xhtml">
+
+<ui:define name="body">	
+<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+<h:form id="_form" name="_form"> 
+	<div style="width:100%; position:absolute; margin-top:0;z-index:99">
+		<ui:include src="/layout/mymenu_YTDT_DieuTriNoiTru.xhtml" />
+	</div>
+	<table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+	<tr>
+    	<td colspan="3" height="50px">
+    		<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    			<tr>
+    				<td height="50px" width="350px" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    					<h:graphicImage value="../images/white_light.gif" width="43" height="16" />
+    					DANH MỤC PHÂN LOẠI TAI NẠN
+    				</td> 
+    				<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" border="0">
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    								
+    							</td>
+    						</tr>
+    						
+    					</table> 
+    				</td>
+    			</tr>
+    		</table>			
+    	</td>    		    	
+	</tr>    
+    <tr>
+    	<td width="13px" height="12px" class="mytdl"></td>
+    	<td style="background-color: #c9daea;" width="965px" height="12px" >  		
+    	</td>
+    	<td width="11px" height="12px" class="mytdr"></td>
+    </tr>
+    <tr>
+    	<td colspan="3" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 5px" width="100%" >
+    		<table width="100%" border="0">
+				<tr align="center">
+					<td>
+						<a4j:outputPanel id="message_infor">
+							<tr>
+								<td>
+									<h:messages style="color:Red;font-weight:bold;font-style:italic;text-decoration:none;"/>
+								</td>
+							</tr>
+						</a4j:outputPanel>
+					</td>
+				</tr>
+    			<tr>
+    				<td>
+    					<h:outputText value="Mã" style="margin: 0 5px 0 93px;"/>
+    					<h:inputText id="__ma" tabindex="1" value="#{DmPhanLoaiTaiNan.phanloaitainan.dmpltainanMa}" style="width:100px;" styleClass="myinput"/>
+    					<h:outputText value="Tên" style="margin: 0 5px 0 30px;"/>
+    					<h:inputText id="__ten" tabindex="2" value="#{DmPhanLoaiTaiNan.phanloaitainan.dmpltainanTen}" style="width:100px;" styleClass="myinput"/>    
+    					
+						<a4j:commandLink style="text-decoration: none" tabindex="3"
+							action="#{DmPhanLoaiTaiNan.search}"
+							reRender="__list,message_infor">
+    						<h:graphicImage value="../images/search_1.png" style="margin:0 0 -2px 10px" border="0"/>
+    					</a4j:commandLink>
+    					<a4j:commandLink style="text-decoration: none" tabindex="4"
+    						action="#{DmPhanLoaiTaiNan.reset}"
+    						reRender="__list,__ten,__ma,message_infor">
+    						<h:graphicImage value="../images/reset.gif" width="16px;" style="margin:0 0 -3px 5px" border="0"/>
+    					</a4j:commandLink>					
+    				</td>
+    			</tr>
+    			
+    		</table>
+    	</td>
+    </tr>
+    	<tr>
+    	<td colspan="3" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 5px" width="100%" >
+    		<table width="100%">
+				<tr>
+    				<td align="center">
+    					<div align="left" style="overflow-y: scroll; overflow-x: scroll; height:300px; border: solid 1px #54779f; width: 750px">
+    						<rich:dataTable style="width:380px;" value="#{listDmPhanLoaiTaiNan}" id="__list" reRender="__ds" var="row" rows="10">
+    							<rich:column width="80px">
+        							<f:facet name="header"><h:outputText value=""/></f:facet>
+             						<a4j:commandLink style="text-decoration: none" 
+             								action="#{DmPhanLoaiTaiNan_edit.init}">
+                						<h:graphicImage value="../images/edit.gif" style="border:0"/>
+             						</a4j:commandLink>
+             						<a4j:commandLink style="text-decoration: none"
+	             							onclick="if(!myconfirm('#{row.dmpltainanMa}')) return false;"
+	             							action="#{DmPhanLoaiTaiNan.delete(listDmPhanLoaiTaiNan.rowIndex)}"
+	             							reRender="__list,message_infor">
+                						<h:graphicImage value="../images/delete.gif" style="border:0"/>
+             						</a4j:commandLink>
+        						</rich:column>
+								
+        						<rich:column width="40px">
+        							<f:facet name="header"><h:outputText value="Mã"/></f:facet>
+            						<h:outputText value="#{row.dmpltainanMa}" id="i_ma" style="FONT-FAMILY: 'AlHor';"/>
+        						</rich:column>
+        						
+        						<rich:column width="200px">
+        							<f:facet name="header"><h:outputText value="Tên"/></f:facet>
+            						<h:outputText value="#{row.dmpltainanTen}" id="i_ten" />
+        						</rich:column>  
+        						
+        						<rich:column width="200px">
+        							<f:facet name="header"><h:outputText value="Tai nạn"/></f:facet>
+            						<h:outputText value="#{row.dmtainanMaso.dmtainanTen}" id="i_tainan" />
+        						</rich:column>  
+        						      						
+        						<f:facet name="footer">
+				               		<rich:datascroller id="__ds" renderIfSinglePage="false"></rich:datascroller>
+				           		</f:facet>
+							</rich:dataTable>
+    					</div> 
+    				</td>
+    			</tr> 			
+    		</table>   		
+    	</td>    	
+    </tr>    
+    <tr>
+    	<td colspan="3" style="background-color: #c9daea; padding-top: 5px; padding-bottom: 10px" width="100%" >
+    		<table width="100%">
+    			<tr>
+    				<td>
+    					<a4j:commandButton styleClass="mybton_b" value="Thêm mới" id="__themmoi" style="cursor:pointer;margin:0 0 0 25px; height : 22px;"
+    						tabindex="5" action="#{DmPhanLoaiTaiNan_add.init}"/>
+    					
+    					<a4j:commandButton styleClass="mybton_b"  value="Trang chính" id="__trangchinh" style="cursor:pointer;margin:0 0 0 5px;"
+    						tabindex="6" action="#{DmPhanLoaiTaiNan.goback}"/>
+    				</td>
+    			</tr>
+    		</table>   		
+    	</td>    	
+    </tr>
+</table>
+</h:form>
+
+<script type="text/javascript">
+
+function init(){
+	setInfo();
+}
+
+function setInfo(){	
+	document.getElementById(prefix_component + '__ma').focus();
+}
+
+function myconfirm(ma){
+	var f = confirm("<h:outputFormat value='#{msg.phanloaitainan_de_co}' > <f:param value='" + ma + "'/> </h:outputFormat>");
+	return f;
+}
+
+</script>
+</ui:define> 
+</ui:composition>
+
+

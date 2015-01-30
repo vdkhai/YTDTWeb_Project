@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<components xmlns="http://jboss.com/products/seam/components"
+	xmlns:core="http://jboss.com/products/seam/core"
+	xmlns:web="http://jboss.com/products/seam/web"
+	xmlns:transaction="http://jboss.com/products/seam/transaction"
+            xmlns:bpm="http://jboss.com/products/seam/bpm"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:security="http://jboss.com/products/seam/security"  
+            xsi:schemaLocation=
+                "http://jboss.com/products/seam/bpm http://jboss.com/products/seam/bpm-2.0.xsd 
+                 http://jboss.com/products/seam/components http://jboss.com/products/seam/components-2.0.xsd
+                 http://jboss.com/products/seam/security http://jboss.com/products/seam/security-2.0.xsd">
+               
+  
+	<security:identity authenticate-method="#{mylogin.myAuthenticate}"/>
+
+
+	<core:init transaction-management-enabled="false"/>
+	<transaction:no-transaction />
+	<core:manager conversation-timeout="60000" concurrent-request-timeout="5000"/>
+	<web:cache-control-filter name="imageCacheControlFilter" regex-url-pattern=".*(\.gif|\.png|\.jpg|\.jpeg)" value="max-age=86400"/>  
+    <web:cache-control-filter name="textCacheControlFilter" regex-url-pattern=".*(\.css|\.js)" value="max-age=1400"/> 
+	
+	
+
+  
+ 
+	 
+</components>

@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                xmlns:c="http://java.sun.com/jstl/core" 
+                xmlns:x="http://myfaces.apache.org/extensions"
+                template="/layout/mytemplate.xhtml">
+
+	
+<ui:define name="body">
+<script type="text/javascript">
+	function init() {	
+		
+	}
+</script>
+
+	<h:form id="_form" name="_form">	
+	<h:inputHidden  id="__resetFrom" value="#{resetFormCapNhatKiemKeFile}"/>
+    <div style="width:778px; position:absolute; z-index:99">
+    
+   <c:if test="#{tenChuongTrinh.equals(YTDT_Menu.quanLyKhoChinh)}">
+		<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoChinh.xhtml" />
+	</c:if>
+	<c:if test="#{tenChuongTrinh.equals(YTDT_Menu.quanLyKhoLe)}">
+		<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoLe.xhtml" />
+	</c:if>
+	<c:if test="#{tenChuongTrinh.equals(YTDT_Menu.quanLyKhoBHYT)}">
+		<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoBHYT.xhtml" />
+	</c:if>	
+     <c:if test="#{tenChuongTrinh.equals('QuanLyKhoNoiTru')}">
+    	<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoNoiTru.xhtml" />
+    </c:if>
+    <c:if test="#{tenChuongTrinh.equals('QuanLyKhoTE')}">
+		<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoTE.xhtml" />
+	</c:if>
+    
+    </div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="53%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						CẬP NHẬT SỐ LIỆU KIỂM KÊ THỰC TẾ
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>        	
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="985px" height="12px" >    		       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea;" width="100%" align="center">
+    			<a4j:outputPanel id="message_info">
+    				<h:messages styleClass="mynull"/>
+    			</a4j:outputPanel>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px" width="100%" align="center">
+    			<!-- Main Area -->
+    			<table cellspacing="0" cellpadding="0" border="0" width="95%">
+    				<tr>
+    					<td align="center">
+    						<rich:fileUpload tabindex="1" fileUploadListener="#{CapNhatSoLieuKiemKeThucTeAction.listener}" 
+	    						maxFilesQuantity="1" 
+	    						acceptedTypes="xls"
+	    						addControlLabel="Chon tap tin" 
+	    						uploadControlLabel="Đọc số liệu từ tập tin"
+	    						cancelEntryControlLabel="Huy" 
+	    						doneLabel="Cập nhật hoàn thành" 
+	    						stopEntryControlLabel="Dung"
+	    						progressLabel="Đang câp nhật" 
+	    						stopControlLabel="Dừng" 
+	    						transferErrorLabel="Lỗi cập nhật" 
+	    						clearControlLabel="Xoa" 
+	    						clearAllControlLabel="Xoa"
+	    						listHeight="80"  
+	    						listWidth="500" 	    						
+    						/>
+    					</td>
+    				</tr> 
+    				<tr>
+			    		<td align="center">
+			    		<a4j:commandButton tabindex="2" 
+			    								id="__ghinhan" name="_ghinhan"  action="#{CapNhatSoLieuKiemKeThucTeAction.ghinhan}" 
+			    								value="Ghi nhận" styleClass="mybton_b" style="width:70px;margin-left:3px;"  reRender="message_info"/>
+			    			<a4j:commandButton tabindex="3" 
+			    								id="__quayve1" name="_quayve"  action="#{CapNhatSoLieuKiemKeThucTeAction.quayve}" 
+			    								value="Quay lại" styleClass="mybton_b" style="width:70px;margin-left:3px;"  />
+			    		</td>
+			    	</tr> 	    				   				
+    			</table> 		    						
+    		</td>    		
+    	</tr>
+    	   	
+    </table>
+    </h:form>
+     
+</ui:define> 
+</ui:composition>
+
+

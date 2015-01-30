@@ -1,0 +1,83 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Gradle : YTDTWeb : YTDTWeb-1.0.0.war (exploded)">
+    <output-path>$PROJECT_DIR$/out/artifacts/YTDTWeb/exploded/YTDTWeb-1.0.0.war</output-path>
+    <properties id="gradle-properties">
+      <options external-project-path="$PROJECT_DIR$" />
+    </properties>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="YTDTWeb/web/Web Gradle : YTDTWeb-1.0.0.war" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="YTDTWeb" />
+          <element id="dir-copy" path="$PROJECT_DIR$/build/resources/main" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="module" name="Gradle: CommaSeparator" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: commons-beanutils-1.7.0" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: commons-collections-3.2.1" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: commons-digester-1.8" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: commons-discovery-0.2" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: commons-fileupload-1.0" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: commons-lang" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: commons-logging-1.1.1" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: concurrent" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: ConvertApp" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: dom4j" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: hibernate-search" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: hibernate-validator" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: hibernate" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: IeSUtilLib" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: iesvn-commons" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: itext-1.3.1" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jasperreports-1.3.0" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: javassist-3.3.GA" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jaxrpc" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jboss-aop-jdk50-client" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jboss-aspect-jdk50-client" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jboss-common-client" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jboss-ejb3-client" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jboss-el" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jboss-j2ee" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jboss-remoting-int" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jboss-remoting" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jboss-seam-2.0.2.SP1" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jboss-seam-debug-2.0.2.SP1" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jboss-seam-ioc-2.0.2.SP1" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jboss-seam-ui-2.0.2.SP1" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jboss-serialization" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jboss-transaction" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jboss" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jbosssx-client" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jnp-client" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jsf-api" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jsf-facelets" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jsf-impl" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jstl" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jta-1.1" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: jxl-2.6.3" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: log4j-1.2.14" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: mysql-connector-java-5.1.21-bin" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: persistence-api" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: poi-3.1-FINAL-20080629" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: quartz-all-2.0.1" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: quartz-old-job-initialization-plugin" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: richfaces-api-3.3.3.Final" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: richfaces-impl-3.3.3.Final" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: richfaces-ui-3.3.3.Final" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: slf4j-api-1.6.1" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: slf4j-log4j12-1.6.1" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: sqljdbc" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: UnicodeConverter" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: YTDTApp" module-name="YTDTWeb" />
+          <element id="library" level="project" name="Gradle: javax.servlet:servlet-api:2.5" />
+          <element id="library" level="module" name="Gradle: comm" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: el-api-2.2.1-b04" module-name="YTDTWeb" />
+          <element id="library" level="module" name="Gradle: portlet-api-2.0-r12" module-name="YTDTWeb" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/out/artifacts/YTDTWeb/exploded/YTDTWeb-1.0.0.war/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>

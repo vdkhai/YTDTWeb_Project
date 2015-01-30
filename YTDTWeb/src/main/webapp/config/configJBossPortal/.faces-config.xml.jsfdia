@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:*" PATH="*" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:0" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="thamdinhcosocongbo::#C1_VSATTP#C115_ThamDinhCoSoCapGiayCN.xhtml"
+    NAME="output" PATH="/C1_VSATTP/C115_ThamDinhCoSoCapGiayCN.xhtml"
+    TARGET="rules:#C1_VSATTP#C115_ThamDinhCoSoCapGiayCN.xhtml"
+    TITLE="thamdinhcosocongbo" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="inphieutiepnhanhosocongbo::#C1_VSATTP#PhieuTiepNhanHoSoDeNghiCapGiayChungNhanTieuChuanSP.xhtml"
+    NAME="output1"
+    PATH="/C1_VSATTP/PhieuTiepNhanHoSoDeNghiCapGiayChungNhanTieuChuanSP.xhtml"
+    TARGET="rules:#C1_VSATTP#PhieuTiepNhanHoSoDeNghiCapGiayChungNhanTieuChuanSP.xhtml"
+    TITLE="inphieutiepnhanhosocongbo" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="traketquahosocongbo::#C1_VSATTP#C117_Traketqua.xhtml"
+    NAME="output2" PATH="/C1_VSATTP/C117_Traketqua.xhtml"
+    TARGET="rules:#C1_VSATTP#C117_Traketqua.xhtml"
+    TITLE="traketquahosocongbo" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="inphieuchungnhancongboSP::#C1_VSATTP#GiayChungNhanTieuChuanSanPham.xhtml"
+    NAME="output3" PATH="/C1_VSATTP/GiayChungNhanTieuChuanSanPham.xhtml"
+    TARGET="rules:#C1_VSATTP#GiayChungNhanTieuChuanSanPham.xhtml"
+    TITLE="inphieuchungnhancongboSP" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="thamdinhhosocongbo::#C1_VSATTP#C114_ThamDinhHoSoXinCongBoTCVSATTP.xhtml"
+    NAME="output4"
+    PATH="/C1_VSATTP/C114_ThamDinhHoSoXinCongBoTCVSATTP.xhtml"
+    TARGET="rules:#C1_VSATTP#C114_ThamDinhHoSoXinCongBoTCVSATTP.xhtml"
+    TITLE="thamdinhhosocongbo" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="nhapchitietcongbo::#C1_VSATTP#C113A_thongtinchitiethscongbotieuchuansp.xhtml"
+    NAME="output5"
+    PATH="/C1_VSATTP/C113A_thongtinchitiethscongbotieuchuansp.xhtml"
+    TARGET="rules:#C1_VSATTP#C113A_thongtinchitiethscongbotieuchuansp.xhtml"
+    TITLE="nhapchitietcongbo" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="cadichbenh::#C2_BenhTN#C202_QuanLyCaBenhTruyenNhiem.xhtml"
+    NAME="output6" PATH="/C2_BenhTN/C202_QuanLyCaBenhTruyenNhiem.xhtml"
+    TARGET="rules:#C2_BenhTN#C202_QuanLyCaBenhTruyenNhiem.xhtml"
+    TITLE="cadichbenh" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="inphieuchungnhan::#C1_VSATTP#PhieuTiepNhanHoSoDeNghiCapGiayChungNhanVeSinhAnToanThucPham.xhtml"
+    NAME="output7"
+    PATH="/C1_VSATTP/PhieuTiepNhanHoSoDeNghiCapGiayChungNhanVeSinhAnToanThucPham.xhtml"
+    TARGET="rules:#C1_VSATTP#PhieuTiepNhanHoSoDeNghiCapGiayChungNhanVeSinhAnToanThucPham.xhtml"
+    TITLE="inphieuchungnhan" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="clsthuthat::#B1_Tiepdon#B121_2_Canlamsangphauthuat.xhtml"
+    NAME="output8" PATH="/B1_Tiepdon/B121_2_Canlamsangphauthuat.xhtml"
+    TARGET="rules:#B1_Tiepdon#B121_2_Canlamsangphauthuat.xhtml"
+    TITLE="clsthuthat" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ghinhan::#B1_Tiepdon#B121_Thamkhamvaxutri.xhtml" NAME="output9"
+    PATH="/B1_Tiepdon/B121_Thamkhamvaxutri.xhtml"
+    TARGET="rules:#B1_Tiepdon#B121_Thamkhamvaxutri.xhtml"
+    TITLE="ghinhan" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="thamkham::#B1_Tiepdon#B121_1_Thamkham.xhtml"
+    NAME="output10" PATH="/B1_Tiepdon/B121_1_Thamkham.xhtml"
+    TARGET="rules:#B1_Tiepdon#B121_1_Thamkham.xhtml" TITLE="thamkham" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ketoave::#B1_Tiepdon#B121__5_Ketoabntumua.xhtml" NAME="output11"
+    PATH="/B1_Tiepdon/B121__5_Ketoabntumua.xhtml"
+    TARGET="rules:#B1_Tiepdon#B121__5_Ketoabntumua.xhtml"
+    TITLE="ketoave" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="BangMa_DanhSachBangMaChung::"
+    NAME="output12" TARGET="rules:" TITLE="BangMa_DanhSachBangMaChung" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="BangMa_DanhSachBangMaQuanLy::"
+    NAME="output13" TARGET="rules:" TITLE="BangMa_DanhSachBangMaQuanLy" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="BangMa_DanhSachBangMaDieuTri::"
+    NAME="output14" TARGET="rules:" TITLE="BangMa_DanhSachBangMaDieuTri" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="BangMa_DanhSachBangMaDuPhong::"
+    NAME="output15" TARGET="rules:" TITLE="BangMa_DanhSachBangMaDuPhong" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="DieuTri_CapNhat_CapNhatThongTinChung::#B2_Dieutri#B211_Capnhathosobenhan.xhtml"
+    NAME="output16" PATH="/B2_Dieutri/B211_Capnhathosobenhan.xhtml"
+    TARGET="rules:#B2_Dieutri#B211_Capnhathosobenhan.xhtml"
+    TITLE="DieuTri_CapNhat_CapNhatThongTinChung" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="DieuTri_CapNhat_CapNhatThongTinMo::#B2_Dieutri#B211_1_Capnhathongtinmo.xhtml"
+    NAME="output17" PATH="/B2_Dieutri/B211_1_Capnhathongtinmo.xhtml"
+    TARGET="rules:#B2_Dieutri#B211_1_Capnhathongtinmo.xhtml"
+    TITLE="DieuTri_CapNhat_CapNhatThongTinMo" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="DieuTri_CapNhat_CapNhatThongTinNhapVien::#B2_Dieutri#B212_Capnhatthongtinnhapvien.xhtml"
+    NAME="output18"
+    PATH="/B2_Dieutri/B212_Capnhatthongtinnhapvien.xhtml"
+    TARGET="rules:#B2_Dieutri#B212_Capnhatthongtinnhapvien.xhtml"
+    TITLE="DieuTri_CapNhat_CapNhatThongTinNhapVien" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="DieuTri_BaoCaoHoatDongDieuTri_BaoCaoBenhAnDangCapNhat::#B2_Dieutri#B221_Baocaobenhandangcapnhat.xhtml"
+    NAME="output19"
+    PATH="/B2_Dieutri/B221_Baocaobenhandangcapnhat.xhtml"
+    TARGET="rules:#B2_Dieutri#B221_Baocaobenhandangcapnhat.xhtml"
+    TITLE="DieuTri_BaoCaoHoatDongDieuTri_BaoCaoBenhAnDangCapNhat" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="DieuTri_SoLieuBenhNhanSuDung_ThuocYDungCuSuDung::#B3_Vienphi#B3111_Thuocydungcusudung.xhtml"
+    NAME="output20" PATH="/B3_Vienphi/B3111_Thuocydungcusudung.xhtml"
+    TARGET="rules:#B3_Vienphi#B3111_Thuocydungcusudung.xhtml"
+    TITLE="DieuTri_SoLieuBenhNhanSuDung_ThuocYDungCuSuDung" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="VienPhi_SoLieuCanLamSanPhauThuat_LapPhieuDuTru::#B3_Vienphi#B3125_Lapphieudutru.xhtml"
+    NAME="output21" PATH="/B3_Vienphi/B3125_Lapphieudutru.xhtml"
+    TARGET="rules:#B3_Vienphi#B3125_Lapphieudutru.xhtml"
+    TITLE="VienPhi_SoLieuCanLamSanPhauThuat_LapPhieuDuTru" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="VienPhi_SoLieuKhamBenh_CanLamSanPhongKham::#B3_Vienphi#B3232_Canlamsanphongkham.xhtml"
+    NAME="output22" PATH="/B3_Vienphi/B3232_Canlamsanphongkham.xhtml"
+    TARGET="rules:#B3_Vienphi#B3232_Canlamsanphongkham.xhtml"
+    TITLE="VienPhi_SoLieuKhamBenh_CanLamSanPhongKham" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="VienPhi_SoLieuBenhNhanSuDung_ThuocYDungCuSuDung::#B3_Vienphi#B3111_Thuocydungcusudung.xhtml"
+    NAME="output23" PATH="/B3_Vienphi/B3111_Thuocydungcusudung.xhtml"
+    TARGET="rules:#B3_Vienphi#B3111_Thuocydungcusudung.xhtml"
+    TITLE="VienPhi_SoLieuBenhNhanSuDung_ThuocYDungCuSuDung" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="VienPhi_ThanhToanRaVien_ThanhToanRaVien::#B3_Vienphi#B3241_Thanhtoanravien.xhtml"
+    NAME="output24" PATH="/B3_Vienphi/B3241_Thanhtoanravien.xhtml"
+    TARGET="rules:#B3_Vienphi#B3241_Thanhtoanravien.xhtml"
+    TITLE="VienPhi_ThanhToanRaVien_ThanhToanRaVien" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="VienPhi_HoSoBaoCao_SoLieuCanLamSanNoiTruNgoaiTru::#B3_Vienphi#B3322_Solieuclsngoaitru.xhtml"
+    NAME="output25" PATH="/B3_Vienphi/B3322_Solieuclsngoaitru.xhtml"
+    TARGET="rules:#B3_Vienphi#B3322_Solieuclsngoaitru.xhtml"
+    TITLE="VienPhi_HoSoBaoCao_SoLieuCanLamSanNoiTruNgoaiTru" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="DuocPham_NhapKho_NhapHangTuNhaCungCap::#B4_Duocpham#B4111_phieunhapkhochinh.xhtml"
+    NAME="output31" PATH="/B4_Duocpham/B4111_phieunhapkhochinh.xhtml"
+    TARGET="rules:#B4_Duocpham#B4111_phieunhapkhochinh.xhtml"
+    TITLE="DuocPham_NhapKho_NhapHangTuNhaCungCap" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="DuocPham_XuatKho_XuatHangTheoPhieuDuTru::#B4_Duocpham#B4122_Xuathangtheophieudutru.xhtml"
+    NAME="output32"
+    PATH="/B4_Duocpham/B4122_Xuathangtheophieudutru.xhtml"
+    TARGET="rules:#B4_Duocpham#B4122_Xuathangtheophieudutru.xhtml"
+    TITLE="DuocPham_XuatKho_XuatHangTheoPhieuDuTru" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="DuocPham_XuatKho_XuatHangDenKhoKhacKhoBHYT::#B4_Duocpham#B4121_Phieuxuathangkhole.xhtml"
+    NAME="output33" PATH="/B4_Duocpham/B4121_Phieuxuathangkhole.xhtml"
+    TARGET="rules:#B4_Duocpham#B4121_Phieuxuathangkhole.xhtml"
+    TITLE="DuocPham_XuatKho_XuatHangDenKhoKhacKhoBHYT" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="DuocPham_XuatKho_XuatHangchoBenhNhanBHYT::#B4_Duocpham#B4311_Xuathangchobenhnhan.xhtml"
+    NAME="output34" PATH="/B4_Duocpham/B4311_Xuathangchobenhnhan.xhtml"
+    TARGET="rules:#B4_Duocpham#B4311_Xuathangchobenhnhan.xhtml"
+    TITLE="DuocPham_XuatKho_XuatHangchoBenhNhanBHYT" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="DuocPham_BaoCaoKho_TinhTonKhoVaGiaTri::#B4_Duocpham#B4134_Tinhtonkhovagiatri.xhtml"
+    NAME="output35" PATH="/B4_Duocpham/B4134_Tinhtonkhovagiatri.xhtml"
+    TARGET="rules:#B4_Duocpham#B4134_Tinhtonkhovagiatri.xhtml"
+    TITLE="DuocPham_BaoCaoKho_TinhTonKhoVaGiaTri" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="DuocPham_BaoCaoKho_BaoCaoNhapXuat::#B4_Duocpham#B4412_Inbaocaonhapxuatthang.xhtml"
+    NAME="output26"
+    PATH="/B4_Duocpham/B4412_Inbaocaonhapxuatthang.xhtml"
+    TARGET="rules:#B4_Duocpham#B4412_Inbaocaonhapxuatthang.xhtml"
+    TITLE="DuocPham_BaoCaoKho_BaoCaoNhapXuat" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="VeSinhATTP_CongBoTCSP::#C1_VSATTP#C110_CongBoTieuChuanSanPhamMain.xhtml"
+    NAME="output27"
+    PATH="/C1_VSATTP/C110_CongBoTieuChuanSanPhamMain.xhtml"
+    TARGET="rules:#C1_VSATTP#C110_CongBoTieuChuanSanPhamMain.xhtml"
+    TITLE="VeSinhATTP_CongBoTCSP" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="VeSinhATTP_DuDieuKienVSATTP::#C1_VSATTP#C130_CapGiayChungNhanDuDieuKienMain.xhtml"
+    NAME="output28"
+    PATH="/C1_VSATTP/C130_CapGiayChungNhanDuDieuKienMain.xhtml"
+    TARGET="rules:#C1_VSATTP#C130_CapGiayChungNhanDuDieuKienMain.xhtml"
+    TITLE="VeSinhATTP_DuDieuKienVSATTP" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="VeSinhATTP_QuanLySoLieu_TinhHinhXayDungMoHinhDiem::#C1_VSATTP#C167_TTXayDungMoHinhDiem.xhtml"
+    NAME="output29" PATH="/C1_VSATTP/C167_TTXayDungMoHinhDiem.xhtml"
+    TARGET="rules:#C1_VSATTP#C167_TTXayDungMoHinhDiem.xhtml"
+    TITLE="VeSinhATTP_QuanLySoLieu_TinhHinhXayDungMoHinhDiem" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="VeSinhATTP_QuanLySoLieu_CongTacXetNghiem::#C1_VSATTP#C166_CongTacXetNghiem.xhtml"
+    NAME="output30" PATH="/C1_VSATTP/C166_CongTacXetNghiem.xhtml"
+    TARGET="rules:#C1_VSATTP#C166_CongTacXetNghiem.xhtml"
+    TITLE="VeSinhATTP_QuanLySoLieu_CongTacXetNghiem" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="VeSinhATTP_QuanLySoLieu_ThongTinQuangCaoSanPham::#C1_VSATTP#C169_TTQuangCaoSanPham.xhtml"
+    NAME="output37" PATH="/C1_VSATTP/C169_TTQuangCaoSanPham.xhtml"
+    TARGET="rules:#C1_VSATTP#C169_TTQuangCaoSanPham.xhtml"
+    TITLE="VeSinhATTP_QuanLySoLieu_ThongTinQuangCaoSanPham" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="VeSinhATTP_QuanLySoLieu_CongTacChiDaoTuyenTruyenThanhKiemTra::#C1_VSATTP#C164_Congtacchidaotuyentruyenthanhkiemtra.xhtml"
+    NAME="output38"
+    PATH="/C1_VSATTP/C164_Congtacchidaotuyentruyenthanhkiemtra.xhtml"
+    TARGET="rules:#C1_VSATTP#C164_Congtacchidaotuyentruyenthanhkiemtra.xhtml"
+    TITLE="VeSinhATTP_QuanLySoLieu_CongTacChiDaoTuyenTruyenThanhKiemTra" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="VeSinhATTP_TongHopBaoCao::#C1_VSATTP#C160_BaoCaoTongHop.xhtml"
+    NAME="output39" PATH="/C1_VSATTP/C160_BaoCaoTongHop.xhtml"
+    TARGET="rules:#C1_VSATTP#C160_BaoCaoTongHop.xhtml"
+    TITLE="VeSinhATTP_TongHopBaoCao" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="BenhTruyenNhiem_HoSoDichBenh_NhapMoi::#C2_BenhTN#C211_HoSoDichBenh.xhtml"
+    NAME="output40" PATH="/C2_BenhTN/C211_HoSoDichBenh.xhtml"
+    TARGET="rules:#C2_BenhTN#C211_HoSoDichBenh.xhtml"
+    TITLE="BenhTruyenNhiem_HoSoDichBenh_NhapMoi" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="BenhTruyenNhiem_HoSoDichBenh_TimKiem::#C2_BenhTN#C214_TimKiemHoSoDichBenh.xhtml"
+    NAME="output41" PATH="/C2_BenhTN/C214_TimKiemHoSoDichBenh.xhtml"
+    TARGET="rules:#C2_BenhTN#C214_TimKiemHoSoDichBenh.xhtml"
+    TITLE="BenhTruyenNhiem_HoSoDichBenh_TimKiem" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="BenhTruyenNhiem_CaBenhTruyenNhiem_NhapMoi::#C2_BenhTN#C202_QuanLyCaBenhTruyenNhiem.xhtml"
+    NAME="output42" PATH="/C2_BenhTN/C202_QuanLyCaBenhTruyenNhiem.xhtml"
+    TARGET="rules:#C2_BenhTN#C202_QuanLyCaBenhTruyenNhiem.xhtml"
+    TITLE="BenhTruyenNhiem_CaBenhTruyenNhiem_NhapMoi" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="BenhTruyenNhiem_CaBenhTruyenNhiem_TimKiem::#C2_BenhTN#C212_TimKiemCaBenhTruyenNhiem.xhtml"
+    NAME="output43"
+    PATH="/C2_BenhTN/C212_TimKiemCaBenhTruyenNhiem.xhtml"
+    TARGET="rules:#C2_BenhTN#C212_TimKiemCaBenhTruyenNhiem.xhtml"
+    TITLE="BenhTruyenNhiem_CaBenhTruyenNhiem_TimKiem" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="BenhTruyenNhiem_TongHopBaoCao::#C2_BenhTN#C230_BaoCaoTongHop.xhtml"
+    NAME="output44" PATH="/C2_BenhTN/C230_BaoCaoTongHop.xhtml"
+    TARGET="rules:#C2_BenhTN#C230_BaoCaoTongHop.xhtml"
+    TITLE="BenhTruyenNhiem_TongHopBaoCao" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="CSSKSS_SucKhoeBaMe_PhaThai::#C3_CSSKSS#C311A_ThongTinPhaThai.xhtml"
+    NAME="output36" PATH="/C3_CSSKSS/C311A_ThongTinPhaThai.xhtml"
+    TARGET="rules:#C3_CSSKSS#C311A_ThongTinPhaThai.xhtml"
+    TITLE="CSSKSS_SucKhoeBaMe_PhaThai" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="CSSKSS_KeHoachHoaGiaDinh_DungBCS::#C3_CSSKSS#C332A_TheoDoiKhachHangDungbaoCaoSu.xhtml"
+    NAME="output45"
+    PATH="/C3_CSSKSS/C332A_TheoDoiKhachHangDungbaoCaoSu.xhtml"
+    TARGET="rules:#C3_CSSKSS#C332A_TheoDoiKhachHangDungbaoCaoSu.xhtml"
+    TITLE="CSSKSS_KeHoachHoaGiaDinh_DungBCS" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="CSSKSS_SoLieuCSSKSS_SoLieuChuongTrinhCSSKSS::#C3_CSSKSS#C344A_SLcongtacchamsocsuckhoesinhsan.xhtml"
+    NAME="output46"
+    PATH="/C3_CSSKSS/C344A_SLcongtacchamsocsuckhoesinhsan.xhtml"
+    TARGET="rules:#C3_CSSKSS#C344A_SLcongtacchamsocsuckhoesinhsan.xhtml"
+    TITLE="CSSKSS_SoLieuCSSKSS_SoLieuChuongTrinhCSSKSS" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="CSSKSS_TongHopBaoCao::#C3_CSSKSS#C340_BaoCaoTongHop.xhtml"
+    NAME="output47" PATH="/C3_CSSKSS/C340_BaoCaoTongHop.xhtml"
+    TARGET="rules:#C3_CSSKSS#C340_BaoCaoTongHop.xhtml"
+    TITLE="CSSKSS_TongHopBaoCao" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="MTYTQuocGia_TiemChungMoRong_KetQuaTiemChungTreEm::#C5_MuctieuYTQG#C5161B_KetQuaTiemChungTreEm.xhtml"
+    NAME="output49"
+    PATH="/C5_MuctieuYTQG/C5161B_KetQuaTiemChungTreEm.xhtml"
+    TARGET="rules:#C5_MuctieuYTQG#C5161B_KetQuaTiemChungTreEm.xhtml"
+    TITLE="MTYTQuocGia_TiemChungMoRong_KetQuaTiemChungTreEm" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#C1_VSATTP#PhieuTiepNhanHoSoDeNghiCapGiayChungNhanTieuChuanSP.xhtml"
+  PATH="/C1_VSATTP/PhieuTiepNhanHoSoDeNghiCapGiayChungNhanTieuChuanSP.xhtml"
+  SHAPE="304,1809,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#C1_VSATTP#C115_ThamDinhCoSoCapGiayCN.xhtml"
+  PATH="/C1_VSATTP/C115_ThamDinhCoSoCapGiayCN.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#C1_VSATTP#GiayChungNhanTieuChuanSanPham.xhtml"
+  PATH="/C1_VSATTP/GiayChungNhanTieuChuanSanPham.xhtml"
+  SHAPE="304,2033,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#C1_VSATTP#C117_Traketqua.xhtml"
+  PATH="/C1_VSATTP/C117_Traketqua.xhtml" SHAPE="304,1921,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#C1_VSATTP#C113A_thongtinchitiethscongbotieuchuansp.xhtml"
+  PATH="/C1_VSATTP/C113A_thongtinchitiethscongbotieuchuansp.xhtml"
+  SHAPE="304,2257,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#C1_VSATTP#C114_ThamDinhHoSoXinCongBoTCVSATTP.xhtml"
+  PATH="/C1_VSATTP/C114_ThamDinhHoSoXinCongBoTCVSATTP.xhtml"
+  SHAPE="304,2145,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:" SHAPE="304,2369,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B1_Tiepdon#B111_Dangkykhambenh.xhtml"
+  PATH="/B1_Tiepdon/B111_Dangkykhambenh.xhtml" SHAPE="304,1809,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B1_Tiepdon#B121_Thamkhamvaxutri.xhtml"
+  PATH="/B1_Tiepdon/B121_Thamkhamvaxutri.xhtml" SHAPE="304,1777,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#B1_Tiepdon#B145_Phantichsolieuclsngoaitru.xhtml"
+  PATH="/B1_Tiepdon/B145_Phantichsolieuclsngoaitru.xhtml"
+  SHAPE="304,1777,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B2_Dieutri#B211_Capnhathosobenhan.xhtml"
+  PATH="/B2_Dieutri/B211_Capnhathosobenhan.xhtml" SHAPE="304,1649,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B2_Dieutri#B211_1_Capnhathongtinmo.xhtml"
+  PATH="/B2_Dieutri/B211_1_Capnhathongtinmo.xhtml" SHAPE="304,1649,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#B2_Dieutri#B212_Capnhatthongtinnhapvien.xhtml"
+  PATH="/B2_Dieutri/B212_Capnhatthongtinnhapvien.xhtml"
+  SHAPE="304,1649,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#B2_Dieutri#B221_Baocaobenhandangcapnhat.xhtml"
+  PATH="/B2_Dieutri/B221_Baocaobenhandangcapnhat.xhtml"
+  SHAPE="304,1649,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B3_Vienphi#B3111_Thuocydungcusudung.xhtml"
+  PATH="/B3_Vienphi/B3111_Thuocydungcusudung.xhtml" SHAPE="304,1681,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B3_Vienphi#B3232_Canlamsanphongkham.xhtml"
+  PATH="/B3_Vienphi/B3232_Canlamsanphongkham.xhtml" SHAPE="304,1553,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B3_Vienphi#B3125_Lapphieudutru.xhtml"
+  PATH="/B3_Vienphi/B3125_Lapphieudutru.xhtml" SHAPE="304,1553,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B3_Vienphi#B3241_Thanhtoanravien.xhtml"
+  PATH="/B3_Vienphi/B3241_Thanhtoanravien.xhtml" SHAPE="304,1553,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B4_Duocpham#B4111_phieunhapkhochinh.xhtml"
+  PATH="/B4_Duocpham/B4111_phieunhapkhochinh.xhtml" SHAPE="304,1585,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#B4_Duocpham#B4122_Xuathangtheophieudutru.xhtml"
+  PATH="/B4_Duocpham/B4122_Xuathangtheophieudutru.xhtml"
+  SHAPE="304,1585,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B4_Duocpham#B4121_Phieuxuathangkhole.xhtml"
+  PATH="/B4_Duocpham/B4121_Phieuxuathangkhole.xhtml"
+  SHAPE="304,1585,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B4_Duocpham#B4311_Xuathangchobenhnhan.xhtml"
+  PATH="/B4_Duocpham/B4311_Xuathangchobenhnhan.xhtml"
+  SHAPE="304,1585,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B4_Duocpham#B4134_Tinhtonkhovagiatri.xhtml"
+  PATH="/B4_Duocpham/B4134_Tinhtonkhovagiatri.xhtml"
+  SHAPE="304,1585,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B1_Tiepdon#B121_2_Canlamsangphauthuat.xhtml"
+  PATH="/B1_Tiepdon/B121_2_Canlamsangphauthuat.xhtml"
+  SHAPE="304,1585,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#C1_VSATTP#C110_CongBoTieuChuanSanPhamMain.xhtml"
+  PATH="/C1_VSATTP/C110_CongBoTieuChuanSanPhamMain.xhtml"
+  SHAPE="304,1649,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#C1_VSATTP#C167_TTXayDungMoHinhDiem.xhtml"
+  PATH="/C1_VSATTP/C167_TTXayDungMoHinhDiem.xhtml" SHAPE="304,1985,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#C1_VSATTP#C130_CapGiayChungNhanDuDieuKienMain.xhtml"
+  PATH="/C1_VSATTP/C130_CapGiayChungNhanDuDieuKienMain.xhtml"
+  SHAPE="304,1761,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#C1_VSATTP#C166_CongTacXetNghiem.xhtml"
+  PATH="/C1_VSATTP/C166_CongTacXetNghiem.xhtml" SHAPE="304,2097,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#C1_VSATTP#C160_BaoCaoTongHop.xhtml"
+  PATH="/C1_VSATTP/C160_BaoCaoTongHop.xhtml" SHAPE="304,2433,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#C1_VSATTP#C168_TinhHinhKinhPhi.xhtml"
+  PATH="/C1_VSATTP/C168_TinhHinhKinhPhi.xhtml" SHAPE="304,1873,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#C1_VSATTP#C164_Congtacchidaotuyentruyenthanhkiemtra.xhtml"
+  PATH="/C1_VSATTP/C164_Congtacchidaotuyentruyenthanhkiemtra.xhtml"
+  SHAPE="304,2321,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#C1_VSATTP#C169_TTQuangCaoSanPham.xhtml"
+  PATH="/C1_VSATTP/C169_TTQuangCaoSanPham.xhtml" SHAPE="304,2209,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#C2_BenhTN#C211_HoSoDichBenh.xhtml"
+  PATH="/C2_BenhTN/C211_HoSoDichBenh.xhtml" SHAPE="304,1649,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#C2_BenhTN#C214_TimKiemHoSoDichBenh.xhtml"
+  PATH="/C2_BenhTN/C214_TimKiemHoSoDichBenh.xhtml" SHAPE="304,1681,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#C2_BenhTN#C202_QuanLyCaBenhTruyenNhiem.xhtml"
+  PATH="/C2_BenhTN/C202_QuanLyCaBenhTruyenNhiem.xhtml"
+  SHAPE="304,1681,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#C2_BenhTN#C212_TimKiemCaBenhTruyenNhiem.xhtml"
+  PATH="/C2_BenhTN/C212_TimKiemCaBenhTruyenNhiem.xhtml"
+  SHAPE="304,1713,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#C2_BenhTN#C230_BaoCaoTongHop.xhtml"
+  PATH="/C2_BenhTN/C230_BaoCaoTongHop.xhtml" SHAPE="304,1713,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#C5_MuctieuYTQG#C5161B_KetQuaTiemChungTreEm.xhtml"
+  PATH="/C5_MuctieuYTQG/C5161B_KetQuaTiemChungTreEm.xhtml"
+  SHAPE="304,1713,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:*:1" PATH="*" SHAPE="32,4017,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:1" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="B145_Chonmenuxuattaptin::#B1_Tiepdon#B145_Chonmenuxuattaptin.xhtml"
+    NAME="output" PATH="/B1_Tiepdon/B145_Chonmenuxuattaptin.xhtml"
+    TARGET="rules:#B1_Tiepdon#B145_Chonmenuxuattaptin.xhtml"
+    TITLE="B145_Chonmenuxuattaptin" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:2" PATH="*" SHAPE="32,3233,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:2" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="B145_Phantichsolieuclsngoaitru::#B1_Tiepdon#B145_Phantichsolieuclsngoaitru.xhtml"
+    NAME="output"
+    PATH="/B1_Tiepdon/B145_Phantichsolieuclsngoaitru.xhtml"
+    TARGET="rules:#B1_Tiepdon#B145_Phantichsolieuclsngoaitru.xhtml"
+    TITLE="B145_Phantichsolieuclsngoaitru" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:3" PATH="*" SHAPE="32,4129,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:3" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="B4311_Chonmenuxuattaptin::#B4_Duocpham#B4311_Chonmenuxuattaptin.xhtml"
+    NAME="output" PATH="/B4_Duocpham/B4311_Chonmenuxuattaptin.xhtml"
+    TARGET="rules:#B4_Duocpham#B4311_Chonmenuxuattaptin.xhtml"
+    TITLE="B4311_Chonmenuxuattaptin" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:4" PATH="*" SHAPE="32,2785,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:4" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="B4311_Xuathangchobenhnhan::#B4_Duocpham#B4311_Xuathangchobenhnhan.xhtml"
+    NAME="output" PATH="/B4_Duocpham/B4311_Xuathangchobenhnhan.xhtml"
+    TARGET="rules:#B4_Duocpham#B4311_Xuathangchobenhnhan.xhtml"
+    TITLE="B4311_Xuathangchobenhnhan" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:5" PATH="*" SHAPE="32,4241,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:5" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="B4134_Chonmenuxuattaptin::#B4_Duocpham#B4134_Chonmenuxuattaptin.xhtml"
+    NAME="output" PATH="/B4_Duocpham/B4134_Chonmenuxuattaptin.xhtml"
+    TARGET="rules:#B4_Duocpham#B4134_Chonmenuxuattaptin.xhtml"
+    TITLE="B4134_Chonmenuxuattaptin" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:6" PATH="*" SHAPE="32,3569,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:6" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="B4134_Tinhtonkhovagiatri::#B4_Duocpham#B4134_Tinhtonkhovagiatri.xhtml"
+    NAME="output" PATH="/B4_Duocpham/B4134_Tinhtonkhovagiatri.xhtml"
+    TARGET="rules:#B4_Duocpham#B4134_Tinhtonkhovagiatri.xhtml"
+    TITLE="B4134_Tinhtonkhovagiatri" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:7" PATH="*" SHAPE="32,4353,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:7" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="B4412_Chonmenuxuattaptin::#B4_Duocpham#B4412_Chonmenuxuattaptin.xhtml"
+    NAME="output" PATH="/B4_Duocpham/B4412_Chonmenuxuattaptin.xhtml"
+    TARGET="rules:#B4_Duocpham#B4412_Chonmenuxuattaptin.xhtml"
+    TITLE="B4412_Chonmenuxuattaptin" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:8" PATH="*" SHAPE="32,1889,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:8" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="B4412_Inbaocaonhapxuatthang::#B4_Duocpham#B4412_Inbaocaonhapxuatthang.xhtml"
+    NAME="output" PATH="/B4_Duocpham/B4412_Inbaocaonhapxuatthang.xhtml"
+    TARGET="rules:#B4_Duocpham#B4412_Inbaocaonhapxuatthang.xhtml"
+    TITLE="B4412_Inbaocaonhapxuatthang" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:9" PATH="*" SHAPE="32,2673,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:9" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="B4134_Tinhtonkhovagiatri::#B4_Duocpham#B4134_Tinhtonkhovagiatri.xhtml"
+    NAME="output" PATH="/B4_Duocpham/B4134_Tinhtonkhovagiatri.xhtml"
+    TARGET="rules:#B4_Duocpham#B4134_Tinhtonkhovagiatri.xhtml"
+    TITLE="B4134_Tinhtonkhovagiatri" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:10" PATH="*" SHAPE="32,4465,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:10" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="B4122_Chonmenuxuattaptin::#B4_Duocpham#B4122_Chonmenuxuattaptin.xhtml"
+    NAME="output" PATH="/B4_Duocpham/B4122_Chonmenuxuattaptin.xhtml"
+    TARGET="rules:#B4_Duocpham#B4122_Chonmenuxuattaptin.xhtml"
+    TITLE="B4122_Chonmenuxuattaptin" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:11" PATH="*" SHAPE="32,3345,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:11" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="B4122_Xuathangtheophieudutru::#B4_Duocpham#B4122_Xuathangtheophieudutru.xhtml"
+    NAME="output" PATH="/B4_Duocpham/B4122_Xuathangtheophieudutru.xhtml"
+    TARGET="rules:#B4_Duocpham#B4122_Xuathangtheophieudutru.xhtml"
+    TITLE="B4122_Xuathangtheophieudutru" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:12" PATH="*" SHAPE="32,4577,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:12" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="B4121_Chonmenuxuattaptin::#B4_Duocpham#B4121_Chonmenuxuattaptin.xhtml"
+    NAME="output" PATH="/B4_Duocpham/B4121_Chonmenuxuattaptin.xhtml"
+    TARGET="rules:#B4_Duocpham#B4121_Chonmenuxuattaptin.xhtml"
+    TITLE="B4121_Chonmenuxuattaptin" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:13" PATH="*" SHAPE="32,3457,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:13" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="B4121_Phieuxuathangkhole::#B4_Duocpham#B4121_Phieuxuathangkhole.xhtml"
+    NAME="output" PATH="/B4_Duocpham/B4121_Phieuxuathangkhole.xhtml"
+    TARGET="rules:#B4_Duocpham#B4121_Phieuxuathangkhole.xhtml"
+    TITLE="B4121_Phieuxuathangkhole" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:14" PATH="*" SHAPE="32,4689,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:14" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="B3322_Chonmenuxuattaptin::#B3_Vienphi#B3322_Chonmenuxuattaptin.xhtml"
+    NAME="output" PATH="/B3_Vienphi/B3322_Chonmenuxuattaptin.xhtml"
+    TARGET="rules:#B3_Vienphi#B3322_Chonmenuxuattaptin.xhtml"
+    TITLE="B3322_Chonmenuxuattaptin" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:15" PATH="*" SHAPE="32,1777,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:15" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="B3322_Solieuclsngoaitru::#B3_Vienphi#B3322_Solieuclsngoaitru.xhtml"
+    NAME="output" PATH="/B3_Vienphi/B3322_Solieuclsngoaitru.xhtml"
+    TARGET="rules:#B3_Vienphi#B3322_Solieuclsngoaitru.xhtml"
+    TITLE="B3322_Solieuclsngoaitru" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:16" PATH="*" SHAPE="32,4801,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:16" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="B3125_Chonmenuxuattaptin::#B3_Vienphi#B3125_Chonmenuxuattaptin.xhtml"
+    NAME="output" PATH="/B3_Vienphi/B3125_Chonmenuxuattaptin.xhtml"
+    TARGET="rules:#B3_Vienphi#B3125_Chonmenuxuattaptin.xhtml"
+    TITLE="B3125_Chonmenuxuattaptin" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:17" PATH="*" SHAPE="32,3009,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:17" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="B3125_Lapphieudutru::#B3_Vienphi#B3125_Lapphieudutru.xhtml"
+    NAME="output" PATH="/B3_Vienphi/B3125_Lapphieudutru.xhtml"
+    TARGET="rules:#B3_Vienphi#B3125_Lapphieudutru.xhtml"
+    TITLE="B3125_Lapphieudutru" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:18" PATH="*" SHAPE="32,2897,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:18" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="B3241_Thanhtoanravien::#B3_Vienphi#B3241_Thanhtoanravien.xhtml"
+    NAME="output" PATH="/B3_Vienphi/B3241_Thanhtoanravien.xhtml"
+    TARGET="rules:#B3_Vienphi#B3241_Thanhtoanravien.xhtml"
+    TITLE="B3241_Thanhtoanravien" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:19" PATH="*" SHAPE="32,4913,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:19" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="B3241_Chonmenuxuattaptin::#B3_Vienphi#B3241_Chonmenuxuattaptin.xhtml"
+    NAME="output" PATH="/B3_Vienphi/B3241_Chonmenuxuattaptin.xhtml"
+    TARGET="rules:#B3_Vienphi#B3241_Chonmenuxuattaptin.xhtml"
+    TITLE="B3241_Chonmenuxuattaptin" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:20" PATH="*" SHAPE="32,5025,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:20" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="B221_Chonmenuxuattaptin::#B2_Dieutri#B221_Chonmenuxuattaptin.xhtml"
+    NAME="output" PATH="/B2_Dieutri/B221_Chonmenuxuattaptin.xhtml"
+    TARGET="rules:#B2_Dieutri#B221_Chonmenuxuattaptin.xhtml"
+    TITLE="B221_Chonmenuxuattaptin" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:21" PATH="*" SHAPE="32,3121,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:21" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="B221_Baocaobenhandangcapnhat::#B2_Dieutri#B221_Baocaobenhandangcapnhat.xhtml"
+    NAME="output" PATH="/B2_Dieutri/B221_Baocaobenhandangcapnhat.xhtml"
+    TARGET="rules:#B2_Dieutri#B221_Baocaobenhandangcapnhat.xhtml"
+    TITLE="B221_Baocaobenhandangcapnhat" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:*:22" PATH="*" SHAPE="32,5137,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:22" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="B4122_Xuathangtheophieudt::#B2_Duocpham#B4122_Xuathangtheophieudutru.xhtml"
+    NAME="output" PATH="/B2_Duocpham/B4122_Xuathangtheophieudutru.xhtml"
+    TARGET="rules:#B2_Duocpham#B4122_Xuathangtheophieudutru.xhtml"
+    TITLE="B4122_Xuathangtheophieudt" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#B4_Duocpham#B4122_Chonmenuxuattaptin.xhtml"
+  PATH="/B4_Duocpham/B4122_Chonmenuxuattaptin.xhtml"
+  SHAPE="240,4481,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#B2_Duocpham#B4122_Xuathangtheophieudutru.xhtml"
+  PATH="/B2_Duocpham/B4122_Xuathangtheophieudutru.xhtml"
+  SHAPE="240,5153,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#C1_VSATTP#PhieuTiepNhanHoSoDeNghiCapGiayChungNhanVeSinhAnToanThucPham.xhtml"
+  PATH="/C1_VSATTP/PhieuTiepNhanHoSoDeNghiCapGiayChungNhanVeSinhAnToanThucPham.xhtml"
+  SHAPE="304,1681,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#C3_CSSKSS#C344A_SLcongtacchamsocsuckhoesinhsan.xhtml"
+  PATH="/C3_CSSKSS/C344A_SLcongtacchamsocsuckhoesinhsan.xhtml"
+  SHAPE="304,2241,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#B4_Duocpham#B4412_Inbaocaonhapxuatthang.xhtml"
+  PATH="/B4_Duocpham/B4412_Inbaocaonhapxuatthang.xhtml"
+  SHAPE="304,1905,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B4_Duocpham#B4412_Chonmenuxuattaptin.xhtml"
+  PATH="/B4_Duocpham/B4412_Chonmenuxuattaptin.xhtml"
+  SHAPE="240,4369,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B3_Vienphi#B3322_Chonmenuxuattaptin.xhtml"
+  PATH="/B3_Vienphi/B3322_Chonmenuxuattaptin.xhtml" SHAPE="240,4705,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B4_Duocpham#B4121_Chonmenuxuattaptin.xhtml"
+  PATH="/B4_Duocpham/B4121_Chonmenuxuattaptin.xhtml"
+  SHAPE="240,4593,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B2_Dieutri#B221_Chonmenuxuattaptin.xhtml"
+  PATH="/B2_Dieutri/B221_Chonmenuxuattaptin.xhtml" SHAPE="240,5041,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B3_Vienphi#B3125_Chonmenuxuattaptin.xhtml"
+  PATH="/B3_Vienphi/B3125_Chonmenuxuattaptin.xhtml" SHAPE="240,4817,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#C3_CSSKSS#C311A_ThongTinPhaThai.xhtml"
+  PATH="/C3_CSSKSS/C311A_ThongTinPhaThai.xhtml" SHAPE="304,2017,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B1_Tiepdon#B145_Chonmenuxuattaptin.xhtml"
+  PATH="/B1_Tiepdon/B145_Chonmenuxuattaptin.xhtml" SHAPE="240,4033,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#C3_CSSKSS#C332A_TheoDoiKhachHangDungbaoCaoSu.xhtml"
+  PATH="/C3_CSSKSS/C332A_TheoDoiKhachHangDungbaoCaoSu.xhtml"
+  SHAPE="304,2129,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B3_Vienphi#B3241_Chonmenuxuattaptin.xhtml"
+  PATH="/B3_Vienphi/B3241_Chonmenuxuattaptin.xhtml" SHAPE="240,4929,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B4_Duocpham#B4311_Chonmenuxuattaptin.xhtml"
+  PATH="/B4_Duocpham/B4311_Chonmenuxuattaptin.xhtml"
+  SHAPE="240,4145,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B3_Vienphi#B3322_Solieuclsngoaitru.xhtml"
+  PATH="/B3_Vienphi/B3322_Solieuclsngoaitru.xhtml" SHAPE="304,1793,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#C3_CSSKSS#C340_BaoCaoTongHop.xhtml"
+  PATH="/C3_CSSKSS/C340_BaoCaoTongHop.xhtml" SHAPE="304,2353,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B4_Duocpham#B4134_Chonmenuxuattaptin.xhtml"
+  PATH="/B4_Duocpham/B4134_Chonmenuxuattaptin.xhtml"
+  SHAPE="240,4257,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B1_Tiepdon#B121_1_Thamkham.xhtml"
+  PATH="/B1_Tiepdon/B121_1_Thamkham.xhtml" SHAPE="304,1681,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#B1_Tiepdon#B121__5_Ketoabntumua.xhtml"
+  PATH="/B1_Tiepdon/B121__5_Ketoabntumua.xhtml" SHAPE="304,1793,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

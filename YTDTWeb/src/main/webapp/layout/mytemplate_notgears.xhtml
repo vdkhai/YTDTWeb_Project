@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:s="http://jboss.com/products/seam/taglib">
+	<head>
+	    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    <link href="#{facesContext.externalContext.requestContextPath}/stylesheet/theme.css" rel="stylesheet" type="text/css" />
+		<link href="#{facesContext.externalContext.requestContextPath}/resources/dojo-release-1.1.1/dojo/resources/dojo.css" rel="stylesheet" type="text/css" />
+    	<link href="#{facesContext.externalContext.requestContextPath}/resources/dojo-release-1.1.1/dijit/tests/css/dijitTests.css" rel="stylesheet" type="text/css" />
+	    
+	    <script language="JavaScript" src="#{facesContext.externalContext.requestContextPath}/resources/validation_lib.js"></script>
+	    <script language="JavaScript" src="#{facesContext.externalContext.requestContextPath}/resources/commons_lib.js"></script>
+	    
+	    <script type="text/javascript">
+		</script>     
+	    
+	</head>
+	
+	<body style="text-align:left; margin: 0px; background-color: #8db6d6;">
+		<input type="hidden" id="myContextPath" value="#{facesContext.externalContext.requestContextPath}"/>
+		<script type="text/javascript">
+			var myContextPath = document.getElementById("myContextPath").value;				
+		</script>
+		<table cellspacing="0" cellpadding="0" width="778px">
+			<tr>
+				<td colspan="3" class="body" style="text-align:left; background:#8DB6D6; padding:0px 0px 16px 0px ; margin: 0px;">					
+					<ui:include src="/layout/mybanner.xhtml" />
+					<ui:insert name="body" />				 							
+				</td>
+			</tr>		
+		</table>
+		<script type="text/javascript">
+			var prefix_component = document.forms[0].id + ":";			
+		</script>
+		<script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/highlightOnFocus.js"></script>
+	</body>
+</html>
+
+

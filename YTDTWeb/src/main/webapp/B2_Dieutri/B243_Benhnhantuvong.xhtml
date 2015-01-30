@@ -1,0 +1,386 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                xmlns:rich="http://richfaces.org/rich"
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">
+    <f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+	<script type="text/javascript">
+	var bCancel = false;
+		var bSave = false;
+		
+		function setSave() {
+			bSave = true;
+		}
+		function setCancel(){
+			bCancel = true;
+		}		
+		
+		function iesvn_Required() { 
+			this.ab = new Array(prefix_component + "__tungay", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='T? ngày'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+ 	 		this.ac = new Array(prefix_component + "__denngay", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Ð?n ngày'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+		}	
+		
+		function iesvn_ComparedDates() {
+			this.aa = new Array([prefix_component + "__tungay",prefix_component + "__ngayhientai", "=="], "<h:outputFormat value='#{msg.common_compareCurDate}' > <f:param value='T? ngày'/> </h:outputFormat>", new Function ("varName", "this.datePatternStrict='dd/MM/yyyy';  return this[varName];"));
+			this.ab = new Array([prefix_component + "__denngay",prefix_component + "__ngayhientai", "=="], "<h:outputFormat value='#{msg.common_compareCurDate}' > <f:param value='Ð?n ngày'/> </h:outputFormat>", new Function ("varName", "this.datePatternStrict='dd/MM/yyyy';  return this[varName];"));
+			this.ac = new Array([prefix_component + "__tungay",prefix_component + "__denngay", "=="], "<h:outputFormat value='#{msg.common_compareDates}' > <f:param value='Th?i gian báo cáo'/> </h:outputFormat>", new Function ("varName", "this.datePatternStrict='dd/MM/yyyy';  return this[varName];"));
+		}
+		
+		function onSubmit() {
+			var form = document.forms[0];
+			var valid = true;			
+			if (bSave){
+		    	bSave = false;	    	    	
+		    	valid = iesvn_ValidateRequired(form)  ;   
+		    	if (valid == true){
+		    		valid = iesvn_ComparedDates(form);
+		    	}  	
+		    } 	    	    
+		    if (bCancel){
+		    	bCancel = false;
+		    }
+		    return valid;
+		}
+		
+		function iesvn_getRadioCheckValue(radioListId){
+                if(document.getElementById(prefix_component + radioListId + ":0").checked == true)
+                        return document.getElementById(prefix_component + radioListId + ":0").value;
+                else if(document.getElementById(prefix_component + radioListId + ":1").checked == true)
+                        return document.getElementById(prefix_component + radioListId + ":1").value;
+                else if(document.getElementById(prefix_component + radioListId + ":2").checked == true)
+                        return document.getElementById(prefix_component + radioListId + ":2").value;
+                else if(document.getElementById(prefix_component + radioListId + ":3").checked == true)
+                        return document.getElementById(prefix_component + radioListId + ":3").value;
+                else if(document.getElementById(prefix_component + radioListId + ":4").checked == true)
+                        return document.getElementById(prefix_component + radioListId + ":4").value;
+                else if(document.getElementById(prefix_component + radioListId + ":5").checked == true)
+                        return document.getElementById(prefix_component + radioListId + ":5").value;
+                else if(document.getElementById(prefix_component + radioListId + ":6").checked == true)
+                        return document.getElementById(prefix_component + radioListId + ":6").value;
+        		}
+		
+		function iesvn_load_radio(){
+                var kyBC = iesvn_getRadioCheckValue("__theo");
+                if(kyBC == '0'){
+                        document.getElementById("mn1").style.display = 'block';           
+           				document.getElementById("mn2").style.display = 'none'; 
+           				document.getElementById("mn3").style.display = 'none'; 
+           				document.getElementById("mn5").style.display = 'none';  
+                }
+                else if(kyBC == '1'){
+                        document.getElementById("mn1").style.display = 'none';           
+           				document.getElementById("mn2").style.display = 'block'; 
+           				document.getElementById("mn3").style.display = 'none';  
+           				document.getElementById("mn5").style.display = 'none';  
+                }
+                else if(kyBC == '2'){
+                        document.getElementById("mn1").style.display = 'none';           
+           				document.getElementById("mn2").style.display = 'none'; 
+           				document.getElementById("mn3").style.display = 'block'; 
+           				document.getElementById("mn5").style.display = 'none';   
+                }else if(kyBC == '4'){
+                        document.getElementById("mn1").style.display = 'none';           
+           				document.getElementById("mn2").style.display = 'none'; 
+           				document.getElementById("mn3").style.display = 'none';  
+           				document.getElementById("mn5").style.display = 'block';      
+                }else{ 
+                		document.getElementById("mn1").style.display = 'none';           
+           				document.getElementById("mn2").style.display = 'none'; 
+           				document.getElementById("mn3").style.display = 'none';  
+           				document.getElementById("mn5").style.display = 'none';  
+                }
+        }
+	</script>
+	<h:form id="_form" name="_form" onsubmit=" return onSubmit();">
+    <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_DieuTri.xhtml" /></div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="59%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						PHÂN TÍCH SỐ LIỆU BỆNH NHÂN TỬ VONG
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>        	
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="985px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px" width="100%" align="center">
+    			<!-- Main Area -->
+    			<table cellspacing="0" cellpadding="0" border="0" width="80%" align="center" >
+    				<tr style="height: 25px;">  
+    					<td align="right" colspan="2" style="padding-right:190px;" >
+    						<h:outputText value="Từ ngày" styleClass="mytext" style="margin-right:3px;"/>
+    						<h:inputText onkeypress="return being_wellformed_Date(this, event)" onblur="return is_wellformed_Date(this)" tabindex="1" type="text" id="__tungay" name="_tungay" value="#{BaoCaoTinhHinhBenhTatTuVong.tungay}" maxlength="10" style="width:70px;"/>
+    						<a hideFocus="true" href="java_script:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__tungay'));document.getElementById(prefix_component + '__denngay').focus();return false;"><h:graphicImage style="margin:0 0 -3px 0" value="/resources/calendar/cal.gif" border="0" name="popcal"/></a>
+    						<h:outputText value="*" styleClass="mynull" style="margin-right: 5px;"/>
+    						<h:outputText value="Ðến ngày" styleClass="mytext" style="margin-right:3px;margin-left:10px;" />
+    						<h:inputText onkeypress="return being_wellformed_Date(this, event)" onblur="return is_wellformed_Date(this)" tabindex="2" type="text" id="__denngay" name="_denngay" value="#{BaoCaoTinhHinhBenhTatTuVong.denngay}" maxlength="10" styleClass="myinput" style="width:70px;"/>
+    						<a hideFocus="true" href="java_script:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__denngay'));document.getElementById(prefix_component + '__denngay').focus();return false;"><h:graphicImage style="margin:0 0 -3px 0" value="/resources/calendar/cal.gif" border="0" name="popcal"/></a>								
+    					    <h:outputText value="*" styleClass="mynull" />	
+							
+    					</td>					
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right" style="width:65%;"  >
+    						<h:outputText value="Ðộ tuổi từ" styleClass="mytext" style="margin-right: 5px;"/>
+    						<h:inputText value="#{BaoCaoTinhHinhBenhTatTuVong.tuoi_tu}" tabindex="3" onkeypress="iesvn_InputInKeys('0123456789')" maxlength="3" id="__tudotuoi" name="_tudotuoi" style="width: 40px;" styleClass="myinput"/>
+    						<h:outputText value="đến" styleClass="mytext" style="margin-left: 5px;margin-right:5px;"/>
+    						<h:inputText value="#{BaoCaoTinhHinhBenhTatTuVong.tuoi_den}" tabindex="4" id="__dendotuoi" onkeypress="iesvn_InputInKeys('0123456789')" maxlength="3" name="_dendotuoi" style=" width : 40px;" styleClass="myinput"/>
+    						<h:outputText value="Giới tính" styleClass="mytext" style="margin-left: 79px;"/>
+	    					
+    					</td>  
+    					<td align="left">
+	    						<h:selectOneRadio readonly="true" id="__gioitinh" tabindex="5" value="#{BaoCaoTinhHinhBenhTatTuVong.gtSelect}">
+						        	<f:selectItem itemValue="nam" itemLabel="Nam" styleClass="mycheck"   />					    
+						        	<f:selectItem itemValue="nu" itemLabel="Nữ" styleClass="mycheck" />
+						        	<f:selectItem itemValue="namnu" itemLabel="Tất cả" styleClass="mycheck" />
+						    	</h:selectOneRadio>
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">  
+    					<td align="right"  >
+    						<h:outputText value="Ðối tượng" styleClass="mytext" style="margin-right: 5px;"/>
+    						<h:inputHidden id="DMDOITUONG_MA_1_pk" value="#{BaoCaoTinhHinhBenhTatTuVong.doituong_maso}"/>
+    						<h:inputText value="#{BaoCaoTinhHinhBenhTatTuVong.doituong_ma}" tabindex="6" id="DMDOITUONG_MA_1" style="width : 30px;" styleClass="myinput" onblur="myOnblurTextbox(this.id,'DM_DOI_TUONG__1')"/>
+    						<span id="DM_DOI_TUONG_span1" />
+    						<input tabindex="7" id="DM_DOI_TUONG__1" name="DM_DOI_TUONG__1" style="width: 201px;" class="mycbogear"/>
+    					</td>
+    					
+    					<td rowspan="7" width="178" valign="top" >
+    						<table cellspacing="0" cellpadding="0" border="0" width="100%" height="100%">
+    							<tr>
+    								<td align="left" >
+    									<h:selectOneRadio value="#{BaoCaoTinhHinhBenhTatTuVong.chon}" id="__theo" layout="pagedirection" onclick="iesvn_load_radio();" style="line-height: 2px; "  tabindex="9" >
+        									<f:selectItem itemValue="0" itemLabel="Theo mã bệnh chính" styleClass="mycheck"/>
+        									<f:selectItem itemValue="1" itemLabel="Theo nguyên nhân tử vong" styleClass="mycheck"/>
+        									<f:selectItem itemValue="2" itemLabel="Theo đối tượng bệnh" styleClass="mycheck"/>
+        									<f:selectItem itemValue="4" itemLabel="Theo khoa điều trị" styleClass="mycheck"/>
+        									<f:selectItem itemValue="5" itemLabel="Bệnh nhi dưới 7 ngày tuổi" styleClass="mycheck"/>
+        									<f:selectItem itemValue="6" itemLabel="Bệnh nhi dưới 28 ngày tuổi" styleClass="mycheck"/>
+    									</h:selectOneRadio>
+    								</td>
+    						</tr>
+    						</table>
+    					</td>					
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right" >
+    						<h:outputText value="Mã khoa" styleClass="mytext" style="margin-right: 5px;"/>
+    						<h:inputHidden id="DMKHOA_1_pk" value="#{BaoCaoTinhHinhBenhTatTuVong.khoa_maso}"/>
+    						<h:inputText tabindex="7" id="DMKHOA_1" value="#{BaoCaoTinhHinhBenhTatTuVong.khoa_ma}" style="width : 30px;" styleClass="myinput" onblur="myOnblurTextbox(this.id,'DM_KHOA__1')"/>
+    						<span id="DM_KHOA_span1" />
+    						<input tabindex="9" id="DM_KHOA__1" name="DM_KHOA__1" style="width: 201px;" class="mycbogear"/>
+    						</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right" >
+    						<h:outputText value="Loại tai nạn" styleClass="mytext" style="margin-right: 5px;"/>
+    						<h:inputHidden id="DM_PHAN_LOAI_TAI_NAN_MA_pk" value="#{BaoCaoTinhHinhBenhTatTuVong.tainan_maso}"/>
+    						<h:inputText value="#{BaoCaoTinhHinhBenhTatTuVong.tainan_ma}" tabindex="8" id="DM_PHAN_LOAI_TAI_NAN_MA" style="width : 30px;" styleClass="myinput" onblur="myOnblurTextbox(this.id,'DM_TAI_NAN')"/>
+    						<span id="DM_PHAN_LOAI_TAI_NAN_span" />
+    						<input tabindex="11" id="DM_PHAN_LOAI_TAI_NAN" name="DM_PHAN_LOAI_TAI_NAN" style="width: 201px;" class="mycbogear"/>
+    					</td>
+    				</tr>
+    				
+    				
+    				<tr >
+    					<td align="right" >    						
+    						<div style="display: none;" id="mn1">	
+    							<h:outputText value="Mã lọc dữ liệu" styleClass="mytext" style="float:left;margin-left:80px;"/>
+    							<table cellspacing="0" cellpadding="0" border="0" width="60%" style="border: solid 1px #54779f;">
+    								<tr class="myrow1" >
+    							<td align="left" >
+    							<h:inputHidden id="BENHICD_MA_pk"/>
+    								<h:inputText tabindex="10" id="BENHICD_MA" value="#{BaoCaoTinhHinhBenhTatTuVong.benhICDMa}" onblur="myOnblurTextbox(this.id,'DM_BENH_ICD')" style="width: 30px;margin-left:3px;" styleClass="myinput"/>
+    								<span id="DM_BENH_ICD_span" />
+    								<input alt="getDmBenhIcd_search(document.getElementById('DM_BENH_ICD').value)" id="DM_BENH_ICD" name="DM_BENH_ICD"  style=" width : 177px;" class="mycbogear"/>
+    								<a4j:commandButton tabindex="11" id="__benhchinh" name="_benhchinh" action="#{BaoCaoTinhHinhBenhTatTuVong.enterDmBenhICD}" reRender="listbenh" styleClass="mybton_add" style="width: 20px; height: 20px;"/>
+    							</td>
+    						</tr>
+    						<tr >
+    						<td colspan="3" >    
+    						<div style="overflow-x: hidden;overflow-y: scroll; height: 100px;" >						
+    						<h:panelGroup id="listbenh" >
+    						<rich:dataTable value="#{listDmBenhICD}" var="item" width="98%" id="__dataICD" nam="dataICD">
+             					<rich:column style="width:29%">
+              						<h:outputText id="maloai" value="#{item.dmbenhicdMa}" />
+            					</rich:column>
+           						<rich:column style="width:70%">
+              						<h:outputText id="tenloai" value="#{item.dmbenhicdTen}" />
+           						</rich:column>
+            					<rich:column >
+              						<a4j:commandButton  oncomplete="setValueTenhd();" id="__icd" action="#{BaoCaoTinhHinhBenhTatTuVong.deleteDmBenhICD}" reRender="listbenh" styleClass="mybton_del" style="filter:alpha(opacity=20);width: 19px; height:16px;"/>
+            					</rich:column>
+    						</rich:dataTable>
+    						</h:panelGroup>
+    						</div>
+    						</td>
+    						</tr>
+    						</table>
+    						</div>
+    					</td>
+    				</tr>
+    				
+    				<tr>
+    					<td align="right" >
+    						<div style="display: none;" id="mn2" >	
+    							<h:outputText value="Mã lọc dữ liệu" styleClass="mytext" style="float:left;margin-left:80px;"/>
+    							<table cellspacing="0" cellpadding="0" border="0" width="60%" style="border: solid 1px #54779f;">
+    								<tr class="myrow1" >
+    							<td align="left" >
+    							<h:inputHidden id="BENHICD_MA1_pk"/>
+    								<h:inputText tabindex="10" id="BENHICD1_MA" value="#{BaoCaoTinhHinhBenhTatTuVong.benhICDMa}" onblur="myOnblurTextbox(this.id,'DM_BENH_ICD')" style="width: 30px;margin-left:3px;" styleClass="myinput"/>
+    								<span id="DM_BENH_ICD1_span" />
+    								<input alt="getDmBenhIcd_search(document.getElementById('DM_BENH_ICD').value)" id="DM_BENH_ICD__1" name="DM_BENH_ICD"  style=" width : 177px;" class="mycbogear"/>
+    								<a4j:commandButton tabindex="11" id="__benhchinh1" name="_benhchinh1" action="#{BaoCaoTinhHinhBenhTatTuVong.enterDmBenhICD}" reRender="listbenh" styleClass="mybton_add" style="width: 20px; height: 20px;"/>
+    							</td>
+    						</tr>
+    						<tr >
+    						<td colspan="3" >    
+    						<div style="overflow-x: hidden;overflow-y: scroll; height: 100px;" >						
+    						<h:panelGroup id="listbenh1" >
+    						<rich:dataTable value="#{listDmBenhICD}" var="item" width="98%" id="__dataICD1" nam="dataICD1">
+             					<rich:column style="width:29%">
+              						<h:outputText id="maloai" value="#{item.dmbenhicdMa}" />
+            					</rich:column>
+           						<rich:column style="width:70%">
+              						<h:outputText id="tenloai" value="#{item.dmbenhicdTen}" />
+           						</rich:column>
+            					<rich:column >
+              						<a4j:commandButton  oncomplete="setValueTenhd();" id="__icd" action="#{BaoCaoTinhHinhBenhTatTuVong.deleteDmBenhICD}" reRender="listbenh" styleClass="mybton_del" style="filter:alpha(opacity=20);width: 19px; height:16px;"/>
+            					</rich:column>
+    						</rich:dataTable>
+    						</h:panelGroup>
+    						</div>
+    						</td>
+    						</tr>
+    						</table>
+    						</div>
+    					</td>
+    				</tr>
+    				
+    				<tr>
+    					<td align="right" >
+    						<div style="display: none" id="mn3" >	
+    							<h:outputText value="Mã lọc dữ liệu" styleClass="mytext" style="float:left;margin-left:80px;"/>
+    							<table cellspacing="0" cellpadding="0" border="0" width="60%" style="border: solid 1px #54779f;">
+    								<tr class="myrow1" >
+    							<td align="left" >
+    							<h:inputHidden id="BENHICD_MA2_pk"/>
+    								<h:inputText tabindex="10" id="BENHICD2_MA" value="#{BaoCaoTinhHinhBenhTatTuVong.benhICDMa}" onblur="myOnblurTextbox(this.id,'DM_BENH_ICD')" style="width: 30px;margin-left:3px;" styleClass="myinput"/>
+    								<span id="DM_BENH_ICD2_span" />
+    								<input alt="getDmBenhIcd_search(document.getElementById('DM_BENH_ICD').value)" id="DM_BENH_ICD__2" name="DM_BENH_ICD"  style=" width : 177px;" class="mycbogear"/>
+    								<a4j:commandButton tabindex="11" id="__benhchinh2" name="_benhchinh2" action="#{BaoCaoTinhHinhBenhTatTuVong.enterDmBenhICD}" reRender="listbenh" styleClass="mybton_add" style="width: 20px; height: 20px;"/>
+    							</td>
+    						</tr>
+    						<tr >
+    						<td colspan="3" >    
+    						<div style="overflow-x: hidden;overflow-y: scroll; height: 100px;" >						
+    						<h:panelGroup id="listbenh2" >
+    						<rich:dataTable value="#{listDmBenhICD}" var="item" width="98%" id="__dataICD2" nam="dataICD2">
+             					<rich:column style="width:29%">
+              						<h:outputText id="maloai" value="#{item.dmbenhicdMa}" />
+            					</rich:column>
+           						<rich:column style="width:70%">
+              						<h:outputText id="tenloai" value="#{item.dmbenhicdTen}" />
+           						</rich:column>
+            					<rich:column >
+              						<a4j:commandButton  oncomplete="setValueTenhd();" id="__icd" action="#{BaoCaoTinhHinhBenhTatTuVong.deleteDmBenhICD}" reRender="listbenh" styleClass="mybton_del" style="filter:alpha(opacity=20);width: 19px; height:16px;"/>
+            					</rich:column>
+    						</rich:dataTable>
+    						</h:panelGroup>
+    						</div>
+    						</td>
+    						</tr>
+    						</table>
+    						</div>
+    					</td>
+    				</tr>
+    				
+    				<tr>
+    					<td align="right" >
+    						<div style="display: show;" id="mn5" >	
+    							<h:outputText value="Mã lọc dữ liệu" styleClass="mytext" style="float:left;margin-left:80px;"/>
+    							<table cellspacing="0" cellpadding="0" border="0" width="60%" style="border: solid 1px #54779f;">
+    								<tr class="myrow1" >
+    							<td align="left" >
+    							<h:inputHidden id="BENHICD_MA3_pk"/>
+    								<h:inputText tabindex="10" id="BENHICD3_MA" value="#{BaoCaoTinhHinhBenhTatTuVong.benhICDMa}" onblur="myOnblurTextbox(this.id,'DM_BENH_ICD')" style="width: 30px;margin-left:3px;" styleClass="myinput"/>
+    								<span id="DM_BENH_ICD3_span" />
+    								<input alt="getDmBenhIcd_search(document.getElementById('DM_BENH_ICD').value)" id="DM_BENH_ICD__3" name="DM_BENH_ICD"  style=" width : 177px;" class="mycbogear"/>
+    								<a4j:commandButton tabindex="11" id="__benhchinh3" name="_benhchinh3" action="#{BaoCaoTinhHinhBenhTatTuVong.enterDmBenhICD}" reRender="listbenh" styleClass="mybton_add" style="width: 20px; height: 20px;"/>
+    							</td>
+    						</tr>
+    						<tr >
+    						<td colspan="3" >    
+    						<div style="overflow-x: hidden;overflow-y: scroll; height: 100px;" >						
+    						<h:panelGroup id="listbenh3" >
+    						<rich:dataTable value="#{listDmBenhICD}" var="item" width="98%" id="__dataICD3" nam="dataICD3">
+             					<rich:column style="width:29%">
+              						<h:outputText id="maloai" value="#{item.dmbenhicdMa}" />
+            					</rich:column>
+           						<rich:column style="width:70%">
+              						<h:outputText id="tenloai" value="#{item.dmbenhicdTen}" />
+           						</rich:column>
+            					<rich:column >
+              						<a4j:commandButton  oncomplete="setValueTenhd();" id="__icd" action="#{BaoCaoTinhHinhBenhTatTuVong.deleteDmBenhICD}" reRender="listbenh" styleClass="mybton_del" style="filter:alpha(opacity=20);width: 19px; height:16px;"/>
+            					</rich:column>
+    						</rich:dataTable>
+    						</h:panelGroup>
+    						</div>
+    						</td>
+    						</tr>
+    						</table>
+    						</div>
+    					</td>
+    				</tr>
+    	
+    				<tr style="height: 40px;">
+    					<td align="center" colspan="2"  style="padding-left: 250px;" >    
+    						<div class="mybton_b_l" style="width: 90px; float: left;">
+    							<div style="background-position: 70px 0px; float: left; padding-right: 5px" class="mybton_b_r">
+    								<h:commandButton  tabindex="12" id="__tienhanh" onclick="setSave();" action="#{BaoCaoTinhHinhBenhTatTuVong.thuchienAction}" name="_tienhanh" type="submit" value="Tiến hành" style="width: 70px;" styleClass="mybton_b"/>
+    							</div>
+    						</div> 
+    						<div class="mybton_b_l" style="width: 85px; float: left;">
+    							<div style="background-position: 70px 0px; float: left; padding-right: 5px" class="mybton_b_r">
+    								<h:commandButton  tabindex="13" id="__chonlai" name="_chonlai" type="submit" value="Nhập mới" style="width: 70px;" styleClass="mybton_b"/>
+    							</div>
+    						</div> 
+    					</td>
+    				</tr>    				
+    			</table> 		    						
+    		</td>
+    	</tr>	    	
+    </table>
+    </h:form>
+    <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/hsba/B243_Benhnhantuvong_gears.js"></script>
+	<iframe width="174" height="189" name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;"/>
+</ui:define> 
+</ui:composition>

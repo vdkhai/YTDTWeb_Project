@@ -1,0 +1,477 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:c="http://java.sun.com/jstl/core" 
+                template="/layout/mytemplate_danhmuc.xhtml">
+
+<ui:define name="body">	
+<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+<h:form id="_form" name="_form">
+<div style="width:100%; position:absolute; margin-top:-6px">
+		<ui:include src="/layout/mymenu_YTDT_VienPhi_ThuVienPhi.xhtml" />
+</div>
+<table style="margin-top:20px; width : 850px;" cellspacing="0" cellpadding="0" border="0" width="777">
+	<tr>
+    	<td colspan="3" height="50px">
+    		<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    			<tr>
+    				<td height="50px" width="400px" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    					<h:graphicImage value="../../images/white_light.gif" width="43" height="16" />
+    					 CHỈNH SỬA BẢNG GIÁ CẬN LÂM SÀNG
+    				</td> 
+    				<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    				</td>
+    			</tr>
+    		</table>			
+    	</td>    		    	
+	</tr>    
+    <tr>
+    	<td width="13px" height="12px" class="mytdl"></td>
+    	<td style="background-color: #c9daea;" width="965px" height="12px" ></td>
+    	<td width="11px" height="12px" class="mytdr"></td>
+    </tr> 
+    <tr>
+    	<td colspan="3" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 5px" width="100%" >
+    		<table width="100%">
+    			<tr align="center">
+			    	<td>
+			    		<a4j:outputPanel id="message_infor">
+							<tr>
+								<td>
+									<h:messages style="color:Red;font-weight:bold;font-style:italic;text-decoration:none;"/>
+								</td>
+							</tr>
+						</a4j:outputPanel>
+			    	</td>
+			    </tr>
+    			<tr>
+    				<td>
+    					<h:outputText value="Mã" style="margin: 0px 5px 0 95px;"/>
+    					<h:inputText id="__ma" value="#{DtDmBangGiaCanLamSan_edit.maCls}" 
+    						style="width:100px;" styleClass="myinput" maxlength="10" disabled="true" tabindex="1"/>
+    					<h:outputText value="*" style="color:red;margin-left:2px;"/>
+    				
+    				</td>
+    				
+    				<td>
+    					
+    				</td>
+    			</tr>
+    			<tr>
+    				<td>
+    					<h:outputText value="Diễn giải" style="margin: 0 5px 0 61px;"/>
+    					<h:inputText id="__diengiai" value="#{DtDmBangGiaCanLamSan_edit.clsbanggia.dtdmclsbgDiengiai}" 
+    						style=" width : 296px;" styleClass="myinput" maxlength="250" tabindex="2"/>
+    					<h:outputText value="*" style="color:red;margin-left:2px;"/>
+    				
+    				</td>
+    				
+    				<td>
+    					<h:outputText value="Đơn giá" style="margin: 0px 5px 0 75px;"/>
+    					<h:inputText id="__dongia" value="#{DtDmBangGiaCanLamSan_edit.clsbanggia.dtdmclsbgDongia}" 
+    						style="width:100px;" styleClass="myinput" onkeypress="iesvn_InputInKeys('0123456789');" 
+    						onchange="setDefaultValue(this, true)" 
+    						tabindex="9" maxlength="10"> 
+    						<f:converter converterId="com.iesvn.yte.converter.DoubleConverter2FractionDigits" />   						    						
+    					</h:inputText>
+    				</td>
+    			</tr>
+    			<tr>
+    				<td>
+    					<h:outputText value="Mã loại" style="margin: 0 5px 0 70px;display:none;"/>
+    					
+    					<h:selectOneMenu id="__maloai" value="#{DtDmBangGiaCanLamSan_edit.clsbanggia.getDtdmclsbgMaloai(true).dtdmclsMaso}"  tabindex="3" style="display:none;">
+    						<f:selectItems value="#{DtDmBangGiaCanLamSan_edit.listMaLoai}"/>
+    					</h:selectOneMenu>
+   					 	
+    					<h:outputText value="*" style="color:red;margin-left:2px;display:none;"/>
+    					<h:outputText value="Phân loại" style="margin: 0 5px 0 57px;"/>
+    					
+						<h:selectOneMenu id="__phanloai" value="#{DtDmBangGiaCanLamSan_edit.clsbanggia.getDtdmclsbgPhanloai(true).dtdmclsMaso}" tabindex="3" style="margin-left:1px;width:300px">
+    						<f:selectItems value="#{DtDmBangGiaCanLamSan_edit.listPhanLoai}" />
+    					</h:selectOneMenu>
+						
+    					<h:outputText value="*" style="color:red;margin-left:2px;"/>  					
+    				</td>
+    				<td>
+    					<h:outputText value="Đơn giá miễn phí" style="margin: 0px 5px 0 24px;"/>
+    					<h:inputText id="__dongiamienphi" value="#{DtDmBangGiaCanLamSan_edit.clsbanggia.dtdmclsbgDongiamp}" 
+    						style="width:100px;" styleClass="myinput" onkeypress="iesvn_InputInKeys('0123456789');" 
+    						onchange="setDefaultValue(this, true)"
+    						tabindex="10" maxlength="10">
+    						
+    						<f:converter converterId="com.iesvn.yte.converter.DoubleConverter2FractionDigits" />
+    					</h:inputText>
+    				</td>
+    			</tr>
+    			<tr>
+    				<td>
+    					
+    					<h:outputText value="Loại PT,TT" style="margin: 0 5px 0 50px;"/>
+    					
+						<h:selectOneMenu id="__loaipttt" value="#{DtDmBangGiaCanLamSan_edit.clsbanggia.getDtdmclsbgLoaipttt(true).dtdmloaiptMaso}" tabindex="3" style="margin-left:1px;width:300px">
+    						<f:selectItems value="#{DtDmBangGiaCanLamSan_edit.listLoaiPTTT}" />
+    					</h:selectOneMenu>
+						
+    					<h:outputText value="*" style="color:red;margin-left:2px;"/>
+    				</td>
+    				
+    				<td>
+    					<h:outputText value="Đơn giá yêu cầu" style="margin: 0px 5px 0 30px;"/>
+    					<h:inputText id="__dongiayeucau" value="#{DtDmBangGiaCanLamSan_edit.clsbanggia.dtdmclsbgDongiayc}" 
+    						style="width:100px;" styleClass="myinput" onkeypress="iesvn_InputInKeys('0123456789');" 
+    						onchange="setDefaultValue(this, true);sosanhGiaBH();" 
+    						onblur="setPhanDichVuValue();"
+    						tabindex="11" maxlength="10">
+    						
+    						<f:converter converterId="com.iesvn.yte.converter.DoubleConverter2FractionDigits" />
+    					</h:inputText>
+    						
+    				</td>
+    			</tr>
+    			<tr>
+    				<td>
+    				<h:outputText value="Khoa" style="margin: 0 5px 0 80px;"/>
+    					
+						<h:selectOneMenu id="__khoa" value="#{DtDmBangGiaCanLamSan_edit.dmkhoaMaso}" tabindex="4" style="margin-left:1px;width:300px">
+    						<f:selectItems value="#{DtDmBangGiaCanLamSan_edit.listKhoa}" />    						
+    					</h:selectOneMenu>    
+    					<h:outputText value="*" style="color:red;margin-left:2px;display:none;"/>
+    					
+    					
+    				</td>
+    				
+    				<td>
+    					<h:outputText value="Đơn giá bảo hiểm" style="margin: 0px 5px 0 21px;"/>
+    					<h:inputText id="__dongiabaohiem" value="#{DtDmBangGiaCanLamSan_edit.clsbanggia.dtdmclsbgDongiabh}" 
+    						style="width:100px;" styleClass="myinput" onkeypress="iesvn_InputInKeys('0123456789');" 
+    						onchange="setDefaultValue(this, true);sosanhGiaBH();"
+    						onblur="setPhanDichVuValue();"
+    						tabindex="12" maxlength="10">
+    						
+    						<f:converter converterId="com.iesvn.yte.converter.DoubleConverter2FractionDigits" />
+    					</h:inputText>
+    				</td>
+    			</tr>
+    			<tr>
+    				<td>
+    					<h:outputText value="Loại CLS" style="margin: 0 5px 0 58px;"/>    					
+						<h:selectOneMenu id="__loaiCLS" value="#{DtDmBangGiaCanLamSan_edit.maLoaiCLS}" tabindex="5" style="margin-left:1px;width:300px" onchange="checkLoaiCLS();">
+    						<f:selectItems value="#{DtDmBangGiaCanLamSan_edit.dsLoaiCLS.listLoaiCls}" />    						
+    					</h:selectOneMenu>        					 	
+    				</td>
+    				
+    				<td>
+    					<h:outputText value="Phần dịch vụ" style="margin: 0 5px 0 50px;"/>
+    					<h:inputText id="__phandv" value="#{DtDmBangGiaCanLamSan_edit.clsbanggia.dtdmclsbgPhandv}" 
+    						style="width:100px;" styleClass="myinput" 
+    						readonly="true">
+							<f:converter converterId="com.iesvn.yte.converter.DoubleConverter2FractionDigits" />
+    						
+    					</h:inputText>
+    					<h:inputHidden id="__hidphandv" value="#{DtDmBangGiaCanLamSan_edit.clsbanggia.dtdmclsbgPhandv}" 
+    						style="width:100px;" styleClass="myinput">
+							
+    						<f:converter converterId="com.iesvn.yte.converter.DoubleConverter2FractionDigits" />
+    					</h:inputHidden>
+    				</td>
+    			</tr>
+    			<tr>  		
+    				<td>
+    				<h:outputText value="Ngoài danh mục" style="margin: 0px 5px 0 15px;"/>
+    					<h:selectBooleanCheckbox id="__ngoaidanhmuc" value="#{DtDmBangGiaCanLamSan_edit.clsbanggia.dtdmclsbgNDM}" tabindex="5"/>
+    					
+    					<h:outputText value="Miễn" style="margin: 0px 5px 0 75px;"/>
+    					<h:selectBooleanCheckbox id="__mien" value="#{DtDmBangGiaCanLamSan_edit.clsbanggia.dtdmclsbgMien}" tabindex="6"/>
+    					
+    				</td>
+    						
+    				<td>
+    					
+    					<h:outputText value="Đơn giá thứ 7, CN" style="margin: 0px 5px 0 21px;"/>
+    					<h:inputText id="__dongiathu7cn" value="#{DtDmBangGiaCanLamSan_edit.clsbanggia.dtdmclsbgDongia2}" 
+    						style="width:100px;" styleClass="myinput" onkeypress="iesvn_InputInKeys('0123456789');" 
+    						onchange="setDefaultValue(this, false)"
+    	    	    		tabindex="13" maxlength="10">
+    						<f:converter converterId="com.iesvn.yte.converter.DoubleConverter2FractionDigits" />
+    						
+    					</h:inputText>
+    				</td>
+    			</tr>
+    			<tr>  		
+    				<td>
+    				<h:outputText value="Chọn" style="margin: 0 5px 0 76px;"/>
+    					<h:selectBooleanCheckbox id="__chon" value="#{DtDmBangGiaCanLamSan_edit.clsbanggia.dtdmclsbgChon}" tabindex="7"/>
+    					
+    					<h:outputText value="Xét nghiệm" style="margin: 0px 5px 0 75px;"/>
+    					<h:selectBooleanCheckbox id="__xn" value="#{DtDmBangGiaCanLamSan_edit.clsbanggia.dtdmclsbgXn}" tabindex="8"/>
+    				    				<h:outputText value="CLS bổ xung" style="margin: 0 5px 0 40px;display:none;"/>
+    					<h:inputText id="__cacclsboxung" value="#{DtDmBangGiaCanLamSan_edit.clsbanggia.dtdmclsbgPhanBiet}" 
+    						style=" width : 230px;display:none;" styleClass="myinput" maxlength="250" tabindex="12"/>
+    				</td>
+    				
+    						
+    				<td>
+    					<h:outputText value="Dung tích máu" style="margin: 0px 5px 0 40px;"/>
+    					<h:inputText id="__dungtich" value="#{DtDmBangGiaCanLamSan_edit.clsbanggia.dmclsbgSoml}"
+    						style="width:100px;" styleClass="myinput" onkeypress="iesvn_InputInKeys('0123456789');checkLoaiCLS();"    						         				
+    						tabindex="14" maxlength="10">    						    					
+    					</h:inputText>	
+    					<h:outputText value="(ml)" style="margin: 0px 5px 0 5px;"/>
+    				</td>
+    			</tr>
+    			<tr>  		
+    				<td colspan="2">    					
+    				</td>
+    			</tr>
+    		</table>   		
+    	</td>    	
+    </tr>
+    
+    <tr>
+    	<td colspan="3" style="background-color: #c9daea; padding-top: 5px; padding-bottom: 10px" width="100%" >
+    		<table width="100%">
+    			<tr>
+    				<td align="center">
+    					<a4j:commandButton styleClass="mybton_b" value="Ghi nhận" id="__ghinhan" style="cursor:pointer;margin:0 0 0 90px;"
+    						onclick="if (!checkInput()) return false;" tabindex="14"
+    						action="#{DtDmBangGiaCanLamSan_edit.save(DtDmBangGiaCanLamSan_edit.clsbanggia.getDtdmclsbgPhanloai(true).dtdmclsMaso)}"
+    						oncomplete="oncompleteGhinhan();LoadCatalogFromServer_each(DtDmClsBangGia,'GetDmKyThuatAction');"
+    						reRender="message_infor"/>
+    						 						
+    					<s:button styleClass="mybton_b" value="Quay lại" id="__quaylai" style="cursor:pointer;margin:0 0 0 5px;"
+    						action="/B3_Vienphi/ThuVienPhi/B3253_Banggiacanlamsan" tabindex="15"/>
+    				</td>
+    			</tr>
+    		</table>   		
+    	</td>    	
+    </tr>
+</table>
+
+
+</h:form>
+
+<script type="text/javascript">
+
+function init(){
+	setInfo();
+}
+
+function setInfo(){	
+	document.getElementById(prefix_component + '__diengiai').focus();
+}
+
+function iesvn_Required() {
+	this.aa = new Array(prefix_component + "__ma", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Mã bảng giá cận lâm sàn'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+	this.ab = new Array(prefix_component + "__diengiai", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Diễn giải'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+	//this.ac = new Array(prefix_component + "__maloai", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Mã loại'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+	this.ad = new Array(prefix_component + "__phanloai", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Phân loại'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+	//this.ae = new Array(prefix_component + "__khoa", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Khoa '/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+	
+}
+
+function checkInput(){
+	var form = document.forms[0];
+	var valid = true;
+	valid = iesvn_ValidateRequired(form);	
+	if (checkInputEqual('__phanloai','-1','phân loại')){
+		return false;
+	}
+	/*if (checkInputEqual('__khoa','-1','khoa')){
+		return false;
+	}
+	*/
+	return valid;
+}
+
+function checkInputEqual(input,val,des)
+{
+	if (document.getElementById(prefix_component + input).value==val)
+	{
+		document.getElementById(prefix_component + input).focus();
+		alert("Bạn phải nhập "+des);
+		return true;
+	}
+	return false;
+}
+
+function oncompleteGhinhan(){
+	document.getElementById(prefix_component + '__diengiai').focus();
+}
+
+function oncompleteNhapmoi(){
+	document.getElementById(prefix_component + '__diengiai').focus();
+}
+
+//Ham tinh gia tri cho cac textbox phandv (a), don gia (b), don gia yeu cau (c) khi onblur
+//cong thuc : 
+//c = a + b
+//a = c - b
+//b = c - a 
+function countAllFromPhanDV(){
+	var phandv = document.getElementById(prefix_component + '__phandv').value;
+	var dongia = document.getElementById(prefix_component + '__dongia').value;
+	var dongiayc = document.getElementById(prefix_component + '__dongiayeucau').value;
+
+	phandv = parseInt(phandv);
+	dongia = parseInt(dongia);
+	dongiayc = parseInt(dongiayc);
+
+	if(isNaN(phandv)) phandv = 0;
+	if(isNaN(dongia)) dongia = 0;
+	if(isNaN(dongiayc)) dongiayc = 0;
+
+	//Default dongiayc = phandv + dongia
+	if(phandv!=0){
+		if(dongia!=0 &amp;&amp; dongiayc==0){
+			dongiayc = phandv + dongia;
+		}
+		else if(dongiayc!=0 &amp;&amp; dongia==0){
+			dongia = dongiayc - phandv;
+		}
+	}
+	else {
+		if(dongia!=0 &amp;&amp; dongiayc!=0){
+			phandv = dongiayc - dongia;
+		}
+	}
+		
+	document.getElementById(prefix_component + '__phandv').value = phandv;
+	document.getElementById(prefix_component + '__dongia').value = dongia;
+	document.getElementById(prefix_component + '__dongiayeucau').value = dongiayc;
+	
+}
+
+//Ham tinh gia tri cho cac textbox phandv (a), don gia (b), don gia yeu cau (c) khi onblur
+//cong thuc : 
+//c = a + b
+//a = c - b
+//b = c - a 
+function countAllFromDonGia(){
+	var phandv = document.getElementById(prefix_component + '__phandv').value;
+	var dongia = document.getElementById(prefix_component + '__dongia').value;
+	var dongiayc = document.getElementById(prefix_component + '__dongiayeucau').value;
+
+	phandv = parseInt(phandv);
+	dongia = parseInt(dongia);
+	dongiayc = parseInt(dongiayc);
+
+	if(isNaN(phandv)) phandv = 0;
+	if(isNaN(dongia)) dongia = 0;
+	if(isNaN(dongiayc)) dongiayc = 0;
+
+	//Default dongiayc = phandv + dongia
+	if(dongia!=0){
+		if(phandv!=0 &amp;&amp; dongiayc==0){
+			dongiayc = phandv + dongia;
+		}
+		else if(dongiayc!=0 &amp;&amp; phandv==0){
+			phandv = dongiayc - dongia;
+		}
+	}
+	else {
+		if(phandv!=0 &amp;&amp; dongiayc!=0){
+			dongia = dongiayc - phandv;
+		}
+	}
+		
+	document.getElementById(prefix_component + '__phandv').value = phandv;
+	document.getElementById(prefix_component + '__dongia').value = dongia;
+	document.getElementById(prefix_component + '__dongiayeucau').value = dongiayc;
+	
+}
+
+//Ham tinh gia tri cho cac textbox phandv (a), don gia (b), don gia yeu cau (c) khi onblur
+//cong thuc : 
+//c = a + b
+//a = c - b
+//b = c - a 
+function countAllFromDonGiaYC(){
+	var phandv = document.getElementById(prefix_component + '__phandv').value;
+	var dongia = document.getElementById(prefix_component + '__dongia').value;
+	var dongiayc = document.getElementById(prefix_component + '__dongiayeucau').value;
+
+	phandv = parseInt(phandv);
+	dongia = parseInt(dongia);
+	dongiayc = parseInt(dongiayc);
+
+	if(isNaN(phandv)) phandv = 0;
+	if(isNaN(dongia)) dongia = 0;
+	if(isNaN(dongiayc)) dongiayc = 0;
+
+	//Default dongiayc = phandv + dongia
+	if(dongiayc!=0){
+		if(dongia!=0 &amp;&amp; phandv==0){
+			phandv = dongiayc - dongia;
+		}
+		else if(phandv!=0 &amp;&amp; dongia==0){
+			dongia = dongiayc - phandv;
+		}
+	}
+	else {
+		if(phandv!=0 &amp;&amp; dongia!=0){
+			dongiayc = phandv + dongia;
+		}
+	}
+		
+	document.getElementById(prefix_component + '__phandv').value = phandv;
+	document.getElementById(prefix_component + '__dongia').value = dongia;
+	document.getElementById(prefix_component + '__dongiayeucau').value = dongiayc;
+	
+}
+function setDefaultValue(textbox, zeroIfEmpty) {
+	var value = textbox.value;
+	if (value == '') {
+		if (zeroIfEmpty) {
+			textbox.value = 0;
+		}
+	} else {
+		textbox.value = parseInt(value.replace(/,/g,""),10);
+	}
+}
+function setPhanDichVuValue() {	
+	var dongiayc = document.getElementById(prefix_component + '__dongiayeucau').value;
+	var dongiabh = document.getElementById(prefix_component + '__dongiabaohiem').value;
+	
+	if(parseInt(dongiayc.replace(/,/g,""),10) &gt; parseInt(dongiabh.replace(/,/g,""),10)) {
+		document.getElementById(prefix_component + '__phandv').value = (parseInt(dongiayc.replace(/,/g,""),10) - parseInt(dongiabh.replace(/,/g,""),10));
+		document.getElementById(prefix_component + '__hidphandv').value = (parseInt(dongiayc.replace(/,/g,""),10) - parseInt(dongiabh.replace(/,/g,""),10));
+	} else {
+		document.getElementById(prefix_component + '__phandv').value = 0;
+		document.getElementById(prefix_component + '__hidphandv').value = 0;
+	}	
+	
+}
+function sosanhGiaBH() {
+	var dongiayc = document.getElementById(prefix_component + '__dongiayeucau').value;
+	var dongiabh = document.getElementById(prefix_component + '__dongiabaohiem').value;	
+	if (dongiayc != "" &amp;&amp; dongiabh != "") {
+		if(parseInt(dongiayc.replace(/,/g,""),10) &lt; parseInt(dongiabh.replace(/,/g,""),10)) {
+			document.getElementById(prefix_component + '__dongiayeucau').value = dongiabh;
+		}
+	}
+}
+function checkLoaiCLS() {
+	var combobox = document.getElementById(prefix_component + '__loaiCLS');	
+	if (combobox.value != 'D1') {
+		document.getElementById(prefix_component + '__dungtich').value = '';		
+	}
+	document.getElementById(prefix_component + '__dungtich').disabled = (combobox.value != 'D1');
+}
+</script>
+</ui:define> 
+</ui:composition>
+
+

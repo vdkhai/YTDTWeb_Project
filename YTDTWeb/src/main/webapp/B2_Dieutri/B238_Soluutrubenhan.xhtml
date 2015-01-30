@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                template="/layout/mytemplate.xhtml">
+
+    <ui:define name="body">
+
+
+
+        <f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+
+        <script type="text/javascript">
+    	
+                function enterToTab(){
+		
+                if(
+                    (document.getElementById(prefix_component + "__tieptucnhap") == null ||document.getElementById(prefix_component + "__tieptucnhap").alt != 1 ) &amp;&amp;
+                    (document.getElementById(prefix_component + "__ghinhan") == null ||document.getElementById(prefix_component + "__ghinhan").alt ) != 1
+                ) {
+
+                if(window.event.keyCode == 13){
+                     window.event.keyCode = 9;
+                }
+                }
+                }
+                var bCancel = false;
+                var bSave = false;
+		
+                function setSave() {
+                        bSave = true;
+                }
+                function setCancel(){
+                        bCancel = true;
+                }
+		
+                function iesvn_Required() {
+	
+                        this.aa = new Array(prefix_component + "__soluutrutu", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Số lưu trữ từ'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+	
+                        this.ab = new Array(prefix_component + "__soluutruden", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Số lưu trữ đến'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+	
+	
+                }	
+	
+		
+                function onSubmitTmp(){
+                        setSave() ;
+                        return onSubmit();
+                }
+		
+	
+                function onSubmit() {
+		
+                changeCursorWait ();
+                        var form = document.forms[0];
+                        var valid = true;
+                        if (bSave){
+                        bSave = false;
+                        valid = iesvn_ValidateRequired(form)  ;
+		    			    	 		    	     	
+                    }
+                    if (bCancel){
+                        bCancel = false;
+                    }
+		    
+                     if (valid == false){
+                        changeCursorDefault ();
+                }
+                    return valid;
+			
+                }
+		
+        </script>
+        <body onkeydown="enterToTab();">
+            <h:form id="_form" name="_form">
+                <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_DieuTriNoiTru.xhtml" /></div>
+                <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+                    <tr>
+                        <td colspan="3" height="50px">
+                            <table cellspacing="0" cellpadding="0" border="0" width="100%" >
+                                <tr>
+                                    <td height="50px" width="36%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >
+                                        <h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						SỔ LƯU TRỮ BỆNH ÁN
+                                    </td>
+                                    <td valign="top">
+                                        <table cellspacing="0" cellpadding="0" width="100%" >
+                                            <tr>
+                                                <td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+                                                    &#160;
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" align="center">
+                            <a4j:outputPanel id="__message">
+                                <h:messages styleClass="mynull" />
+                            </a4j:outputPanel>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="13px" height="12px" class="mytdl">
+                        </td>
+                        <td style="background-color: #c9daea;" width="985px" height="12px" >
+                        </td>
+                        <td width="11px" height="12px" class="mytdr">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px" width="100%" align="center">
+                            <!-- Main Area -->
+                            <table cellspacing="0" cellpadding="0" border="0" width="60%">
+                                <tr style="height: 25px;">
+                                    <td align="right"  style="padding-right: 50px;">
+                                        <h:outputText value="Loại sổ" styleClass="mytext" style="margin-left: 50px; margin-right: 5px;"/>
+                                        <h:selectOneListbox value="#{B238_Soluutrubenhan.inTheo}" tabindex="1" id="__thutuin"
+                                                            name="_thutuin" size="1" style="width: 300px; height: 20px;" styleClass="myinput">
+                                            <f:selectItems value="#{B238_Soluutrubenhan.ttIn}" />
+                                        </h:selectOneListbox>						</td>
+                                </tr>
+                                <tr style="height: 25px;">
+                                    <td align="right"  style="padding-right: 50px;">
+                                        <h:outputText value="Từ số lưu trữ" styleClass="mytext" style="margin-right: 5px;"/>
+                                        <h:inputText value="#{B238_Soluutrubenhan.soluutru_tu}" tabindex="2" id="__soluutrutu"
+                                                     name="_soluutrutu" style="width: 97px;" styleClass="myinput">
+
+                                            <a4j:support event="onblur" action="#{B238_Soluutrubenhan.loadSoVaoVienTu()}"
+                                                         reRender="__message,__soluutrutu" oncomplete="highlightOnFocus();"
+                                                         ></a4j:support>
+                                        </h:inputText>
+
+                                        <h:outputText value="*" styleClass="mynull" style="margin-right: 2px; margin-left: 2px;" />
+                                        <h:outputText value="Đến" styleClass="mytext" style="margin-left:15px;margin-right: 5px;"/>
+                                        <h:inputText value="#{B238_Soluutrubenhan.soluutru_den}" tabindex="3" id="__soluutruden"
+                                                     name="_soluutruden" style="width: 95px;" styleClass="myinput">
+                                            <a4j:support event="onblur" action="#{B238_Soluutrubenhan.loadSoVaoVienDen()}"
+                                                         reRender="__message,__soluutruden" oncomplete="highlightOnFocus();"
+                                                         ></a4j:support>
+                                        </h:inputText>
+                                        <h:outputText value="*" styleClass="mynull" style="margin-right: 45px; margin-left: 2px;" />
+                                    </td>
+                                </tr>
+                                <tr style="height: 25px;">
+                                    <td align="right"  style="padding-right: 50px;">
+                                        <h:outputText value="Khoa ra viện" styleClass="mytext" style="margin-right: 5px;"/>
+                                        <h:inputHidden id="DM_KHOA_MA_pk" value="#{B238_Soluutrubenhan.masoKhoa}"/>
+                                        <h:inputText value="#{B238_Soluutrubenhan.maKhoa}" id="DM_KHOA_MA" name="DM_KHOA_MA" style=" width : 30px"
+                                                     maxlength="11" tabindex="4" styleClass="myinput"/>
+                                        <span id="DM_KHOA_span"/>
+                                        <input id="DM_KHOA" name="DM_KHOA" tabindex="5" style="width: 200px;margin-right: 63px;" class="mycbogear"/>
+                                    </td>
+                                </tr>
+                                <tr style="height: 40px;">
+                                    <td align="center"  style="padding-left: 150px;">
+
+                                        <div style="float: left;">
+
+                                            <a4j:commandButton tabindex="6" id="__ghinhan"
+                                                               onclick="if (! onSubmitTmp()) { this.alt = 0; return false; }"
+                                                               name="_ghinhan" value="Tiến hành"
+                                                               oncomplete="highlightOnFocus();myOnblurTextbox(prefix_component + 'DM_KHOA_MA', 'DM_KHOA');changeCursorDefault();"
+                                                               reRender="__message,__thutuin,__soluutrutu,__soluutruden,DM_KHOA_MA"
+                                                               action="#{B238_Soluutrubenhan.thuchienAction()}"
+                                                               style="width: 70px; margin-left:3px;" styleClass="mybton_b"/>
+
+                                        </div>
+
+                                        <div style="float: left;">
+
+                                            <a4j:commandButton tabindex="7" id="__tieptucnhap" name="_tieptucnhap"
+                                                               oncomplete="highlightOnFocus();changeCursorDefault();" action="#{B238_Soluutrubenhan.resetForm()}"
+                                                               reRender="__message,__thutuin,__soluutrutu,__soluutruden,DM_KHOA_MA"
+                                                               focus="__thutuin"
+                                                               value="Nhập mới" style="width: 70px;margin-left:3px;" styleClass="mybton_b"/>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/hsba/B238_Soluutrubenhan_gears.js"></script>
+            </h:form>
+        </body>
+    </ui:define>
+</ui:composition>

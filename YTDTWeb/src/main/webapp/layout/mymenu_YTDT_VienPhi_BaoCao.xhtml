@@ -1,0 +1,76 @@
+﻿<rich:toolBar style="margin:-5px 0px; height:32px"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:rich="http://richfaces.org/rich">
+    
+	<rich:dropDownMenu event="onclick" style="cursor:hand">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="Số liệu thanh toán"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3311_Bangkethuchitamungtheongay.init()}" id="BaoCaoVienPhi_SoLieuThanhToan_BangKeThuChiTamUngTheoNgay_id" submitMode="ajax" value="Bảng kê thu, chi tạm ứng theo ngày" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3312_Bangkethuchithanhtoantheongay.init()}" id="BaoCaoVienPhi_SoLieuThanhToan_BangKeThuChiThanhToanTheoNgay_id" submitMode="ajax" value="Bảng kê thu, chi thanh toán theo ngày" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.BaoCaoVienPhi_SoLieuThanhToan_TongHopThuChiThanhToanRaVien}" id="BaoCaoVienPhi_SoLieuThanhToan_TongHopThuChiThanhToanRaVien_id" submitMode="ajax" value="Tổng hợp thu chi thanh toán ra viện" />  
+	 	
+	 	<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{Bangkethanhtoanvienphi.init()}" id="BaoCaoVienPhi_SoLieuThanhToan_BangKeThanhToanVienPhi_id" submitMode="ajax" value="Bảng kê thanh toán viện phí các tuyến" />  
+	
+	 	<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3321_Solieubenhnhanduocxetmiengiam.init('V11BD')}" id="BaoCaoVienPhi_SoLieuThanhToan_Chitiettinhhinhthuvienphi_id" submitMode="ajax" value="Chi tiết tình hình thu viện phí" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="/B3_Vienphi/BaoCao/B3341_DSBenhNhanChoThanhToan.xhtml" id="BaoCaoVienPhi_SoLieuThanhToan_DSBenhnhanchothanhtoan_id" submitMode="ajax" value="Danh sách bệnh nhân chờ thanh toán" />
+	
+	</rich:dropDownMenu>
+
+	
+	<rich:dropDownMenu event="onclick" style="cursor:hand">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="Hồ sơ, báo cáo"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3321_Solieubenhnhanduocxetmiengiam.init('v05BD')}" id="BaoCaoVienPhi_HoSoBaoCao_Baocaotinhhinhmiengiamthatthu_id" submitMode="ajax" value="Báo cáo tình hình miễn, giảm, thất thu viện phí" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3321_Solieubenhnhanduocxetmiengiam.init('v06BD')}" id="BaoCaoVienPhi_HoSoBaoCao_SoTienBNChuaThanhToan_id" submitMode="ajax" value="Báo cáo số tiền bệnh nhân chưa thanh toán" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3322_Solieuclsngoaitru.init('NgoaiTru')}" id="BaoCaoVienPhi_HoSoBaoCao_SoLieuCLSNgoaiTru_id" submitMode="ajax" value="Số liệu CLS ngoại trú" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3322_Solieuclsngoaitru.init('NoiTru')}" id="BaoCaoVienPhi_HoSoBaoCao_SoLieuCLSNoiTru_id" submitMode="ajax" value="Số liệu CLS nội trú" />
+	    
+	    <!-- rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3323_Solieuthuchitoanvien.init()}" id="BaoCaoVienPhi_HoSoBaoCao_SoLieuThuChiToanVien_id" submitMode="ajax" value="Số liệu thu chi toàn viện" /-->
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3325_Solieuthutaicacbankham.init()}" id="BaoCaoVienPhi_HoSoBaoCao_SoLieuThuTaiCacPhongKham_id" submitMode="ajax" value="Số liệu thu tại các phòng khám" />
+	    <!-- rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3326_Phantichtienphongmotheoyc.init()}" id="BaoCaoVienPhi_HoSoBaoCao_PhanTichTienPhongMoYeuCau_id" submitMode="ajax" value="Phân tích tiền phòng, mổ yêu cầu" /-->
+	   
+	  	
+	    <!-- rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3327_Phantichchiphidieutrinoitru.init('dieutrinoitru')}" id="BaoCaoVienPhi_HoSoBaoCao_PhanTichChiPhiDieuTriNoiTru_id" submitMode="ajax" value="Phân tích chi phí điều trị nội trú" /-->
+	 	<!-- rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3327_Phantichchiphidieutrinoitru.init('tienphong')}" id="BaoCaoVienPhi_HoSoBaoCao_PhanTichTienPhongToanVien_id" submitMode="ajax" value="Phân tích tiền phòng toàn viện" /-->
+	 	
+	 	<!-- rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3327_Phantichchiphidieutrinoitru.init('mienphingoaitru')}" id="BaoCaoVienPhi_HoSoBaoCao_BaoCaoBNMienPhiNgoaiTru_id" submitMode="ajax" value="Báo cáo BN miễn phí ngoại trú" /-->
+		<!-- rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3327_Phantichchiphidieutrinoitru.init('mienphinoitru')}" id="BaoCaoVienPhi_HoSoBaoCao_BaoCaoBNMienPhiNoiTru_id" submitMode="ajax" value="Báo cáo BN miễn phí nội trú" /-->
+	
+	 </rich:dropDownMenu>
+	<rich:dropDownMenu event="onclick" style="cursor:hand">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="Báo cáo BHYT"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3331_TomtatsolieuBHYTsechitra.init()}" id="BaoCaoVienPhi_BaoCaoBHYT_TomTatSoLieuBHYTSeChiTra_id" submitMode="ajax" value="Tóm tắt số liệu BHYT sẽ chi trả" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3332_BaocaoBHYTnoitru.init()}" id="BaoCaoVienPhi_BaoCaoBHYT_BaoCaoBHYTNoiTru_id" submitMode="ajax" value="Báo cáo BHYT nội trú" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3335_BaoCaoBHYTNgoaiTru.init()}" id="BaoCaoVienPhi_BaoCaoBHYT_BaoCaoBHYTNgoaiTru_id" submitMode="ajax" value="Báo cáo BHYT ngoại trú" />
+		<!-- rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3336_BaocaoBHYTtaiphongphatthuoc.init()}" id="BaoCaoVienPhi_BaoCaoBHYT_BaoCaoBHYTTaiPhongPhatThuoc_id" submitMode="ajax" value="Báo cáo BHYT tại phòng phát thuốc"  /-->
+		
+		
+		
+		<rich:menuSeparator />
+		
+		
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3343_BangThongKeChiPhiKCBBHYTDaTuyen.init('10b')}" id="BaoCaoVienPhi_BaoCaoBHYT_BHYT_BCTKChiPhiKCBDaTuyenNoiTinh_id" submitMode="ajax" value="Báo cáo TH chi phí KCB BHYT đa tuyến nội tỉnh" />
+		
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3343_BangThongKeChiPhiKCBBHYTDaTuyen.init('18')}" id="BaoCaoVienPhi_BaoCaoBHYT_BHYT_BCTKChiPhiKCBDaTuyenNgoaiTinh_id" submitMode="ajax" value="Báo cáo TH chi phí KCB BHYT đa tuyến ngoại tỉnh" />
+		
+		<rich:menuSeparator />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3342_XuatDuLieuBHYT.init('')}" id="BaoCaoVienPhi_BaoCaoBHYT_BHYT_XuatDuLieuBHYT_id" submitMode="ajax" value="Xuất dữ liệu BHYT" />
+		</rich:dropDownMenu>
+		
+</rich:toolBar>
+

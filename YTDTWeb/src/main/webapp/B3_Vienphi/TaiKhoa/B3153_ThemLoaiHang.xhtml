@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                 xmlns:c="http://java.sun.com/jstl/core" 
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">	
+
+<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+
+	<script type="text/javascript">
+		
+		var bSave = false;
+
+		function iesvn_ValidateForm(form) {						
+			var valid = true;		
+			if (bSave) {	
+				valid = iesvn_ValidateRequired(form);																			   
+		    }			
+			bSave = false; 	    	    
+		    return valid;
+		}
+		function iesvn_Required() {
+			this.aa = new Array(prefix_component + "__mahang", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Mã hàng'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));				
+			this.ab = new Array(prefix_component + "__tenhang", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Tên hàng'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+			this.ac = new Array(prefix_component + "DTDMDONVITINH_MA", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Đơn vị tính'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));			 	 		
+		}	
+							
+		function resetComboData() {   			
+   			//document.getElementById(prefix_component + 'DOITUONGAN_MA').value = '';
+   	   		myOnblurTextbox(prefix_component + 'DTDMDONVITINH_MA',"DM_DON_VI_TINH");   	   	       	   	       	   	  
+   	   		   	   	    
+   		}
+
+		
+	</script>
+	<body>
+	<h:form id="_form" name="_form" onsubmit="return iesvn_ValidateForm(this)">
+	<h:inputHidden id="__hidLoaiTp" value="#{strLoaiTp}"/>
+    <div style="width:778px; position:absolute; z-index:99">
+    <ui:include src="/layout/mymenu_YTDT_DieuTriNoiTru.xhtml" />    
+    
+    </div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="30%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						LOẠI HÀNG
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>    
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="965px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    			<tr style=" height : 5px;">
+    		<td width="100%" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 0px" colspan="3" align="center">  
+    		      	<a4j:outputPanel id="message_infor">
+       					 <h:messages styleClass="mynull"/>
+					</a4j:outputPanel>
+    		</td>    		
+    	</tr>
+    		
+    	<tr>
+    	<td colspan="3" style="background-color: white; padding-top: 5px; padding-bottom: 5px;" width="100%" align="center">
+    			<!-- Detail Area -->
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+	    			<tr style="height: 25px;" align="right">
+	    				<td align="right" style="padding-left: 0px; width:20%">
+    						<h:outputText value="Mã hàng" styleClass="mytext" style="margin-right: 5px; margin-left: 5px;"/>
+    					</td>
+    					<td align="left"> 
+    						<h:inputText id="__mahang" value="#{B3153_ThemLoaiHang.loaiTp.dtdmltpMa}" styleClass="myinput" maxlength="5" style="width: 70px;" tabindex="1"/>
+	    					<h:outputText value="*" styleClass="mynull" style="margin-right: 5px; margin-left: 2px;" />
+	    					<h:outputText value="Tên hàng" styleClass="mytext" style="margin-left: 18px; margin-right: 5px"/>
+	    					<h:inputText id="__tenhang" value="#{B3153_ThemLoaiHang.loaiTp.dtdmltpTen}" styleClass="myinput" maxlength="100" style="width: 200px;" tabindex="2"/>								    					 	
+    						<h:outputText value="*" styleClass="mynull" style="margin-right: 5px; margin-left: 2px;" />
+    						
+    						<h:outputText value="Đơn vị tính" styleClass="mytext" style="margin-right:5px;margin-left:18px;" />
+    						<h:inputHidden id="DTDMDONVITINH_MA_pk" value="#{B3153_ThemLoaiHang.loaiTp.dmdonvitinhMaso.dmdonvitinhMaso}"/>
+    						<h:inputHidden id="DTDMDONVITINH_MA" value="#{B3153_ThemLoaiHang.loaiTp.dmdonvitinhMaso.dmdonvitinhMa}"/>							 
+							<input id="DM_DON_VI_TINH" name="DM_DON_VI_TINH" tabindex="12" style="width: 80px;" /><h:outputText value="*" styleClass="mynull" style="margin-right: 5px; margin-left: 2px;" />			    				 
+    					</td>
+	    			</tr>
+	    			<tr>
+    <td colspan="3" align="center" style="padding-left:280px; background-color: white; padding-bottom:10px">    
+    	<div  style="float:left;">    		
+    			<a4j:commandButton tabindex="21" id="__ghinhan" name="_ghinhan" action="#{B3153_ThemLoaiHang.saveLoaiTp}"
+    			onclick="bSave = true;"
+    			reRender="__mahang,__tenhang,__dataTable,DTDMDONVITINH_MA_pk,DTDMDONVITINH_MA, message_infor" oncomplete="resetComboData();"     			      			
+    			value="Ghi nhận" style="width: 70px; margin-right: 3px;" styleClass="mybton_b"/>    		
+    	</div> 
+    	<div  style="float:left;">
+    			<a4j:commandButton tabindex="22" id="__trove"     			    			
+    			name="_nhaplai"  value="Trở về" action="/B3_Vienphi/TaiKhoa/B3152_DuTruThucPham.xhtml" 
+    			style="width: 70px; margin-right: 3px;" styleClass="mybton_b"/>
+    	</div>  
+    	
+    </td>
+  </tr>	    			    				    				    			
+	    		</table>
+	    </td>
+	    </tr>
+    	<tr>
+    		<td colspan="3" style="background-color: white; padding-top: 5px; padding-bottom: 5px;" width="100%" align="center">
+    			<!-- Detail Area -->
+    			  
+	    	  <table cellspacing="0" cellpadding="0" border="0" width="93%" style="border: solid 1px #7a9dba;">
+    	  		
+    	  		<tr>
+					<td>
+    					<div style="scroll;overflow-y: scroll; height: 150px;width: 100%;" id="listKetqua">
+    						<rich:dataTable headerClass="mycol" id="__dataTable" rowClasses="myrow1,myrow2"
+	                          styleClass="myTable" value="#{B3153_ThemLoaiHang.listLoaiTp}" var="currentRow" width="100%" bgcolor="#cccccc">
+	                        <rich:column style="width: 10%;" id="column_STT" >
+	                        	<f:facet name="header"><h:outputText value="STT"/></f:facet>	                        	
+	                            <h:outputText id="outputText26" value="#{B3153_ThemLoaiHang.listLoaiTp.indexOf(currentRow) + 1}"/>                 
+	                        </rich:column>
+	                        <rich:column id="column_manhasx" align="left" style="width: 30%;"> 
+	                        	<f:facet name="header"><h:outputText value="Mã nhà SX"/></f:facet> 	                                                                         
+	                            <h:outputText id="mahang_table" value="#{currentRow.dtdmltpMa}" />	                            
+	                        </rich:column>
+	                         <rich:column id="column_tenhang" align="left" style="width: 40%;"> 
+	                        	<f:facet name="header"><h:outputText value="Tên hàng"/></f:facet> 	                                                                         	                             
+	                             <a4j:commandLink id="tenhang_table" value="#{currentRow.dtdmltpTen}"	                            
+	                            action="#{B3153_ThemLoaiHang.edit(B3153_ThemLoaiHang.listLoaiTp.indexOf(currentRow))}" 
+	                            reRender="__mahang,__tenhang,__dataTable,message_infor,DTDMDONVITINH_MA_pk,DTDMDONVITINH_MA" oncomplete="resetComboData()"
+	                            />         
+	                        </rich:column>
+	                        <rich:column id="column_dvt" align="left" style="width: 20%;"> 
+	                        	<f:facet name="header"><h:outputText value="Tên hàng"/></f:facet>
+	                        	<h:outputText id="dvt_table" value="#{currentRow.dmdonvitinhMaso.dmdonvitinhTen}" /> 	                                                                         	                             	                                     
+	                        </rich:column>
+	                        
+	                    </rich:dataTable>
+    				</div>
+    			</td>
+    		</tr> 	
+    	</table> 	
+    </td>
+  </tr>
+  
+</table>
+    <span id="DON_VI_TINH_span" />   
+    <h:inputHidden id="__hidCount" value="" />
+    <h:inputHidden id="__selectedIndex" value="" />							
+   </h:form>
+   <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/vienphi/B3153_ThemLoaiHang_gears.js"></script>       
+  
+   </body>
+    
+  
+</ui:define> 
+</ui:composition>
+
+

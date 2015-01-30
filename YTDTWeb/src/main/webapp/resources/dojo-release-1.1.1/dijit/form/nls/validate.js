@@ -1,0 +1,1 @@
+﻿({"rangeMessage":"Giá trị ngoài mức quy định","invalidMessage":"The value entered is not valid.","missingMessage":"This value is required."})

@@ -1,0 +1,67 @@
+﻿<rich:toolBar style="margin:-5px 0px; height:32px"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:rich="http://richfaces.org/rich">
+    
+    <rich:dropDownMenu event="onclick" style="cursor:hand">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="In báo cáo kho Chính"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+	     <!-- Thanh Edit Start-->
+	    <!--
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4134_Tinhtonkhovagiatri.init('KC')}" id="BaoCaoDuoc_QuanLyKhoChinh_TruyXuatThongTinKhoChinh_TinhTonKhoVaGiaTri_id" submitMode="ajax" value="Tính tồn kho và giá trị" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4412_Inbaocaonhapxuatthang.init('KC')}" id="BaoCaoDuoc_InBaoCaoKhoChinh_InBaoCaoNhapXuatTrongThang_id" submitMode="ajax" value="In báo cáo nhập xuất trong tháng" />
+		 -->		 
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4412_Inbaocaonhapxuatthang.init('KC')}" id="BaoCaoDuoc_InBaoCaoKhoChinh_InBaoCaoNhapXuatTrongThang_id" submitMode="ajax" value="Tín tồn kho và giá trị" />
+		<!-- Thanh Edit End-->
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4413_Phantichkinhphinhap.init()}" id="BaoCaoDuoc_InBaoCaoKhoChinh_PhanTichKinhPhiNhap_id" submitMode="ajax" value="Phân tích kinh phí nhập" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4414_Inchitietnhaphang.init('KC')}" id="BaoCaoDuoc_InBaoCaoKhoChinh_InChiTietNhapXuatHang_id" submitMode="ajax" value="In chi tiết nhập, xuất thuốc" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4415_Inbctiensudungtaikhoa.init('KC')}" id="BaoCaoDuoc_InBaoCaoKhoChinh_InBaoCaoTienSuDungTaiKhoa_id" submitMode="ajax" value="In báo cáo tiền sử dụng tại Khoa" />
+		
+	</rich:dropDownMenu>
+
+	
+
+	<rich:dropDownMenu event="onclick" style="cursor:hand">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="In báo cáo kho BHYT"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+	    <!-- Thanh Edit Start-->
+	    <!-- 
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4134_Tinhtonkhovagiatri.init('BHYT')}" id="BaoCaoDuoc_QuanLyKhoBHYT_TruyXuatThongTinKhoBHYT_TinhTonKhoVaGiaTri_id" submitMode="ajax" value="Tính tồn kho và giá trị" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4412_Inbaocaonhapxuatthang.init('BHYT')}" id="BaoCaoDuoc_InBaoCaoKhoBHYT_InBaoCaoNhapXuatTrongThang_id" submitMode="ajax" value="In báo cáo nhập xuất trong tháng" />
+		 -->
+		 <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4412_Inbaocaonhapxuatthang.init('BHYT')}" id="BaoCaoDuoc_InBaoCaoKhoBHYT_InBaoCaoNhapXuatTrongThang_id" submitMode="ajax" value="Tính tồn kho và giá trị" />
+		<!-- Thanh Edit End-->
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4414_Inchitietnhaphang.init('BHYT')}" id="BaoCaoDuoc_InBaoCaoKhoBHYT_InChiTietNhapXuatHang_id" submitMode="ajax" value="In chi tiết nhập, xuất thuốc" />
+		
+	</rich:dropDownMenu>
+	<rich:dropDownMenu event="onclick" style="cursor:hand">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="In báo cáo chung các kho"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+	      <!-- Thanh Edit Start-->
+	    <!-- 
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4134_Tinhtonkhovagiatri.init('ALL')}" id="BaoCaoDuoc_QuanLyKho_TruyXuatThongTinKho_TinhTonKhoVaGiaTri_id" submitMode="ajax" value="Tính tồn kho và giá trị" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4412_Inbaocaonhapxuatthang.init('ALL')}" id="BaoCaoDuoc_InBaoCaoKho_InBaoCaoNhapXuatTrongThang_id" submitMode="ajax" value="In báo cáo nhập xuất trong tháng" />
+		 -->
+		 <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4412_Inbaocaonhapxuatthang.init('ALL')}" id="BaoCaoDuoc_InBaoCaoKho_InBaoCaoNhapXuatTrongThang_id" submitMode="ajax" value="Tính tồn kho và giá trị" />
+		<!-- Thanh Edit End-->
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4414_Inchitietnhaphang.init('ALL')}" id="BaoCaoDuoc_InBaoCaoKho_InChiTietNhapXuatHang_id" submitMode="ajax" value="In chi tiết nhập, xuất thuốc" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4415_Inbctiensudungtaikhoa.init('ALL')}" id="BaoCaoDuoc_InBaoCaoKho_InBaoCaoTienSuDungTaiKhoa_id" submitMode="ajax" value="In báo cáo tiền sử dụng tại Khoa" />
+	
+	</rich:dropDownMenu>
+		
+	
+</rich:toolBar>
+

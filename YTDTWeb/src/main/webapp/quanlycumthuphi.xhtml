@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:a4j="http://richfaces.org/a4j"
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">
+	<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+	<script type="text/javascript">
+		
+function init() {	
+	if (window.google &amp;&amp; google.gears) {    	
+    	try {
+    		setAttrForCombobox(prefix_component + "__cumma", "DT_DM_CUM_span", "DT_DM_CUM","getDtDmCum()","","","");
+    		setAttrForCombobox(prefix_component + "__nhanvienma", "DT_DM_NHAN_VIEN_span", "DT_DM_NHAN_VIEN","getDtDmNhanVien()","","","");
+    		timer.setTimeout(function(){focusInit()},0);
+        } catch (e) {
+        	alert("init error: " + e.description);
+        }
+    }    
+}
+
+function focusInit(){
+	document.getElementById(prefix_component + "__tungaydt").focus();
+}
+
+function oncompleteDisplayCT(){
+	myOnblurTextbox(prefix_component + "__cumma","DT_DM_CUM");
+	myOnblurTextbox(prefix_component + "__nhanvienma","DT_DM_NHAN_VIEN");
+	document.getElementById(prefix_component + "__nhanvienma").focus();
+}
+
+function oncompleteUpdate(){
+	document.getElementById("DT_DM_NHAN_VIEN").value ="";
+	document.getElementById("DT_DM_CUM").value ="";
+}
+
+function oncompleteSearch(){
+	document.getElementById("DT_DM_NHAN_VIEN").value ="";
+	document.getElementById(prefix_component + "__nhanvienma").value ="";
+}
+
+function iesvn_Required() {
+	this.aa = new Array(prefix_component + "__nhanvienma", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Nhân viên'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+	this.ab = new Array(prefix_component + "__cumma", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Cụm'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+}
+
+function checkUpdateCT(){
+	var form = document.forms[0];
+	var valid = true;	
+	if (valid) {
+		valid = iesvn_ValidateRequired(form);
+	}
+	return valid;
+}
+
+function bindTen(){
+	document.getElementById(prefix_component + "__nhanvienma_ten").value = document.getElementById("DT_DM_NHAN_VIEN").value;
+	document.getElementById(prefix_component + "__cumma_ten").value = document.getElementById("DT_DM_CUM").value;
+}
+	
+	</script>
+	<h:form id="_form" name="_form">	
+	<div style="width:778px; position:absolute; z-index:99">
+	<ui:include src="/layout/mymenu_YTDT_QuanTriHeThong.xhtml" /></div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="72%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="images/white_light.gif" width="43" height="16" />
+    						QUẢN LÝ PHÂN CÔNG CÔNG VIỆC CÁC CỤM THU PHÍ
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>    
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="965px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea;" width="100%" align="center" >
+    			<a4j:outputPanel id="message_infor">
+    				<h:messages styleClass="mynull"/>
+    			</a4j:outputPanel>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-bottom: 5px" width="100%" >    			
+    			<table cellspacing="0" cellpadding="0" border="0" width="76%" align="center">
+    				<tr style="height:25px;" >
+    					<td style="padding-left: 11px;" >
+    						<h:outputText value="Từ ngày" styleClass="mytext" style="margin-left:8px;margin-right:5px;" />
+    			<h:inputText value="#{quanlycumthuphi.tungay}" onkeypress="return being_wellformed_Date(this, event)" onblur="return is_wellformed_Date(this)" tabindex="1" type="text" id="__tungaydt" name="_tungaydt" maxlength="10" style=" width : 70px;" class="myinput"/><a hideFocus="true" onclick="if (document.getElementById(prefix_component + '__tungaydt').disabled) return; if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__tungaydt'));document.getElementById(prefix_component + '__denngaydt').focus();return false;" href="javascript:void(0)"  style="text-decoration:none;">
+    			<h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/>
+    			</a>
+    			<h:outputText value="Đến ngày" styleClass="mytext" style="margin-left: 10px;margin-right:5px;"/>
+    			<h:inputText value="#{quanlycumthuphi.denngay}" onkeypress="return being_wellformed_Date(this, event)" onblur="return is_wellformed_Date(this)" tabindex="2" type="text" id="__denngaydt" name="_denngaydt" maxlength="10" style=" width : 70px;" class="myinput"/><a hideFocus="true" onclick="if (document.getElementById(prefix_component + '__denngaydt').disabled) return; if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__denngaydt'));document.getElementById(prefix_component + '__nhanvienma').focus();return false;" href="javascript:void(0)" style="text-decoration:none;" >
+    			<h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/>
+    			</a>  			 	
+    			 <iframe width="174" height="189" name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;"/>
+    			 
+    			 <h:outputText value="Cụm" style="margin-left:8px;margin-right:5px;"/>   
+    			 <h:inputHidden id="__cumma_pk" value="#{quanlycumthuphi.cumMaso}"/>
+    			 <h:inputHidden id="__cumma_ten" value="#{quanlycumthuphi.cumTen}"/> 			
+    			<h:inputText value="#{quanlycumthuphi.cumMa}" onblur="myOnblurTextbox(this.id,'DT_DM_CUM')" tabindex="3" id="__cumma" style="width: 45px;" styleClass="myinput"/>
+    			<span id="DT_DM_CUM_span"/>
+    			<input tabindex="4" id="DT_DM_CUM" name="DT_DM_CUM" style="width: 140px;" class="mycbogear"/>
+    			<a4j:commandButton id="__timkiem" name="_timkiem" styleClass="mybton_search" style="width: 25px; height:22px; margin:0 0 0 10" tabindex="5" 
+    				action="#{quanlycumthuphi.search}"
+    				reRender="listKetqua,message_infor"
+    				oncomplete="oncompleteSearch()"/>
+    					</td>
+    				</tr> 
+    				<tr style="height:25px;" >
+    					<td>
+    						<h:outputText value="Nhân viên" style="margin-left:8px;margin-right:5px;"/>    
+    			<h:inputHidden id="__nhanvienma_pk" value="#{quanlycumthuphi.nhanvienMaso}"/>	
+    			<h:inputHidden value="#{quanlycumthuphi.nhanvienTen}" id="__nhanvienma_ten"/>		
+    			<h:inputText value="#{quanlycumthuphi.nhanvienMa}" onblur="myOnblurTextbox(this.id,'DT_DM_NHAN_VIEN')" tabindex="6" id="__nhanvienma" style="width: 45px;" styleClass="myinput"/>
+    			<span id="DT_DM_NHAN_VIEN_span"/>
+    			<input tabindex="7" id="DT_DM_NHAN_VIEN" name="DT_DM_NHAN_VIEN" style="width: 140px;" class="mycbogear"/>  
+    			<h:outputText value="Quyền" style="margin-left:59px;margin-right:5px;"/>
+    			<h:selectOneMenu id="__quyen" value="#{quanlycumthuphi.quyen}" tabindex="8">
+  					<f:selectItem itemValue="1" itemLabel="Nhập liệu"/>
+  					<f:selectItem itemValue="2" itemLabel="Thu ngân"/>
+				</h:selectOneMenu> 
+				<a4j:commandButton tabindex="9" value="&#160;" style=" width: 20px;height : 20px;" styleClass="mybton_add"
+					onclick="if (!checkUpdateCT()) return false;bindTen();"
+					action="#{quanlycumthuphi.updateCT}"
+					reRender="listKetqua,__tungaydt,__denngaydt,__cumma,__cumma_pk,__nhanvienma_pk,__nhanvienma,__quyen"
+					oncomplete="oncompleteUpdate()"/>
+    					</td>
+    				</tr>
+    			</table>
+    					    						
+    		</td>
+    	</tr>	    	  	
+    	<tr>
+    		<td colspan="3" style="background-color: white; padding-top: 5px; padding-bottom: 15px;" width="100%" align="center">
+    		
+    		<!-- Detail Area -->
+    			<table cellspacing="0" cellpadding="0" border="0" width="75%" style="border: solid 1px #7a9dba;">
+	    			<tr style=" height : 20px;" class="mycol">
+    					<td align="center" style="width: 6%; border-right: solid 1px; border-color:#ffffff;">
+    						<h:outputText value="STT"/>
+    					</td>
+    					<td align="center" style="width: 14%; border-right: solid 1px; border-color:#ffffff;">
+    						<h:outputText value="Từ ngày"/>
+    					</td>
+    					<td align="center" style="width: 14%; border-right: solid 1px; border-color:#ffffff;">
+    						<h:outputText value="Đến ngày"/>
+    					</td>    					   					
+    					<td align="center" style="width: 17%; border-right: solid 1px; border-color:#ffffff;">
+    						<h:outputText value="Cụm"/>
+    					</td>
+    					<td align="center" style="width: 28%; border-right: solid 1px; border-color:#ffffff;">
+    						<h:outputText value="Nhân viên"/>
+    					</td>
+    					
+    					<td align="center" >
+    						<h:outputText value="Quyền" />
+    					</td>  
+    								    								
+    				</tr>
+	    			
+	    				
+	    		<tr>
+    				<td colspan="10" >		
+	    				
+	    					
+     			<div style="overflow-y: scroll; overflow-x: hidden; height:100px; border: solid 0px #54779f; width: 100%">    		
+    			 
+    			<h:panelGroup id="listKetqua">
+    					
+                     <rich:dataTable value="#{listPCCTP}" var="crrRow" rendered="#{listPCCTP.rowCount >=0}" rowClasses="myrow1,myrow2">
+                        
+                        <rich:column style="width:25px" align="center" >
+                        	<a4j:commandLink value="#{listPCCTP.rowIndex+1}"
+                        	action="#{quanlycumthuphi.displayCT(listPCCTP.rowIndex)}"
+                        	reRender="__tungaydt,__denngaydt,__cumma,__nhanvienma_pk,__nhanvienma,__quyen"
+                        	oncomplete="oncompleteDisplayCT()"/>
+                        </rich:column>
+                        <rich:column style="width:72px" align="center" >
+                           <h:outputText id="tungay" value="#{quanlycumthuphi.formatDate(crrRow.pcctpTungay)}" />  
+                        </rich:column>
+                        <rich:column style="width:72px" align="center" >
+                           <h:outputText id="denngay" value="#{quanlycumthuphi.formatDate(crrRow.pcctpDenngay)}" />  
+                        </rich:column>
+                        <rich:column style="width:90px" align="left" >
+                           <h:outputText id="cum" value="#{crrRow.dtdmcumMa.dtdmcumTen}" />  
+                        </rich:column>
+                        <rich:column style="width:154px" align="left" >
+                           <h:outputText id="nhanvien" value="#{crrRow.dtdmnhanvienMa.dtdmnhanvienTen}" />  
+                        </rich:column>
+                        <rich:column style="width:77px" align="left">
+                           <h:outputText id="quyen" value="#{crrRow.quyen==1? 'Nhập liệu' : 'Thu ngân'}" />  
+                        </rich:column>             
+                        <rich:column id="column_deletect" align="left">                                                                        	                        
+	                        <a4j:commandLink style="width : 19px; height 16px;margin-left:-5px;" 
+					    			action="#{quanlycumthuphi.delete(listPCCTP.rowIndex)}" 
+    								reRender="listKetqua,message_infor">
+								<h:graphicImage  value="/images/icon_delete2.gif" style="width: 19px; height: 16px; cursor: hand;"/>
+							</a4j:commandLink>	                                
+	                    </rich:column>
+                         
+                   </rich:dataTable>
+				</h:panelGroup>
+				
+    			</div>
+				</td>
+				</tr>
+				
+				</table>  		
+    		
+    		</td>
+    	</tr>
+    	
+    	  	
+    </table>
+    </h:form>    
+</ui:define> 
+</ui:composition>

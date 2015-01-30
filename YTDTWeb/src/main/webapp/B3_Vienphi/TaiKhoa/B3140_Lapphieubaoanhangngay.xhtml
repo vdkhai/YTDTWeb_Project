@@ -1,0 +1,736 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                 xmlns:c="http://java.sun.com/jstl/core" 
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">	
+
+<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+
+	<script type="text/javascript">
+		var bTimkiem = false;
+		var bAddrow = false;
+		var bEdit = false;
+		var bDelete = false;
+		var bSave = false;
+
+		function iesvn_ValidateForm(form) {						
+			var valid = true;		
+			if (bSave || bTimkiem || bAddrow) {	
+				valid = iesvn_ValidateRequired(form);
+				if (valid &amp;&amp; (bSave)) {						
+					valid = iesvn_ValidateComparedDates(form);					
+				} else if (valid &amp;&amp; bAddrow) {
+					
+					var tableId = prefix_component + "dataTable_NHAPCT";
+					var colCount = prefix_component + "__hidCount";
+					var hidId = "__hidSovaovien";
+					var compareId = prefix_component + "__sobenhan";
+					var indexId = prefix_component + "__selectedIndex";
+					var msg = "Bệnh nhân này đã có tên trong phiếu báo ăn rồi.";
+					valid = checkBenhnhan(tableId, colCount, hidId, compareId, indexId, msg);
+					if (valid) {
+						var soluong  = parseInt(document.getElementById(prefix_component + '__soluong').value,10);
+						if(document.getElementById(prefix_component + '__dangsua:1').checked) {
+							if (document.getElementById(prefix_component + 'LOAIAN2_MA_pk').value == 6) {
+								var sodu = soluong% 2500;
+								if (sodu != 0) {
+									alert("Số lượng không hợp lệ.");
+									document.getElementById(prefix_component + '__soluong').focus();
+									valid  = false;
+								}
+							} else {
+								var sodu = soluong% 3000;
+								if (sodu != 0) {
+									alert("Số lượng không hợp lệ.");
+									document.getElementById(prefix_component + '__soluong').focus();
+									valid  = false;
+								}
+							}
+						}																																						
+				    }	
+				}															    
+		    }
+		    
+			bTimkiem = false;
+			bAddrow = false;
+			bEdit = false;
+			bDelete = false;
+			bSave = false; 	    	    
+		    return valid;
+		}
+		function iesvn_Required() {
+			if (bTimkiem) {
+				this.aa = new Array(prefix_component + "DM_KHOA_MA", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Khoa'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));				
+				this.ab = new Array(prefix_component + "__ngay", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Ngày ăn'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+			} else if (bAddrow) {
+				this.ac = new Array(prefix_component + "__sobenhan", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Số bệnh án'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+				this.ad = new Array(prefix_component + "DOITUONGAN_MA", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Đối tượng ăn'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+				this.ae = new Array(prefix_component + "LOAIAN_MA", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Loại ăn'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+				//if (document.getElementById(prefix_component + "LOAIAN_MA").value == "KHAUPHAN") {
+					this.af = new Array(prefix_component + "LOAIAN2_MA", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Loại ăn 2'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+				//}
+				if(document.getElementById(prefix_component + 'DOITUONGAN_MA').value == "DT") {
+					this.ah = new Array(prefix_component + "DONGTHEM_MA", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Đóng thêm'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+				} else {
+					this.ag = new Array(prefix_component + "MUCAN_MA", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Mức ăn'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+				}
+			}
+ 	 		
+		}	
+		function iesvn_ComparedDates() {     				
+			this.aa = new Array([prefix_component + "__ngayhientai",prefix_component + "__ngay", "=="], "<h:outputFormat value='#{msg.common_compareDates2}' > <f:param value='Ngày ăn'/> <f:param value='ngày hiện tại'/> </h:outputFormat>", new Function ("varName", "this.datePatternStrict='dd/MM/yyyy';  return this[varName];"));
+			
+		}
+		function checkBenhnhan(tableId, countId, hidId, compareId, indexId, msg) {
+			var compareObj = document.getElementById(compareId);
+			var count = document.getElementById(countId).value;
+			var index = document.getElementById(indexId).value;
+			//alert("count: " + count);
+			for (var i = 0; i &lt; count; i++) {
+				//alert(tableId + ':' + i + ':' + hidId);
+				var hidden = document.getElementById(tableId + ':' + i + ':' + hidId);			
+				if (hidden.value == compareObj.value &amp;&amp; (index == -1 || i != index)) {
+					alert(msg);
+					return false;
+				}
+			} 
+			return true;
+		}
+    	// review code below, not used 
+    	function checkEmpty(id){
+        	//alert(document.getElementById(prefix_component +"MUCAN_MA_pk").value);
+			if ( document.getElementById(id).value == null || document.getElementById(id).value == "" ){
+			
+				if(document.getElementById(id).className.match(/focus/gi))
+              		document.getElementById(id).className = document.getElementById(id).className.replace(/focus/gi,"");
+				return false;
+			}
+			return true;
+		}
+		function enterToTab(){
+		
+		  		  if(
+		          	 	(document.getElementById(prefix_component + "__nhaplai") == null ||document.getElementById(prefix_component + "__nhaplai").alt != 1 ) &amp;&amp; 
+		           		(document.getElementById(prefix_component + "__ghinhan") == null ||document.getElementById(prefix_component + "__ghinhan").alt ) != 1  &amp;&amp;
+		           		(document.getElementById(prefix_component + "__inphieu") == null ||document.getElementById(prefix_component + "__inphieu").alt ) != 1  &amp;&amp;
+		           	(document.getElementById(prefix_component + "__themchinhsau") == null ||document.getElementById(prefix_component + "__themchinhsau").alt  != 1)  
+		           ) {
+		           
+		                  if(window.event.keyCode == 13){
+		                         window.event.keyCode = 9;
+		                   }
+		           }
+		}
+		
+			
+		
+		
+
+		function checkPrint()
+		{
+			var maPhieu =  document.getElementById(prefix_component + "__maphieu").value;
+			if (maPhieu == null || maPhieu == ""){
+			  alert("Vui lòng nhập mã phiếu");
+			  return false;
+			}
+			return true;
+		}
+				
+		function onSubmitTmp(){
+			setSave() ;
+			var maPhieu =  document.getElementById(prefix_component + "__maphieu").value;
+			var resultHidden = document.getElementById(prefix_component + "resultHidden").value;
+
+			//if (maPhieu != null &amp;&amp; maPhieu != "" &amp;&amp; resultHidden != "success"){
+			  //alert("Không được phép chỉnh sửa phiếu.");
+			  //return false;
+			//}
+			return onSubmit();
+		}
+
+		function onSubmit() {
+			changeCursorWait ();
+			var form = document.forms[0];
+			var valid = true;			
+			if (bSave){
+		    	bSave = false;	    	    	
+		    	valid = iesvn_ValidateRequired(form)  ;     	
+		    } 	    
+		       
+		    if (bCancel){
+		    	bCancel = false;
+		    }
+		    if (valid == false){
+	    		changeCursorDefault ();
+	    	}
+		    return valid;
+			
+		}
+		
+
+		
+	</script>
+	<body onkeydown="enterToTab();">
+	<h:form id="_form" name="_form" onsubmit="return iesvn_ValidateForm(this)">
+	<h:inputHidden id="__hidPba" value="#{strLapPba}"/>
+    <div style="width:778px; position:absolute; z-index:99">
+    <ui:include src="/layout/mymenu_YTDT_DieuTriNoiTru.xhtml" />    
+    
+    </div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="50%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						PHIẾU BÁO ĂN
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>    
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="965px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    			<tr style=" height : 5px;">
+    		<td width="100%" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 0px" colspan="3" align="center">  
+    		      	<a4j:outputPanel id="message_infor">
+       					 <h:messages styleClass="mynull"/>
+					</a4j:outputPanel>
+    		</td>    		
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 5px" width="100%" >
+    			<!-- Main Area -->    		
+    			<table cellspacing="0" cellpadding="0" border="0" width="97%" align="center">
+    			<tr style="height: 25px;">
+    					<td align="right" width="12%">
+    						<h:outputText  value="Khoa" styleClass="mytext" style="margin-left: 5px; margin-right: 5px"/>
+	    					
+	    					</td>
+	    					<td>
+	    					<h:inputHidden id="DM_KHOA_MA_pk" value="#{B3140_Lapphieubaoanhangngay.khoaMaso}"/>
+    						<h:inputText value="" tabindex="1" onblur="myOnblurTextbox(this.id,'DM_KHOA');seachPhieubaoan();" id="DM_KHOA_MA" style="width: 30px;" styleClass="myinput"/>
+	    					<span id="DM_KHOA_span"/>
+	    					<input tabindex="2" id="DM_KHOA" name="DM_KHOA" style="width: 200px;" class="mycbogear"/> 
+	    					<h:outputText value="*" styleClass="mynull" />
+    					
+    						<h:outputText  value="Ngày ăn" styleClass="mytext" style="margin-left: 15px; margin-right: 5px"/>    						
+    					    						    		
+	    					<h:inputText value="#{B3140_Lapphieubaoanhangngay.ngayan}" onkeypress="return being_wellformed_Date(this, event)" 
+	    						onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); if (is_wellformed_Date(this)) {seachPhieubaoan();};'  
+	    						tabindex="3" type="text" id="__ngay" name="_ngay" maxlength="10" style=" width : 70px;" class="myinput"/>
+	    						<a hideFocus="true" href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__ngay'));return false;" ><h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/></a>
+	    						<input type="button" id="__timkiem" 	    					
+	    							onclick="seachPhieubaoan()" name="_timkiem" value="" class="mybton_search" style="height:20px;width:20px;"/>			
+	    					</td>
+	    					
+    				</tr>	
+    				    					    				
+	    	  </table> 
+    					
+    									
+    		</td>
+    	</tr>	
+    	<tr>
+    	<td colspan="3" style="background-color: white; padding-top: 5px; padding-bottom: 5px;" width="100%" align="center">
+    			<!-- Detail Area -->
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+	    			<tr style="height: 25px;">
+	    				<td align="right" style="padding-left: 0px; width:14%">
+    						<h:outputText value="Số bệnh án" styleClass="mytext" style="margin-right: 5px; margin-left: 5px;"/>
+    					</td>
+    					<td align="left" colspan="3"> 
+    						<h:inputText maxlength="17" value="#{B3140_Lapphieubaoanhangngay.sohsbenhan}" 
+    							tabindex="4" id="__sobenhan" name="_sobenhan"  style=" width : 119px;" styleClass="myinput" onblur="checkEmpty(this)">    							
+    					  	</h:inputText>
+    					  	<h:outputText value="*" styleClass="mynull" style="margin-right: 5px; margin-left: 2px;" />
+    					
+    						<h:outputText   value="Mã bệnh nhân" styleClass="mytext" style="margin-right: 5px; margin-left: 50px;"/>
+    					
+    						<h:inputText   maxlength="17"  value="#{B3140_Lapphieubaoanhangngay.pbacda.bnphieubaoan.hsbaSovaovien.benhnhanMa.benhnhanMa}"
+			    				 id="__mabenhnhan" name="_mabenhnhan" readonly="true" style=" width : 118px;" styleClass="myreadonly"/>			    				 
+    					</td>
+	    			</tr>
+	    			<tr style="height: 25px;">
+    					<td align="right" > 
+    						<h:outputText value="Họ tên" styleClass="mytext" style="margin-left: 5px; margin-right: 5px"/>
+    						
+    					</td>
+    					<td  align="left" colspan="3">
+    						<table cellspacing="0" cellpadding="0" border="0" width="100%">
+	    					<tr>
+		    					<td align="left" width="30%">
+		    						<h:inputText  readonly="true"  value="#{B3140_Lapphieubaoanhangngay.pbacda.bnphieubaoan.hsbaSovaovien.benhnhanMa.benhnhanHoten}" id="__hoten" name="_hoten" style="float: left; width : 183px;" styleClass="myreadonly"/>
+		    						<h:inputHidden value="#{B3140_Lapphieubaoanhangngay.pbacda.bnphieubaoan.hsbaSovaovien.benhnhanMa.benhnhanHoten}" id="__hidhoten" name="_hidhoten"/>
+		    					</td>
+		    					<td align="left" width="26%">
+		    						<h:outputText value="Giới tính" styleClass="mytext" style="float: left; padding-top:3px; margin-left: 05px; margin-right: 0px;"/>
+		    						<h:selectOneRadio disabled="true" readonly="true"  id="__gioitinh" value="#{B3140_Lapphieubaoanhangngay.gioitinh}">
+							        	<f:selectItem id="__namItems" itemValue="1" itemLabel="Nam" styleClass="mycheck"   />					    
+							        	<f:selectItem id="__nuItems" itemValue="0" itemLabel="Nữ" styleClass="mycheck" />
+							    	</h:selectOneRadio>
+		    					</td>
+		    					<td align="left">
+			    					<h:outputText value="Tuổi" styleClass="mytext" style=" margin-left: 7px; margin-right: 5px;"/>
+		    						<h:inputText readonly="true" value="#{B3140_Lapphieubaoanhangngay.pbacda.bnphieubaoan.hsbaSovaovien.benhnhanMa.benhnhanTuoi}" id="__tuoi" name="_tuoi" style="margin-left: 0px; margin-right: 1px; width : 39px;" styleClass="myreadonly"/>
+		    						
+		    						<h:inputText value="" id="__donViTuoi" styleClass="mytext" style="margin-left: 5px;margin-right: 5px;border-left-width: 0px;border-right-width: 0px;border-top-width: 0px;border-bottom-width: 0px" readonly="true"/> 		
+		    						<h:inputHidden id="__donViTuoiHid" value="#{B3140_Lapphieubaoanhangngay.pbacda.bnphieubaoan.hsbaSovaovien.benhnhanMa.benhnhanDonvituoi}"/>
+		    					</td>
+	    					</tr>
+	    			</table>
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    				<td align="right">
+							<h:outputText value="Phòng" styleClass="mytext" style="margin-left: 13px; margin-right: 5px"/>
+						</td>
+						<td align="left" colspan="3">
+    					 	<h:inputText value="#{B3140_Lapphieubaoanhangngay.phong}" id="__phong" name="_phong" readonly="true" style=" width : 140px; " styleClass="myreadonly"/>	
+						
+							<h:outputText value="Chẩn đoán" styleClass="mytext" style="margin-left: 50px; margin-right: 5px;"/>
+						
+							<h:inputText value="#{B3140_Lapphieubaoanhangngay.pbacda.bnphieubaoan.hsbaSovaovien.getHsbaMachdoanbd(true).dmbenhicdTen}" id="__chandoan" name="_chandoan" style=" width : 250px; " styleClass="myreadonly" readonly="true"/>   
+						</td>
+	    			</tr>
+	    			<tr style="height: 25px;">
+    					<td align="right">
+							<h:outputText value="Đối tượng ăn" styleClass="mytext" style="margin-left: 13px; margin-right: 5px"/>
+						</td>
+						<td align="left" colspan="3">
+							<h:inputHidden id="DOITUONGAN_MA_pk" value="#{B3140_Lapphieubaoanhangngay.doituonganMaso}"/>
+	    					 	<h:inputHidden value="" id="DOITUONGAN_MA" name="DOITUONGAN_MA" style=" width : 30px; " styleClass="myinput"/>	    					 	
+	    					 	<input id="DT_DM_DOI_TUONG_AN" name="DT_DM_DOI_TUONG_AN" tabindex="6" style="width: 160px;" class="mycbogear"/>
+	    					
+						
+							<h:outputText value="Loại ăn" styleClass="mytext" style="margin-left: 50px; margin-right: 5px"/>
+						
+							<h:inputHidden id="LOAIAN_MA_pk" value="#{B3140_Lapphieubaoanhangngay.loaian1Maso}"/>
+    					 	<h:inputHidden value="" id="LOAIAN_MA" name="LOAIAN_MA" style=" width : 30px; " styleClass="myinput"/>    					 	
+    					 	<input id="DT_DM_LOAI_AN" name="DT_DM_LOAI_AN" tabindex="6" style="width: 160px;" class="mycbogear"/>	
+    					 	<h:inputHidden id="LOAIAN2_MA_pk" value="#{B3140_Lapphieubaoanhangngay.loaian2Maso}"/>
+    					 	<h:inputHidden value="" id="LOAIAN2_MA" name="LOAIAN2_MA" style=" width : 30px; " styleClass="myinput"/>    					 	
+    					 	<input id="DT_DM_LOAI_AN2" name="DT_DM_LOAI_AN2" tabindex="6" style="width: 160px;" class="mycbogear"/>
+    						<h:outputText value="*" styleClass="mynull" style="margin-right: 5px; margin-left: 2px;" />   
+						</td>
+    				</tr>
+    				<tr  style="height: 25px;display:none;" id="__rowChedoan">
+    					<td align="right" >
+							<h:outputText value="Chế độ ăn" styleClass="mytext" style="margin-left: 13px; margin-right: 5px"/>
+						</td>
+						<td  align="left" colspan="3">								
+							 	<h:selectBooleanCheckbox value="#{B3140_Lapphieubaoanhangngay.cdaLat}" tabindex="7" id="__cda1" onclick="checkCheDoAn(this, 6, false)" style="margin-left: 10px; margin-right: 5px"/><h:outputText value="Lạt" />  
+							 	<h:selectBooleanCheckbox value="#{B3140_Lapphieubaoanhangngay.cdaDd}" tabindex="8" id="__cda2" onclick="checkCheDoAn(this, 6, false)" style="margin-left: 20px; margin-right: 5px"/><h:outputText value="ĐĐ" />
+								 <h:selectBooleanCheckbox value="#{B3140_Lapphieubaoanhangngay.cdaStm}" tabindex="9" id="__cda3" onclick="checkCheDoAn(this, 6, false)" style="margin-left: 20px; margin-right: 5px"/><h:outputText value="STM" />							 
+								 <h:selectBooleanCheckbox value="#{B3140_Lapphieubaoanhangngay.cdaCmo}" tabindex="10" id="__cda5" onclick="checkCheDoAn(this, 6, false)" style="margin-left: 20px; margin-right: 5px"/><h:outputText value="C.mỡ" />
+								 <h:selectBooleanCheckbox value="#{B3140_Lapphieubaoanhangngay.cdaBduong}" tabindex="11" id="__cda6" onclick="checkCheDoAn(this, 6, false)" style="margin-left: 20px; margin-right: 5px"/><h:outputText value="Bồi dưỡng"/>
+								 <h:selectBooleanCheckbox value="#{B3140_Lapphieubaoanhangngay.cdaThuong}" tabindex="12" id="__cda4" onclick="checkCheDoAn(this, 6, true)" style="margin-left: 20px; margin-right: 5px"/><h:outputText value="Bình thường" />
+							 
+							 
+							    					
+	    				</td>
+    				</tr>
+    				<tr  style="height: 25px;display:none;" id="__rowDangsua">
+    					<td align="right" >
+							<h:outputText value="Dạng sữa" styleClass="mytext" style="margin-left: 13px; margin-right: 5px"/>
+						</td>
+						<td  align="left" colspan="3">
+							 <h:selectOneRadio id="__dangsua" value="#{B3140_Lapphieubaoanhangngay.pbacda.bnphieubaoan.bnpbaDangsua}" style="float: left;margin-left: 10px; margin-right: 5px">
+					        	<f:selectItem id="__phaItems" itemValue="0" itemLabel=" Sữa pha  " styleClass="mycheck" />					    
+					        	<f:selectItem id="__hopItems" itemValue="1" itemLabel=" Sữa hộp  " styleClass="mycheck" />
+					    	</h:selectOneRadio>
+					    	<h:outputText value="Số lượng" styleClass="mytext" style="margin-left: 53px; margin-right: 5px"/>
+					    	<h:inputText id="__soluong" maxlength="7" value="#{B3140_Lapphieubaoanhangngay.pbacda.bnphieubaoan.bnpbaSoluong}" style="width: 80px;" styleClass="myinput" onkeypress="iesvn_InputInKeys('1234567890');" onchange="checkSoluong(this);"/>
+							 <h:outputText value="(ml)" styleClass="mytext" style="margin-left: 3px; margin-right: 5px"/>							    				
+	    				</td>
+    				</tr>
+    				<tr  style="height: 25px;">
+    					<td align="right" >
+							<h:outputText value="Giờ ăn" styleClass="mytext" style="margin-left: 13px; margin-right: 5px"/>
+						</td>
+						<td  align="left" colspan="3">
+							 <h:selectBooleanCheckbox value="#{B3140_Lapphieubaoanhangngay.gioan6}" tabindex="13" id="__ga1" style="margin-left: 10px; margin-right: 5px"/><h:outputText value="6 giờ" />  
+							 <h:selectBooleanCheckbox value="#{B3140_Lapphieubaoanhangngay.gioan11}" tabindex="14" id="__ga2" style="margin-left: 20px; margin-right: 5px"/><h:outputText value="11 giờ" />
+							 <h:selectBooleanCheckbox value="#{B3140_Lapphieubaoanhangngay.gioan16}" tabindex="15" id="__ga3" style="margin-left: 20px; margin-right: 5px"/><h:outputText value="16 giờ" />
+							 <h:selectBooleanCheckbox value="#{B3140_Lapphieubaoanhangngay.gioan20}" tabindex="16" id="__ga4" style="margin-left: 20px; margin-right: 5px"/><h:outputText value="20 giờ" />
+							    					
+	    				</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right">
+							<h:outputText value="Mức ăn" styleClass="mytext" style="margin-left: 13px; margin-right: 5px"/>
+						</td>
+						<td align="left" colspan="2">
+						<h:inputHidden id="MUCAN_MA_pk" value="#{B3140_Lapphieubaoanhangngay.mucanMaso}"/>
+    					 	<h:inputHidden value="" id="MUCAN_MA" name="MUCAN_MA" styleClass="myinput"/>    					 	
+    					 	<input id="DT_DM_MUC_AN" name="DT_DM_MUC_AN" tabindex="17" style="width: 160px;" class="mycbogear"/>	
+    						<h:inputText value="*" styleClass="mynull" id="__reqMa" style="margin-right: 5px; margin-left: 2px;width:10px;border-right-width: 0px;border-top-width: 0px;border-bottom-width: 0px" /> 
+    						   
+						
+							<h:outputText value="Đóng thêm" styleClass="mytext" style="margin-left: 50px; margin-right: 5px"/>
+						
+							<h:inputHidden id="DONGTHEM_MA_pk" value="#{B3140_Lapphieubaoanhangngay.dongthemMaso}"/>
+    					 	<h:inputHidden value="" id="DONGTHEM_MA" name="DONGTHEM_MA" styleClass="myinput"/>    					 	
+    					 	<input id="DT_DM_DONG_THEM" name="DT_DM_DONG_THEM" tabindex="18" style="width: 160px;" class="mycbogear"/>
+    					 	<h:inputText value="" styleClass="mynull" id="__reqDt" style="margin-right: 5px; margin-left: 2px;width:10px;border-right-width: 0px;border-top-width: 0px;border-bottom-width: 0px" />    						    					   
+						</td>
+    				</tr>
+    				
+    				<tr  style="height: 25px;">
+    					<td align="right" >
+							
+						</td>
+						<td  align="left" colspan="3">
+							 
+							<h:selectBooleanCheckbox value="#{B3140_Lapphieubaoanhangngay.phutroi}" tabindex="19" id="__phutroi"/>
+	    					<h:outputText value="Phụ trội" styleClass="mytext"/>
+    					    											
+    						<a4j:commandButton tabindex="20" 
+    						id="__themchinhsau" name="_themchinhsau" action="#{B3140_Lapphieubaoanhangngay.enter}"      						
+    						onclick="bAddrow = true;"
+    						reRender="dataTable_NHAPCT,listKetqua,__sobenhan,__gioitinh,__tuoi,message_infor,__mabenhnhan,__hoten,__hidhoten,__tuoi,__donViTuoiHid,__cda1,__cda2,__cda3,__cda4,__cda5,__cda6,__ga1,__ga2,__ga3,__ga4,__phutroi,__selectedIndex,__hidCount,__dangsua,__soluong"
+    						oncomplete="showDonvituoi();resetComboData(true);checkLoaiAn();checkDoituongan();"
+    						 style="width: 20px; height: 19px;margin-left: 50px; margin-right: 5px" styleClass="mybton_add"/>
+	    				</td>
+    				</tr>
+	    		</table>
+	    </td>
+	    </tr>
+    	<tr>
+    		<td colspan="3" style="background-color: white; padding-top: 5px; padding-bottom: 5px;" width="100%" align="center">
+    			<!-- Detail Area -->
+    			  
+	    	  <table cellspacing="0" cellpadding="0" border="1" width="93%" style="border: solid 1px #7a9dba;">
+    	  		<tr id="trMess">
+					<td colspan="6">
+						<h:inputText id="__txtMess" value="" style="width:100%;text-align:center;font-size: 12px; color:blue; font-weight:bold;"/>
+					</td>
+				</tr>	
+    	  		<tr>
+					<td colspan="6">
+    					<div style="overflow-x: scroll;overflow-y: scroll; height: 150px;width: 100%;" id="listKetqua">
+    						<rich:dataTable headerClass="mycol" id="dataTable_NHAPCT" rowClasses="myrow1,myrow2"
+	                          styleClass="myTable" value="#{B3140_Lapphieubaoanhangngay.listPbaCda}" var="currentRow" width="100%" bgcolor="#cccccc">
+	                        <rich:column style="width: 30px;" id="column_STT" >
+	                        	<f:facet name="header"><h:outputText value="STT"/></f:facet>	                        	
+	                            <h:outputText id="outputText26" value="#{B3140_Lapphieubaoanhangngay.listPbaCda.indexOf(currentRow)+1}"/>                 
+	                        </rich:column>
+	                        <rich:column id="column_tenbenhnhan" align="left" style="width: 250px;"> 
+	                        	<f:facet name="header"><h:outputText value="Bệnh nhân"/></f:facet> 	                                                                         
+	                            <a4j:commandLink id="tenbenhnhan_table" value="#{currentRow.bnphieubaoan.hsbaSovaovien.benhnhanMa.benhnhanHoten}"	                            
+	                            action="#{B3140_Lapphieubaoanhangngay.edit(B3140_Lapphieubaoanhangngay.listPbaCda.indexOf(currentRow))}" 
+	                            reRender="__sobenhan,__mabenhnhan,__hoten,__gioitinh,__tuoi,__donViTuoiHid,__phong,__chandoan,message_infor,__hidhoten,DOITUONGAN_MA_pk,LOAIAN_MA_pk,LOAIAN2_MA_pk,__cda1,__cda2,__cda3,__cda4,__cda5,__cda6,__ga1,__ga2,__ga3,__ga4,MUCAN_MA_pk,DONGTHEM_MA_pk,__phutroi,__selectedIndex,__dangsua,__soluong"
+	                            oncomplete="showDonvituoi();bindDataForEdit();checkLoaiAn();checkDoituongan()"/>
+	                            <h:inputText id="__hidSovaovien" value="#{currentRow.bnphieubaoan.hsbaSovaovien.hsbaSovaovien}" readonly="true" style="display:none;"/>          
+	                        </rich:column>
+	                         <rich:column id="column_doituongan" align="left" style="width: 150px;"> 
+	                        	<f:facet name="header"><h:outputText value="Đối tượng ăn"/></f:facet> 	                                                                         
+	                             <h:outputText id="doituongan_table" value="#{currentRow.bnphieubaoan.dtdmdtaMaso.dtdmdtaTen}" />         
+	                        </rich:column>
+	                        <rich:column id="column_loaian" style="width: 150px;" align="left"> 
+	                        	<f:facet name="header"><h:outputText value="Loại ăn"/></f:facet> 	                        	                                                  
+	                        	<h:outputText id="loaian_table" value="#{currentRow.bnphieubaoan.dtdmlaMaso.dtdmlaTen}" rendered="#{currentRow.bnphieubaoan.dtdmla2Maso == null}" />
+	                            <h:outputText id="loaian2_table" value="#{currentRow.bnphieubaoan.dtdmlaMaso.dtdmlaTen} - #{currentRow.bnphieubaoan.dtdmla2Maso.dtdmla2Ten}" rendered="#{currentRow.bnphieubaoan.dtdmla2Maso != null}" />          
+	                        </rich:column>	                        
+	                        <rich:column id="column_mucan" style="width: 150px;">
+	                        	<f:facet name="header"><h:outputText value="Mức ăn"/></f:facet>   	                        	                                                  
+	                            <h:outputText id="mucan_table" value="#{B3140_Lapphieubaoanhangngay.showMucan(currentRow)}" />          
+	                        </rich:column>	                       
+	                        <rich:column id="column_chedoan" style="width: 150px;" > 
+	                        	<f:facet name="header"><h:outputText value="Chế độ ăn"/></f:facet> 	                        	                                                 
+	                            <h:outputText id="chedoan_table" value="#{B3140_Lapphieubaoanhangngay.showChedoan(currentRow)}" rendered="#{currentRow.bnphieubaoan.dtdmlaMaso.dtdmlaMaso == 1}"/>          
+	                        </rich:column>
+	                        <rich:column id="column_dangsua" style="width: 150px;" > 
+	                        	<f:facet name="header"><h:outputText value="Dạng sữa"/></f:facet> 	                        	                                                 
+	                            <h:outputText id="dangsua_table" value="#{currentRow.bnphieubaoan.bnpbaDangsua == 0 ?'Sữa pha' : 'Sữa hộp'} #{currentRow.bnphieubaoan.bnpbaSoluong}(ml)" rendered="#{currentRow.bnphieubaoan.dtdmlaMaso.dtdmlaMaso == 3}" />          
+	                        </rich:column>
+	                        <rich:column id="column_cuan" style="width: 50px;" > 
+	                        	<f:facet name="header"><h:outputText value="Cữ ăn"/></f:facet> 	                        	                                                 
+	                            <h:outputText id="cuan_table" value="#{currentRow.listBnGa.size()}" />          
+	                        </rich:column>
+	                        <rich:column id="column_gioan" style="width: 150px;" > 
+	                        	<f:facet name="header"><h:outputText value="Giờ ăn"/></f:facet> 	                        	                                                 
+	                            <h:outputText id="gioan_table" value="#{B3140_Lapphieubaoanhangngay.showGioan(currentRow)}" />          
+	                        </rich:column>
+	                        <rich:column style="width: 20px;" >       							
+       							<a4j:commandLink id="xoa" action="#{B3140_Lapphieubaoanhangngay.delete(B3140_Lapphieubaoanhangngay.listPbaCda.indexOf(currentRow))}" reRender="dataTable_NHAPCT,listKetqua,__sobenhan,__gioitinh,__tuoi,message_infor,__mabenhnhan,__hoten,__hidhoten,__tuoi,__donViTuoiHid,__cda1,__cda2,__cda3,__cda4,__cda5,__cda6,__ga1,__ga2,__ga3,__ga4,__phutroi,__selectedIndex,__hidCount,__dangsua,__soluong" oncomplete="showDonvituoi();resetComboData(false);checkLoaiAn();">  
+                                	<h:graphicImage value="/images/icon_delete2.gif" style="width: 19px; height: 16px;cursor: hand;float:left">                                
+                                	</h:graphicImage>
+                                </a4j:commandLink>                                                               
+							</rich:column>
+	                    </rich:dataTable>
+    				</div>
+    			</td>
+    		</tr> 	
+    	</table> 	
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3" align="center" style="padding-left:280px; background-color: white; padding-bottom:10px">
+    
+    	<div  style="float:left;">
+    		
+    			<a4j:commandButton tabindex="21" id="__ghinhan" name="_ghinhan" 
+    			 disabled="#{B3140_Lapphieubaoanhangngay.lockGhinhanBtn}" 
+    			action="#{B3140_Lapphieubaoanhangngay.ghinhan}" 
+    			reRender="dataTable_NHAPCT,listKetqua,__sobenhan,__gioitinh,__tuoi,message_infor,__mabenhnhan,__hoten,__hidhoten,__tuoi,__donViTuoiHid,__cda1,__cda2,__cda3,__cda4,__cda5,__cda6,__ga1,__ga2,__ga3,__ga4,__phutroi,__selectedIndex,__hidCount,__ghinhan,__inphieu,__ngayLayPbaOld" oncomplete="showMessage()"  
+    			value="Ghi nhận" style="width: 70px; margin-right: 3px;" styleClass="mybton_b"/>
+    		
+    	</div> 
+    	<div  style="float:left;">
+    			<a4j:commandButton tabindex="22" id="__nhaplai" 
+    			
+    			focus="DM_KHOA_MA"
+    			name="_nhaplai" action="#{B3140_Lapphieubaoanhangngay.init}" 
+    			oncomplete="showDonvituoi();resetComboData(false);checkLoaiAn();showMessage()" 
+    			reRender="dataTable_NHAPCT,listKetqua,__sobenhan,__gioitinh,__tuoi,message_infor,__mabenhnhan,__hoten,__hidhoten,__tuoi,__donViTuoiHid,__cda1,__cda2,__cda3,__cda4,__cda5,__cda6,__ga1,__ga2,__ga3,__ga4,__phutroi,__selectedIndex,__hidCount,__dangsua,__soluong,__ghinhan,__inphieu,__ngayLayPbaOld" value="Nhập mới" 
+    			style="width: 70px; margin-right: 3px;" styleClass="mybton_b"/>
+    	</div>  
+    	
+    	<div  id="__divIn"  style="float:left;">
+    			<a4j:commandButton tabindex="23" id="__inphieu" name="_inphieu" 
+    			disabled="#{B3140_Lapphieubaoanhangngay.lockInphieuBtn}"    			
+    			action="#{B3140_Lapphieubaoanhangngay.thuchienAction()}"
+    			value="In phiếu"  style="width: 70px;  margin-right: 3px;" styleClass="mybton_b"/>
+    	</div>  
+    	
+    	
+    </td>
+  </tr>
+</table>
+	<span id="DT_DM_DOI_TUONG_AN_span"/>
+	<span id="DT_DM_LOAI_AN_span"/>
+	<span id="DT_DM_LOAI_AN2_span"/>
+	<span id="DT_DM_MUC_AN_span"/>
+	<span id="DT_DM_DONG_THEM_span"/>
+    <h:inputHidden id="hid_ReportFinished" />
+    <h:inputHidden id="resultHidden" />
+    <h:inputHidden id="hid_ReportFileName" /> 
+    <h:inputHidden id="__ngayhientai" value="#{B3140_Lapphieubaoanhangngay.ngayhientai}" />
+    <a4j:commandButton id="__btnSearchPba" action="#{B3140_Lapphieubaoanhangngay.searchPhieubaoan}" style="display:none" reRender="dataTable_NHAPCT,listKetqua,__sobenhan,__gioitinh,__tuoi,message_infor,__mabenhnhan,__hoten,__hidhoten,__tuoi,__donViTuoiHid,__cda1,__cda2,__cda3,__cda4,__cda5,__cda6,__ga1,__ga2,__ga3,__ga4,__phutroi,__selectedIndex,__hidCount,__dangsua,__soluong,__ghinhan,__inphieu,__ngayLayPbaOld"
+    	oncomplete="showMessage()"/>
+    <a4j:commandButton id="__btnSearchBn" action="#{B3140_Lapphieubaoanhangngay.searchBenhnhan}" style="display:none" reRender="message_infor, __sobenhan, __mabenhnhan, __hoten,__hidhoten, __gioitinh, __tuoi, __ phong, __chandoan,__donViTuoiHid,__cda1,__cda2,__cda3,__cda4,__cda5,__cda6,__ga1,__ga2,__ga3,__ga4,__phutroi,__selectedIndex,__dangsua,__soluong"
+    							oncomplete="resetComboData(false);checkLoaiAn();showDonvituoi();"/>
+    <h:inputHidden id="__hidCount" value="#{B3140_Lapphieubaoanhangngay.count}" />
+    <h:inputHidden id="__selectedIndex" value="#{B3140_Lapphieubaoanhangngay.selectedIndex}" />
+    <h:inputHidden id="__ngayLayPbaOld" value="#{B3140_Lapphieubaoanhangngay.ngayLayPbaOld}" />							
+   </h:form>
+   <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/vienphi/B3140_Lapphieubaoanhangngay_gears.js"></script>
+    <iframe width="174" height="189" name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;"/>
+   <script type="text/javascript">
+   		
+
+   	// Code load du lieu
+   		
+   		function checkCheDoAn(chkobj, numOfCda, binhthuong) {
+   	   		// numOfCda la so che do an, neu tren giao dien them hoac bo bot che do an, thi gia tri
+   	   		// cua tham so nay cung thay doi theo cho phu hop
+   	   		// hien tai gia tri nay = 6 (Lat, DD, STM, Binh thuong, C.mo va Bduong)
+   	   		if (chkobj.checked) {
+   	   	   		if(binhthuong) {
+   	   	   			// neu che do an binh thuong duoc chon thi
+	   	   	   		// thi bo chon cac che do an khac
+	   	   	   		for (i = 1; i &lt;= numOfCda; i++) {
+		   	   	   		if (i != 4) {
+		   	   	   			document.getElementById(prefix_component + "__cda" + i).checked = false;
+		   	   	   		}
+	   	   	   		}
+   	   	   		} else {
+	   	   	   		// neu mot che do an khac binh thuong duoc chon thi
+	   	   	   		// thi bo che do an binh thuong
+   	   	   			document.getElementById(prefix_component + "__cda4").checked = false;
+   	   	   		}	
+   	   		} else {
+   	   	   		// neu cac che do an khac deu bo chon
+   	   	   		// thi chon che do an binh thuong
+   	   	   		var countChecked = 0;
+		   	   	  for (i = 1; i &lt;= numOfCda; i++) {
+		 	   	   		if (document.getElementById(prefix_component + "__cda" + i).checked) {
+		 	   	   			countChecked++;
+		 	   	   		}
+	   	   		}
+		   	   document.getElementById(prefix_component + "__cda4").checked = (countChecked == 0);	
+   	   		}
+   		}
+   		function seachPhieubaoan() {
+   	   		if (document.getElementById(prefix_component + "DM_KHOA_MA").value == '') return;
+   	   		if (document.getElementById(prefix_component + "__ngay").value == '') return;
+   	   		
+   	   		bTimkiem = true;
+   	   		document.getElementById(prefix_component + "__btnSearchPba").click();
+   		}
+   		function seachBenhnhan(textbox) {   	   		   	   		
+   	   		document.getElementById(prefix_component + "__btnSearchBn").click();   	   		
+   		}
+   		function showDonvituoi() {   			
+   			var donViTuoi = document.getElementById(prefix_component + "__donViTuoiHid").value;   			   			 	
+   			if (donViTuoi == 1){
+   				
+   				//document.getElementById(prefix_component + "__donViTuoi").innerHTML = "";
+   				document.getElementById(prefix_component + "__donViTuoi").value = "";   				
+   			}else if (donViTuoi == 2){
+   				
+   				//document.getElementById(prefix_component + "__donViTuoi").innerHTML = "(Tháng)";
+   				document.getElementById(prefix_component + "__donViTuoi").value = "(Tháng)";   				
+   			}else if (donViTuoi == 3){
+   				
+   				//document.getElementById(prefix_component + "__donViTuoi").innerHTML = "(Ngày)";
+   				document.getElementById(prefix_component + "__donViTuoi").value = "(Ngày)";   				
+   			}else{
+   				//document.getElementById(prefix_component + "__donViTuoi").innerHTML = "(Năm)";
+   				document.getElementById(prefix_component + "__donViTuoi").value = "";   				
+   			}    			  		
+   		}
+   		function checkEmpty(textbox) {
+   	   		if (iesvn_Trim(textbox.value) != '') {
+   	   			document.getElementById(prefix_component + "__btnSearchBn").click();
+   	   		}
+   		}
+
+   		function resetComboData(refocus) {   			
+   			document.getElementById(prefix_component + 'DOITUONGAN_MA').value = '';
+   	   		myOnblurTextbox(prefix_component + 'DOITUONGAN_MA',"DT_DM_DOI_TUONG_AN");   	   	    
+   	   	    document.getElementById(prefix_component + 'LOAIAN_MA_pk').value = '';   	   	    
+   	   		document.getElementById(prefix_component + 'LOAIAN_MA').value = '';
+   	   		myOnblurTextbox(prefix_component + 'LOAIAN_MA',"DT_DM_LOAI_AN");
+   	   		document.getElementById(prefix_component + 'LOAIAN2_MA').value = '';
+	   		myOnblurTextbox(prefix_component + 'LOAIAN2_MA',"DT_DM_LOAI_AN2");
+	   		document.getElementById(prefix_component + 'MUCAN_MA').value = '';	   		
+	   		myOnblurTextbox(prefix_component + 'MUCAN_MA',"DT_DM_MUC_AN");
+	   		document.getElementById(prefix_component + 'DONGTHEM_MA').value = '';
+   	   		myOnblurTextbox(prefix_component + 'DONGTHEM_MA',"DT_DM_DONG_THEM");   	   	  
+   	   		
+   	   		if (refocus) {
+   	   			document.getElementById(prefix_component + "__donViTuoi").value = "";
+   	   			document.getElementById(prefix_component + "__sobenhan").focus();
+   	   		}   	   	    
+   		}
+   		function bindDataForEdit() {
+   			var objArr;   	   		   			
+   	   		if (document.getElementById(prefix_component + 'DOITUONGAN_MA_pk').value != '') {
+   				objArr = DtDmDoiTuongAn.filter("Maso = ?",document.getElementById(prefix_component + 'DOITUONGAN_MA_pk').value).toArray();
+   				document.getElementById(prefix_component +'DOITUONGAN_MA').value = objArr[0].Ma;
+   	   		} else {
+   	   		document.getElementById(prefix_component +'DOITUONGAN_MA').value = '';
+   	   		}
+   			myOnblurTextbox(prefix_component + 'DOITUONGAN_MA', 'DT_DM_DOI_TUONG_AN');
+   			
+            if (document.getElementById(prefix_component + 'LOAIAN_MA_pk').value != '') { 
+   				objArr = DtDmLoaiAn.filter("Maso = ?",document.getElementById(prefix_component + 'LOAIAN_MA_pk').value).toArray();
+   				document.getElementById(prefix_component +'LOAIAN_MA').value = objArr[0].Ma;
+            } else {
+            	document.getElementById(prefix_component +'LOAIAN_MA').value = '';
+            }
+   			myOnblurTextbox(prefix_component + 'LOAIAN_MA', 'DT_DM_LOAI_AN');
+
+			if (document.getElementById(prefix_component + 'LOAIAN2_MA_pk').value != '') {
+   				objArr = DtDmLoaiAn2.filter("Maso = ?",document.getElementById(prefix_component + 'LOAIAN2_MA_pk').value).toArray();
+   				document.getElementById(prefix_component +'LOAIAN2_MA').value = objArr[0].Ma;
+			} else {
+				document.getElementById(prefix_component +'LOAIAN2_MA').value = '';
+			}	
+   			myOnblurTextbox(prefix_component + 'LOAIAN2_MA', 'DT_DM_LOAI_AN2');
+
+			if (document.getElementById(prefix_component + 'MUCAN_MA_pk').value != '') {
+   				objArr = DtDmMucAn.filter("Maso = ?",document.getElementById(prefix_component + 'MUCAN_MA_pk').value).toArray();
+   				document.getElementById(prefix_component +'MUCAN_MA').value = objArr[0].Ma; 
+			} else {
+				document.getElementById(prefix_component +'MUCAN_MA').value = '';
+			}  			
+   			myOnblurTextbox(prefix_component + 'MUCAN_MA',"DT_DM_MUC_AN");
+
+			if (document.getElementById(prefix_component + 'DONGTHEM_MA_pk').value != '') {
+   				objArr = DtDmDongThem.filter("Maso = ?",document.getElementById(prefix_component + 'DONGTHEM_MA_pk').value).toArray();
+   				document.getElementById(prefix_component +'DONGTHEM_MA').value = objArr[0].Ma; 
+			} else {
+				document.getElementById(prefix_component +'DONGTHEM_MA').value = '';
+			}    			
+   			myOnblurTextbox(prefix_component + 'DONGTHEM_MA',"DT_DM_DONG_THEM");
+   		}
+   		function checkSoluong(textbox) {   	   		
+   	   		if (textbox.value != '') {
+   	   	   		textbox.value = parseInt(textbox.value,10);
+   	   		} else {
+   	   	   		if (document.getElementById(prefix_component + 'LOAIAN2_MA_pk').value == 6) {
+   	   	   	   		// Sua non thang, 1 hop la 2500 ml
+   	   	   			textbox.value = "2500";
+   	   	   		} else {
+   	   	  			// Sua step 1, 1 hop la 3000 ml
+   	   	   			textbox.value = "3000";
+   	   	   		}
+   	   		}
+   		}
+   		function checkLoaiAn() {
+   			var loaianMaso = document.getElementById(prefix_component + 'LOAIAN_MA_pk').value;   			
+   			// Neu loai an la Khau phan thi hien thi thong tin che do an
+   			document.getElementById('__rowChedoan').style.display = (loaianMaso == 1?"block":"none");
+   			// Neu loai an la Sua duong nhi thi hien thi thong tin dang sua
+   			document.getElementById('__rowDangsua').style.display = (loaianMaso == 3?"block":"none");
+   			//alert("checkLoaiAn() =  " + document.getElementById(prefix_component + 'LOAIAN_MA_pk').value);   			
+   		}
+   		function checkLoaiAn2() {   			
+   			var loaian2Maso = document.getElementById(prefix_component + 'LOAIAN2_MA_pk').value;   			
+   			// Neu loai an khong phai la Com thi khong cho check Boi duong
+   			document.getElementById(prefix_component +'__cda6').checked = false;
+   			document.getElementById(prefix_component +'__cda6').disabled = (loaian2Maso != 3);   			   		
+   		}
+   		function checkDoituongan() {
+   	   		var dta = document.getElementById(prefix_component + 'DOITUONGAN_MA').value;
+   	   		
+   	   		document.getElementById(prefix_component + '__reqDt').value = (dta == "DT" ? "*" : "");
+	   	    document.getElementById(prefix_component + '__reqMa').value = (dta == "DT" ? "" : "*");
+	   	    if(dta == "TC") {
+	   	    	document.getElementById(prefix_component + 'MUCAN_MA').value = "60000";	   	    		   	
+		   		myOnblurTextbox(prefix_component + 'MUCAN_MA',"DT_DM_MUC_AN");
+		   		document.getElementById(prefix_component + 'DONGTHEM_MA').value = '';
+	   	   		myOnblurTextbox(prefix_component + 'DONGTHEM_MA',"DT_DM_DONG_THEM");
+	   	    } else if ((dta == "DT")) {
+	   	    	document.getElementById(prefix_component + 'MUCAN_MA').value = "";	   	    		   	
+		   		myOnblurTextbox(prefix_component + 'MUCAN_MA',"DT_DM_MUC_AN");
+	   	    }	   	    
+	   	    document.getElementById('DT_DM_MUC_AN').disabled = (dta == "DT" || dta == "TC");
+	   	 	dijit.byId("DT_DM_MUC_AN").disabled = (dta == "DT" || dta == "TC");
+
+	   	 	document.getElementById('DT_DM_DONG_THEM').disabled = (dta == "TC");
+	   	 	dijit.byId("DT_DM_DONG_THEM").disabled = (dta == "TC");
+	   	 
+   		}
+   		function showMessage() {
+   			if(document.getElementById(prefix_component + '__ngayLayPbaOld').value == '') {
+   				document.getElementById('trMess').style.display = 'none';
+   			} else {
+   				document.getElementById(prefix_component + '__txtMess').value = "Chưa có phiếu báo ăn ngày " + document.getElementById(prefix_component + '__ngay').value + ". Dưới đây là danh sách bệnh nhân của phiếu báo ăn ngày " + document.getElementById(prefix_component + '__ngayLayPbaOld').value ;
+   				document.getElementById('trMess').style.display = 'block';
+   			}
+   		}
+   </script>
+   </body>
+    
+  
+</ui:define> 
+</ui:composition>
+
+

@@ -1,0 +1,43 @@
+apply plugin: 'java'
+apply plugin: 'war'
+sourceCompatibility = 1.5
+version = '1.0'
+
+war {
+    baseName = 'YTDTWeb'
+    version =  '1.0.0'
+}
+
+buildscript {
+    repositories {
+        maven { url "http://repo1.maven.org/maven2" }
+        mavenLocal()
+        mavenCentral()
+    }
+
+}
+
+configurations {
+    providedRuntime
+}
+
+
+repositories {
+    maven { url "http://repo1.maven.org/maven2" }
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'javax.servlet:servlet-api:2.5'
+
+
+    // compile("org.springframework.boot:spring-boot-starter-web")
+  // providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")//deploy tomcat
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11'
+}

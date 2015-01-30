@@ -1,0 +1,435 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                template="/layout/mytemplate.xhtml"
+                 xmlns:c="http://java.sun.com/jstl/core"
+                 
+                 
+                xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:define name="body">
+<f:loadBundle basename="com.iesvn.yte.UIResources" var="msg" />
+<script language="javascript">	
+	
+		function enterToTab(){
+			
+		  		  if(	(document.getElementById(prefix_component + "__nhapmoi") == null || document.getElementById(prefix_component + "__nhapmoi").alt != 1 ) &amp;&amp; 
+		          	 	(document.getElementById(prefix_component + "__ghinhan") ==null || document.getElementById(prefix_component + "__ghinhan").alt != 1 ) &amp;&amp; 
+		          	 	(document.getElementById(prefix_component + "__chontramyte") ==null || document.getElementById(prefix_component + "__chontramyte").alt != 1 ) 
+			     
+			     
+			     
+		           		
+		           ) {
+		          
+		                  if(window.event.keyCode == 13){
+		                         window.event.keyCode = 9;
+		                   }
+		           }
+		}
+
+		var bSave = false;
+		function setSave() {
+			bSave = true;
+		}
+	
+		
+		function iesvn_Required(){
+			this.aa = new Array(prefix_component + "__thang", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Tháng'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+ 	 		this.ab = new Array(prefix_component + "__nam", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Năm'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+			this.ac = new Array(prefix_component + "DT_DM_TRAM_Y_TE_BHYT_MA", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Trạm y tế'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+ 	 			
+			
+		}
+		 
+		
+		
+		
+		function onSubmit_ghinhan(){
+			changeCursorWait ();
+			
+			
+			var form = document.forms[0];
+			var valid = iesvn_ValidateRequired(form) ; 
+	    	ghiNhan = false;
+	    	if (valid == false){
+	    		changeCursorDefault ();
+	    	}
+	    	return valid;
+	    	
+		}
+</script>
+	<body onkeydown="enterToTab();">
+	<h:form id="_form" name="_form" >	
+	<h:inputHidden id="__ngayhientai" name="_ngayhientai" value="#{bhyt_thongketramyte.ngayhientai}"/>	
+	 
+    <div style="width:778px; position:absolute; z-index:99">
+    
+   
+    <ui:include src="/layout/mymenu_YTDT_VienPhi_BaoCao.xhtml" />
+   
+    </div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="65%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						
+    						 <c:if test='#{"noitru".equals(noitruorngoaitru)}'>
+    							CẬP NHẬT CHI PHÍ NỘI TRÚ TUYẾN XÃ
+    						</c:if>
+    						 <c:if test='#{"ngoaitru".equals(noitruorngoaitru)}'>
+    							CẬP NHẬT CHI PHÍ NGOẠI TRÚ TUYỄN XÃ
+    						</c:if>
+    						
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    							&#160;	
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>        	
+    	<tr>
+    		<td width="12px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="985px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 10px" width="100%" align="center">
+    			<!-- Main Area -->
+    			 
+    			<table cellspacing="0" cellpadding="0" border="0" width="98%" align="center" >
+    				<tr>
+			    		<td align="center">  
+			    			<a4j:outputPanel id="message_infor">
+			    		      	<h:messages  class ="mynull"/>
+			    		    </a4j:outputPanel>
+			    		</td>    		
+			    	</tr>
+			    	<tr style="height: 25px;">
+    					<td align="left" style="padding-left:30px;" >    						
+    						<h:outputText value="Tháng, năm" styleClass="mytext" style="margin-left:7px;margin-right: 5px;"/>
+    						
+    						<h:inputText value="#{bhyt_thongketramyte.thoigian_thang}" onchange=" return validatethang();" 
+    						onkeypress="iesvn_InputInKeys('0123456789')" maxlength="2" tabindex="1" id="__thang" name="_thangvaovien" style="width: 35px;margin-right:3px;" styleClass="myinput"/>
+    						<h:outputText value="*" styleClass="mynull" style="margin-right: 3px;margin-left: 3px;" /> 
+    						<h:inputText value="#{bhyt_thongketramyte.thoigian_nam}" maxlength="4" onchange="validatenam()" 
+    						onkeypress="iesvn_InputInKeys('0123456789')" onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,"");' 
+    						tabindex="2" id="__nam" name="_namvaovien" style="width: 50px;" styleClass="myinput"/>
+    				<h:outputText value="*" styleClass="mynull" style="margin-right: 3px;margin-left: 3px;" /> 
+    						<h:outputText value="Trạm Y Tế" styleClass="mytext" style="margin-left:33px;margin-right:5px;"/>
+    						
+    						<h:inputHidden id="DT_DM_TRAM_Y_TE_BHYT_MA_pk" value="#{bhyt_thongketramyte.masotramyte}"/>
+    						<h:inputText tabindex="3"  styleClass="myinput" value="#{bhyt_thongketramyte.matramyte}" 
+    							id="DT_DM_TRAM_Y_TE_BHYT_MA" onblur="myOnblurTextbox(this.id,'DT_DM_TRAM_Y_TE_BHYT')"  name="DT_DM_TRAM_Y_TE_BHYT_MA" style=" width : 35px" maxlength="10" />
+    					 	<span id="DT_DM_TRAM_Y_TE_BHYT_span"/>
+    					 	<input   tabindex="4" id="DT_DM_TRAM_Y_TE_BHYT" name="DT_DM_TRAM_Y_TE_BHYT" class="mycbogear" style=" width :230px;"/>
+    					 	
+    					 	<h:outputText value="*" styleClass="mynull" style="margin-right: 3px;margin-left: 3px;" /> 
+    						
+    						<a4j:commandButton  action="#{bhyt_thongketramyte.TimKiem()}" tabindex="5"  
+    								onclick="if (! onSubmit_ghinhan()) { this.alt = 0; return false; }"  
+    								oncomplete='changeCursorDefault(); this.alt = 0; '  
+    								id="__chontramyte"     								
+    								name="_chontramyte"  value="Chọn dữ liệu" 
+    								style="width: 90px; margin-left: 3px;" 
+    								styleClass="mybton_b" 
+    								reRender="message_infor,__thang,__nam,panelGroup,dataTable_ctTKTramYTe"/>
+    								
+    					</td>
+    				</tr>   
+			    	
+    							    				    				
+    			</table>		    						
+    		</td>
+    	</tr>	
+    	<tr>
+    		<td colspan="3" style="background-color: white; padding-top: 10px; padding-bottom: 10px;" width="100%" align="center">
+    			<!-- Detail Area -->    			
+    			
+    			<div style="overflow-x: scroll;overflow-y: scroll; height: 310px; width: 770px">
+    		
+    			<table cellspacing="0" cellpadding="0" border="0" width="200%" >    				
+    						
+    				<tr style="height: 20px;" class="mycol">
+    					<td align="center" style="width:  3%;border-right:solid 1px #ffffff;">
+    						<h:outputText value="Mã Hiệu"/>
+    					</td>
+    					<td align="center" style="border-right:solid 1px #ffffff;">
+    						<h:outputText value="Đối tượng"/>
+    					</td>
+    					<td align="center" style="width:5%;border-right:solid 1px #ffffff;">
+    						<h:outputText value="Số thẻ BHYT"/>
+    					</td>
+    					<td align="center" style="width: 5%;border-right:solid 1px #ffffff;">
+    						<h:outputText value="Số lượt KCB" />
+    					</td>
+    					<td align="center" style="width: 5%;border-right:solid 1px #ffffff;">
+    						<h:outputText value="Số thu BHYT" />
+    					</td>
+    					<td align="center" style="width: 7%;border-right:solid 1px #ffffff;">
+    						<h:outputText value="Tổng cộng" />
+    					</td>
+    					<td align="center" style="width: 5%;border-right:solid 1px #ffffff;">
+    						<h:outputText value="Tiền khám" />
+    					</td>
+    					<td align="center" style="font-weight: bold;width: 5%;border-right:solid 1px #ffffff;">
+    						<h:outputText value="Thuốc, HC, Dịch" />
+    					</td>
+    					<td align="center" style="width: 5%;font-weight: bold;border-right:solid 1px #ffffff;">
+    						<h:outputText value="Máu" />
+    					</td>
+    					<td align="center" style="width: 5%;border-right:solid 1px #ffffff;">
+    						<h:outputText value="XN, TDCN" />
+    					</td>
+    					<td align="center" style="border-right:solid 1px #ffffff; width:5%">
+    						<h:outputText value="CĐHA" />
+    					</td> 
+
+    					<td align="center" style="border-right:solid 1px #ffffff;width:5%">
+    						<h:outputText value="PT, TT, PHCN" />
+    					</td> 
+
+    					<td align="center" style="border-right:solid 1px #ffffff;width:5%">
+    						<h:outputText value="DVKT cao" />
+    					</td> 
+     					<td align="center" style="border-right:solid 1px #ffffff;width:5%">
+    						<h:outputText value="VTYT tiêu hao" />
+    					</td> 
+
+    					<td align="center" style="border-right:solid 1px #ffffff;width:5%">
+    						<h:outputText value="CP vận chuyển" />
+    					</td>    					    	    					    					   					   									
+    					<td align="center" style="border-right:solid 1px #ffffff;width:5%">
+    						<h:outputText value="BN cùng chi trả" />
+    					</td>  
+    					<td align="center" style="border-right:solid 1px #ffffff;width:5%">
+    						<h:outputText value="TTTT-Số lượt" />
+    					</td>    					    	    					    					   					   									
+    					<td align="center" style="border-right:solid 1px #ffffff;width:5%">
+    						<h:outputText value="TTTT-Chi phí" />
+    					</td>     					
+       				</tr>    
+    				<tr>
+    					<td colspan="19" style="border:solid 1px #7e9dba;" >
+    		
+    		<h:panelGroup id="panelGroup">
+    			<rich:dataTable headerClass="mycol"  id="dataTable_ctTKTramYTe" rowClasses="myrow1,myrow2" value="#{ctctTKTramYTes}" var="currentRow" width="100%"  >
+    				
+    				<rich:column id="column_MaHieu" align="center" style="width: 3%">
+    					 <h:outputText id="__column_MaHieu" value="#{currentRow.getDtdmnhombhytMaso(true).dtdmnhombhytMa}" />
+    				</rich:column>
+    				
+    				<rich:column id="column_DoiTuong" align="left" style=" padding-left:3px;">
+    					   <h:outputText id="__column_DoiTuong" value="#{currentRow.getDtdmnhombhytMaso(true).dtdmnhombhytTen}" />    						
+    				</rich:column>
+    				<rich:column id="column_SoTheBHYT" align="center" style="width: 5%;">
+    					    <h:inputText  id="__column_SoTheBHYT"  onkeypress="iesvn_InputInKeys('0123456789.')"  
+    					    						onblur="numberFormatBlur(this);" 
+													onfocus="numberFormatFocus(this); "
+													
+													style="width: 95%;text-align: right; padding-right: 2px;" 
+													value="#{currentRow.tktramytebhytSothebhyt}">
+    						 	<f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" />
+    						</h:inputText>
+    				</rich:column>
+    				<rich:column id="column_SoLuotKCB" align="left" style="width:  5%;">
+
+    						<h:inputText id="__column_SoLuotKCB"  
+    						onblur="numberFormatBlur(this);" 
+													onfocus="numberFormatFocus(this); "
+													 onkeypress="iesvn_InputInKeys('0123456789.')"
+													style="width: 95%;text-align: right; padding-right: 2px;" 
+    						 value="#{currentRow.dtdmtramytebhytSoluotkcb}">
+    						 <f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" />
+    						 </h:inputText>    						
+    				</rich:column>
+    				
+    				<rich:column id="column_SoThuBHYT" align="left" style="width:  5%;">
+    						<h:inputText id="__column_SoThuBHYT"  onblur="numberFormatBlur(this);" 
+													onfocus="numberFormatFocus(this); "
+													 onkeypress="iesvn_InputInKeys('0123456789.')"
+													style="width: 95%;text-align: right; padding-right: 2px;"  value="#{currentRow.dtdmtramytebhytSothubhyt}">
+													<f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" />
+													</h:inputText>
+    				</rich:column>
+    				<rich:column id="column_TongCong" align="center" style="width:  7%;">
+    						<h:inputText id="__column_TongCong"  onblur="numberFormatBlur(this);" 
+													onfocus="numberFormatFocus(this); "
+													 onkeypress="iesvn_InputInKeys('0123456789.')"
+													style="width: 95%;text-align: right; padding-right: 2px;"  value="#{currentRow.dtdmtramytebhytTongcong}" >
+													<f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" />
+													</h:inputText>    						
+    				</rich:column>
+    				<rich:column id="column_TienKham" align="center" style="width:  5%;">
+    						<h:inputText id="__column_TienKham"  onblur="numberFormatBlur(this);" 
+													onfocus="numberFormatFocus(this); "
+													 onkeypress="iesvn_InputInKeys('0123456789.')"
+													style="width: 95%;text-align: right; padding-right: 2px;"  value="#{currentRow.dtdmtramytebhytTienkham}" >
+													
+													<f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" />
+													</h:inputText>    						
+    				</rich:column>
+    				<rich:column id="column_ThuocHCDich" align="center" style="width:  5%;">
+    						<h:inputText id="__column_ThuocHCDich"  onblur="numberFormatBlur(this);" 
+													onfocus="numberFormatFocus(this); "
+													 onkeypress="iesvn_InputInKeys('0123456789.')"
+													style="width: 95%;text-align: right; padding-right: 2px;"  value="#{currentRow.dtdmtramytebhytThuochcdich}" >
+													<f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" />
+													</h:inputText>    						
+    				</rich:column>
+    				<rich:column id="column_Mau" align="center" style="width:  5%;">
+    						<h:inputText id="__column_Mau"  onblur="numberFormatBlur(this);" 
+													onfocus="numberFormatFocus(this); "
+													 onkeypress="iesvn_InputInKeys('0123456789.')"
+													style="width: 95%;text-align: right; padding-right: 2px;"  value="#{currentRow.dtdmtramytebhytMau}" >
+													<f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" />
+													</h:inputText>    						
+    				</rich:column>
+    				<rich:column id="column_XNTDCN" align="right" style="width:  5%;">    						
+    						<h:inputText id="__column_XNTDCN"  onblur="numberFormatBlur(this);" 
+													onfocus="numberFormatFocus(this); "
+													 onkeypress="iesvn_InputInKeys('0123456789.')"
+													style="width: 95%;text-align: right; padding-right: 2px;"  value="#{currentRow.dtdmtramytebhytXntdcn}" >
+													
+													<f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" />
+													</h:inputText>
+    				</rich:column>
+    				<rich:column id="column_CDHA" align="right" style="width:  5%;; margin-left: 1px;">
+    						<h:inputText id="__column_CDHA"  onblur="numberFormatBlur(this);" 
+													onfocus="numberFormatFocus(this); "
+													 onkeypress="iesvn_InputInKeys('0123456789.')"
+													style="width: 95%;text-align: right; padding-right: 2px;"  value="#{currentRow.dtdmtramytebhytCdha}" >
+													<f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" />
+													</h:inputText>
+    				</rich:column>  					
+    				<rich:column id="column_PTTTPHCN" align="right" style="width:  5%; margin-left: 1px;">
+    						<h:inputText id="__column_PTTTPHCN"  onblur="numberFormatBlur(this);" 
+													onfocus="numberFormatFocus(this); "
+													 onkeypress="iesvn_InputInKeys('0123456789.')"
+													style="width: 95%;text-align: right; padding-right: 2px;"  value="#{currentRow.dtdmtramytebhytPtttphcn}" >
+													<f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" />
+													</h:inputText>
+    				</rich:column> 
+     				<rich:column id="column_DVKTC" align="right" style="width:  5%; margin-left: 1px;">
+    						<h:inputText id="__column_DVKTC"  onblur="numberFormatBlur(this);" 
+													onfocus="numberFormatFocus(this); "
+													 onkeypress="iesvn_InputInKeys('0123456789.')"
+													style="width: 95%;text-align: right; padding-right: 2px;"  value="#{currentRow.dtdmtramytebhytDvktc}" >
+													<f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" />
+													</h:inputText>
+    				</rich:column>  					
+    				<rich:column id="column_VTYTTH" align="right" style="width:  5%; margin-left: 1px;">
+    						<h:inputText id="__column_VTYTTH"  onblur="numberFormatBlur(this);" 
+													onfocus="numberFormatFocus(this); "
+													 onkeypress="iesvn_InputInKeys('0123456789.')"
+													style="width: 95%;text-align: right; padding-right: 2px;"  value="#{currentRow.dtdmtramytebhytVtyttieuhao}" >
+													<f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" />
+													</h:inputText>
+    				</rich:column> 
+    				<rich:column id="column_CPVC" align="right" style="width:  5%; margin-left: 1px;">
+    						<h:inputText id="__column_CPVC"  onblur="numberFormatBlur(this);" 
+													onfocus="numberFormatFocus(this); "
+													 onkeypress="iesvn_InputInKeys('0123456789.')"
+													style="width: 95%;text-align: right; padding-right: 2px;"  value="#{currentRow.dtdmtramytebhytCpvc}" >
+													<f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" />
+													</h:inputText>
+    				</rich:column>  					
+    				<rich:column id="column_BNCUNGCHITRA" align="right" style="width:  5%; margin-left: 1px;">
+    						<h:inputText id="__column_BNCUNGCHITRA"  onblur="numberFormatBlur(this);" 
+													onfocus="numberFormatFocus(this); "
+													 onkeypress="iesvn_InputInKeys('0123456789.')"
+													style="width: 95%;text-align: right; padding-right: 2px;"  value="#{currentRow.dtdmtramytebhytBncungchitra}" >
+													<f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" />
+													</h:inputText>
+    				</rich:column>     				   				    							   				        							 		
+     				<rich:column id="column_TTTTSOLUOT" align="right" style="width:  5%; margin-left: 1px;">
+    						<h:inputText id="__column_TTTTSOLUOT"  onblur="numberFormatBlur(this);" 
+													onfocus="numberFormatFocus(this); "
+													 onkeypress="iesvn_InputInKeys('0123456789.')"
+													style="width: 95%;text-align: right; padding-right: 2px;"  value="#{currentRow.dtdmtramytebhytTttructiepsoluot}" >
+													<f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" />
+													</h:inputText>
+    				</rich:column>  					
+    				<rich:column id="column_TTTTCHIPHI" align="right" style="width:  5%; margin-left: 1px;">
+    						<h:inputText id="__column_TTTTCHIPHI"  onblur="numberFormatBlur(this);" 
+													onfocus="numberFormatFocus(this); "
+													 onkeypress="iesvn_InputInKeys('0123456789.')"
+													style="width: 95%;text-align: right; padding-right: 2px;"  value="#{currentRow.dtdmtramytebhytTttructiepchiphi}" >
+													<f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" />
+													</h:inputText>
+    				</rich:column>    
+       			</rich:dataTable>  
+			</h:panelGroup>	
+							
+    			
+    					</td>
+    				</tr>	
+    							
+    			</table>
+    		</div>
+    		</td>
+    	</tr> 
+    	
+    	<tr style="height: 35px;">
+    					<td align="right" colspan="12" style="padding-top: 5px; padding-left: 280px;"> 
+    					<div  style=" float: left;">
+    								
+    								<a4j:commandButton  action="#{bhyt_thongketramyte.ghiNhanAjax()}" tabindex="200"  
+    								onclick="if (! onSubmit_ghinhan()) { this.alt = 0; return false; }"  
+    								oncomplete='changeCursorDefault(); this.alt = 0; '  
+    								id="__ghinhan"     								
+    								name="_ghinhan"  value="Ghi nhận" 
+    								style="width: 60px; margin-left: 3px;" 
+    								styleClass="mybton_b" 
+    								reRender="message_infor,__thang,__nam,panelGroup,dataTable_ctTKTramYTe"/>
+    							
+    						</div>
+    					<div  style=" float: left;">
+    							
+    						<a4j:commandButton  id="__nhapmoi"  name="_nhapmoi"  value="Nhập mới"
+    									action="#{bhyt_thongketramyte.resetValue()}" 
+    									style="width: 70px; margin-left: 3px;" styleClass="mybton_b" 
+    									focus="__thang"    									
+    									
+    									tabindex="201" 
+    									 
+    									reRender="message_infor,__thang,__nam,panelGroup,dataTable_ctTKTramYTe"/>
+    					
+    							
+    						</div>    						
+    						
+    						
+    						  						
+    					</td>
+    				</tr>   					  				
+    </table>
+    
+    
+    </h:form>
+    </body>
+    <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/vienphi/BHYT_ThongKeTramYTe_gears.js"></script>
+    																											
+    <iframe width="174" height="189" name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;"/>
+  
+</ui:define> 
+</ui:composition>
+
+

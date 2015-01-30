@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                template="/layout/mytemplate.xhtml"
+                xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:define name="body">
+	<h:form id="_form" name="_form">
+	<f:loadBundle basename="com.iesvn.yte.UIResources" var="msg" />
+	<script type="text/javascript">
+		var bCancel = false;
+		var bSave = false;
+		
+		function iesvn_Required() {
+			this.aa = new Array(prefix_component + "__mabenhnhan", 
+								"<h:outputFormat value='#{msg.common_requireField}'><f:param value='Bàn khám' /></h:outputFormat>", 
+								new Function ("varName",  "return this[varName];"));
+			this.ab = new Array(prefix_component + "DOITUONG_MA", 
+								"<h:outputFormat value='#{msg.common_requireField}'><f:param value='Tiếp đón' /></h:outputFormat>", 
+								new Function ("varName",  "return this[varName];"));
+			this.ac = new Array(prefix_component + "TIENKHAM_MA", 
+								"<h:outputFormat value='#{msg.common_requireField}'><f:param value='Bàn khám' /></h:outputFormat>", 
+								new Function ("varName",  "return this[varName];"));
+			this.ad = new Array(prefix_component + "BANKHAM_MA", 
+								"<h:outputFormat value='#{msg.common_requireField}'><f:param value='Tiếp đón' /></h:outputFormat>", 
+								new Function ("varName",  "return this[varName];"));
+		}
+		
+		function iesvn_ValidateForm(form) {
+			if (bCancel) {
+				return true;
+			} else {
+	     		return iesvn_ValidateRequired(form);
+	     	}
+		}
+		
+		function onSubmitTmp(){
+			setSave() ;
+			return onSubmit();
+		}
+		
+		function setSave() {
+			bSave = true;
+		}
+		function setCancel(){
+			bCancel = true;
+		}	
+	
+		function onSubmit() {
+			var form = document.forms[0];
+			var valid = false;
+			if (bSave){
+		    	bSave = false;
+		    	valid = iesvn_ValidateForm(form);
+		    }
+		    if (bCancel){
+		    	bCancel = false;
+		    }
+		    return valid;
+			
+		}
+	</script>
+    <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_TiepDon.xhtml" /></div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="44%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						CẤP SỐ ĐĂNG KÝ KHÁM BỆNH
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    							&#160;	
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>        	
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" align="center" width="985px" height="12px" >
+    				   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr>
+			<td width="100%" style="background-color: #c9daea; " colspan="3" align="center">
+				<a4j:outputPanel id="__message">
+					<h:messages styleClass="mynull" />
+				</a4j:outputPanel> 
+			</td>
+		</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px" width="100%" align="center">
+    			<!-- Main Area -->
+    			<table cellspacing="0" cellpadding="0" border="0" width="78%">
+    				<tr style="height: 25px;">
+    					<td align="left" >
+    						<h:outputText value="Thời gian" styleClass="mytext" style="margin-right: 5px; margin-left: 31px;"/>
+    						<h:inputText value="#{B112_Capsodangkykhambenh.gioHt}" tabindex="1" id="__gio" name="_gio" style="width: 35px;margin-right:2px;" styleClass="myinput" onkeypress="iesvn_InputInKeys('1234567890:');" onkeyup="checkHour(this);" onblur="checkHourBlur(this)"/>
+    						<h:inputText value="#{B112_Capsodangkykhambenh.ngayHt}" onkeypress="return being_wellformed_Date(this, event)" onblur="return is_wellformed_Date(this)" tabindex="2" type="text" id="__ngaytg" name="_ngaytg" maxlength="10" style=" width : 70px;" class="myinput"/><a hideFocus="true" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__ngaytg'));document.getElementById(prefix_component + '__mabenhnhan').focus();return false;" href="javascript:void(0)">
+    							<h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/>
+    						</a>	
+							    						
+    					</td>    					
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="left" >
+    						<h:outputText value="Mã bệnh nhân" styleClass="mytext" style="margin-right: 5px; margin-left: 5px;"/>
+    						<h:inputText value="#{B112_Capsodangkykhambenh.maBn}" tabindex="3" id="__mabenhnhan" name="_mabenhnhan" style="width: 130px;" styleClass="myinput">
+    							<a4j:support event="onchange" action="#{B112_Capsodangkykhambenh.loadBenhNhan()}" focus="DOITUONG_MA" oncomplete="setValueOnLoad()" 
+    							reRender="__message, __hoten, __sothutu, __mabenhnhan"></a4j:support>
+    						</h:inputText>
+    						<h:outputText value="*" styleClass="mynull"
+								style="margin-right: 5px; margin-left: 2px;" />
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="left" >
+    						<h:outputText value="Họ tên" styleClass="mytext" style="margin-right: 5px;margin-left:47px;"/>
+    						<h:inputText readonly="true" value="#{B112_Capsodangkykhambenh.bn.benhnhanHoten}" id="__hoten" name="_hoten" style="width: 180px;" styleClass="myinput"/>
+    						
+    						<h:outputText value="Đối tượng" styleClass="mytext" style="margin-right: 5px; margin-left: 58px;"/>
+    						<h:inputHidden value="#{B112_Capsodangkykhambenh.dt.dmdoituongMaso}" id="DOITUONG_MA_pk" />
+    						<h:inputText value="#{B112_Capsodangkykhambenh.dt.dmdoituongMa}" tabindex="4" id="DOITUONG_MA" style="width: 30px; " styleClass="myinput" onblur="myOnblurTextbox(this.id, 'DM_DOI_TUONG')"/>
+							<span id="DM_DOI_TUONG_span"/>
+    						<input tabindex="5" id="DM_DOI_TUONG" name="DM_DOI_TUONG" style="width: 160px;" class="mycbogear" />
+    						<h:outputText value="*" styleClass="mynull"
+								style="margin-right: 5px; margin-left: 2px;" />
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="left" >
+    						
+    						<h:outputText value="Loại khám" styleClass="mytext" style="margin-right: 5px;margin-left: 25px;"/>
+    						<h:inputHidden value="#{B112_Capsodangkykhambenh.tk.dtdmtienkhamMaso}" id="TIENKHAM_MA_pk" />
+    						<h:inputText value="#{B112_Capsodangkykhambenh.tk.dtdmtienkhamMa}" tabindex="6" id="TIENKHAM_MA" style="width: 35px;" styleClass="myinput" onblur="myOnblurTextbox(this.id, 'DT_DM_TIEN_KHAM')"/>
+    						<span id="DT_DM_TIEN_KHAM_span"/>
+							<input tabindex="7" id="DT_DM_TIEN_KHAM" name="DT_DM_TIEN_KHAM" class="mycbogear" style="width: 140px"/> 
+							<h:outputText value="*" styleClass="mynull"
+								style="margin-right: 5px; margin-left: 2px;" />
+							<h:outputText value="Số thứ tự" styleClass="mytext" style="margin-left:49px;margin-right: 5px;"/>
+    						<h:inputText readonly="true" id="__sothutu" name="_sothutu" style=" width :30px;" styleClass="myinput"/>
+    						<h:inputHidden value="#{B112_Capsodangkykhambenh.stt}" id="sttHid" />
+    					</td>
+    				</tr>    				
+    				<tr style="height: 25px;">
+    					<td align="left">
+    						
+    						<h:outputText value="Bàn khám" styleClass="mytext" style="margin-right: 5px; margin-left: 27px;"/>
+    						<h:inputHidden id="BANKHAM_MA_pk" value="#{B112_Capsodangkykhambenh.banKham.dtdmbankhamMaso}" />
+    						<h:inputText value="#{B112_Capsodangkykhambenh.banKham.dtdmbankhamMa}" tabindex="8" id="BANKHAM_MA" style="width: 35px;" styleClass="myinput" onblur="myOnblurTextbox(this.id, 'DT_DM_BAN_KHAM')"/>
+    						<span id="DT_DM_BAN_KHAM_span"/>
+    						<input tabindex="9" id="DT_DM_BAN_KHAM" name="DT_DM_BAN_KHAM" class="mycbogear" style="width: 190px;"/>
+    						<h:outputText value="*" styleClass="mynull"
+								style="margin-right: 5px; margin-left: 2px;" />
+    						<h:outputText value="BN trả" styleClass="mytext" style="margin-left:15px;margin-right: 5px;"/>
+    						<h:inputText readonly="true" value="" id="__bntra" name="_bntra" style="width: 80px;" styleClass="myinput"/>
+    					</td>
+    				</tr>    				      								
+    				<tr style="height: 40px;">
+    					<td align="center" colspan="2" style="padding-left: 250px;">    
+    						<div class="mybton_b_l" style="width: 80px; float: left;">
+    							<div style="background-position: 60px 0px; float: left; padding-right: 5px" class="mybton_b_r">
+    								<a4j:commandButton action="#{B112_Capsodangkykhambenh.inPhieu('HTML')}" onclick="if (! onSubmitTmp()) { return false; }" tabindex="10" id="__inphieu" name="_inphieu" value="In phiếu" style="width: 60px;" styleClass="mybton_b" ></a4j:commandButton>
+    							</div>
+    						</div> 
+    						<div class="mybton_b_l" style="width: 95px; float: left;">
+    							<div style="background-position: 60px 0px; float: left; padding-right: 5px" class="mybton_b_r">
+    								<a4j:commandButton action="#{B112_Capsodangkykhambenh.reset()}" tabindex="11" id="__tieptuc" name="_tieptuc" value="Nhập mới" style="width: 60px;" styleClass="mybton_b" focus="__gio" oncomplete="setValueOnLoad()"
+    								reRender="__message, __gio, __ngaytg, __mabenhnhan, __hoten, DOITUONG_MA_pk, DOITUONG_MA, TIENKHAM_MA_pk, TIENKHAM_MA, __sothutu, BANKHAM_MA_pk, BANKHAM_MA, __bntra"></a4j:commandButton>
+    							</div>
+    						</div> 
+    					</td>
+    				</tr>    				
+    			</table> 		    						
+    		</td>
+    	</tr>	    	
+    </table>
+    </h:form>
+    <iframe width="174" height="189" name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;"/>
+	<script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/tiepdon/B112_Capsodangkykhambenh_gears.js"></script>
+</ui:define> 
+</ui:composition>
+

@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">	
+<f:loadBundle basename="com.iesvn.yte.UIResources" var="msg" />
+<script type="text/javascript">
+function myValidateDate(myThis){
+		   try{
+			//alert(1);
+		  	var ret = 	is_wellformed_Date(myThis); 
+		  	//alert("ret:" + ret);
+		  	if (ret == true ) {
+		  	//    alert(1);
+		  		//getListBenhNhanTiepDon();
+		  	}
+		   }catch(e){
+		      //alert(e.description);
+		   }
+		} 
+
+var statusEnterAnhTabForChon;
+function enterToTab(){
+	    
+	if((document.getElementById(prefix_component +"__lydonghiviec").alt != 1) &amp;&amp; 
+	 	(document.getElementById(prefix_component +"__songaychonghi").alt != 1) &amp;&amp; 
+	 	(document.getElementById(prefix_component +"__tungay").alt != 1) &amp;&amp; 
+	 	(document.getElementById(prefix_component +"__denngay").alt != 1) &amp;&amp; 
+	 	(document.getElementById(prefix_component +"__bacsikcb").alt != 1) &amp;&amp; 
+ 		statusEnterAnhTabForChon != 1 
+ 	) {
+      if(window.event.keyCode == 13){
+           window.event.keyCode = 9;
+       }
+  	}
+} 
+
+</script>
+	<body onkeydown="enterToTab();">
+		<h:form id="_form" name="_form" onsubmit="return iesvn_ValidateForm(this)">
+	    <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_TiepDon.xhtml" /></div>
+	    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+	    	<tr>
+	    		<td colspan="3" height="50px">
+	    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+	    				<tr>
+	    					<td height="50px" width="63%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+	    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+	    						GIẤY CHỨNG NHẬN NGHỈ VIỆC HƯỞNG BHXH
+	    					</td>
+	    					<td valign="top">
+	    					<table cellspacing="0" cellpadding="0" width="100%" >
+	    						<tr>
+	    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+	    								&#160;
+	    							</td>
+	    						</tr>
+	    					</table> 
+	    					</td>
+	    				</tr>
+	    			</table>			
+	    		</td>    		    	
+	    	</tr>    
+	    	<tr>
+	    		<td width="13px" height="12px" class="mytdl">    			
+	    		</td>
+	    		<td style="background-color: #c9daea;" width="965px" height="12px" >       			   			 		 		 		 	
+	    		</td>
+	    		<td width="11px" height="12px" class="mytdr">    			
+	    		</td>
+	    	</tr>
+	    	<tr>
+	    		<td colspan="3" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 10px" width="100%" >
+	    			<!-- Main Area -->    		
+	    			<h:inputHidden id="goToGiayChungNhan" value="#{goToGiayChungNhan}"/>  
+	    			<table cellspacing="0" cellpadding="0" border="0" width="75%" align="center" >
+	    				<tr>
+				    		<td colspan="2" align="center">  
+				    			<a4j:outputPanel id="__messagePanel">
+				    		      	<h:messages id="message_infor" class ="mynull"/>
+				    		    </a4j:outputPanel>
+				    		</td>    		
+				    	</tr>
+				    	<tr style="height: 25px;">
+	    					<td  align="right" style="width:20%;" >
+	    						<h:outputText value="Mã tiếp đón" styleClass="mytext" style="margin-left:0px;margin-right:5px;" />
+	    					</td>
+	    					<td  align="left" >    						
+	    						<h:inputText value="#{B116_Giaychungnhan.thamkham.tiepdonMa.tiepdonMa}"  id="__matiepdon" name="_matiendon" style=" width : 143px;" styleClass="myreadonly" readonly="true"/>
+	    						<h:outputText value="Mã bệnh nhân" styleClass="mytext" style="margin-left:8px;margin-right:5px;" />
+	    						<h:inputText value="#{B116_Giaychungnhan.thamkham.tiepdonMa.benhnhanMa.benhnhanMa}" id="__mabenhnhan" name="_mabenhnhan"  style=" width : 143px;" styleClass="myreadonly" readonly="true"/>
+	    					</td>
+	    				</tr>
+	    				<tr style="height: 25px;">
+	    					<td align="right" >
+	    						<h:outputText value="Họ tên" styleClass="mytext" style="margin-left:0px;margin-right:5px;" />
+	    					</td>
+	    					<td align="left">
+	    						<h:inputText value="#{B116_Giaychungnhan.thamkham.tiepdonMa.benhnhanMa.benhnhanHoten}"  id="__hoten" name="_hoten"  style=" width : 143px;" styleClass="myreadonly" readonly="true"/>
+	    						<h:outputText value="Tuổi" styleClass="mytext" style="margin-left:62px; margin-right:5px;" />
+	    						<h:inputText value="#{B116_Giaychungnhan.benhNhan.benhnhanTuoi}"  id="__tuoi" name="_tuoi" style="width: 35px;margin-right:3px;" styleClass="myreadonly" readonly="true"/>    						
+	    						<h:outputText value="(Năm)" id="__donViTuoi" styleClass="mytext" />
+	    						<h:inputHidden id = "__donViTuoiHid" value = "#{B116_Giaychungnhan.benhNhan.benhnhanDonvituoi}"/>
+	    						<h:inputHidden id = "__namsinhHid" value= "#{B116_Giaychungnhan.benhNhan.benhnhanNamsinh}"/>
+								<h:inputText readonly="true"  value="#{B116_Giaychungnhan.ngaySinh}" type="text" id="__ngaytg" name="_ngaytg" maxlength="10" style="margin-left:3px;width : 65px;" styleClass="myreadonly"/>
+	    					</td>    					
+	    				</tr>
+	    				<tr style="height: 25px;">
+	    					<td align="right">
+	    						<h:outputText value="Thời gian" styleClass="mytext" style="margin-left:0px;margin-right:5px;" />
+	    					</td>
+	    					<td align="left">
+	    						<h:inputText   maxlength="5"  readonly="true" value="#{B116_Giaychungnhan.gioThamKham}" id="GIO" name="_GIO" style="width: 35px;" styleClass="myreadonly"/>    						
+	    						<h:outputText value="GG:pp" styleClass="mytext" style="margin-left: 3px; margin-right: 3px"/>    						
+	    						<h:inputText value="#{B116_Giaychungnhan.thoiGian}"  id="__ngaygio" name="_ngaygio" style=" width :65px;" styleClass="myreadonly" readonly="true" />
+	    						<h:outputText value="Bàn khám" styleClass="mytext" style="margin-left:30px;margin-right:5px;" />    						    						
+	    						<h:inputText  readonly="true" styleClass="myreadonly" value="#{B116_Giaychungnhan.thamkham.thamkhamBankham.dtdmbankhamMa}" 
+	    							id="DT_DM_BAN_KHAM_MA" name="DT_DM_BAN_KHAM_MA" style=" width : 50px" maxlength="10" />
+	    					 	<span id="DT_DM_BAN_KHAM_span"/>
+	    					 	<input readonly="true" id="DT_DM_BAN_KHAM" name="DT_DM_BAN_KHAM" class="myreadonly" style=" width :152px;"/>
+	    					</td>
+	    				</tr>    				    				    				    				
+	    			</table>					
+	    		</td>
+	    	</tr>	    	 
+	    	<tr>
+	    		<td colspan="3" style="background-color: #ffffff; padding-top: 10px; padding-bottom: 10px" width="100%" >
+	    			<table cellspacing="0" cellpadding="0" border="0" width="75%" align="center" >
+	    				<tr style="height: 25px;">
+	    				<td align="right">
+	    					<h:outputText value="Đơn vị công tác" styleClass="mytext" style="margin-left: 3px;margin-right: 2px;"/>    						
+	    				</td>
+	    				<td align="left">
+	    					<h:inputText value="#{B116_Giaychungnhan.donViCongTac}" tabindex="1" id="__donvicongtac" name="_donvicongtac"  style=" width : 150px; margin-left:5px;" styleClass="myinput"/>
+	    				</td>
+	    			</tr>
+	    			<tr style="height: 25px;">
+	    				<td align="right">
+	    					<h:outputText value="Lý do nghỉ việc" styleClass="mytext" style="margin-left: 3px;margin-right: 2px;" />
+	    				</td>
+	    				<td align="left">
+	    					<h:inputText value="#{B116_Giaychungnhan.lyDoNghiViec}" tabindex="2"  id="__lydonghiviec" name="_lydonghiviec" style=" width : 150px;margin-left:5px;" styleClass="myinput"/>
+	    				</td>
+	    			</tr>
+	    			<tr style="height: 25px;">
+	    				<td align="right">
+	    					<h:outputText value="Số ngày cho nghỉ" styleClass="mytext" style="margin-left: 3px;margin-right: 2px;" />
+	    				</td>
+	    				<td align="left">
+	    					<h:inputText value="#{B116_Giaychungnhan.soNgayChoNghi}"   tabindex="3"   id="__songaychonghi" name="_songaychonghi" style=" width : 150px;margin-left:5px;" styleClass="myinput"/>
+	    					
+	    				</td>
+	    			</tr>
+	    			<tr style="height: 25px;" >
+	    					<td align="right" >    							
+	    						<h:outputText value="Từ ngày" styleClass="mytext" style="margin-right: 2px;"/>
+	    					</td>
+	    					<td align="left">
+		    					<h:inputText value="#{B116_Giaychungnhan.tuNgay}" onkeypress="return being_wellformed_Date(this, event)" 
+				    			onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); return myValidateDate(this)' 
+				    			tabindex="4" type="text" id="__tungay" name="_tungay" maxlength="10" style="width:70px; margin-left:5px;" class="myinput"/>
+				    			<a hideFocus="true" href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__tungay'));return false;" ><h:graphicImage style="margin:0 0 -4px 0" value="/resources/calendar/cal.gif" border="0" name="popcal"/></a>
+	    					</td>
+	    				</tr>
+	    				<tr>
+	    				<td align="right" >    							
+	    						<h:outputText value="Đến ngày" styleClass="mytext" style="margin-right: 2px;"/>
+	    					</td>
+	    					<td align="left">
+	    						<h:inputText value="#{B116_Giaychungnhan.denNgay}" onkeypress="return being_wellformed_Date(this, event)" 
+			    				onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); return myValidateDate(this)' 
+			    				tabindex="5" type="text" id="__denngay" name="_denngay" maxlength="10" style="width:70px; margin-left:5px;" class="myinput"/>
+			    				<a hideFocus="true" href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__denngay'));return false;" ><h:graphicImage style="margin:0 0 -4px 0" value="/resources/calendar/cal.gif" border="0" name="popcal"/></a>
+							</td>
+	    				</tr>
+	    				<tr style="height: 25px;">
+	    				<td align="right">
+	    					<h:outputText value="Bác sĩ KCB" styleClass="mytext" style="margin-left: 3px;margin-right: 2px;" />
+	    				</td>
+	    				<td align="left">
+	    					<h:inputText readonly="true" value="#{B116_Giaychungnhan.bacSiKCB}" tabindex="6"   id="__bacsikcb" name="_bacsikcb" style=" width : 150px;margin-left:5px;" styleClass="myinput"/>
+	    				</td>
+	    			</tr>
+	    				<tr style="height: 40px;">
+	    					<td colspan="2" style="padding-left: 220px">
+	    								<h:commandButton action="#{B116_Giaychungnhan.quayLai()}" tabindex="7" id="__quaylai" name="_quaylai" 
+	    								type="submit" value="Quay lại" style="width: 60px; margin-left:3px;" styleClass="mybton_b"/>
+	    								<a4j:commandButton action="#{B116_Giaychungnhan.thuchienAction}" onclick="setSave();" tabindex="8" id="__inphieu" 
+	    								name="_inphieu" value="In phiếu" style="width: 60px;margin-left:3px;" styleClass="mybton_b" 
+	    								reRender="__benhsu,__dauhieulamsan,__cacxutri,__messagePanel"/>
+	    								
+	    					</td>
+	    				</tr>
+	    			</table>
+	    		</td>
+	    	</tr>   		
+	    </table>
+	   </h:form>
+	</body>
+
+   <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/tiepdon/B116_Giaychungnhan_gears.js"></script>
+   <script language="javascript">	
+		var prefix_component = document.forms[0].id + ":";
+		document.getElementById(prefix_component + "__donvicongtac").focus();	
+		var bSave = false;
+		function setSave() {
+			bSave = true;
+		}
+		
+		
+	    
+		function iesvn_ValidateForm(form) {						
+			var valid = true;								
+			if (bSave){
+		    	bSave = false;	    		    		    	  
+		    	   			    		
+		    } 	    	    
+		    return valid;
+		} 
+
+			
+	</script>
+   <iframe width="174" height="189" name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;"/>
+  
+</ui:define> 
+</ui:composition>
+
+

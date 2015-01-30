@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages xmlns="http://jboss.com/products/seam/pages"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.0.xsd"
+       login-view-id="/login.xhtml">   
+  
+
+	<page view-id="/B1_Tiepdon/*" login-required="true"></page>
+	<page view-id="/B2_Dieutri/*" login-required="true"></page>
+	<page view-id="/B3_Vienphi/*" login-required="true"></page>
+	<page view-id="/B4_Duocpham/*" login-required="true"></page>
+	
+	<page view-id="/Popup/*" login-required="false"></page>
+	
+	<page view-id="/login.xhtml">
+    	<action execute="#{identity.login}" if="#{identity.loggedIn}"/>
+        <navigation>
+            <rule if="#{identity.loggedIn}">
+                <render view-id="*"/>
+            </rule>
+        </navigation>        
+    </page>   
+    
+</pages>
+
+

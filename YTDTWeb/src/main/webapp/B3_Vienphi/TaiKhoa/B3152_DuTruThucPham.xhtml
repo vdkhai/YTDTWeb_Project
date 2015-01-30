@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                 xmlns:c="http://java.sun.com/jstl/core" 
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">	
+
+<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+
+	<script type="text/javascript">
+		
+		var bSave = false;
+		var bTimkiem = false;
+		
+		function iesvn_ValidateForm(form) {						
+			var valid = true;		
+			if (bSave || bTimkiem) {	
+				valid = iesvn_ValidateRequired(form) ;																			   
+		    }		
+			bSave = false;
+			bTimkiem = false; 	    	    
+		    return valid;
+		}
+		function iesvn_Required() {			
+			this.aa = new Array(prefix_component + "__ngay", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Ngày'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));				
+			this.ab = new Array("DT_DM_LOAITP", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Loại hàng'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+			if (bSave) { 
+				this.ac = new Array(prefix_component + "__soluong", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Số lượng'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+			}			 	 		
+		}	
+		function iesvn_ComparedDates() {     				
+			this.aa = new Array([prefix_component + "__ngay",prefix_component + "__ngayhientai", "=="], "<h:outputFormat value='#{msg.common_compareDates}' > <f:param value='Ngày nhập'/> <f:param value='ngày hiện tại'/> </h:outputFormat>", new Function ("varName", "this.datePatternStrict='dd/MM/yyyy';  return this[varName];"));			
+		}
+		function seachDuTruTP() {
+   	   		bTimkiem = true;
+   	   		document.getElementById(prefix_component + "__btnSearchDuTruTP").click();
+   		}
+   		function showDvt() {
+   			document.getElementById(prefix_component + "__btnShowDvt").click();
+   		}
+   		function resetData() { 	  			   			
+   	   		myOnblurTextbox(prefix_component + 'LOAITP_MA',"DT_DM_LOAITP");   	   	       	   		   	   	    
+   		}
+   		function checkValidDot(textbox) {	
+   			var e = window.event;
+   			if(e.keyCode == 46) {
+   				if (textbox.value.indexOf(".") != -1) e.keyCode = 0;
+   			}
+   		}			
+	</script>
+	<body>
+	<h:form id="_form" name="_form" onsubmit="return iesvn_ValidateForm(this)">
+	<h:inputHidden id="__hidDuTruTP" value="#{strDuTruTP}"/>
+    <div style="width:778px; position:absolute; z-index:99">
+    <ui:include src="/layout/mymenu_YTDT_DieuTriNoiTru.xhtml" />    
+    
+    </div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="50%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						DỰ TRÙ THỰC PHẨM TƯƠI SỐNG
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>    
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="965px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    			<tr style=" height : 5px;">
+    		<td width="100%" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 0px" colspan="3" align="center">  
+    		      	<a4j:outputPanel id="message_infor">
+       					 <h:messages styleClass="mynull"/>
+					</a4j:outputPanel>
+    		</td>    		
+    	</tr>
+    		
+    	<tr>
+    	<td colspan="3" style="background-color: white; padding-top: 5px; padding-bottom: 5px;" width="100%" align="center">
+    			<!-- Detail Area -->
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+	    			<tr style="height: 25px;">
+	    				<td align="right" style="padding-left: 0px; width:40%">
+    						<h:outputText value="Ngày" styleClass="mytext" style="margin-right: 5px; margin-left: 5px;"/>
+    					</td>
+    					<td align="left"> 
+    						<h:inputText value="#{B3152_DuTruThucPham.ngaynhap}" onkeypress="return being_wellformed_Date(this, event)" 
+	    						onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); return is_wellformed_Date(this);'  
+	    						tabindex="1" type="text" id="__ngay" name="_ngay" maxlength="10" style=" width : 70px;" class="myinput"/>
+	    						<a hideFocus="true" href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__ngay'));return false;" ><h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/></a>
+	    						<h:outputText value="*" styleClass="mynull" style="margin-right: 5px; margin-left: 2px;" />	    									    				
+    					</td>
+	    			</tr>
+	    				    			
+    				
+    				<tr style="height: 25px;" id="trNsx">
+    					<td align="right">
+							<h:outputText value="Loại hàng" styleClass="mytext" style="margin-left: 13px; margin-right: 5px"/>
+						</td>
+						<td align="left">														
+						
+							<h:inputHidden id="LOAITP_MA_pk" value="#{B3152_DuTruThucPham.dutruTP.dtdmltpMaso.dtdmltpMaso}"/>
+    					 	<h:inputHidden value="#{B3152_DuTruThucPham.dutruTP.dtdmltpMaso.dtdmltpMa}" id="LOAITP_MA" name="LOAITP_MA" style=" width : 30px; " styleClass="myinput"/>    					 	
+    					 	<input id="DT_DM_LOAITP" name="DT_DM_LOAITP" tabindex="2" style="width: 160px;" class="mycbogear"/>
+    					 	<h:outputText value="*" styleClass="mynull" style="margin-right: 5px; margin-left: 2px;" />
+    					 	<input type="button" id="__timkiem" 	    					
+	    							onclick="seachDuTruTP()" name="_timkiem" value="" class="mybton_search" style="height:20px;width:20px;margin-right: 85px;"/>
+    					 	<h:commandLink value="Thêm loại hàng" action="/B3_Vienphi/TaiKhoa/B3153_ThemLoaiHang.xhtml" style="margin-left: 2px; margin-right: 5px"/>	
+    					 	    						   
+						</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right">
+							<h:outputText value="Số lượng thực đặt" styleClass="mytext" style="margin-left: 13px; margin-right: 5px"/>
+						</td>
+						<td align="left">																				
+							<h:inputText id="__soluong" value="#{B3152_DuTruThucPham.soluong}" styleClass="myinput" maxlength="5" style="width: 70px;" tabindex="3" onkeypress="iesvn_InputInKeys('1234567890.');checkValidDot(this);" />								
+    					 	<h:inputText id="__dvt" value="#{B3152_DuTruThucPham.dvtTen}" styleClass="myinput" maxlength="7" readonly="true" style="width: 30px;border-left-width: 0px;border-right-width: 0px;border-top-width: 0px;border-bottom-width: 0px"/>
+    						<h:outputText value="*" styleClass="mynull" style="margin-right: 5px; margin-left: 2px;" />    					 		    					 	    						   
+						</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right">
+							<h:outputText value="Ghi chú" styleClass="mytext" style="margin-left: 13px; margin-right: 5px"/>
+						</td>
+						<td align="left">																				
+							<h:inputText id="__ghichu" value="#{B3152_DuTruThucPham.dutruTP.dttpGhichu}" styleClass="myinput" maxlength="100" style="width: 160px;" tabindex="4"/>								
+    					 	    					 		    					 	    						  
+						</td>
+    				</tr>    				    				
+	    		</table>
+	    </td>
+	    </tr>
+    	
+  <tr>
+    <td colspan="3" align="center" style="padding-left:280px; background-color: white; padding-bottom:10px">    
+    	<div  style="float:left;">    		
+    			<a4j:commandButton tabindex="5" id="__ghinhan" name="_ghinhan" action="#{B3152_DuTruThucPham.saveDuTruTP}" onclick="bSave = true;"
+        			disabled="#{B3152_DuTruThucPham.lockedSaveButton}" 
+        			reRender="message_infor,__ghinhan"  			      			
+    			value="Ghi nhận" style="width: 70px; margin-right: 3px;" styleClass="mybton_b"/>
+    		
+    	</div> 
+    	<div  style="float:left;">
+    			<a4j:commandButton tabindex="6" id="__nhaplai"     			
+    			focus="__ngay"
+    			action="#{B3152_DuTruThucPham.reset}"
+    			reRender="__ngay,LOAITP_MA_pk,LOAITP_MA,__soluong,__ghichu,__ghinhan,message_infor"
+    			name="_nhaplai"  value="Nhập mới" 
+    			style="width: 70px; margin-right: 3px;" styleClass="mybton_b"
+    			oncomplete="resetData();"/>
+    	</div>  
+    	
+    </td>
+  </tr>
+</table>    
+    <span id="DT_DM_LOAITP_span"/>
+    <h:inputHidden id="__ngayhientai" value=""/>
+    <a4j:commandButton id="__btnSearchDuTruTP" action="#{B3152_DuTruThucPham.searchPhieuDuTruTP}" style="display:none" reRender="__soluong,__ghichu,message_infor,__dvt"/>
+    <a4j:commandButton id="__btnShowDvt" action="#{B3152_DuTruThucPham.showDvt}" style="display:none" reRender="__dvt"/>
+    						
+   </h:form>
+   <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/vienphi/B3152_Dutruthucpham_gears.js"></script>
+      
+    <iframe width="174" height="189" name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;"/>
+      		   
+   </body>
+    
+  
+</ui:define> 
+</ui:composition>
+
+

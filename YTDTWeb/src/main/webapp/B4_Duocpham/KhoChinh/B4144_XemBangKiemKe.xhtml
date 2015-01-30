@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:a4j="http://richfaces.org/a4j"
+                xmlns:c="http://java.sun.com/jstl/core" 
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">
+	<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+	<script type="text/javascript">
+		
+function init() {	
+	if (window.google &amp;&amp; google.gears) {    	
+    	try {				
+				timer.setTimeout(function(){focusInit()},100); 	
+        } catch (e) {
+        	alert("init error: " + e.description);
+        }
+    }    
+}
+
+function focusInit(){	
+	var trangthaiDB =	document.getElementById(prefix_component + "trangthai").value;	
+	if(trangthaiDB == 'CLOSE'){
+		document.getElementById(prefix_component + "__xuatSoLieuKiemKe2").focus();
+		document.getElementById("__divDisplay1").style.display = "none";
+		document.getElementById("__divDisplay2").style.display = "block";
+	}else{
+		document.getElementById(prefix_component + "__capnhatGUI").focus();
+		document.getElementById("__divDisplay1").style.display = "block";
+		document.getElementById("__divDisplay2").style.display = "none";
+	}
+}
+
+
+function onCompleteGetInfor() {
+	try {					
+		myOnblurTextbox(prefix_component + "LOAIHANG_MA", "DM_LOAI_THUOC");						
+	} catch (e) {
+		alert("onCompleteGetInfor error: " + e.description);
+	}
+}
+
+function checkSubmit(){
+changeCursorWait ();
+	var form = document.forms[0];
+	var valid = true;	
+	if (valid) {
+		valid = iesvn_ValidateRequired(form);
+	}
+	if (valid == false){
+	    		changeCursorDefault ();
+	    	}
+	return valid;
+}
+
+function iesvn_Required() {
+	this.aa = new Array(prefix_component + "__ngaykiem", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Ngày kiểm'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+}
+
+	function enterToTab(){
+			    if((document.getElementById(prefix_component +"__capnhatGUI").alt != 1) &amp;&amp; (document.getElementById(prefix_component +"__capnhatFile").alt != 1)) {
+			       if(window.event.keyCode == 13){
+			            window.event.keyCode = 9;
+			       }
+			    }
+			} 
+	</script>
+	<body onkeydown="enterToTab();">
+	<h:form id="_form" name="_form">
+	<h:inputHidden  id="__resetFrom" value="#{resetFormXemBangKiemKe}"/>	
+    <div style="width:778px; position:absolute; z-index:99">
+    
+     <c:if test="#{tenChuongTrinh.equals(YTDT_Menu.quanLyKhoChinh)}">
+		<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoChinh.xhtml" />
+	</c:if>
+	<c:if test="#{tenChuongTrinh.equals(YTDT_Menu.quanLyKhoLe)}">
+		<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoLe.xhtml" />
+	</c:if>
+	<c:if test="#{tenChuongTrinh.equals(YTDT_Menu.quanLyKhoBHYT)}">
+		<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoBHYT.xhtml" />
+	</c:if>	
+     <c:if test="#{tenChuongTrinh.equals('QuanLyKhoNoiTru')}">
+    	<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoNoiTru.xhtml" />
+    </c:if>
+    <c:if test="#{tenChuongTrinh.equals('QuanLyKhoTE')}">
+		<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoTE.xhtml" />
+	</c:if>
+    </div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="53%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						XEM THÔNG TIN BẢNG KIỂM KÊ
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>        	
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="985px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea;" width="100%" align="center">
+    			<a4j:outputPanel id="message_infor">
+    				<h:messages styleClass="mynull"/>
+    			</a4j:outputPanel>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px" width="100%" align="center">
+    			<!-- Main Area -->
+    			<table cellspacing="0" cellpadding="0" border="0" width="95%">
+    				<tr style="height: 25px;">
+    				<td align="right" width="28%">	
+    					<h:outputText value="Mã kiểm kê" styleClass="mytext" style="margin-left: 5px; margin-right: 5px;"/>
+    					</td>
+    					<td align="left">
+    						<h:inputText type="text" id="__maKiemKe" readonly="true" name="__maKiemKe" value="#{B4144_XemBangKiemKe.kiemke.maphieukiem}" style="width:80px;">
+    						</h:inputText>				
+    				</td>    					
+    				</tr>    
+    				<tr style="height: 25px;">
+    				<td align="right" width="28%">	
+    					<h:outputText value="Ngày kiểm kê" styleClass="mytext" style="margin-left: 5px; margin-right: 5px;"/>
+    					</td>
+    					<td align="left">
+    						<h:inputText value="#{B4144_XemBangKiemKe.ngayKiem}" readonly="true" id="__ngaykiem" name="_ngaykiem" maxlength="10" style="width:120px" class="myinput"/>				
+    				</td>    					
+    				</tr>  				
+    				<tr style="height: 25px;">
+    					<td align="right" >
+    						<h:outputText value="Loại thuốc" styleClass="mytext" style="margin-right: 5px; margin-left: 0px;"/>
+    					</td>
+    					<td align="left"> 	
+    						<h:inputText type="text" id="__tenLoaiThuoc" readonly="true" name="__tenLoaiThuoc" value="#{B4144_XemBangKiemKe.tenLoaiThuoc}" style="width:160px;">
+    						</h:inputText>		
+    					</td>    					
+    				</tr>    				
+    				<tr style="height: 25px;">
+    					<td align="right" valign="top" style="padding-top:4px;" >
+    						<h:outputText value="Phân loại" styleClass="mytext" style="margin-left: 5px; margin-right: 5px;"/>
+    					</td>
+    					<td align="left" colspan="2">
+	    					<table cellspacing="0" cellpadding="0" border="0" width="70%" style="border: solid 1px #54779f;">    						
+	    						<tr>
+	    							<td colspan="3" >
+				    					<h:panelGroup id="listPLThuoc" >
+				    						<rich:dataTable value="#{listDmPLThuocKK}" var="item" width="100%" id="__datalist" nam="datalist">
+				             					<rich:column style="width:17%">
+				             						<f:facet name="header"><h:outputText value="Mã phân loại thuốc"/></f:facet>
+				              						<h:outputText id="maloai" value="#{item.dmphanloaithuocMa}" />
+				            					</rich:column>
+				           						<rich:column style="width:83%">
+				           							<f:facet name="header"><h:outputText value="Tên phân loại thuốc"/></f:facet>
+				              						<h:outputText id="tenloai" value="#{item.dmphanloaithuocTen}" />
+				           						</rich:column>
+				    						</rich:dataTable>
+				    					</h:panelGroup>
+	    							</td>
+	    						</tr>
+	    					</table>   	
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right" valign="top" style="padding-top:4px;" >
+    						<h:outputText value="Nhân viên kiểm kê" styleClass="mytext" style="margin-left: 5px; margin-right: 5px;"/>
+    					</td>
+    					<td align="left" colspan="2">
+	    					<h:inputText type="text" id="__nhanvienkk" readonly="true" name="__nhanvienkk" value="#{B4144_XemBangKiemKe.nhanvienKiemKe}" style="width:160px;">
+    						</h:inputText>
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right" valign="top" style="padding-top:4px;" >
+    						<h:outputText value="Ngày giờ cập nhật" styleClass="mytext" style="margin-left: 5px; margin-right: 5px;"/>
+    					</td>
+    					<td align="left" colspan="2">
+	    					<h:inputText type="text" id="__ngaygioCn" readonly="true" name="__ngaygioCn" value="#{B4144_XemBangKiemKe.ngaygioCN}" style="width:120px;">
+    						</h:inputText>
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right" valign="top" style="padding-top:4px;" >
+    						<h:outputText value="Trạng thái" styleClass="mytext" style="margin-left: 5px; margin-right: 5px;"/>
+    					</td>
+    					<td align="left" colspan="2">
+    						<h:inputHidden value="#{B4144_XemBangKiemKe.trangthaitt}" id="trangthaitt"/>
+    						<h:inputHidden value="#{B4144_XemBangKiemKe.kiemke.trangthai}" id="trangthai"/>
+	    					<h:inputText type="text" id="__trangthai" disabled="true" name="__trangthai" value="#{B4144_XemBangKiemKe.trangthaiKK}" style="width:120px;">
+    						</h:inputText>
+    					</td>
+    				</tr>
+    				</table>
+    			</td>
+    		</tr>  	
+    		<tr>
+    			<td height="40px" style="background-color: white;" width="100%" align="center" colspan="3">			
+    				<div id="__divDisplay1" style=" float: center;">
+    					<a4j:commandButton tabindex="1" id="__capnhatGUI" name="__capnhatGUI" value="Cập nhật số liệu trên GUI" 
+    									style="width: 155px;margin-left:3px;" styleClass="mybton_b" 
+					    				action="#{B4144_XemBangKiemKe.capnhatsolieuGUI}"
+					    				reRender="message_infor"
+					    				/>		
+    					<a4j:commandButton tabindex="2" id="__capnhatFile" 
+    								name="_chonlai"     								 
+    								action="#{B4144_XemBangKiemKe.capnhatsolieuFile}"  
+    								value="Cập nhật số liệu qua file" styleClass="mybton_b" 
+    								style="width:155px;margin-left:3px;"  />    				
+    					<a4j:commandButton tabindex="3" 
+    								id="__hoantatKiemKe" name="__hoantatKiemKe"  action="#{B4144_XemBangKiemKe.hoantatKiemke}" 
+    								value="Hoàn tất kiểm kê" styleClass="mybton_b" style="width:110px;margin-left:3px;"  
+    								reRender="__ngaygioCn,__trangthai,message_infor"
+    								/>
+    					<a4j:commandButton tabindex="4" 
+    								id="__huyKiemKe" name="__huyKiemKe"  action="#{B4144_XemBangKiemKe.huyKiemke}" 
+    								value="Hủy số liệu kiểm kê" styleClass="mybton_b" style="width:125px;margin-left:3px;"     								
+    								reRender="message_infor" />
+    					<a4j:commandButton tabindex="5" 
+    								id="__xuatSoLieuKiemKe1" name="__xuatSoLieuKiemKe"  action="#{B4144_XemBangKiemKe.xuatSolieu}" 
+    								value="In số liệu kiểm kê" styleClass="mybton_b" style="width:110px;margin-left:3px;" 
+    								reRender="message_infor" />  				
+    					<a4j:commandButton tabindex="6" 
+    								id="__quayve1" name="_quayve"  action="#{B4144_XemBangKiemKe.quayve}" 
+    								value="Quay lại" styleClass="mybton_b" style="width:70px;margin-left:3px;"  />
+    				</div> 
+    				<div id="__divDisplay2" style=" float: center;">     				
+    					<a4j:commandButton tabindex="1" 
+    								id="__xuatSoLieuKiemKe2" name="__xuatSoLieuKiemKe"  action="#{B4144_XemBangKiemKe.xuatSolieu}" 
+    								value="In số liệu kiểm kê" styleClass="mybton_b" style="width:110px;margin-left:3px;" 
+    								reRender="message_infor" />  				
+    					<a4j:commandButton tabindex="2" 
+    								id="__quayve2" name="_quayve"  action="#{B4144_XemBangKiemKe.quayve}" 
+    								value="Quay lại" styleClass="mybton_b" style="width:70px;margin-left:3px;"  />
+    				</div>
+    			</td>    		
+    		</tr> 
+    		<tr>
+			<td colspan="3" align="center" style="background-color: white; padding-top: 15px; padding-bottom: 5px;" width="100%">
+				<table border="0" cellspacing="0" cellpadding="0" style="width:98%;" align="center" >
+					<tr>
+						<td align="left">
+							<h:outputText value="Số dòng/Trang" styleClass="mytext" style="margin-left: 5px; margin-right: 5px;"/>
+							<h:inputText type="text" id="itemsPerPage" name="itemsPerPage" value="#{B4144_XemBangKiemKe.itemsPerPage}" style="width:30px;">
+								<a4j:support event="onblur"
+									action="#{B4144_XemBangKiemKe.resetItemsPerPage()}"
+									focus="__capnhatGUI"
+									reRender="itemsPerPage, __myTableTimKiem,totalPages">
+								</a4j:support>
+    						</h:inputText>
+    						<h:outputText id="totalPages" value="/#{B4144_XemBangKiemKe.totalPages}" styleClass="mytext" style="margin-left: 5px; margin-right: 5px;"/>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="8" style="border:solid 1px #7e9dba;" >	
+							<rich:dataTable headerClass="mycol" id="__myTableTimKiem" var="row" value="#{items}"
+												cellpadding="0" cellspacing="1" rowClasses="myrow1,myrow2" reRender="__ds"
+												border="0" style="width: 100%;" rows="#{B4144_XemBangKiemKe.itemsPerPage}" >
+								<rich:column style="width:5%;" >
+									<f:facet name="header"><h:outputText value="Mã"/></f:facet>
+									<h:outputText id="maso" value="#{row.kiemkeMa}" /> 			
+								</rich:column>
+								<rich:column style="width:30%;" align="left" >
+									<f:facet name="header"><h:outputText value="Thuốc"/></f:facet>
+									<h:outputText id="mathang" value="#{row.dmthuocMaso.dmthuocMa}, " /> 
+									<c:if test="#{trangthaittOut.equals('OPEN')}">
+										<a4j:commandLink value="#{row.dmthuocMaso.dmthuocTen}" 
+												action="#{B4144_XemBangKiemKe.selectKiemKeKho(items.rowIndex)}" style="width:9%;"
+												reRender=""></a4j:commandLink>	
+									</c:if>	
+									<c:if test="#{trangthaittOut.equals('CLOSE')}">
+										<h:outputText id="tenhang" value="#{row.dmthuocMaso.dmthuocTen}" />	
+									</c:if>
+								</rich:column>
+								<rich:column style="width:10%;" align="left" >
+									<f:facet name="header"><h:outputText value="Quốc gia"/></f:facet>
+									<h:outputText value="#{row.dmquocgiaMaso.dmquocgiaTen}" />	
+								</rich:column>
+								<rich:column  align="left" style="width:10%;">
+									<f:facet name="header"><h:outputText value="Nguồn CT"/></f:facet>																			
+									<h:outputText id="nct" value="#{r.dmnctMaso.dmnctTen}" /> 								
+								</rich:column>															
+								<rich:column style="width: 10%;" align="left">
+									<f:facet name="header"><h:outputText value="Nguồn KP"/></f:facet>									
+									<h:outputText value="#{row.dmnguonkinhphiMaso.dmnguonkinhphiTen}"  />							
+								</rich:column>
+								<rich:column style="width: 10%;"  align="right">
+									<f:facet name="header"><h:outputText value="Tồn"/></f:facet>
+									<h:outputText value="#{row.kiemkeTon}" >
+									</h:outputText>						
+								</rich:column>
+								<rich:column style="width: 10%;"  align="right">
+									<f:facet name="header"><h:outputText value="Tồn TT"/></f:facet>
+									<h:outputText value="#{row.kiemkeTontt}" >
+									</h:outputText>						
+								</rich:column>
+								<rich:column style="width: 15%;"  align="right">
+									<f:facet name="header"><h:outputText value="Lý do"/></f:facet>
+									<h:outputText value="#{row.kiemkeLydo}" >
+									</h:outputText>						
+								</rich:column>
+								<f:facet name="footer">
+			          				<rich:datascroller id="__ds" page="#{B4144_XemBangKiemKe.page}" reRender="__myTableTimKiem" ></rich:datascroller>
+			       				</f:facet>
+							</rich:dataTable>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+    </table>
+    <h:inputHidden value="#{B4144_XemBangKiemKe.dmKhoXuat}" id="DM_KHO_XUAT"/>
+    </h:form>    
+    </body>
+    <iframe width="174" height="189" name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;"/>
+</ui:define> 
+</ui:composition>

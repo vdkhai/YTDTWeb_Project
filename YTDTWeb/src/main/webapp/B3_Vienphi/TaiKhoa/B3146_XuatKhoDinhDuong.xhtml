@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                 xmlns:c="http://java.sun.com/jstl/core" 
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">	
+
+<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+
+	<script type="text/javascript">
+		
+		var bSave = false;
+
+		function iesvn_ValidateForm(form) {						
+			var valid = true;		
+			if (bSave) {	
+				valid = iesvn_ValidateRequired(form) &amp;&amp; iesvn_ValidateComparedDates(form);																			   
+		    }			
+			bSave = false; 	    	    
+		    return valid;
+		}
+		function iesvn_Required() {
+			
+			this.aa = new Array(prefix_component + "__ngay", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Ngày xuất'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));				
+			this.ab = new Array("DT_DM_LOAI_AN2", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Loại sản phẩm'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+			if (document.getElementById(prefix_component + 'LOAIAN_MA_pk').value == 2) { // San pham dinh duong
+				this.ac = new Array("DT_DM_NHASX", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Nhà sản xuất'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+			}
+			this.ad = new Array("DM_KHOA", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Khoa nhận'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+			this.ae = new Array(prefix_component + "__soluong", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Số lượng'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+ 	 		
+		}	
+		function iesvn_ComparedDates() {     				
+			this.aa = new Array([prefix_component + "__ngay",prefix_component + "__ngayhientai", "=="], "<h:outputFormat value='#{msg.common_compareDates}' > <f:param value='Ngày nhập'/> <f:param value='ngày hiện tại'/> </h:outputFormat>", new Function ("varName", "this.datePatternStrict='dd/MM/yyyy';  return this[varName];"));
+			
+		}
+					
+	</script>
+	<body>
+	<h:form id="_form" name="_form" onsubmit="return iesvn_ValidateForm(this)">
+	<h:inputHidden id="__hidKhoDD" value="#{strXuatKDD}"/>
+    <div style="width:778px; position:absolute; z-index:99">
+    <ui:include src="/layout/mymenu_YTDT_DieuTriNoiTru.xhtml" />    
+    
+    </div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="30%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						XUẤT KHO
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>    
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="965px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    			<tr style=" height : 5px;">
+    			<td width="100%" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 0px" colspan="3" align="center">  
+    		      	<a4j:outputPanel id="message_infor">
+       					 <h:messages styleClass="mynull"/>
+					</a4j:outputPanel>
+    		</td>    		
+    	</tr>
+    		
+    	<tr>
+    	<td colspan="3" style="background-color: white; padding-top: 5px; padding-bottom: 5px;" width="100%" align="center">
+    			<!-- Detail Area -->
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+	    			<tr style="height: 25px;">
+	    				<td align="right" style="padding-left: 0px; width:40%">
+    						<h:outputText value="Ngày xuất" styleClass="mytext" style="margin-right: 5px; margin-left: 5px;"/>
+    					</td>
+    					<td align="left"> 
+    						<h:inputText value="#{B3146_XuatKhoDinhDuong.ngayxuat}" onkeypress="return being_wellformed_Date(this, event)" 
+	    						onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); return is_wellformed_Date(this);'  
+	    						tabindex="1" type="text" id="__ngay" name="_ngay" maxlength="10" style=" width : 70px;" class="myinput"/>
+	    						<a hideFocus="true" href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__ngay'));return false;" ><h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/></a>
+	    						<h:outputText value="*" styleClass="mynull" style="margin-right: 5px; margin-left: 2px;" />			    				 
+    					</td>
+	    			</tr>
+	    			
+	    			<tr style="height: 25px;">
+    					<td align="right">
+							<h:outputText value="Loại xuất" styleClass="mytext" style="margin-left: 13px; margin-right: 5px"/>
+						</td>
+						<td align="left">														
+						
+							<h:inputHidden id="LOAIAN_MA_pk" value="#{B3146_XuatKhoDinhDuong.xuatKDD.dtdmlaMaso.dtdmlaMaso}"/>    					 	    					 
+    						<h:selectOneRadio id="__loainhap" value="#{B3146_XuatKhoDinhDuong.xuatKDD.dtdmlaMaso.dtdmlaMaso}" onchange="setLoaiNhap(this);" tabindex="2">
+					        	<f:selectItem id="__spddItems" itemValue="2" itemLabel="Sản phẩm dinh dưỡng" styleClass="mycheck"   />					    
+					        	<f:selectItem id="__sdnItems" itemValue="3" itemLabel="Sữa dưỡng nhi" styleClass="mycheck" />
+					    	</h:selectOneRadio>   					 	  
+						</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right">
+							<h:outputText value="Loại sản phẩm" styleClass="mytext" style="margin-left: 13px; margin-right: 5px"/>
+						</td>
+						<td align="left">																											
+    					 	
+    					 	<h:inputHidden id="LOAIAN2_MA_pk" value="#{B3146_XuatKhoDinhDuong.xuatKDD.dtdmla2Maso.dtdmla2Maso}"/>
+    					 	<h:inputHidden value="#{B3146_XuatKhoDinhDuong.xuatKDD.dtdmla2Maso.dtdmla2Ma}" id="LOAIAN2_MA" name="LOAIAN2_MA" style=" width : 30px; " styleClass="myinput"/>    					 	
+    					 	<input id="DT_DM_LOAI_AN2" name="DT_DM_LOAI_AN2" tabindex="3" style="width: 160px;" class="mycbogear"/>
+    						<h:outputText value="*" styleClass="mynull" style="margin-right: 5px; margin-left: 2px;" />   
+						</td>
+    				</tr>
+    				<tr style="height: 25px;" id="trNsx">
+    					<td align="right">
+							<h:outputText value="Nhà sản xuất" styleClass="mytext" style="margin-left: 13px; margin-right: 5px"/>
+						</td>
+						<td align="left">														
+						
+							<h:inputHidden id="NHASX_MA_pk" value="#{B3146_XuatKhoDinhDuong.xuatKDD.dtdmnsxMaso.dtdmnsxMaso}"/>
+    					 	<h:inputHidden value="#{B3146_XuatKhoDinhDuong.xuatKDD.dtdmnsxMaso.dtdmnsxMa}" id="NHASX_MA" name="NHASX_MA" style=" width : 30px; " styleClass="myinput"/>    					 	
+    					 	<input id="DT_DM_NHASX" name="DT_DM_NHASX" tabindex="4" style="width: 160px;" class="mycbogear"/>
+    					 	<h:outputText value="*" styleClass="mynull" style="margin-right: 87px; margin-left: 2px;" />    					 		    					 	    						   
+						</td>
+    				</tr>
+    				<tr style="height: 25px;" id="trNsx">
+    					<td align="right">
+							<h:outputText value="Khoa nhận" styleClass="mytext" style="margin-left: 13px; margin-right: 5px"/>
+						</td>
+						<td align="left">														
+						
+							<h:inputHidden id="DM_KHOA_MA_pk" value="#{B3146_XuatKhoDinhDuong.xuatKDD.dmkhoaMaso.dmkhoaMaso}"/>    							    					
+    						<h:inputHidden value="#{B3146_XuatKhoDinhDuong.xuatKDD.dmkhoaMaso.dmkhoaMa}" id="DM_KHOA_MA" name="DM_KHOA_MA" style=" width : 30px; " styleClass="myinput"/>
+	    					<input tabindex="2" id="DM_KHOA" name="DM_KHOA" style="width: 160px;" class="mycbogear"/> 
+	    					<h:outputText value="*" styleClass="mynull" />	
+    					 	    						   
+						</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right">
+							<h:outputText value="Số lượng" styleClass="mytext" style="margin-left: 13px; margin-right: 5px"/>
+						</td>
+						<td align="left">																				
+							<h:inputText id="__soluong" value="#{B3146_XuatKhoDinhDuong.soluong}" styleClass="myinput" maxlength="5" style="width: 70px;" onkeypress="iesvn_InputInKeys('1234567890.');checkValidDot(this);" />								
+    					 	<h:inputText id="__dvt" value="" styleClass="myinput" maxlength="7" readonly="true" style="width: 30px;border-left-width: 0px;border-right-width: 0px;border-top-width: 0px;border-bottom-width: 0px"/>
+    						<h:outputText value="*" styleClass="mynull" style="margin-right: 5px; margin-left: 2px;" />    					 		    					 	    						   
+						</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right">
+							<h:outputText value="Người nhập liệu" styleClass="mytext" style="margin-left: 13px; margin-right: 5px"/>
+						</td>
+						<td align="left">																				
+							<h:inputText id="__nguoinhap" value="#{B3146_XuatKhoDinhDuong.xuatKDD.xkddNguoixuat}" styleClass="myinput" maxlength="100" style="width: 160px;" tabindex="6"/>								
+    					 	    					 		    					 	    						  
+						</td>
+    				</tr>    				    				
+	    		</table>
+	    </td>
+	    </tr>
+    	
+  <tr>
+    <td colspan="3" align="center" style="padding-left:280px; background-color: white; padding-bottom:10px">    
+    	<div  style="float:left;">    		
+    			<a4j:commandButton tabindex="7" id="__ghinhan" name="_ghinhan" action="#{B3146_XuatKhoDinhDuong.saveXuatKDD}" onclick="bSave = true;"
+        			disabled="#{B3146_XuatKhoDinhDuong.lockedSaveButton}" 
+        			reRender="message_infor,__ghinhan"  			      			
+    			value="Ghi nhận" style="width: 70px; margin-right: 3px;" styleClass="mybton_b"/>
+    		
+    	</div> 
+    	<div  style="float:left;">
+    			<a4j:commandButton tabindex="8" id="__nhaplai"     			
+    			focus="__ngay"
+    			action="#{B3146_XuatKhoDinhDuong.reset}"
+    			reRender="__ngay,__loainhap,LOAIAN_MA_pk,LOAIAN2_MA_pk,LOAIAN2_MA,NHASX_MA_pk,NHASX_MA,DM_KHOA_MA_pk,DM_KHOA_MA,__soluong,__nguoinhap,__ghinhan,message_infor"
+    			name="_nhaplai"  value="Nhập mới" 
+    			style="width: 70px; margin-right: 3px;" styleClass="mybton_b"
+    			oncomplete="resetData();"/>
+    	</div>  
+    	
+    </td>
+  </tr>
+</table>    
+    <span id="DT_DM_LOAI_AN2_span"/>
+    <span id="DT_DM_NHASX_span"/>
+    <span id="DM_KHOA_span"/>	
+    <h:inputHidden id="__ngayhientai" value="#{B3146_XuatKhoDinhDuong.ngayhientai}"/>						
+   </h:form>
+   <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/vienphi/B3146_Xuatkhodinhduong_gears.js"></script>
+      
+    <iframe width="174" height="189" name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;"/>
+   <script type="text/javascript">
+   		
+   		function checkLoaiSp() {
+   			var loaianMaso = document.getElementById(prefix_component + 'LOAIAN_MA_pk').value;   			   		
+   			var loaian2Maso = document.getElementById(prefix_component + 'LOAIAN2_MA_pk').value;   			
+   			if (loaianMaso == 2) {// San pham dinh duong
+   	   			if (loaian2Maso == 4) { // Duong
+   	   				document.getElementById(prefix_component + '__dvt').value = "(kg)";
+   	   			} else if (document.getElementById(prefix_component + 'LOAIAN2_MA').value != ''){
+   	   				document.getElementById(prefix_component + '__dvt').value = "(hộp)";
+   	   			} else {
+   	   				document.getElementById(prefix_component + '__dvt').value = "";
+   	   			}
+   			} else if (document.getElementById(prefix_component + 'LOAIAN2_MA').value != '') {
+   				document.getElementById(prefix_component + '__dvt').value = "(hộp)";
+   			} else {
+   				document.getElementById(prefix_component + '__dvt').value = "";
+   			}  			   		
+   		}
+   		function setLoaiNhap(checkbox) {   	   		
+   	   		document.getElementById(prefix_component + 'LOAIAN_MA_pk').value = checkbox.value;
+   	   		resetDmLoaiAn2();   	   		
+   	   		document.getElementById('trNsx').style.display = (checkbox.value == 2?"block":"none");
+   		}
+   		function resetDmLoaiAn2() {
+   			document.getElementById(prefix_component + 'LOAIAN2_MA').value = "";
+   		 	resetForCombobox('DT_DM_LOAI_AN2',prefix_component + 'LOAIAN2_MA');
+   		}
+   		function resetData() { 
+   			  			
+   			//document.getElementById(prefix_component + 'LOAIAN_MA_pk').value = '';
+   			document.getElementById(prefix_component + '__dvt').value = '';
+   			resetDmLoaiAn2();
+   			document.getElementById(prefix_component + 'NHASX_MA').value = '';
+   	   		myOnblurTextbox(prefix_component + 'NHASX_MA',"DT_DM_NHASX");
+   	   		document.getElementById(prefix_component + 'DM_KHOA_MA').value = '';
+	   		myOnblurTextbox(prefix_component + 'DM_KHOA_MA',"DM_KHOA");   	   	    
+   	   		document.getElementById('trNsx').style.display = (document.getElementById(prefix_component + 'LOAIAN_MA_pk').value == 2?"block":"none");   	   	    
+   		}
+   		function checkValidDot(textbox) {	
+   			var e = window.event;
+   			if(e.keyCode == 46) {
+   				if (textbox.value.indexOf(".") != -1) e.keyCode = 0;
+   			}
+   		}
+   </script>
+   </body>
+    
+  
+</ui:define> 
+</ui:composition>
+
+

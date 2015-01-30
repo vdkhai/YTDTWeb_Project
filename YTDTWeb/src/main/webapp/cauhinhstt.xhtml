@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">
+	<h:form id="_form" name="_form">
+	<script type="text/javascript">
+		function init() {
+			if (window.google &amp;&amp; google.gears) {
+			}
+		}
+	</script>
+		<div style="width:778px; position:absolute; z-index:99">
+			<ui:include src="/layout/mymenu_YTDT_QuanTriHeThong.xhtml" />
+		</div>
+ 		<table width="778" border="1" bordercolor="#cccccc" style="background:#ffffff">
+ 	  		<tr>
+ 	  			<td style="padding-top:5px" colspan="4" height="50px">
+ 	  				<table cellspacing="0" cellpadding="0" border="0" width="100%">
+ 	  					<tr>
+ 	  						<td height="50px" width="100%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    							<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    							Phục hồi số thứ tự tại các khoa
+    						</td>
+ 	  					</tr>
+ 	  					<tr>
+ 	  						<td>
+ 	  							<div class="mybton_b_l" style="width: 85px; float: left;">
+    								<div style="background-position: 65px 0px; float: left; padding-right: 5px" class="mybton_b_r">
+    									<h:commandButton styleClass="mybton_b" style="width: 65px;" action="#{CauHinhStt.reset()}" value="Ghi nhận" />									
+    								</div>
+    							</div> 
+ 	  							
+ 	  						</td>
+ 	  						
+ 	  					</tr>
+ 	  				</table>
+ 	  			</td>
+ 	  		</tr>
+ 	  	</table>
+ 	  <tr></tr>
+	</h:form>
+	</ui:define> 
+</ui:composition>

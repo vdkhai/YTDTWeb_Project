@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<diagram model-entity="SeamPagesDiagram">
+ <item ID="#B1_Tiepdon#B111_Dangkykhambenh.xhtml"
+  NAME="#xB1_Tiepdon#xB111_Dangkykhambenh.xhtml"
+  PATH="/B1_Tiepdon/B111_Dangkykhambenh.xhtml" SHAPE="24,1057,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#B2_Dieutri#B211_Capnhathosobenhan.xhtml"
+  NAME="#xB2_Dieutri#xB211_Capnhathosobenhan.xhtml"
+  PATH="/B2_Dieutri/B211_Capnhathosobenhan.xhtml" SHAPE="344,1057,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#B2_Dieutri#B234_Giayravien.xhtml"
+  NAME="#xB2_Dieutri#xB234_Giayravien.xhtml"
+  PATH="/B2_Dieutri/B234_Giayravien.xhtml" SHAPE="664,1057,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#B3_Vienphi#ThuVienPhi#B3232_Canlamsanphongkham.xhtml"
+  NAME="#xB3_Vienphi#xThuVienPhi#xB3232_Canlamsanphongkham.xhtml"
+  PATH="/B3_Vienphi/ThuVienPhi/B3232_Canlamsanphongkham.xhtml"
+  SHAPE="984,1057,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#B3_Vienphi#ThuVienPhi#B3212_Capnhattientamung.xhtml"
+  NAME="#xB3_Vienphi#xThuVienPhi#xB3212_Capnhattientamung.xhtml"
+  PATH="/B3_Vienphi/ThuVienPhi/B3212_Capnhattientamung.xhtml"
+  SHAPE="1304,1057,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#B3_Vienphi#ThuVienPhi#B3213_Capnhatmiengiam.xhtml"
+  NAME="#xB3_Vienphi#xThuVienPhi#xB3213_Capnhatmiengiam.xhtml"
+  PATH="/B3_Vienphi/ThuVienPhi/B3213_Capnhatmiengiam.xhtml"
+  SHAPE="1624,1057,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#B3_Vienphi#ThuVienPhi#B3216_Chitrabottientamung.xhtml"
+  NAME="#xB3_Vienphi#xThuVienPhi#xB3216_Chitrabottientamung.xhtml"
+  PATH="/B3_Vienphi/ThuVienPhi/B3216_Chitrabottientamung.xhtml"
+  SHAPE="24,1161,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#B3_Vienphi#ThuVienPhi#B3218_Xacnhantreem.xhtml"
+  NAME="#xB3_Vienphi#xThuVienPhi#xB3218_Xacnhantreem.xhtml"
+  PATH="/B3_Vienphi/ThuVienPhi/B3218_Xacnhantreem.xhtml"
+  SHAPE="344,1161,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#B3_Vienphi#ThuVienPhi#B3234_Capnhattientamung_pcc.xhtml"
+  NAME="#xB3_Vienphi#xThuVienPhi#xB3234_Capnhattientamung_pcc.xhtml"
+  PATH="/B3_Vienphi/ThuVienPhi/B3234_Capnhattientamung_pcc.xhtml"
+  SHAPE="664,1161,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#B3_Vienphi#TaiKhoa#B3125_Lapphieudutru.xhtml"
+  NAME="#xB3_Vienphi#xTaiKhoa#xB3125_Lapphieudutru.xhtml"
+  PATH="/B3_Vienphi/TaiKhoa/B3125_Lapphieudutru.xhtml"
+  SHAPE="984,1161,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#B4_Duocpham#KhoChinh#B4123_Phieuxuathangkhoaphong.xhtml"
+  NAME="#xB4_Duocpham#xKhoChinh#xB4123_Phieuxuathangkhoaphong.xhtml"
+  PATH="/B4_Duocpham/KhoChinh/B4123_Phieuxuathangkhoaphong.xhtml"
+  SHAPE="1304,1161,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#B4_Duocpham#KhoChinh#B4111_phieunhapkhochinh.xhtml"
+  NAME="#xB4_Duocpham#xKhoChinh#xB4111_phieunhapkhochinh.xhtml"
+  PATH="/B4_Duocpham/KhoChinh/B4111_phieunhapkhochinh.xhtml"
+  SHAPE="1624,1161,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#B4_Duocpham#KhoChinh#B4121_Phieuxuathangkhole.xhtml"
+  NAME="#xB4_Duocpham#xKhoChinh#xB4121_Phieuxuathangkhole.xhtml"
+  PATH="/B4_Duocpham/KhoChinh/B4121_Phieuxuathangkhole.xhtml"
+  SHAPE="24,1265,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#B1_Tiepdon#B131_Dangkykhambenhcapcuu.xhtml"
+  NAME="#xB1_Tiepdon#xB131_Dangkykhambenhcapcuu.xhtml"
+  PATH="/B1_Tiepdon/B131_Dangkykhambenhcapcuu.xhtml"
+  SHAPE="344,1265,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="*" NAME="*" PATH="*" SHAPE="24,17,0,0" TYPE="page" model-entity="SeamPagesDiagramItem">
+  <output ID="/loginND.xhtml" NAME="output" PATH="/loginND.xhtml"
+   TARGET="#xloginND.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="org.jboss.seam.security.NotLoggedInException"
+  NAME="exception:org.jboss.seam.security.NotLoggedInException"
+  PATH="org.jboss.seam.security.NotLoggedInException" SHAPE="24,121,0,0"
+  TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/loginND.xhtml" NAME="output" PATH="/loginND.xhtml"
+   TARGET="#xloginND.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="org.jboss.seam.security.AuthorizationException"
+  NAME="exception:org.jboss.seam.security.AuthorizationException"
+  PATH="org.jboss.seam.security.AuthorizationException"
+  SHAPE="24,225,0,0" TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/accessdenied.xhtml" NAME="output"
+   PATH="/accessdenied.xhtml" TARGET="#xaccessdenied.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="java.rmi.RemoteException"
+  NAME="exception:java.rmi.RemoteException"
+  PATH="java.rmi.RemoteException" SHAPE="24,329,0,0" TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/accessdenied.xhtml" NAME="output"
+   PATH="/accessdenied.xhtml" TARGET="#xaccessdenied.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="java.text.ParseException"
+  NAME="exception:java.text.ParseException"
+  PATH="java.text.ParseException" SHAPE="24,433,0,0" TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/accessdenied.xhtml" NAME="output"
+   PATH="/accessdenied.xhtml" TARGET="#xaccessdenied.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="javax.xml.rpc.ServiceException"
+  NAME="exception:javax.xml.rpc.ServiceException"
+  PATH="javax.xml.rpc.ServiceException" SHAPE="24,537,0,0"
+  TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/accessdenied.xhtml" NAME="output"
+   PATH="/accessdenied.xhtml" TARGET="#xaccessdenied.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="javax.el.PropertyNotFoundException"
+  NAME="exception:javax.el.PropertyNotFoundException"
+  PATH="javax.el.PropertyNotFoundException" SHAPE="24,641,0,0"
+  TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/accessdenied.xhtml" NAME="output"
+   PATH="/accessdenied.xhtml" TARGET="#xaccessdenied.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="javax.faces.application.ViewExpiredException"
+  NAME="exception:javax.faces.application.ViewExpiredException"
+  PATH="javax.faces.application.ViewExpiredException" SHAPE="24,745,0,0"
+  TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/accessdenied.xhtml" NAME="output"
+   PATH="/accessdenied.xhtml" TARGET="#xaccessdenied.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="javax.servlet.ServletException"
+  NAME="exception:javax.servlet.ServletException"
+  PATH="javax.servlet.ServletException" SHAPE="24,849,0,0"
+  TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/accessdenied.xhtml" NAME="output"
+   PATH="/accessdenied.xhtml" TARGET="#xaccessdenied.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item ID="org.jboss.seam.InstantiationException"
+  NAME="exception:org.jboss.seam.InstantiationException"
+  PATH="org.jboss.seam.InstantiationException" SHAPE="24,953,0,0"
+  TYPE="exception" model-entity="SeamPagesDiagramItem">
+  <output ID="/accessdenied.xhtml" NAME="output"
+   PATH="/accessdenied.xhtml" TARGET="#xaccessdenied.xhtml" model-entity="SeamPagesDiagramItemOutput"/>
+ </item>
+ <item NAME="#xloginND.xhtml" PATH="/loginND.xhtml" SHAPE="376,17,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item NAME="#xaccessdenied.xhtml" PATH="/accessdenied.xhtml"
+  SHAPE="472,225,0,0" TYPE="page" model-entity="SeamPagesDiagramItem"/>
+ <item ID="#B1_Tiepdon#B121_Thamkhamvaxutri.xhtml"
+  NAME="#xB1_Tiepdon#xB121_Thamkhamvaxutri.xhtml"
+  PATH="/B1_Tiepdon/B121_Thamkhamvaxutri.xhtml" SHAPE="664,1265,0,0"
+  TYPE="page" model-entity="SeamPagesDiagramItem"/>
+</diagram>

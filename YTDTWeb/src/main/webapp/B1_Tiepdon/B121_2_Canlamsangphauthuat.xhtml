@@ -1,0 +1,733 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                xmlns:rich="http://richfaces.org/rich"
+                template="/layout/mytemplate.xhtml">
+    <ui:define name="body">
+
+        <f:loadBundle basename="com.iesvn.yte.UIResources" var="msg" />
+        <script type="text/javascript">
+  
+        var popupwd = null;
+        function popup(url,masocls,rowindex)
+        {
+          document.getElementById(prefix_component + "mabankhamout_hid").value = document.getElementById(prefix_component + "DT_DM_BAN_KHAM_MA").value;
+          document.getElementById(prefix_component + "matiepdonout_hid").value = document.getElementById(prefix_component + "__matiepdon").value;
+
+          document.getElementById(prefix_component + "maclsout_hid").value = masocls;
+          document.getElementById(prefix_component + "rowindex_hid").value = rowindex;
+
+
+          //alert(document.getElementById(prefix_component + "mabankhamout_hid").value + "," + document.getElementById(prefix_component + "matiepdonout_hid").value + "," + document.getElementById(prefix_component + "maclsout_hid").value);
+
+
+          var width  = 800;
+          var height = 600;
+          var left   = (screen.width  - width)/2;
+          var top    = (screen.height - height)/2;
+          var params = 'width='+width+', height='+height;
+          params += ', top='+top+', left='+left;
+          params += ', directories=no';
+          params += ', location=no';
+          params += ', menubar=no';
+          params += ', resizable=yes';
+          params += ', scrollbars=yes';
+          params += ', status=no';
+          params += ', toolbar=no';
+          //var urlNew = url + "?mabankham=" + document.getElementById(prefix_component + "mabankhamout_hid").value;
+          //urlNew += "&amp;matiepdon=" + document.getElementById(prefix_component + "matiepdonout_hid").value;
+          //urlNew += "&amp;maclsout=" + document.getElementById(prefix_component + "maclsout_hid").value;
+          popupwd = window.open(url, 'windowname5', params);
+          //setDelay();
+          timer.setTimeout("setTimerDelay()", 500);
+          return false;
+        }
+
+        function setTimerDelay(){
+          if (window.focus) {
+                  popupwd.focus();
+          }
+        }
+
+
+        function setValueFromKetQuaThucHienCLS(){
+          var rowindex = document.getElementById(prefix_component + 'rowindex_hid').value;
+          var giatri = document.getElementById(prefix_component + 'giatrithuchien_hid').value;
+          //alert(rowindex+ "," + giatri);
+          if (giatri == "true"){
+                  document.getElementById(prefix_component + 'dataTable_NHAPCT:'+rowindex+':thcls_table_output').innerHTML = 'Đã TH';
+          }else{
+                  document.getElementById(prefix_component + 'dataTable_NHAPCT:'+rowindex+':thcls_table_output').innerHTML = 'Chưa TH';
+          }
+
+        }
+        var enableEntToTab = true;
+        function setEnableEntToTab(value) {
+            enableEntToTab = value;
+        }
+        function checkMaxLength(field,maxlen) {
+            if(field.value.length >= maxlen){
+                field.value = field.value.substring(0,maxlen);                          }
+        }
+        function enterToTab(){
+
+                    if(	(document.getElementById(prefix_component + "__nhapmoi") == null || document.getElementById(prefix_component + "__nhapmoi").alt != 1 ) &amp;&amp;
+                          (document.getElementById(prefix_component + "__inphieu") ==null || document.getElementById(prefix_component + "__inphieu").alt != 1 ) &amp;&amp;
+                          (document.getElementById(prefix_component + "__quaylai") == null ||document.getElementById(prefix_component + "__quaylai").alt != 1 ) &amp;&amp;
+                          (document.getElementById(prefix_component + "__themchinhsau") == null ||document.getElementById(prefix_component + "__themchinhsau").alt != 1 ) &amp;&amp;
+                          (document.getElementById(prefix_component + "xoa") == null ||document.getElementById(prefix_component + "xoa").alt != 1 ) &amp;&amp;
+                          (document.getElementById(prefix_component + "__ghinhan") == null ||document.getElementById(prefix_component + "__ghinhan").alt  != 1   )
+             ) {
+
+                    if(window.event.keyCode == 13 &amp;&amp; enableEntToTab){
+                           window.event.keyCode = 9;
+                     }
+             }
+        }
+        var ghiNhan = false;
+        var inphieu = false;
+            function iesvn_Required() {
+                              if (ghiNhan == true){
+                                      this.aa = new Array(prefix_component + "DT_DM_BAN_KHAM_MA", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Bàn khám'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+                                      this.ab = new Array(prefix_component + "__matiepdon", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Mã tiếp đón'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+                                      ghiNhan = false;
+                              }else if (inphieu){
+                                      //this.ad = new Array(prefix_component + "DM_KHOA_MA", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Khoa thực hiện CLS'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+                                      inphieu = false;
+                              } else{
+                                      this.ac = new Array(prefix_component + "DT_DM_CLS_BANG_GIA_MA", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='CLS'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+                                      //this.ad = new Array(prefix_component + "DM_KHOA_MA", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Khoa thực hiện CLS'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+                                      this.ae = new Array(prefix_component + "__soluong", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Số lượng'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+ 	  		
+ 	 		
+                              }
+                }
+                function iesvn_FloatValidations(){
+                              if (ghiNhan == true){
+ 	  		
+                              }else{
+                                      this.aa = new Array(prefix_component + "__soluong",
+                                                                              "<h:outputFormat value='#{msg.common_float}'><f:param value='Số lượng' /></h:outputFormat>",
+                                                                              new Function ("varName",  "return this[varName];"));
+                              }
+									
+                      }
+                      function onSubmit_ghinhan(){
+                              changeCursorWait ();
+                              //ghiNhan = true;
+                              var form = document.forms[0];
+                              var valid = iesvn_ValidateRequired(form)  ;
+                      //ghiNhan = false;
+                      if (valid == false){
+                              changeCursorDefault ();
+                      }
+                      return valid;
+	    	
+                      }
+
+		
+                function onSubmit() {
+                              changeCursorWait ();
+                              var form = document.forms[0];
+                              var valid = true;
+				    	    	
+                      valid = iesvn_ValidateRequired(form)  ;
+                      if (valid == true){
+                              valid =  iesvn_ValidateFloat(form)  ;
+                      }
+                              if (ghiNhan == true){
+                                      ghiNhan = false;
+                              }
+                              if (valid == false){
+                              changeCursorDefault ();
+                      }
+                          return valid;
+			
+                      }
+              function setClsFocus() {
+                      document.getElementById("DT_DM_CLS_BANG_GIA").focus();
+              }
+		
+        </script>
+        <body onkeydown="enterToTab();">
+            <h:form id="_form" name="_form" >
+
+                <h:inputHidden rendered="#{fromMenu != 'yes'}" id="goToCLSThuThuat" value="#{goToCLSThuThuat}"/>
+
+                <h:inputHidden id="khongQuaylaiTuCapNhatTTCLS" value="#{khongQuaylaiTuCapNhatTTCLS}"/>
+
+                <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_TiepDon.xhtml" /></div>
+                <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+                    <tr>
+                        <td style="padding-top:5px" colspan="3" height="50px">
+                            <table cellspacing="0" cellpadding="0" border="0" width="100%" >
+                                <tr>
+                                    <td height="50px" width="43%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >
+                                        <h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						CẬN LÂM SÀNG, THỦ THUẬT
+                                    </td>
+                                    <td valign="top">
+
+                                        <table cellspacing="0" cellpadding="0" width="100%" >
+                                            <tr>
+                                                <td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+                                                    &#160;
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="13px" height="12px" class="mytdl">
+                        </td>
+                        <td style="background-color: #c9daea;" width="965px" height="12px" >
+                        </td>
+                        <td width="11px" height="12px" class="mytdr">
+                        </td>
+                    </tr>
+
+                    <tr style=" height : 5px;">
+                        <td width="100%" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 0px" colspan="3" align="center">
+
+                            <a4j:outputPanel id="message_infor">
+                                <h:messages	styleClass="mynull"/>
+                            </a4j:outputPanel>
+                        </td>
+
+
+                    </tr>
+
+                    <tr>
+                        <td colspan="3" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 5px" width="100%" >
+                            <!-- Main Area -->
+                            <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                                <tr style="height: 25px;">
+                                    <td align="right" >
+                                        <h:outputText value="Bàn khám" styleClass="mytext" style="margin-right : 5px; margin-left : 5px"/>
+
+                                    </td>
+                                    <td align="left" >
+
+
+                                        <h:inputText   styleClass="myinput" value="#{B121_2_Canlamsangphauthuat.thamkham.getThamkhamBankham(true).dtdmbankhamMa}"
+                                                       id="DT_DM_BAN_KHAM_MA"  onblur="myOnblurTextbox(this.id,'DT_DM_BAN_KHAM')" name="DT_DM_BAN_KHAM_MA" style=" width : 50px" maxlength="10" />
+                                        <span id="DT_DM_BAN_KHAM_span"/>
+                                        <input id="DT_DM_BAN_KHAM" name="DT_DM_BAN_KHAM" class="myinput" style=" width :262px;"/>
+                                        <!--
+    					 	<h:outputText value="Bác sĩ chỉ định" styleClass="mytext" style="margin-right : 5px; margin-left : 5px"/>
+    					-->
+                                        <!--
+    						<h:inputHidden value="#{B121_2_Canlamsangphauthuat.bacSiChiDinhMaSo}"/>
+    						<h:inputText   styleClass="myinput" value="#{B121_2_Canlamsangphauthuat.bacSiChiDinhMa}" 
+    							id="DT_DM_NHAN_VIEN_MA" name="DT_DM_NHAN_VIEN_MA" style=" width : 50px" maxlength="10" />
+    					 	<span id="DT_DM_NHAN_VIEN_span"/>
+    					 	<input  id="DT_DM_NHAN_VIEN" name="DT_DM_NHAN_VIEN" class="myinput" style=" width :292px;"/>
+
+    					 -->
+                                        <h:outputText value="Mã tiếp đón" styleClass="mytext" style="margin-right: 5px; margin-left:5px"/>
+                                        <h:inputText value="#{B121_2_Canlamsangphauthuat.thamkham.getTiepdonMa(true).tiepdonMa}"
+                                                     id="__matiepdon" name="_matiepdon" style="width: 100px;" styleClass="myinput">
+                                            <a4j:support
+                                                oncomplete="setOnload_tiepdon();document.getElementById(prefix_component + 'mabankhamout_hid').value=document.getElementById(prefix_component + 'DT_DM_BAN_KHAM_MA').value;document.getElementById(prefix_component + 'matiepdonout_hid').value=document.getElementById(prefix_component + '__matiepdon').value;"
+                                                event="onblur" focus="__loai"
+                                                action="#{B121_2_Canlamsangphauthuat.displayInforFromMenu()}"
+                                                reRender="__namsinhHid,DM_DOI_TUONG_MA,message_infor,__matiepdon,__mabenhnhan,__hoten,__tuoi,__donViTuoiHid,__ngaytg,DM_DOI_TUONG,__thoigian,__mien_hid,__ndm_hid,__dichVu,__ktc_hid,__loai,DT_DM_CLS_BANG_GIA_MA,__mien,__ndm,__yc,__ktc,__soluong,__dongia,DM_KHOA_MA,dataTable_NHAPCT"/>
+
+                                        </h:inputText>
+
+                                    </td>
+
+                                </tr>
+                                <tr style="height: 25px;">
+                                    <td align="right" width="20%">
+                                        <h:outputText value="Mã bệnh nhân" styleClass="mytext" style="margin-right: 5px; margin-left:5px"/>
+
+                                    </td>
+                                    <td align="left">
+                                        <h:inputText readonly="true" value="#{B121_2_Canlamsangphauthuat.thamkham.getTiepdonMa(true).getBenhnhanMa(true).benhnhanMa}" id="__mabenhnhan" name="_mabenhnhan" style="float:left; width: 100px;" styleClass="myreadonly" />
+
+                                        <h:outputText value="Họ tên" styleClass="mytext" style="float:left; margin-right : 5px; margin-left : 29px"/>
+                                        <h:inputText readonly="true" value="#{B121_2_Canlamsangphauthuat.thamkham.getTiepdonMa(true).getBenhnhanMa(true).benhnhanHoten}" id="__hoten" name="_hoten" styleClass="myreadonly" style="float:left; width : 146px;"/>
+                                        <h:outputText value="Tuổi" styleClass="mytext" style="float:left; margin-right: 5px; margin-left: 10px"/>
+                                        <h:inputText readonly="true"  id="__tuoi"  value="#{B121_2_Canlamsangphauthuat.thamkham.getTiepdonMa(true).getBenhnhanMa(true).benhnhanTuoi}" name="_tuoi" style="float:left; width : 20px; margin-right: 3px" styleClass="myreadonly"/>
+                                        <h:outputText value="(Năm)" id="__donViTuoi" styleClass="mytext" style="margin-right: 3px; margin-left: 3px;float:left;"/>
+                                        <h:inputHidden id = "__donViTuoiHid" value = "#{B121_2_Canlamsangphauthuat.benhNhan.benhnhanDonvituoi}"/>
+                                        <h:inputText readonly="true"  value="#{B121_2_Canlamsangphauthuat.ngaySinh}"  type="text" id="__ngaytg" name="_ngaytg" maxlength="10" style="float:left; width : 70px;" styleClass="myreadonly"/>
+
+                                        <h:inputHidden id = "__namsinhHid" value= "#{B121_2_Canlamsangphauthuat.benhNhan.benhnhanNamsinh}"/>
+
+                                    </td>
+
+                                </tr>
+                                <tr style="height: 25px;">
+                                    <td align="right" >
+                                        <h:outputText value="Đối tượng" styleClass="mytext" style="margin-right : 5px; margin-left : 10px"/>
+
+                                    </td>
+                                    <td align="left">
+
+
+                                        <h:inputText readonly="true" value="#{B121_2_Canlamsangphauthuat.thamkham.getTiepdonMa(true).getDoituongMa(true).dmdoituongMa}"  styleClass="myreadonly" tabindex="1"
+                                                     id="DM_DOI_TUONG_MA" name="_madoituong" style=" width : 20px"  maxlength="10"/>
+
+                                        <h:inputText readonly="true"   value="#{B121_2_Canlamsangphauthuat.thamkham.getTiepdonMa(true).getDoituongMa(true).dmdoituongTen}" id="DM_DOI_TUONG" name="DM_DOI_TUONG" class="myreadonly" style="width: 120px;" tabindex="2"/>
+                                        <h:outputText value="Thời gian" styleClass="mytext" style="margin-right : 5px; margin-left : 47px"/>
+                                        <h:inputText  readonly="true" value="#{B121_2_Canlamsangphauthuat.thoiGian}" styleClass="myreadonly" tabindex="3"
+                                                      onkeypress="return being_wellformed_Date(this, event)" onblur="return is_wellformed_Date(this)" type="text" id="__thoigian" name="_thoigian" maxlength="10" style=" width : 70px;"/>
+
+                                    </td>
+
+                                </tr>
+                                <tr style=" height : 25px;">
+                                    <td align="right" width="7%">
+                                        <h:outputText value="Khoa CLS" styleClass="mytext" style="margin-right: 5px; margin-left: 5px;"/>
+
+                                    </td>
+                                    <td align="left" >
+                                        <h:inputHidden
+                                            id="DM_KHOA_MA_pk" value="#{B121_2_Canlamsangphauthuat.masoKhoa}" />
+                                        <h:inputText  value="#{B121_2_Canlamsangphauthuat.maKhoa}"
+                                                      id="DM_KHOA_MA" name="DM_KHOA_MA" style=" float:left; width : 50px; margin-right: 3px;" styleClass="myinput"
+                                                      onblur="myOnblurTextbox(this.id,'DM_KHOA');" maxlength="3" tabindex="4"/>
+                                        <span id="DM_KHOA_span"/>
+                                        <input  alt="getKhoaHavingCLS()"  id="DM_KHOA" name="DM_KHOA" tabindex="5" style="width: 439px;"/>
+                                        <a4j:commandButton  onclick=""
+                                                            tabindex="6" id="__displayCLS" name="__displayCLS" action="#{B121_2_Canlamsangphauthuat.displayCLS}"
+                                                            oncomplete=""
+                                                            reRender="__mien_hid,__ndm_hid,__dichVu,__ktc_hid,__loai,DT_DM_CLS_BANG_GIA_MA,__mien,__ndm,__yc,__ktc,__soluong,__dongia,dataTable_NHAPCT,dataTable_CLSChoose,dataTable_CLSChoose2"  value="+" style="width: 20px;height:19px; margin-bottom:1px; margin-left: 3px" styleClass="mybton_add"/>
+
+                                    </td>
+                                </tr>
+                                <tr id="khoaCDHA" style="display: none;">
+                                    <td align="right" width="7%">
+                                        <h:outputText value="Chuẩn đoán hình ảnh" styleClass="mytext" style="margin-right: 5px; margin-left: 5px;"/>
+                                    </td>
+                                    <td>
+                                        <h:selectOneMenu value="#{B121_2_Canlamsangphauthuat.khoaCDHA}">
+                                            <f:selectItem itemLabel="Siêu âm" itemValue="SA"/>
+                                            <f:selectItem itemLabel="Nội soi" itemValue="NS"/>
+                                            <f:selectItem itemLabel="CT" itemValue="CT"/>
+                                            <f:selectItem itemLabel="X Quang" itemValue="XQ"/>
+                                        </h:selectOneMenu>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th colspan="2">
+                                        <table cellspacing="0" cellpadding="0" border="0" width = "100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td align="right">
+                                                        <div style="overflow-x: hidden; overflow-y: scroll; height: 200px;width: 350px; border: solid 1px #7a9dba; background-color: #fff" align="center" id="listChoose">
+                                                            <rich:dataTable id="dataTable_CLSChoose" value="#{B121_2_Canlamsangphauthuat.listCLSChoose_B121_1}" var="currentRow" width="290px" rendered="#{B121_2_Canlamsangphauthuat.listCLSChoose_B121_1.size>=0}" bgcolor="#cccccc">
+                                                                <rich:column style="width:250px;" id="column_CLSChoose" align="left" >
+                                                                    <h:outputText id="outputText261" value="#{currentRow.clskhamMahang.dtdmclsbgDiengiai}"/>
+                                                                </rich:column>
+                                                                <rich:column style="width:30px;" id="column_Choose" align="center">
+                                                                    <input type="checkbox" name="checkboxclschoose" value="#{currentRow.clskhamMahang.dtdmclsbgMaso}" />
+                                                                </rich:column>
+                                                            </rich:dataTable>
+                                                        </div>
+                                                    </td>
+                                                    <td align="right">
+                                                        <div style="overflow-x: hidden;overflow-y: scroll; height: 200px;width: 350px; border: solid 1px #7a9dba; background-color: #fff;" align="center" id="listChoose2">
+                                                            <rich:dataTable id="dataTable_CLSChoose2" value="#{B121_2_Canlamsangphauthuat.listCLSChoose_B121_2}" var="currentRow" width="290px" rendered="#{B121_2_Canlamsangphauthuat.listCLSChoose_B121_2.size>=0}" bgcolor="#cccccc">
+                                                                <rich:column style="width:250px;" id="column_CLSChoose2" align="left" >
+                                                                    <h:outputText id="outputText2612" value="#{currentRow.clskhamMahang.dtdmclsbgDiengiai}"/>
+                                                                </rich:column>
+                                                                <rich:column style="width:30px;" id="column_Choose2" align="center">
+                                                                    <input type="checkbox" name="checkboxclschoose" value="#{currentRow.clskhamMahang.dtdmclsbgMaso}" />
+                                                                </rich:column>
+                                                            </rich:dataTable>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <h:inputHidden id="listCLSChecked" value="#{B121_2_Canlamsangphauthuat.listCLSChoose}" />
+
+                                                    </td>
+                                                    <td valign="bottom" style="padding-right: 10px">
+                                                        <a4j:commandButton  onclick="getCLSChooseValue();"
+                                                                            tabindex="7" id="__getCLSChooseValue" name="__getCLSChooseValue" action="#{B121_2_Canlamsangphauthuat.addListCLSChoose}"
+                                                                            oncomplete=""
+                                                                            reRender="__mien_hid,__ndm_hid,__dichVu,__ktc_hid,__loai,DT_DM_CLS_BANG_GIA_MA,__mien,__ndm,__yc,__ktc,__soluong,__dongia,dataTable_NHAPCT,dataTable_CLSChoose,dataTable_CLSChoose2"  value="+" style="width: 20px;height:19px; margin-bottom:1px; margin-left: 3px" styleClass="mybton_add"/>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </th>
+                                </tr>
+                                <tr style=" height : 20px;">
+                                    <td align="right" width="14%" style="padding-top:5px;">
+                                        <h:outputText value="Loại" styleClass="mytext" style="margin-right: 5px;margin-left: 83px;"/>
+
+                                    </td>
+                                    <td align="left" style="padding-top:5px;">
+                                        <h:inputText value="#{B121_2_Canlamsangphauthuat.loai}" tabindex="8" id="__loai" name="_loai" style="width: 50px; " styleClass="myinput" readonly="true"/>
+
+
+                                        <h:outputText value="CLS, PT, TT" styleClass="mytext" style="margin-right: 5px; margin-left: 5px;"/>
+                                        <h:inputHidden id="DT_DM_CLS_BANG_GIA_MA_pk" value="#{B121_2_Canlamsangphauthuat.maSo}"/>
+                                        <h:inputText  value="#{B121_2_Canlamsangphauthuat.ma}" tabindex="9"
+                                                      id="DT_DM_CLS_BANG_GIA_MA" name="DT_DM_CLS_BANG_GIA_MA" style=" width : 50px" styleClass="myinput"
+                                                      onblur="myOnblurTextboxForDtDmKyThuatExt(this.id,'DT_DM_CLS_BANG_GIA',document.getElementById(prefix_component + '__loai').value,document.getElementById(prefix_component + 'DM_KHOA_MA').value);setPriceForKT();" maxlength="10" />
+                                       
+                                        <input alt="getDtDmClsBangGia_SearchExt('DT_DM_CLS_BANG_GIA',prefix_component + '__loai',document.getElementById(prefix_component + 'DM_KHOA_MA').value)"  id="DT_DM_CLS_BANG_GIA" name="DT_DM_CLS_BANG_GIA" tabindex="10" style="width: 402px;"/>
+                                        <h:inputHidden id ="tenDmKyThuatHid" value="#{B121_2_Canlamsangphauthuat.tenCLS}" />
+
+                                        <h:inputHidden  value="#{B121_2_Canlamsangphauthuat.diengiai}" id="__tem" name="_tem" style="width: 200px;"/>
+										 <span id="DT_DM_CLS_BANG_GIA_span"/>
+
+                                    </td>
+
+
+
+                                </tr>
+                                <tr style=" height : 20px;">
+                                    <td align="right" width="14%" style="padding-top:5px;">
+                                        <h:outputText value="Ghi chú" styleClass="mytext" style="margin-right: 5px;margin-left: 83px;"/>
+
+                                    </td>
+                                    <td align="left" style="padding-top:5px;">
+                                        <h:inputText value="#{B121_2_Canlamsangphauthuat.ghiChu}" tabindex="11" id="__ghichu" name="_ghichu" style="width: 585px; " styleClass="myinput" maxlength="512"/>
+                                    </td>
+                                </tr>
+                                <tr style=" height : 20px;">
+
+
+
+                                    <td align="left" colspan="2"  style="padding-bottom: 10px;">
+
+                                        <h:outputText value="Dịch vụ" styleClass="mytext" style="margin-left:109px;margin-right:2px;"/>
+
+                                        <h:selectBooleanCheckbox  onclick="setCheckForDichVu();" title="Dịch vụ" label="Dịch vụ" id="__dichVu"  value="#{B121_2_Canlamsangphauthuat.dichVu}"   >
+                                        </h:selectBooleanCheckbox>
+
+                                        <h:outputText value="Miễn" styleClass="mytext" style="margin-left: 10px"/>
+
+                                        <h:selectBooleanCheckbox  disabled="true" title="Miễn" label="Miễn" id="__mien"    >
+                                        </h:selectBooleanCheckbox>
+
+                                        <h:outputText value="NDM" styleClass="mytext" style="margin-left: 10px"/>
+
+                                        <h:selectBooleanCheckbox  disabled="true" title="NDM" label="NDM" id="__ndm"     >
+                                        </h:selectBooleanCheckbox>
+
+                                        <h:outputText value="YC" styleClass="mytext" style="margin-left: 10px"/>
+
+                                        <h:selectBooleanCheckbox  onclick="checkDonGia(this)" onchange="onChangeForYC();" onblur="onChangeForYC();" title="YC" label="YC" id="__yc"  value="#{B121_2_Canlamsangphauthuat.yeuCau}"  >
+                                        </h:selectBooleanCheckbox>
+
+                                        <h:outputText value="KTC" styleClass="mytext" style="margin-left: 10px"/>
+
+                                        <h:selectBooleanCheckbox  disabled="true" title="KTC" label="KTC" id="__ktc"  value="" >
+                                        </h:selectBooleanCheckbox>
+                                        
+                                        <h:outputText value="Không thu" styleClass="mytext" style="margin-left: 10px"/>
+
+                                        <h:selectBooleanCheckbox onclick="setOtherValueForGetFromServer();" title="Không thu" label="Không thu" id="__kthu"  value="#{B121_2_Canlamsangphauthuat.khongthu}"  >
+                                        </h:selectBooleanCheckbox>
+
+                                        <h:inputHidden id="__ktc_hid" value="#{B121_2_Canlamsangphauthuat.kyThuatCao}"/>
+                                        <h:inputHidden id="__ndm_hid" value="#{B121_2_Canlamsangphauthuat.ndm}"/>
+                                        <h:inputHidden id="__mien_hid" value="#{B121_2_Canlamsangphauthuat.mien}"/>
+
+
+
+                                        <h:outputText value="Số lượng" styleClass="mytext" style="margin-right: 5px; margin-left:63px"/>
+
+                                        <h:inputText value="#{B121_2_Canlamsangphauthuat.soLuong}" maxlength="3" onkeypress="iesvn_InputInKeys('1234567890');" tabindex="12" id="__soluong" name="_soluong" style="width: 20px;" styleClass="myinput"/>
+                                        <h:outputText value="Đơn giá" styleClass="mytext" style="margin-right: 5px; margin-left: 10px"/>
+
+                                        <h:inputText styleClass="myreadonlyso"  readonly="true"  onkeypress="iesvn_InputInKeys('1234567890');" tabindex="13" id="donGiaHid" name="donGiaHid" style=" width : 70px;">
+
+                                        </h:inputText>
+                                        <h:inputHidden id="__dongia" value="#{B121_2_Canlamsangphauthuat.donGia}"></h:inputHidden>
+
+                                        <a4j:commandButton  focus="__loai" onclick="if (! onSubmit()) {this.alt = 0;  return false; }"
+                                                            tabindex="14" id="__themchinhsau" name="_themchinhsau" action="#{B121_2_Canlamsangphauthuat.enter}"
+                                                            oncomplete="changeCursorDefault(); this.alt = 0; reloadValueForCombobox();"
+                                                            reRender="__mien_hid,__ndm_hid,__dichVu,__ktc_hid,__loai,DT_DM_CLS_BANG_GIA_MA,__mien,__ndm,__yc,__ktc,__kthu,__soluong,__dongia,dataTable_NHAPCT,tenDmKyThuatHid,DT_DM_CLS_BANG_GIA_MA_pk,hid_PhanDV,hid_GiaBH,__ghichu"  value="+" style="width: 20px;height:19px; margin-bottom:1px; margin-left: 3px" styleClass="mybton_add"/>
+                                        <div style="float: right;padding-top: -5px;padding-bottom: 5px; padding-left: 30px;">
+                                        	<a4j:commandLink style="margin-right: 20px;" onclick="showListCLSBKTruoc();" value="Bàn khám trước" action="#{B121_2_Canlamsangphauthuat.showCLSBanKhamTruoc}" reRender="__myCLSBanKhamTruoc"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" align="center">
+                                        <table cellspacing="0" cellpadding="0" border="0" width="99%" style="border: solid 1px #54779f; background-color: #fff">
+                                            <tr style=" height : 20px;" class="mycol" >
+                                                <td align="center" style="width: 4%; border-right: solid 1px; border-color:#ffffff;">
+                                                    <h:outputText value="STT"/>
+                                                </td>
+
+                                                <td align="center" style="width: 5%; border-right: solid 1px; border-color:#ffffff;">
+                                                    <h:outputText value="Loại"/>
+                                                </td>
+
+                                                <td align="center" style="width :12%; border-right: solid 1px; border-color:#ffffff;">
+                                                    <h:outputText value="Mã số"/>
+                                                </td>
+
+                                                <td align="center" style="border-right: solid 1px; border-color:#ffffff;">
+                                                    <h:outputText value="Tên CLS, PT, TT"/>
+                                                </td>
+
+                                                <td align="center" style="width: 5%; border-right: solid 1px; border-color:#ffffff;">
+                                                    <h:outputText value="Khoa CLS"/>
+                                                </td>
+                                                <td align="center" style="width: 10%; border-right: solid 1px; border-color:#ffffff;">
+                                                    <h:outputText value="Thực hiện"/>
+                                                </td>
+                                                <td align="center" style="width: 4%; border-right: solid 1px; border-color:#ffffff;">
+                                                    <h:outputText value="MP"/>
+                                                </td>
+
+                                                <td align="center" style="width: 4%; border-right: solid 1px; border-color:#ffffff;">
+                                                    <h:outputText value="YC"/>
+                                                </td>
+
+                                                <td align="center" style="width: 5%;  border-right: solid 1px; border-color:#ffffff;">
+                                                    <h:outputText value="KTC"/>
+                                                </td>
+                                                 <td align="center" style="width: 5%;  border-right: solid 1px; border-color:#ffffff;">
+                                                    <h:outputText value="KThu"/>
+                                                </td>
+
+                                                <td align="center" style="width: 4%;  border-right: solid 1px; border-color:#ffffff;">
+                                                    <h:outputText value="SL"/>
+                                                </td>
+                                                <td align="center" style="width:7%; border-right: solid 1px; border-color:#ffffff;">
+                                                    <h:outputText value="Đơn giá"/>
+                                                </td>
+                                                <td style="width:4%;border-right:solid 1px #ffffff;" align="center" >
+                                                    <h:outputText value="TT"/>
+                                                </td>
+                                                <td style="width:5%;" align="left" >
+                                                    &#160;
+                                                </td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td colspan="24" align="center">
+
+                                                    <div style="overflow-x: hidden;overflow-y: scroll; height: 100px;width: 100%;" align="center" id="listKetqua">
+
+                                                        <rich:dataTable headerClass="mycol" id="dataTable_NHAPCT" rowClasses="myrow1,myrow2"
+                                                                        styleClass="myTable" value="#{listCtkq_B121_2}" var="currentRow" width="100%" rendered="#{listCtkq_B121_2.rowCount>=0}" bgcolor="#cccccc">
+                                                            <rich:column style="width: 4%;" id="column_STT" >
+                                                                <h:outputText id="outputText26" value="#{listCtkq_B121_2.rowIndex + 1}"/>
+                                                            </rich:column>
+
+                                                            <rich:column id="column_loai" style="width: 5%;">
+                                                                <h:outputText id="clskhamloai" value="#{currentRow.clskhamLoai}" />
+                                                            </rich:column>
+
+                                                            <rich:column id="column_maso" style="width: 12%;">
+                                                                <h:outputText id="maso" value="#{currentRow.clskhamMahang.dtdmclsbgMa}" />
+                                                            </rich:column>
+
+                                                            <rich:column id="column_diengiai" align="left">
+                                                                <a4j:commandLink id="tencls" oncomplete="reloadValueForCombobox();setClsFocus();" action="#{B121_2_Canlamsangphauthuat.nhapctAjax(listCtkq_B121_2.rowIndex)}" value="#{currentRow.clskhamMahang.dtdmclsbgDiengiai}" reRender="__mien_hid,__ndm_hid,__dichVu,__ktc_hid,__loai,DM_KHOA_MA,DT_DM_CLS_BANG_GIA_MA,__mien,__ndm,__yc,__ktc,__kthu,__soluong,__dongia,donGiaHid,tenDmKyThuatHid,DT_DM_CLS_BANG_GIA_MA_pk,hid_PhanDV,hid_GiaBH,__ghichu"/>
+                                                            </rich:column>
+
+                                                            <rich:column id="column_khoacls" style="width: 5%;" align="left" >
+                                                                <h:outputText id="khoacls_table" value="#{currentRow.clskhamKhoa.dmkhoaMa}" />
+                                                            </rich:column>
+                                                            <rich:column id="column_thcls" style="width: 10%;" align="left" >
+
+                                                                <a4j:commandLink id="thcls_table"  onclick="popup('#{facesContext.externalContext.requestContextPath}/B1_Tiepdon/B121_2_1_Canlamsangphauthuat_ketquacls.seam',#{currentRow.clskhamMa},#{listCtkq_B121_2.rowIndex})" >
+                                                                    <h:outputText id="thcls_table_output" value="#{currentRow.clskhamTh==true?'Đã TH':'Chưa TH'}" />
+                                                                </a4j:commandLink>
+
+                                                            </rich:column>
+
+                                                            <rich:column id="column_mp" style="width: 4%;">
+                                                                <h:outputText id="mp_table"  value="#{currentRow.clskhamMien == true?'x':''}" />
+                                                            </rich:column>
+
+                                                            <rich:column id="column_yc" style="width: 4%;">
+                                                                <h:outputText id="yeucau_table" value="#{currentRow.clskhamYeucau== true?'x':''}" />
+                                                            </rich:column>
+                                                            <rich:column id="column_ktc" style="width: 5%;">
+                                                                <h:outputText id="kythuatcao_table" value="#{currentRow.clskhamKtcao== true?'x':''}" />
+                                                            </rich:column>
+                                                            <rich:column id="column_kthu" style="width: 5%;">
+                                                                <h:outputText id="kthu_table" value="#{currentRow.clskhamKhongthu== true?'x':''}" />
+                                                            </rich:column>
+                                                            <rich:column id="column_soluong" style="width: 4%" align="right">
+                                                                <h:outputText id="soluong_table" value="#{currentRow.clskhamLan}" ><f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" /></h:outputText>
+                                                            </rich:column>
+                                                            <rich:column id="column_dongia" style="width: 7%; " align="right">
+                                                                <h:outputText id="dongia_table" value="#{currentRow.clskhamDongia}" ><f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" /></h:outputText>
+                                                            </rich:column>
+
+                                                            <rich:column id="column_thanhtoan" style="width: 4%;" align="center">
+
+                                                                <h:selectBooleanCheckbox disabled="true" readonly="true" title="Thanh Toán" label="Thanh Toán" id="__thanhtoan_#{listCtkq_B121_2.rowIndex}"  value="#{currentRow.clskhamDatt}" style="float: left">
+                                                                </h:selectBooleanCheckbox>
+
+
+                                                            </rich:column>
+                                                            <rich:column align="left" style="width: 5%;">
+
+                                                                <a4j:commandLink id="xoa" action="#{B121_2_Canlamsangphauthuat.delete(listCtkq_B121_2.rowIndex)}" reRender="dataTable_NHAPCT">
+                                                                    <h:graphicImage  value="/images/icon_delete2.gif" style="width: 19px; height: 16px; cursor: hand;margin-left:-5px;">
+
+                                                                    </h:graphicImage>
+                                                                </a4j:commandLink>
+                                                            </rich:column>
+
+                                                        </rich:dataTable>
+                                                    </div>
+                                                </td></tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                	<td colspan="3" align="center">
+                                		<div id="divListCLSBKTruoc" style="display:block;border:solid 1px #7e9dba;">
+                                			<rich:dataTable headerClass="mycol" id="__myCLSBanKhamTruoc" var="row" value="#{listCLSBanKhamTruoc}"
+												cellpadding="0" cellspacing="1" rowClasses="myrow1,myrow2" reRender="__ds"
+												border="0" style="width: 99%;" rows="10" >
+												<rich:column style="width:4%;" >
+													<f:facet name="header"><h:outputText value="STT"/></f:facet>
+													<h:outputText value="#{listCLSBanKhamTruoc.rowIndex + 1}" />																			
+												</rich:column>
+												<rich:column style="width:5%;" align="left" >
+													<f:facet name="header"><h:outputText value="Loại"/></f:facet>
+													<h:outputText value="#{row.cls.clskhamLoai}" />					
+												</rich:column>
+												<rich:column style="width:7%;" align="left" >
+													<f:facet name="header"><h:outputText value="Mã số"/></f:facet>
+													<h:outputText value="#{row.cls.clskhamMahang.dtdmclsbgMa}" />					
+												</rich:column>
+												<rich:column style="width:20%;" align="left" >
+													<f:facet name="header"><h:outputText value="Tên CLS, PT, TT"/></f:facet>
+													<h:outputText value="#{row.cls.clskhamMahang.dtdmclsbgDiengiai}" />					
+												</rich:column>
+												<rich:column style="width: 5%;" >
+													<f:facet name="header"><h:outputText value="Khoa CLS"/></f:facet>
+													<h:outputText value="#{row.cls.clskhamKhoa.dmkhoaMa}"  />							
+												</rich:column>
+												<rich:column style="width: 7%;" >
+													<f:facet name="header"><h:outputText value="Thực hiện"/></f:facet>
+													<h:outputText value="#{row.cls.clskhamTh==true?'Đã TH':'Chưa TH'}" />
+												</rich:column>
+												<rich:column style="width:3%;" align="right" >
+													<f:facet name="header"><h:outputText value="MP"/></f:facet>
+													<h:outputText value="#{row.cls.clskhamMien == true?'x':''}"/>
+												</rich:column>
+												<rich:column style="width:3%;" align="right" >
+													<f:facet name="header"><h:outputText value="YC"/></f:facet>
+													<h:outputText value="#{row.cls.clskhamYeucau == true?'x':''}"/>
+												</rich:column>
+												<rich:column style="width:3%;" align="right" >
+													<f:facet name="header"><h:outputText value="KTC"/></f:facet>
+													<h:outputText value="#{row.cls.clskhamKtcao== true?'x':''}"/>
+												</rich:column>
+												<rich:column style="width:3%;" align="right" >
+													<f:facet name="header"><h:outputText value="SL"/></f:facet>
+													<h:outputText value="#{row.cls.clskhamLan}"/>
+												</rich:column>
+												<rich:column style="width:8%;" align="right" >
+													<f:facet name="header"><h:outputText value="Đơn giá"/></f:facet>
+													<h:outputText value="#{row.cls.clskhamDongia}"><f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" />
+													</h:outputText>
+												</rich:column>
+												<rich:column style="width:2%;" align="right" >
+													<f:facet name="header"><h:outputText value="TT"/></f:facet>
+													<h:selectBooleanCheckbox disabled="true" readonly="true" title="Thanh Toán" label="Thanh Toán" id="__thanhtoan_#{listCLSBanKhamTruoc.rowIndex}"  value="#{row.cls.clskhamDatt}" style="float: left">
+                                                    </h:selectBooleanCheckbox>
+												</rich:column>
+												<rich:column style="width:7%;" align="right" >
+													<f:facet name="header"><h:outputText value="Bàn khám"/></f:facet>
+													<h:outputText value="#{row.bankhamTen}"/>
+												</rich:column>
+											</rich:dataTable>
+                                		</div>
+                                	</td>
+                                </tr>
+                                <tr style="height: 25px;" >
+                                    <td align="right" colspan="3" style="padding-left:250px; padding-bottom: 5px; padding-top: 5px;" >
+                                        <div style="float: left;">
+                                            <a4j:commandButton  id="__ghinhan"  name="_ghinhan" value="Ghi nhận" tabindex="15"
+                                                                onclick="ghiNhan = true;if (! onSubmit_ghinhan()) { this.alt = 0; return false; }"
+                                                                focus = "DM_KHOA_MA"
+                                                                action="#{B121_2_Canlamsangphauthuat.ghinhan}"
+                                                                oncomplete='changeCursorDefault(); this.alt = 0; reloadValueForCombobox();luuTruGiaTriClientDefault();'
+                                                                reRender="__namsinhHid,__mien_hid,__ndm_hid,__dichVu,__ktc_hid,message_infor,DM_DOI_TUONG,DM_DOI_TUONG_MA,dataTable_CLSChoose,dataTable_CLSChoose2" style="width: 70px;margin-right: 3px;"
+                                                                styleClass="mybton_b" />
+                                        </div>
+                                        <div id="divNhapMoi" style="float: left;">
+
+                                            <a4j:commandButton  id="__nhapmoi"  name="_nhapmoi"  value="Nhập mới" tabindex="16"
+                                                                action="#{B121_2_Canlamsangphauthuat.resetValueFromMenu}" style="width: 70px; margin-right: 3px;" styleClass="mybton_b"
+                                                                focus="DM_KHOA_MA"
+
+                                                                reRender="__namsinhHid,DM_DOI_TUONG_MA,message_infor,__matiepdon,__mabenhnhan,__hoten,_tuoi,__donViTuoiHid,__ngaytg,DM_DOI_TUONG,__thoigian,__mien_hid,__ndm_hid,__dichVu,__ktc_hid,__loai,DT_DM_CLS_BANG_GIA_MA,__mien,__ndm,__yc,__ktc,__kthu,__soluong,__dongia,DM_KHOA_MA,dataTable_NHAPCT,dataTable_CLSChoose,dataTable_CLSChoose2,tenDmKyThuatHid,DT_DM_CLS_BANG_GIA_MA_pk,hid_PhanDV,hid_GiaBH,__ghichu"/>
+
+                                        </div>
+                                        <div id="divQuaylai" style="float: left;">
+                                            <a4j:commandButton  id="__quaylai" name="_quaylai"  value="Quay lại" tabindex="17"
+                                                                action="#{B121_2_Canlamsangphauthuat.quaylai}"  style="width: 70px; margin-right: 3px;"
+                                                                reRender="dataTable_CLSChoose,dataTable_CLSChoose2"
+                                                                styleClass="mybton_b" />
+                                        </div>
+
+                                        <div id="divIn" style="float: left;">
+                                            <a4j:commandButton action="#{B121_2_Canlamsangphauthuat.thuchienAction}"  id="__inphieu" name="_inphieu"   value="In phiếu" style="width: 60px; margin-right: 3px;" tabindex="18" styleClass="mybton_b" onclick="inphieu = true;if (! onSubmit_ghinhan()) { return false; }"/>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                </table>
+                <h:inputHidden id="hid_Gia" value=""/>
+                <h:inputHidden id="hid_GiaBH" value="#{B121_2_Canlamsangphauthuat.donGiaBH}"/>
+                <h:inputHidden id="hid_GiaYC" value=""/>
+                <h:inputHidden id="hid_GiaMP" value=""/>
+                <h:inputHidden id="hid_PhanDV" value="#{B121_2_Canlamsangphauthuat.phanDV}"/>
+                <h:inputHidden id="resultHidden" value="#{B121_2_Canlamsangphauthuat.resultHidden}"/>
+
+                <h:inputHidden id="hid_khoiBHYT" value="#{B121_2_Canlamsangphauthuat.khoiBHYT}"/>
+                <h:inputHidden id="hid_vuotMoc1" value="#{B121_2_Canlamsangphauthuat.vuotMoc1}"/>
+
+                <h:inputHidden id="fromMenu" value="#{B121_2_Canlamsangphauthuat.fromMenu}"/>
+				<h:inputHidden id="isShowListCLSBKTruoc" />
+				
+                <h:inputHidden id="mabankhamout_hid" />
+                <h:inputHidden id="matiepdonout_hid"/>
+                <h:inputHidden id="maclsout_hid" value=""/>
+                <h:inputHidden id="rowindex_hid" value=""/>
+                <h:inputHidden id="giatrithuchien_hid" />
+                <h:inputHidden id="daThanhtoan" value ="#{B121_2_Canlamsangphauthuat.daThanhtoan}"/>
+                <h:inputHidden id="__hidBatDauBh" value="#{B121_2_Canlamsangphauthuat.strNgayBatDauBh}"/>
+                <h:inputHidden id="__hidHetHanBh" value="#{B121_2_Canlamsangphauthuat.strNgayHetHanBh}"/>
+                <a4j:commandButton  style="display: none" id="refresh"
+                                    onclick="popupwd.close();"
+                                    action="#{B121_2_Canlamsangphauthuat.displayInforFromMenu()}"
+                                    oncomplete=" setValueFromKetQuaThucHienCLS();"
+                                    />
+
+
+
+
+            </h:form>
+        </body>
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/tiepdon/B121_2_Canlamsangphauthuat_gears.js"></script>
+        <iframe width="174" height="189" name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;"/>
+
+    </ui:define>
+</ui:composition>
+
+

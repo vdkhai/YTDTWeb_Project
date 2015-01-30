@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                template="/layout/mytemplate_print.xhtml">
+
+<ui:define name="body">
+	<h:form id="_form" name="_form">
+	
+		<h:outputText id="outputText1"
+                            style="font-family: 'Arial','Helvetica',sans-serif; font-size: 16px; font-weight: bold; left: 192px; top: 48px; position: absolute" value="PHIẾU NHẬP KHO"/>
+        <h:outputText id="__loaiMa"
+            style="font-family: 'Arial','Helvetica',sans-serif; font-size: 16px; font-weight: bold; left: 360px; top: 48px; position: absolute" value="THUỐC THƯỜNG"/>
+        <h:outputText id="outputText3" style="font-size: 12px; left: 72px; top: 24px; position: absolute" value="Sở Y Tế"/>
+        <h:outputText id="outputText4" style="font-size: 12px; left: 24px; top: 48px; position: absolute" value="Bệnh Viện Tỉnh Khánh Hòa"/>
+        <h:outputText id="outputText5" style="font-size: 12px; left: 48px; top: 72px; position: absolute" value="Tel: 0.58.822168"/>
+        <h:outputText id="outputText6" style="font-size: 12px; left: 576px; top: 24px; position: absolute" value="Mẫu số: C11-H"/>
+        <h:outputText id="outputText7" style="font-size: 12px; left: 528px; top: 48px; position: absolute" value="Ban hành theo QĐ 999-TC/QĐ/CĐKT"/>
+        <h:outputText id="outputText8" style="font-size: 12px; left: 528px; top: 72px; position: absolute" value="Ngày 02/11/1996 của Bộ Tài Chính"/>
+        <h:outputText id="outputText9" style="font-size: 12px; left: 528px; top: 96px; position: absolute" value="Nợ:....................."/>
+        <h:outputText id="outputText10" style="font-size: 12px; left: 648px; top: 96px; position: absolute" value="Có:....................."/>
+        <h:outputText id="__maPhieu" style="font-size: 12px; left: 190px; top: 72px; position: absolute" value="Phiếu số: 20081000000 TT"/>
+        <h:outputText id="outputText12" style="font-size: 12px; left: 360px; top: 72px; position: absolute" value="Ngày:"/>
+        <h:inputText id="__ngaynhap" readonly="true" style="font-size: 12px; left: 408px; top: 72px; position: absolute; width: 72px" styleClass="inputNoborder"/>
+        <h:outputText id="outputText13" style="font-size: 12px; left: 24px; top: 144px; position: absolute" value="* Nơi cung cấp:"/>
+        <h:outputText id="outputText14" style="font-size: 12px; left: 24px; top: 168px; position: absolute" value="* Hóa đơn:"/>
+        <h:outputText id="outputText15" style="font-size: 12px; left: 24px; top: 192px; position: absolute" value="* Người giao thuốc:"/>
+        <h:outputText id="outputText16" style="font-size: 12px; left: 24px; top: 216px; position: absolute" value="* Sử dụng vi tính:"/>
+        <h:outputText id="outputText17" style="font-size: 12px; left: 456px; top: 144px; position: absolute" value="* Chương trình:"/>
+        <h:outputText id="outputText18" style="font-size: 12px; left: 456px; top: 168px; position: absolute" value="* Chứng từ:"/>
+        <h:outputText id="outputText19" style="font-size: 12px; left: 456px; top: 192px; position: absolute" value="* Năm nhập:"/>
+        <h:outputText id="outputText20" style="font-size: 12px; left: 456px; top: 216px; position: absolute" value="* Nhập kho:"/>
+        <h:outputText id="outputText21" style="font-size: 12px; left: 456px; top: 240px; position: absolute" value="* Nguồn KP:"/>
+        <h:inputText id="__noicungcap" readonly="true" style="font-size: 12px; left: 144px; top: 144px; position: absolute; width: 214px" styleClass="inputNoborder"/>
+        <h:inputText id="__hoadon" readonly="true" style="font-size: 12px; left: 144px; top: 168px; position: absolute; width: 214px" styleClass="inputNoborder"/>
+        <h:inputText id="__nguoigiaohang" readonly="true" style="font-size: 12px; left: 144px; top: 192px; position: absolute; width: 214px" styleClass="inputNoborder"/>
+        <h:inputText id="__sudungvitinh" readonly="true" style="font-size: 12px; left: 144px; top: 216px; position: absolute; width: 214px" styleClass="inputNoborder"/>
+        <h:inputText id="__chuongtrinh" readonly="true" style="font-size: 12px; left: 552px; top: 144px; position: absolute; width: 214px" styleClass="inputNoborder"/>
+        <h:inputText id="__chungtu" readonly="true" style="font-size: 12px; left: 552px; top: 168px; position: absolute; width: 214px" styleClass="inputNoborder"/>
+        <h:inputText id="__namnhap" readonly="true" style="font-size: 12px; left: 552px; top: 192px; position: absolute; width: 214px" styleClass="inputNoborder"/>
+        <h:inputText id="__nhapkho" readonly="true" style="font-size: 12px; left: 552px; top: 216px; position: absolute; width: 214px" styleClass="inputNoborder"/>
+        <h:inputText id="__nguonKP" readonly="true" style="font-size: 12px; left: 552px; top: 240px; position: absolute; width: 214px" styleClass="inputNoborder"/>
+        <h:dataTable headerClass="list-header" id="__myTable" rowClasses="list-row-even,list-row-odd"
+            style="left: 24px; top: 288px; position: absolute" var="currentRow" width="744" border="0" cellspacing="1" bgcolor="#000000">
+            <h:column id="column1">
+                <h:outputText id="outputText22" value=""/>
+                <f:facet name="header">
+                    <h:outputText id="outputText23" value="STT"/>
+                </f:facet>
+            </h:column>
+            <h:column id="column2">
+                <h:outputText id="outputText24" value=""/>
+                <f:facet name="header">
+                    <h:outputText id="outputText25" value="Tên, nhãn hiệu"/>
+                </f:facet>
+            </h:column>
+            <h:column id="column3">
+                <h:outputText id="outputText26" value=""/>
+                <f:facet name="header">
+                    <h:outputText id="outputText27" value="Đơn vị"/>
+                </f:facet>
+            </h:column>
+            <h:column id="column4">
+                <h:outputText id="outputText28" value=""/>
+                <f:facet name="header">
+                    <h:outputText id="outputText29" value="Số lượng"/>
+                </f:facet>
+            </h:column>
+            <h:column id="column5">
+                <h:outputText id="outputText30" value=""/>
+                <f:facet name="header">
+                    <h:outputText id="outputText31" value="Đơn giá VAT"/>
+                </f:facet>
+            </h:column>
+            <h:column id="column6">
+                <h:outputText id="outputText32" value=""/>
+                <f:facet name="header">
+                    <h:outputText id="outputText33" value="Thành tiền"/>
+                </f:facet>
+            </h:column>
+        </h:dataTable>
+        <h:outputText id="outputText34" style="font-size: 12px; left: 24px; top: 408px; position: absolute" value="Tổng cộng"/>
+        <h:inputText id="__khoan" readonly="true" style="font-size: 12px; left: 96px; top: 408px; position: absolute; width: 46px" styleClass="inputNoborder"/>
+        <h:outputText id="outputText35" style="font-size: 12px; left: 149px; top: 408px; position: absolute" value="khoản"/>
+        <h:outputText id="outputText36" style="font-size: 12px; left: 288px; top: 408px; position: absolute" value="* Đã có VAT"/>
+        <h:inputText id="__VAT" readonly="true" style="font-size: 12px; left: 360px; top: 408px; position: absolute; width: 41px" styleClass="inputNoborder"/>
+        <h:outputText id="outputText37" style="font-size: 12px; left: 404px; top: 408px; position: absolute" value="%"/>
+        <h:outputText id="outputText38" style="font-size: 12px; left: 542px; top: 408px; position: absolute" value="* Thành tền:"/>
+        <h:inputText id="__thanhtien" readonly="true" style="font-weight:bold; font-size: 12px; left: 624px; top: 406px; position: absolute; width: 142px" styleClass="inputNoborder"/>
+        <h:outputText id="outputText39" style="font-size: 12px; left: 482px; top: 480px; position: absolute" value="Nha Trang, ngày"/>
+        <h:outputText id="outputText40" style="font-size: 12px; left: 611px; top: 480px; position: absolute" value="tháng"/>
+        <h:outputText id="outputText41" style="font-size: 12px; left: 679px; top: 480px; position: absolute" value="năm"/>
+        <h:inputText id="__ngay" readonly="true" style="font-size: 12px; left: 578px; top: 480px; position: absolute; width: 22px" styleClass="inputNoborder"/>
+        <h:inputText id="__thang" readonly="true" style="font-size: 12px; left: 648px; top: 480px; position: absolute; width: 22px" styleClass="inputNoborder"/>
+        <h:inputText id="__nam" readonly="true" style="font-size: 12px; left: 710px; top: 480px; position: absolute; width: 46px" styleClass="inputNoborder"/>
+        <h:outputText id="outputText42" style="font-size: 12px; left: 24px; top: 528px; position: absolute" value="Trưởng khoa dược"/>
+        <h:outputText id="outputText43" style="font-size: 12px; left: 216px; top: 528px; position: absolute" value="Người giao"/>
+        <h:outputText id="outputText44" style="font-size: 12px; left: 360px; top: 528px; position: absolute" value="Thủ kho"/>
+        <h:outputText id="outputText45" style="font-size: 12px; left: 504px; top: 528px; position: absolute" value="kế toán"/>
+        <h:outputText id="outputText46" style="font-size: 12px; left: 624px; top: 528px; position: absolute" value="Trưởng Phòng TCKT"/>
+        <input id="__in" onclick="document.getElementById('__huybo').style.display='none'; this.style.display='none'; window.print()"
+            style="height: 20px; left: 240px; top: 576px; position: absolute; width: 100px" type="button" value="In"/>
+        <input id="__huybo" onclick="window.close()" style="height: 20px; left: 360px; top: 576px; position: absolute; width: 100px"
+            type="button" value="Hủy bỏ"/>
+	
+    	<h:inputHidden id="__maphu" name="_maphu"/><h:inputHidden id="__maphuCT" name="_maphuCT"/>    
+   </h:form>   
+   <script type="text/javascript">
+		var prefix_component = document.forms[0].id + ":";
+		function LoadDB_formMaPhu1(MAPHU){
+			try{
+		    	rs = db.execute("select * from PHIEU_NHAP_KHO where PHIEU_NHAP_KHO_MAPHU = \'" + MAPHU + "\'");
+		    }
+		    catch(e){}
+		    while (rs.isValidRow()) {
+			    //---Set value in UI---
+				document.getElementById(prefix_component + "__ngaynhap").value = getDateSystem_dd_MM_yyyy();
+				document.getElementById(prefix_component + "__noicungcap").value = getNameById_Catalog(rs.fieldByName("DTDMNOIBAN_MA"),'DT_DM_NOI_BAN');
+				document.getElementById(prefix_component + "__hoadon").value = rs.fieldByName("PHIEUNHAPKHO_SOHOADON");
+				document.getElementById(prefix_component + "__nguoigiaohang").value = getNameById_Catalog(rs.fieldByName("DTDMNHANVIEN_TIEPLIEU"),'DT_DM_NHAN_VIEN');
+				document.getElementById(prefix_component + "__sudungvitinh").value = getNameById_Catalog(rs.fieldByName("DTDMNHANVIEN_CN"),'DT_DM_NHAN_VIEN');
+				document.getElementById(prefix_component + "__chuongtrinh").value = getNameById_Catalog(rs.fieldByName("DTDMNGUON_MA"),'DT_DM_NGUON');
+				document.getElementById(prefix_component + "__chungtu").value = rs.fieldByName("PHIEUNHAPKHO_CHUNGTU");
+				document.getElementById(prefix_component + "__namnhap").value = new Date().getYear();
+				document.getElementById(prefix_component + "__nhapkho").value = getNameById_Catalog(rs.fieldByName("DMKHOA_MASO"),'DM_KHOA');
+				document.getElementById(prefix_component + "__nguonKP").value = getNameById_Catalog(rs.fieldByName("DMKINHPHI_MASO"),'DM_KINH_PHI');
+				document.getElementById(prefix_component + "__thanhtien").value = rs.fieldByName("PHIEUNHAPKHO_THANHTIEN");
+				document.getElementById(prefix_component + "__VAT").value = rs.fieldByName("PHIEUNHAPKHO_MUCTHUE");
+				document.getElementById(prefix_component + "__ngay").value = new Date().getDate();
+				document.getElementById(prefix_component + "__thang").value = (new Date().getMonth()) + 1;
+				document.getElementById(prefix_component + "__nam").value = new Date().getYear();
+				document.getElementById(prefix_component + "__maPhieu").innerHTML = "Phiếu số " + 
+												opener.document.getElementById(prefix_component + "__maPhieu").value;
+				document.getElementById(prefix_component + "__loaiMa").innerHTML = getNameById_Catalog(rs.fieldByName("DTDMLOAI_MA"), "DT_DM_LOAI");
+				
+								
+		        rs.next();
+		    }
+		    rs.close();						
+		}
+              
+        function drawTable1(MAPHU){
+			var tbl = document.getElementById(prefix_component + '__myTable');
+			while(tbl.rows.length > 1){
+				tbl.deleteRow(tbl.rows.length - 1);
+			}
+			
+			var tt = 0;
+			var rs = db.execute("select *, TON_KHO.TON_KHO_MAPHU as MAPHU, TON_KHO.PHIEUNHAPKHO_MAPHU as PHIEUNHAPKHO_MAPHU from TON_KHO,CT_NHAP_KHO where TON_KHO.TON_KHO_MAPHU=CT_NHAP_KHO.CT_NHAP_KHO_MAPHU and CT_NHAP_KHO.PHIEUNHAPKHO_MAPHU=\'" + MAPHU + "\'");
+		    i=1;
+		    while (rs.isValidRow()) {
+		    	countRows = tbl.insertRow(tbl.rows.length);
+		    	tbl.rows(i).style.height = "16px";
+		    	if(i%2 == 0)
+		    		tbl.rows(i).style.background = "#E8F2FE";
+		    	else
+		    		tbl.rows(i).style.background = "#ffffff";	
+				
+				Stt = countRows.insertCell(0);
+				TenNhanHieu = countRows.insertCell(1);
+				DonVi = countRows.insertCell(2);
+				SoLuong = countRows.insertCell(3);
+				DonGiaVAT = countRows.insertCell(4);
+				ThanhTien = countRows.insertCell(5);
+				                
+				Stt.align = "right";
+				Stt.style.padding = "3px";				                           
+		        Stt.innerHTML=i;
+		        
+		        TenNhanHieu.style.padding = "3px";
+		        TenNhanHieu.innerHTML=getNameById_Catalog(rs.fieldByName("DMTHUOC_MASO"),'DM_THUOC');
+				
+				DonVi.style.padding = "3px";
+				DonVi.innerHTML = getNameById_Catalog(rs.fieldByName("DTDMDONVITINH_MA"),'DT_DM_DVT');
+				
+				SoLuong.align = "right";
+				SoLuong.style.padding = "3px";
+				SoLuong.innerHTML=rs.fieldByName("CTNHAPKHO_SOLUONG");
+				
+				DonGiaVAT.align = "right";
+				DonGiaVAT.style.padding = "3px";
+				DonGiaVAT.innerHTML=(rs.fieldByName("TONKHO_DONGIA"))*(rs.fieldByName("CTNHAPKHO_QUYCACH"));
+				
+				ThanhTien.align = "right";
+				ThanhTien.style.padding = "3px";
+				ThanhTien.innerHTML=(rs.fieldByName("TONKHO_DONGIA"))*(rs.fieldByName("CTNHAPKHO_SOLUONG"));
+				tt = tt + parseInt(ThanhTien.innerHTML);
+				
+				document.getElementById(prefix_component + '__sudungvitinh').value = getNameById_Catalog(rs.fieldByName("DTDMNHANVIEN_CN"), "DT_DM_NHAN_VIEN");
+		        i++;
+		        rs.next();
+		    }
+		    document.getElementById(prefix_component + "__khoan").value = i - 1;
+		    rs.close();
+		    document.getElementById(prefix_component + "__thanhtien").value = tt;    
+		}
+		
+      	function init() {		    
+	        try {
+	            db = google.gears.factory.create('beta.database');	            
+	            if (db) {
+	                db.open('database-Quan_Ly_Y_Te');
+	            	
+	            	if(opener.document.getElementById(prefix_component + '__ma_in').value != 0){
+						LoadDB_formMaPhu1(opener.document.getElementById(prefix_component + '__ma_in').value);
+						drawTable1(opener.document.getElementById(prefix_component + '__ma_in').value);	
+						
+						db.execute("delete from CT_NHAP_KHO where PHIEUNHAPKHO_MAPHU=" + opener.document.getElementById(prefix_component + '__ma_in').value);
+						db.execute("delete from TON_KHO where PHIEUNHAPKHO_MAPHU=" + opener.document.getElementById(prefix_component + '__ma_in').value);
+						db.execute("delete from PHIEU_NHAP_KHO where PHIEU_NHAP_KHO_MAPHU=" + opener.document.getElementById(prefix_component + '__ma_in').value);					
+					}
+					
+					
+	            } 	           
+	            
+	        } catch (e) {}		    
+		}		
+   </script>
+</ui:define> 
+</ui:composition>
+
+

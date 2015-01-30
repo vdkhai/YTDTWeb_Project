@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:c="http://java.sun.com/jstl/core" 
+                xmlns:fmt="http://java.sun.com/jstl/fmt"
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">	
+<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+<script type="text/javascript">
+	function enterToTab(){
+			    if((document.getElementById(prefix_component +"__tk").alt != 1) &amp;&amp; (document.getElementById(prefix_component +"__nhapmoi").alt != 1) &amp;&amp; (document.getElementById(prefix_component +"__taokiemke").alt != 1)) {
+			       if(window.event.keyCode == 13){
+			            window.event.keyCode = 9;
+			       }
+			    }
+			} 
+	function populateField(frm){ 
+		var test = frm.trangthai.value;
+		document.getElementById(prefix_component+'__trangthai').value = test;
+	}
+			
+	</script>
+	<body onkeydown="enterToTab();">
+	<h:form id="_form" name="_form">
+	<h:inputHidden  id="__resetFrom" value="#{resetFormTimKiemKiemKe}"/>
+    <div style="width:778px; position:absolute; z-index:99">
+
+ <c:if test="#{tenChuongTrinh.equals(YTDT_Menu.quanLyKhoChinh)}">
+		<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoChinh.xhtml" />
+	</c:if>
+	<c:if test="#{tenChuongTrinh.equals(YTDT_Menu.quanLyKhoLe)}">
+		<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoLe.xhtml" />
+	</c:if>
+	<c:if test="#{tenChuongTrinh.equals(YTDT_Menu.quanLyKhoBHYT)}">
+		<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoBHYT.xhtml" />
+	</c:if>	
+ <c:if test="#{tenChuongTrinh.equals('QuanLyKhoNoiTru')}">
+    	<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoNoiTru.xhtml" />
+    </c:if>
+    <c:if test="#{tenChuongTrinh.equals('QuanLyKhoTE')}">
+		<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoTE.xhtml" />
+	</c:if>
+	</div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="40%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						TÌM KIẾM BẢNG KIỂM KÊ
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>    
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="965px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr style=" height : 5px;">
+    		<td width="100%" style="background-color: #c9daea;" colspan="3" align="center">  
+    		      	<a4j:outputPanel id="message_infor">
+    		      		<h:messages styleClass="mynull"/>
+    		      	</a4j:outputPanel>
+    		</td>    		
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px" width="100%" >
+    			<!-- Main Area -->  
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+    			<tr style="height: 25px;">
+    				<td align="right" width="28%">	
+    					<h:outputText value="Mã kiểm kê" styleClass="mytext" style="margin-left: 5px; margin-right: 5px;"/>
+    				</td>
+    				<td align="left">
+    						<h:inputText type="text" tabindex="1" id="__maKiemKe" name="__maKiemKe" value="#{Timkiembangkiemke.maKiemKe}" style="width:100px;" styleClass="myinput">    							
+    						</h:inputText>
+    						<h:outputText value="Từ ngày" styleClass="mytext" style="margin-left:15px;margin-right:5px;" />
+    						<h:inputText onkeypress="return being_wellformed_Date(this, event)" onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,"");return is_wellformed_Date(this)' tabindex="2" type="text" id="__tungay" name="_tungay" value="#{Timkiembangkiemke.ngaykiemkeTu}" maxlength="10" styleClass="myinput" style="width:60px;"/>
+    						<a hideFocus="true" href="java_script:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__tungay'));document.getElementById(prefix_component + '__denngay').focus();return false;"><h:graphicImage style="margin:0 0 -3px 0" value="/resources/calendar/cal.gif" border="0" name="popcal"/></a>
+    						
+    						<h:outputText value="Ðến ngày" styleClass="mytext" style="margin-left:10px;margin-right:5px;"/>
+    						<h:inputText onkeypress="return being_wellformed_Date(this, event)" 
+    						onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,"");return is_wellformed_Date(this)' tabindex="3" type="text" id="__denngay" name="_denngay" value="#{Timkiembangkiemke.ngaykiemkeDen}" maxlength="10" styleClass="myinput" style="width:60px;"/>
+    						<a hideFocus="true" href="java_script:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__denngay'));document.getElementById(prefix_component + 'LOAIPHIEU_MA').focus();return false;"><h:graphicImage style="margin:0 0 -3px 0" value="/resources/calendar/cal.gif" border="0" name="popcal"/></a>
+    				</td>    					
+    			</tr>    			
+    			<tr style="height: 25px;">
+    				<td align="right">
+    					<h:outputText value="Loại thuốc" styleClass="mytext" style="margin-left: 5px; margin-right: 5px;"/>	
+    				</td>
+    				<td align="left" colspan="2">
+    					<h:inputHidden value="#{Timkiembangkiemke.loaihang_maso}" id="LOAIPHIEU_MA_pk"/>
+    					<h:inputText tabindex="3" value="#{Timkiembangkiemke.loaihang_ma}" onblur="myOnblurTextbox(this.id,'DM_LOAI_THUOC')" id="LOAIPHIEU_MA" style="width: 50px;" styleClass="myinput">
+    					</h:inputText>
+    					<span id="DM_LOAI_THUOC_span"/>
+    					<input tabindex="4" id="DM_LOAI_THUOC" name="DM_LOAI_THUOC" style=" width : 210px;" styleClass="myinput"/>    					
+    				</td>		
+    			</tr>
+    			<tr style="height: 25px;">
+    				<td align="right" valign="top" style="padding-top:4px;" >
+    						<h:outputText value="Phân loại" styleClass="mytext" style="margin-left: 5px; margin-right: 5px;"/>
+    				</td>
+    				<td align="left" colspan="2">
+    					<table cellspacing="0" cellpadding="0" border="0" width="55%" style="border: solid 1px #54779f;">
+    						<tr class="myrow1" >
+    							<td >
+    							<h:inputHidden value="#{Timkiembangkiemke.plthuoc_maso}" id="PHANLOAI_MA_pk"/>
+    						<h:inputText value="#{Timkiembangkiemke.plthuoc_ma}" onblur="myOnblurTextbox(this.id,'DM_PHAN_LOAI_THUOC')" tabindex="5" id="PHANLOAI_MA" style="width: 50px; " styleClass="myinput"/>
+    						<span id="DM_PHAN_LOAI_THUOC_span"/>
+    						<input id="DM_PHAN_LOAI_THUOC" name="DM_PHAN_LOAI_THUOC" tabindex="6" style="width:300px;" class="mycbogear"/>
+    							<a4j:commandButton tabindex="7" id="__add" name="_add" focus="__timkiem" onblur="javascript:this.alt=0" onfocus="javascript:this.alt=1" action="#{Timkiembangkiemke.enter}" reRender="listPLThuoc,PHANLOAI_MA" oncomplete="myOnblurTextbox(prefix_component + 'PHANLOAI_MA', 'DM_PHAN_LOAI_THUOC');" styleClass="mybton_add" style="width: 20px; height: 20px;"/>
+    							</td>
+    						</tr>
+    						<tr><td colspan="3" >
+    						<div style="overflow-x: hidden;overflow-y: scroll; height: 100px;border: solid 0px #d5d5d5; width : 396px;" >
+    						<h:panelGroup id="listPLThuoc" >
+    						<rich:dataTable value="#{listDmPLThuocKK}" var="item" width="100%" id="__datalist" nam="datalist">
+             					<rich:column style="width:13%">
+              						<h:outputText id="maloai" value="#{item.dmphanloaithuocMa}" />
+            					</rich:column>
+           						<rich:column style="width:74%">
+              						<h:outputText id="tenloai" value="#{item.dmphanloaithuocTen}" />
+           						</rich:column>
+            					<rich:column style="width:10%">
+              						<a4j:commandButton  oncomplete="setValueTenhd();" id="__bton5a"  action="#{Timkiembangkiemke.deletedmPLThuoc}" reRender="listPLThuoc" name="_bton5a" styleClass="mybton_del" style="filter:alpha(opacity=20);width: 19px; height:16px;"/>
+            					</rich:column>
+            					<rich:column style="width:3%">
+            					</rich:column>
+    						</rich:dataTable>
+    						</h:panelGroup>
+    						</div>
+    						</td>
+    						</tr>
+    						</table>   	
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    				<td align="right" width="28%">	
+    					<h:outputText value="Trạng thái" styleClass="mytext" style="margin-left: 5px; margin-right: 5px;"/>
+    				</td>
+    				<td align="left">
+    						<select name="trangthai" onChange="populateField(this.form)" >    
+    							<option value="">---Chọn---</option>
+    							<option value="OPEN" >Đang kiểm kê</option>    
+    							<option value="CLOSE">Đã hoàn tất</option>
+    						</select>
+    						<h:inputHidden value="#{Timkiembangkiemke.trangthai}" id="__trangthai"/> 
+    				</td>    					
+    			</tr> 			    		
+    				<tr style="height: 35px;" >
+    					<td align="center" colspan="3" >
+    						<a4j:commandButton tabindex="9" id="__tk" action="#{Timkiembangkiemke.timkiemAction}" 
+    									reRender="__myTableTimKiem,message_infor" name="_timkiem" value="Tìm kiếm" 
+    									styleClass="mybton_b" style="width:70px;margin-left:3px;" />    						
+    						<a4j:commandButton tabindex="10" id="__nhapmoi" name="_nhapmoi"     								 
+    								action="#{Timkiembangkiemke.resetForm}" focus="__maKiemKe" 
+    								reRender="LOAIPHIEU_MA,PHANLOAI_MA,listPLThuoc,__maKiemKe, __ngaykiemke,__myTableTimKiem,message_infor" 
+    								oncomplete="myOnblurTextbox(prefix_component + 'PHANLOAI_MA', 'DM_PHAN_LOAI_THUOC');myOnblurTextbox(prefix_component + 'LOAIPHIEU_MA', 'DM_LOAI_THUOC');highlightOnFocus();" value="Nhập mới" styleClass="mybton_b" 
+    								style="width:70px;margin-left:3px;"  />
+    						<a4j:commandButton tabindex="11" id="__taokiemke" 
+    									action="#{Timkiembangkiemke.taomoiKiemKe}" 
+    									reRender="message_infor" name="_taomoi" value="Tạo mới kiểm kê" 
+    									styleClass="mybton_b"     									
+    									style="margin-left:3px; width : 110px;" />   
+    					</td>
+    				</tr>		
+    			</table>     			   				    			
+    		</td>
+    	</tr>
+    	<tr>
+			<td align="center" colspan="3"	style="background-color: white; padding-top: 15px; padding-bottom: 5px;" width="100%">
+				<table border="0" cellspacing="0" cellpadding="0" style="width:98%;" align="center" >
+					<tr>
+						<td colspan="8" style="border:solid 1px #7e9dba;" >	
+							<rich:dataTable headerClass="mycol" id="__myTableTimKiem" var="row" value="#{listResultBangKiemKe}"
+												cellpadding="0" cellspacing="1" rowClasses="myrow1,myrow2" reRender="__ds"
+												border="0" style="width: 100%;" rows="10" >
+								<rich:column style="width:9%;" >
+									<f:facet name="header"><h:outputText value="Mã kiểm kê"/></f:facet>
+									<h:outputText value="" />		
+									<a4j:commandLink value="#{row.maphieukiem}" 
+												action="#{Timkiembangkiemke.selectBangKiemKe(listResultBangKiemKe.rowIndex)}" style="width:9%;"
+												reRender=""></a4j:commandLink>					
+								</rich:column>
+								<rich:column style="width:17%;" align="left" >
+									<f:facet name="header"><h:outputText value="Ngày kiểm kê"/></f:facet>
+									<h:outputText value="#{Timkiembangkiemke.formatDateTime(row.ngaykiemke)}" />					
+								</rich:column>
+								<rich:column style="width:10%;" align="left" >
+									<f:facet name="header"><h:outputText value="Loại thuốc"/></f:facet>									
+									<h:outputText value="#{Timkiembangkiemke.getTenLoaiThuoc(row.getDmloaithuocMaso().dmloaithuocTen)}" />	
+								</rich:column>
+								<rich:column  align="left">
+									<f:facet name="header"><h:outputText value="Phân loại thuốc"/></f:facet>																			
+									<h:outputText value="#{Timkiembangkiemke.getListDmphanloaithuoc(row.maphieukiem)}" />									
+								</rich:column>															
+								<rich:column style="width: 15%;" align="left">
+									<f:facet name="header"><h:outputText value="Người kiểm kê"/></f:facet>									
+									<h:outputText value="#{row.getDtdmnhanvienKiemke(true).dtdmnhanvienTen}"  />							
+								</rich:column>
+								<rich:column style="width: 17%;"  align="left">
+									<f:facet name="header"><h:outputText value="Ngày giờ cập nhật"/></f:facet>
+									<h:outputText value="#{Timkiembangkiemke.formatDateTime(row.ngaygiocn)}" >
+									</h:outputText>						
+								</rich:column>
+								<rich:column style="width:10%;" align="right" >
+									<f:facet name="header"><h:outputText value="Trạng thái"/></f:facet>									
+									<h:outputText value="#{Timkiembangkiemke.viewGUI(row.trangthai)}" />	
+								</rich:column>
+								<f:facet name="footer">
+			          				<rich:datascroller id="__ds" renderIfSinglePage="false" ></rich:datascroller>
+			       				</f:facet>
+							</rich:dataTable>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>	
+    </table>
+     <h:inputHidden value="#{Timkiembangkiemke.dmKhoXuat}" id="DM_KHO_XUAT"/>    
+   </h:form>
+   </body>
+   <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/duocpham/TimKiemKiemKe_gears.js"></script>
+   <iframe width="174" height="189" name="gToday:normal:agenda.js"
+			id="gToday:normal:agenda.js"
+			src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm"
+			scrolling="no" frameborder="0"
+			style="visibility: visible; z-index: 999; position: absolute; top: -500px; left: -500px;" />
+</ui:define> 
+</ui:composition>

@@ -1,0 +1,194 @@
+﻿<rich:toolBar style="margin:-5px 0px; height:32px"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:rich="http://richfaces.org/rich">
+
+	<rich:dropDownMenu event="onclick" style="cursor:hand">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="Số liệu BN sử dụng"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3111_Thuocydungcusudung.init()}" id="VienPhiTaiKhoa_SoLieuBNSuDung_ThuocYDungCuSuDung_id" submitMode="ajax" value="Thuốc, y dụng cụ sử dụng" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3121_Canlamsangdieutri.init()}" id="VienPhiTaiKhoa_SoLieuCLSPhauThuat_CanLamSan_id" submitMode="ajax" value="Cận lâm sàng, phẩu thuật, thủ thuật" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3112_Benhnhantrathuoc.init()}" id="VienPhiTaiKhoa_SoLieuBNSuDung_BenhNhanTraThuoc_id" submitMode="ajax" value="Bệnh nhân trả thuốc" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3114_Benhnhanchuyenkhoa.init()}" id="VienPhiTaiKhoa_SoLieuBNSuDung_BenhNhanChuyenKhoa_id" submitMode="ajax" value="Bệnh nhân chuyển khoa" />
+	    <rich:menuSeparator />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3115_Xacnhanthongtindieutri.init()}" id="VienPhiTaiKhoa_SoLieuBNSuDung_XacNhanThongTinDieuTri_id" submitMode="ajax" value="Xác nhận thông tin điều trị, cho ra viện" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3241_Thanhtoanravien.init('xemchiphidieutri','NT')}" id="Vienphitaikhoa_xemchiphidieutri_id" submitMode="ajax" value="Xem chi phí điều trị" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="/B3_Vienphi/TaiKhoa/B3160_Denghitamungthanhtoan.xhtml" id="VienPhiTaiKhoa_SoLieuCLSPhauThuat_DeNghiTamUngThanhToan_id" submitMode="ajax" value="Đề nghị tạm ứng, thanh toán" />
+		<rich:menuSeparator />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3125_Lapphieudutru.init()}" id="VienPhiTaiKhoa_SoLieuCLSPhauThuat_LapPhieuDuTru_id" submitMode="ajax" value="Lập phiếu dự trù lĩnh thuốc" />  	    		
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3125_2_Lapphieudutrutra.init()}" id="VienPhiTaiKhoa_SoLieuCLSPhauThuat_LapPhieuDuTru_Tra_id" submitMode="ajax" value="Lập phiếu dự trù trả thuốc" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3142_Phieulanhthuoctutruc.init('NT','KC','BHYT')}" id="VienPhiTaiKhoa_SoLieuCLSPhauThuat_LapPhieuDuTruLanhThuocTuTruc_id" submitMode="ajax" value="Lập phiếu lĩnh thuốc tủ trực" />  	    		
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3143_Phieutrathuoctutruc.init('NT','KC','BHYT')}" id="VienPhiTaiKhoa_SoLieuCLSPhauThuat_LapPhieuDuTruTraThuocTuTruc_id" submitMode="ajax" value="Lập phiếu trả thuốc tủ trực" />
+	</rich:dropDownMenu>
+
+	
+	
+	<rich:dropDownMenu event="onclick" style="cursor:hand">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="Xem, in phiếu"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+	   	
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3133_Phieucongkhai1bn.init('NT')}" id="VienPhiTaiKhoa_XemInPhieu_PhieuCongKhaiCuaBN_id" submitMode="ajax" value="Phiếu công khai của bệnh nhân" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="/B2_Dieutri/B280_DanhSachBenhAnDangCapNhatTaiKhoa.xhtml" id="VienPhiTaiKhoa_XemInPhieu_DanhSachBenhAnDangCapNhatTaiKhoa_id" submitMode="ajax" value="Danh sách bệnh án đang cập nhật tại khoa" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3125_Insothuochangngay.init}" id="VienPhiTaiKhoa_XemInPhieu_InSoThuoc_id" submitMode="ajax" value="In số thuốc" />
+	    <rich:menuSeparator />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3135_Tonghopthuocydungcutheophong.init('3135')}" id="VienPhiTaiKhoa_XemInPhieu_TongHopThuocYDungCuTheoPhong_id" submitMode="ajax" value="Tổng hợp thuốc, y dụng cụ theo tên thuốc" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.VienPhiTaiKhoa_XemInPhieu_TongHopThuocYDungCuTheoNgaySuDung}" id="VienPhiTaiKhoa_XemInPhieu_TongHopThuocYDungCuTheoNgaySuDung_id" submitMode="ajax" value="Tổng hợp thuốc, y dụng cụ theo ngày sử dụng" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3135_Tonghopthuocydungcutheophong.init('3138')}" id="VienPhiTaiKhoa_XemInPhieu_PhieuLinhThuocHangNgay_id" submitMode="ajax" value="Tổng hợp phiếu lĩnh thuốc hàng ngày" />
+	</rich:dropDownMenu>	
+	
+	<rich:dropDownMenu event="onclick" style="cursor:hand">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="Cập nhật BA"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+	    <rich:menuItem style="padding:0px 4px 0px 0px" action="#{B211_Capnhathosobenhan.init()}" id="DieuTri_CapNhat_CapNhatThongTinChung_id" submitMode="ajax" value="Cập nhật HSBA (Xuất khoa hoặc xuất viện)" />
+		<rich:menuItem style="padding:0px 4px 0px 0px" action="#{B212_Capnhatthongtinnhapvien.init('NT')}" id="DieuTri_CapNhat_CapNhatThongTinNhapVien_id" submitMode="ajax" value="Cập nhật thông tin nhập viện" />
+		
+		<!-- 20110721 bao.ttc remove vi co the chuyen khoa (Khoa dang dieu tri Chuyen mon) tai B211_Capnhathosobenhan; form nay cung chuyen Khoa dang DT Chuyen mon -->
+		<!-- <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B213_Capnhatthongtinchuyenkhoa.init()}" id="DieuTri_CapNhat_CapNhatThongTinChuyenKhoa_id" submitMode="ajax" value="Cập nhật thông tin chuyển khoa" /> -->
+		
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B214_Xoathongtinbenhan.init()}" id="DieuTri_CapNhat_XoaThongTinBenhAn_id" submitMode="ajax" value="Xóa thông tin bệnh án" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B215_Luutrubenhan.init()}" id="DieuTri_CapNhat_LuuTruBenhAn_id" submitMode="ajax" value="Lưu trữ bệnh án" />
+	   	<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B216_Capnhatthongtinhanhchanhbenhnhan.init('DieuTri')}" id="ThuVienPhi_ThanhToanRaVien_DieuChinhThongTinHanhChinhBenhNhan_id" submitMode="ajax" value="Điều chỉnh thông tin hành chính bệnh nhân" />
+	
+	</rich:dropDownMenu>
+	
+	<rich:dropDownMenu event="onclick" style="cursor:hand">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="BC hoạt động ĐT"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+	    <!-- bao.ttc <rich:menuItem style="padding:0px 4px 0px 0px"  id="DieuTri_BaoCaoHoatDongDieuTri_BaoCaoTinhHinhHoatDongTrongNgay_id" submitMode="ajax"  value="Báo cáo tình hình hoạt động trong ngày" />  -->
+	    
+	    <rich:menuItem style="padding:0px 4px 0px 0px" action="#{B221_Baocaobenhandangcapnhat.init()}" id="DieuTri_BaoCaoHoatDongDieuTri_BaoCaoBenhAnDangCapNhat_id" submitMode="ajax" value="Báo cáo bệnh án đang cập nhật" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B222_Baocaobenhanketthuccapnhat.init()}" id="DieuTri_BaoCaoHoatDongDieuTri_BaoCaoBenhAnKetThucCapNhat_id" submitMode="ajax" value="Báo cáo bệnh án kết thúc cập nhật" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B224_Baocaotinhhinhbenhtattuvong.init('baocaohoatdongdieutri')}" id="DieuTri_BaoCaoHoatDongDieuTri_BaoCaoHoatDongDieuTri_id" submitMode="ajax" value="Báo cáo hoạt động điều trị" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="/B2_Dieutri/B272_BaoCaoBenhTruyenNhiem.xhtml" id="DieuTri_BaoCaoHoatDongDieuTri_BaoCaoBenhTruyenNhiem_id" submitMode="ajax" value="Báo cáo bệnh truyền nhiễm" />
+		<rich:menuSeparator />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="/B2_Dieutri/B271_DanhSachNguoiBenhRaVaoVien.xhtml" id="DieuTri_BaoCaoHoatDongDieuTri_DanhSachNguoiBenhRaVaoVien_id" submitMode="ajax" value="Danh sách người bệnh ra vào viện" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="/B2_Dieutri/B281_DanhSachBenhNhanChuyenVien.xhtml" id="DieuTri_BaoCaoHoatDongDieuTri_DanhSachBenhNhanChuyenVien_id" submitMode="ajax" value="Danh sách bệnh nhân chuyển viện" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{InDSCoQuanYTeChuyenDen.init()}" id="DieuTri_BaoCaoHoatDongDieuTri_InDSCoQuanYTeChuyenDen_id" submitMode="ajax" value="Danh sách cơ quan y tế chuyển đến" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B296_BaoCaoSotXuatHuyet.init()}" id="DieuTri_BaoCaoHoatDongDieuTri_BaoCaoSotXuatHuyet_id" submitMode="ajax" value="Danh sách bệnh sốt xuất huyết" />
+		<rich:menuSeparator />
+		<!-- <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B224_Baocaotinhhinhbenhtattuvong.init('tinhinhbenhtattuvong')}" id="DieuTri_BaoCaoHoatDongDieuTri_BaoCaoTinhHinhBenhTatTuVong_id" submitMode="ajax" value="Báo cáo tình hình bệnh tật, tử vong" />  -->
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B275_BaoCaoHoatDongKhamBenh.init()}" id="DieuTri_BaoCaoHoatDongDieuTri_BaoCaoHoatDongKhamBenh_id" submitMode="ajax" value="Báo cáo hoạt động khám bệnh" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B276_BaoCaoTinhHinhHoatDongTrongNgay.init()}" id="DieuTri_BaoCaoHoatDongDieuTri_BaoCaoTinhHinhHoatDongTrongNgay_id" submitMode="ajax" value="Báo cáo tình hình hoạt động trong ngày" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B277_BaoCaoTinhHinhBenhTatVaTuVongTaiBV.init()}" id="DieuTri_BaoCaoHoatDongDieuTri_BaoCaoTinhHinhBenhTatVaTuVongTaiBV_id" submitMode="ajax" value="Báo cáo tình hình bệnh tật và tử vong tại bệnh viện" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B217_BaoCaoHoatDongPhauThuatThuThuat.init()}" id="DieuTri_BaoCaoHoatDongDieuTri_BaoCaoBaoCaoHoatDongPhauThuatThuThuat_id" submitMode="ajax" value="Báo cáo hoạt động phẫu thuật thủ thuật" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B278_BaoCaoHoatDongCanLamSan.init()}" id="DieuTri_BaoCaoHoatDongDieuTri_BaoCaoHoatDongCanLamSan_id" submitMode="ajax" value="Báo cáo hoạt động Cận lâm sàng" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B279_BaoCaoHoatDongCacKhoa.init()}" id="DieuTri_BaoCaoHoatDongDieuTri_BaoCaoHoatDongCacKhoa_id" submitMode="ajax" value="Báo cáo số liệu các khoa" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B295_BaoCaoDuocBenhVien.init()}" id="DieuTri_BaoCaoHoatDongDieuTri_BaoCaoDuocBenhVien_id" submitMode="ajax" value="Báo cáo dược bệnh viện" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B298_SoSanhTinhHinhMacBenhTheoNam.init()}" id="DieuTri_BaoCaoHoatDongDieuTri_SoSanhTinhHinhMacBenh_id" submitMode="ajax" value="So sánh tình hình mắc bệnh theo năm" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B300_Baocaothongketainan.init()}" id="DieuTri_BaoCaoHoatDongDieuTri_BaoCaoThongKeTaiNan_id" submitMode="ajax" value="Báo cáo thống kê tai nạn" />
+		<!-- <rich:menuItem style="padding:0px 4px 0px 0px; "  id="DieuTri_BaoCaoHoatDongDieuTri_BaoCaoSoLieuCacKhoa_id" submitMode="ajax" value="Báo cáo số liệu các khoa" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; "  id="DieuTri_BaoCaoHoatDongDieuTri_DanhSachCoQuanChuyenDen_id" submitMode="ajax" value="Danh sách cơ quan y tế chuyển đến" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; "  id="DieuTri_BaoCaoHoatDongDieuTri_BaoCaoVuDieuTriTheoMedisoft_id" submitMode="ajax" value="Báo cáo vụ Điều trị theo Medisoft" />  -->
+	</rich:dropDownMenu>
+
+	<rich:dropDownMenu event="onclick" style="cursor:hand">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="Lập VB theo mẫu"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>	    	    
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B231_Giaychungthuong.init()}" id="DieuTri_LapVanBanTheoMau_GiayChungThuong_id" submitMode="ajax" value="Giấy chứng thương" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B232_Giaychungnhanphauthuat.init()}" id="DieuTri_LapVanBanTheoMau_GiayChungNhanPhauThuat_id" submitMode="ajax" value="Giấy chứng nhận phẫu thuật" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B234_Giayravien.init()}" id="DieuTri_LapVanBanTheoMau_GiayRaVien_id" submitMode="ajax" value="Giấy ra viện" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B235_Giaychuyenvien.init()}" id="DieuTri_LapVanBanTheoMau_GiayChuyenVien_id" submitMode="ajax" value="Giấy chuyển viện" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B301_Giaychungnhan.init()}" id="DieuTri_LapVanBanTheoMau_GiayChungNhan_id" submitMode="ajax" value="Giấy chứng nhận nằm viện" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B302_Tomtatbenhan.init()}" id="DieuTri_LapVanBanTheoMau_BangTomTatBenhAn_id" submitMode="ajax" value="Bảng tóm tắt bệnh án"/>
+		
+		<rich:menuSeparator />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B290_Giaychuyenxac.init()}" id="DieuTri_LapVanBanTheoMau_GiayChuyenXac_id" submitMode="ajax" value="Giấy chuyển xác" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B291_Phieuguixac.init()}" id="DieuTri_LapVanBanTheoMau_PhieuGuiXac_id" submitMode="ajax" value="Phiếu gửi xác" />
+		<rich:menuSeparator />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B233_Tomtatbenhan.init()}" id="DieuTri_LapVanBanTheoMau_TomTatBenhAn_id" submitMode="ajax" value="Phiếu sơ kết 15 ngày điều trị" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B292_Phieuphauthuatthuthuat.init()}" id="DieuTri_LapVanBanTheoMau_PhieuPhauThuatThuThuat_id" submitMode="ajax" value="Phiếu phẫu thuật thủ thuật" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B293_Laptrichbienbanhoichan.init()}" id="DieuTri_LapVanBanTheoMau_LapTrichBienBanHoiChan_id" submitMode="ajax" value="Lập trích biên bản hội chẩn" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B294_Bienbanhoichanphauthuat.init()}" id="DieuTri_LapVanBanTheoMau_BienBanHoiChanPhauThuat_id" submitMode="ajax" value="Biên bản hội chẩn phẫu thuật" />
+		<!-- 20110704 bao.ttc: remove vi da lam form thay the B294 <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B239_Bienbanhoichan.init()}" id="DieuTri_LapVanBanTheoMau_BienBanHoiChan_id" submitMode="ajax" value="Biên bản hội chẩn" /> -->
+		<rich:menuSeparator />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B236_Soravaovien.init()}" id="DieuTri_LapVanBanTheoMau_SoRaVaoVien_id" submitMode="ajax" value="Sổ ra, vào viện" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B237_Sochuyenvien.init()}" id="DieuTri_LapVanBanTheoMau_SoChuyenVien_id" submitMode="ajax" value="Sổ chuyển viện" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B238_Soluutrubenhan.init()}" id="DieuTri_LapVanBanTheoMau_SoLuuTruBenhAn_id" submitMode="ajax" value="Sổ lưu trữ bệnh án" />
+		<rich:menuSeparator />	
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="/B2_Dieutri/B239_todieutri.xhtml" id="DieuTri_LapVanBanTheoMau_ToDieuTri_id" submitMode="ajax" value="Tờ điều trị" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="/B2_Dieutri/B240_Phieuchamsoc.xhtml" id="DieuTri_LapVanBanTheoMau_PhieuChamSoc_id" submitMode="ajax" value="Phiếu chăm sóc" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="/B2_Dieutri/B270_phieutheodoitruyendich.xhtml" id="DieuTri_LapVanBanTheoMau_PhieuTheoDoiTruyenDich_id" submitMode="ajax" value="Phiếu theo dõi truyền dịch" />
+	    <rich:menuSeparator />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B297_BieuMauBanTuDong1.init()}" id="DieuTri_LapVanBanTheoMau_BieuMauBanTuDong1_id" submitMode="ajax" value="Phiếu theo dõi chức năng sống" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B297_BieuMauBanTuDong2.init()}" id="DieuTri_LapVanBanTheoMau_BieuMauBanTuDong2_id" submitMode="ajax" value="Giấy cam đoan chấp nhận PT, TT" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B297_BieuMauBanTuDong3.init()}" id="DieuTri_LapVanBanTheoMau_BieuMauBanTuDong3_id" submitMode="ajax" value="Bảng kiểm soát bệnh nhân trước khi mổ" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B297_BieuMauBanTuDong4.init()}" id="DieuTri_LapVanBanTheoMau_BieuMauBanTuDong4_id" submitMode="ajax" value="Biểu đồ chuyển dạ" />
+	    
+	</rich:dropDownMenu>
+	<rich:dropDownMenu event="onclick" style="cursor:hand">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="DV tiện ích"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B251_Timsobenhansoluutru.init()}" id="DieuTri_DichVuTienIch_TimBenhAnSoLuuTru_id" submitMode="ajax" value="Tìm bệnh án, số lưu trữ" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.DieuTri_DichVuTienIch_TimBenhNhanTheoNhieuTieuChi}" id="DieuTri_DichVuTienIch_TimBenhNhanTheoNhieuTieuChi_id" submitMode="ajax" value="Tìm bệnh nhân nội trú" />			
+	</rich:dropDownMenu>
+	
+	<rich:dropDownMenu event="onclick" style="cursor:hand">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="DS bảng mã"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{DmVoCam.init}" id="DieuTri_QuanTriDanhSachBanMa_VoCam_id" submitMode="ajax" value="Vô cảm" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{DmTaiNan.init}" id="DieuTri_QuanTriDanhSachBanMa_TaiNan_id" submitMode="ajax" value="Tai nạn" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{DmPhanLoaiTaiNan.init}" id="DieuTri_QuanTriDanhSachBanMa_PhanLoaiTaiNan_id" submitMode="ajax" value="Phân loại tai nạn" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{DmPhuongThucGayTaiNan.init}" id="DieuTri_QuanTriDanhSachBanMa_PhuongThucGayTaiNan_id" submitMode="ajax" value="Phương thức gây tai nạn" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{DmKhoaPhong.init}" id="DieuTri_QuanTriDanhSachBanMa_KhoaPhong_id" submitMode="ajax" value="Khoa phòng" />
+
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B268_Mabenh.init}" id="DieuTri_QuanTriDanhSachBanMa_Mabenh_id" submitMode="ajax" value="Mã bệnh ICD" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B269_Nghenghiep.init}" id="DieuTri_QuanTriDanhSachBanMa_Nghenghiep_id" submitMode="ajax" value="Nghề nghiệp" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B2610_Benhvien.init}" id="DieuTri_QuanTriDanhSachBanMa_Benhvien_id" submitMode="ajax" value="Bệnh viện" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{DmBuong.init}" id="DieuTri_QuanTriDanhSachBanMa_Buong_id" submitMode="ajax" value="Phòng" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{DmTang.init}" id="DieuTri_QuanTriDanhSachBanMa_Tang_id" submitMode="ajax" value="Buồng" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.QuanTriHeThong_DieuTri}" id="DieuTri_QuanTriDanhSachBangMa_Client" submitMode="ajax" value="Cập nhật danh sách bảng mã" />
+
+	</rich:dropDownMenu>
+	<rich:dropDownMenu event="onclick" style="cursor:hand;">
+	    <f:facet name="label">	    	
+	    	<h:outputText value="Quản lí khoa dinh dưỡng"/>	    			        	   
+	    </f:facet>
+	    <rich:menuItem action="#{B3140_Lapphieubaoanhangngay.initFromMenu('yes')}" id="VienPhiTaiKhoa_LapPhieuBaoAnHangNgay_id" submitMode="ajax" value="Lập phiếu báo ăn hằng ngày" />
+	    <rich:menuItem action="/B3_Vienphi/TaiKhoa/B3145_NhapKhoDinhDuong.xhtml" id="VienPhiTaiKhoa_NhapKhoDinhDuong_id" submitMode="ajax" value="Nhập kho dinh dưỡng" />
+	    <rich:menuItem action="/B3_Vienphi/TaiKhoa/B3146_XuatKhoDinhDuong.xhtml" id="VienPhiTaiKhoa_XuatKhoDinhDuong_id" submitMode="ajax" value="Xuất kho dinh dưỡng" />
+	    <rich:menuItem action="/B3_Vienphi/TaiKhoa/B3152_DuTruThucPham.xhtml" id="VienPhiTaiKhoa_DuTruThucPham_id" submitMode="ajax" value="Dự trù thực phẩm tươi sống" />
+	    <rich:menuItem action="/B3_Vienphi/TaiKhoa/B3158_NhapNuoc.xhtml" id="VienPhiTaiKhoa_QuanLyNuoc_id" submitMode="ajax" value="Quản lý nước" />
+	    <rich:menuGroup value="Xuất báo cáo/In phiếu >>">
+	    	<rich:menuItem action="#{B3142_Xuatphieubaoan.initFromMenu()}" submitMode="ajax" value="Phiếu báo ăn"/>
+	    	<rich:menuItem action="#{B3144_Xuatphieubangiao.initFromMenu()}" submitMode="ajax" value="Phiếu bàn giao khẩu phần ăn cho tổ tiết chế" />
+	    	<rich:menuItem action="#{B3141_Phieugiaoban.initFromMenu()}" submitMode="ajax" value="Giao ban khoa dinh dưỡng" />
+	    	<rich:menuItem action="/B3_Vienphi/TaiKhoa/B3149_PhieuKyNhanSPDD.xhtml" submitMode="ajax" value="Phiếu ký nhận sản phẩm dinh dưỡng" />
+	    	<rich:menuItem action="/B3_Vienphi/TaiKhoa/B3151_PhieuGiaoKhauPhanAn.xhtml" submitMode="ajax" value="Phiếu giao khẩu phần ăn" />	   		   		
+	   		<rich:menuItem action="/B3_Vienphi/TaiKhoa/B3148_BaoCaoSuaDuongNhi.xhtml" submitMode="ajax" value="Báo cáo sữa dưỡng nhi" />	   		
+	   		<rich:menuItem action="/B3_Vienphi/TaiKhoa/B3150_BaoCaoTienAnBN.xhtml" submitMode="ajax" value="Báo cáo tiền ăn bệnh nhân" />
+	   		<rich:menuItem action="/B3_Vienphi/TaiKhoa/B3154_XuatDuTruThucPham.xhtml" submitMode="ajax" value="Bảng dự trù thực phẩm tươi sống" />
+	   		<rich:menuItem action="/B3_Vienphi/TaiKhoa/B3155_BaoCaoSanPhamDD.xhtml" submitMode="ajax" value="Báo cáo sản phẩm dinh dưỡng" />
+	   		<rich:menuItem action="/B3_Vienphi/TaiKhoa/B3156_BaoCaoTienAnCBTC.xhtml" submitMode="ajax" value="Báo cáo tiền ăn cán bộ trung cao" />
+	   		<rich:menuItem action="/B3_Vienphi/TaiKhoa/B3157_BaoCaoVienPhi.xhtml" submitMode="ajax" value="Báo cáo viện  phí" />	   		   		   		
+	   		<rich:menuItem action="/B3_Vienphi/TaiKhoa/B3159_BaoCaoNuoc.xhtml" submitMode="ajax" value="Báo cáo nước" />
+	   	</rich:menuGroup>
+	   	
+	</rich:dropDownMenu>
+	
+</rich:toolBar>
+

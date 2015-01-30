@@ -1,0 +1,408 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                xmlns:rich="http://richfaces.org/rich"
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body"  >	
+<f:loadBundle basename="com.iesvn.yte.UIResources" var="msg" />
+		<script type="text/javascript">
+		
+		function enterToTab(){
+		
+		  		  if(
+		          	 	(document.getElementById(prefix_component + "__inan") ==null || document.getElementById(prefix_component + "__inan").alt != 1 ) &amp;&amp; 
+		           		(document.getElementById(prefix_component + "__tieptucnhap") == null ||document.getElementById(prefix_component + "__tieptucnhap").alt != 1 ) &amp;&amp; 
+		           		(document.getElementById(prefix_component + "__ghinhan") == null ||document.getElementById(prefix_component + "__ghinhan").alt  != 1  )
+		           		
+		           ) {
+		           
+		                  if(window.event.keyCode == 13){
+		                         window.event.keyCode = 9;
+		                   }
+		           }
+		}
+		
+		var bCancel = false;
+	
+				function iesvn_Required() {
+//this.a1 = new Array(prefix_component + "HOANUNG_NGAYGIO", "<h:outputFormat value="#{msg.common_requireField}"><f:param value="#{msg.Ngay}" /></h:outputFormat>", new Function ("varName",  "return this[varName];"));
+this.a2 = new Array(prefix_component + "HOANUNG_KHOA", "<h:outputFormat value="#{msg.common_requireField}"><f:param value="#{msg.Khoa_phong}" /></h:outputFormat>", new Function ("varName",  "return this[varName];"));
+this.a4 = new Array(prefix_component + "HSBA_SOVAOVIEN", "<h:outputFormat value="#{msg.common_requireField}"><f:param value="#{msg.So_benh_an}" /></h:outputFormat>", new Function ("varName",  "return this[varName];"));
+this.a5 = new Array(prefix_component + "HOANUNG_SOTIEN", "<h:outputFormat value="#{msg.common_requireField}"><f:param value="#{msg.Chi_tra}" /></h:outputFormat>", new Function ("varName",  "return this[varName];"));
+this.a6 = new Array(prefix_component + "DT_DM_NHAN_VIEN__1", "<h:outputFormat value="#{msg.common_requireField}"><f:param value='Thu ngân' /></h:outputFormat>", new Function ("varName",  "return this[varName];"));
+}
+
+function iesvn_FloatValidations() {
+this.a1 = new Array(prefix_component + "HOANUNG_SOTIEN", "<h:outputFormat value="#{msg.common_float}"><f:param value="#{msg.Chi_tra}" /></h:outputFormat>", new Function ("varName",  "return this[varName];"));
+}
+function iesvn_FloatMin () {
+this.a1 = new Array(prefix_component + "HOANUNG_SOTIEN", "<h:outputFormat value="#{msg.common_gt_min}"><f:param value="#{msg.Chi_tra}" /><f:param value='0' /></h:outputFormat>", new Function ("varName",  "this.min='1';return this[varName];"));
+}
+function iesvn_DateValidations() {
+//this.a1 = new Array(prefix_component + "HOANUNG_NGAYGIO", "<h:outputFormat value="#{msg.common_invalidOrUnformatDate}"><f:param value="#{msg.Ngay}" /></h:outputFormat>", new Function ("varName",  "this.datePatternStrict='dd/MM/yyyy';return this[varName];"));
+}
+function iesvn_ValidateForm(form) {
+	 if (bCancel) {
+	 	return true;
+	 } else {
+	 	return iesvn_ValidateRequired(form) &amp;&amp; iesvn_ValidateFloat(form) &amp;&amp; iesvn_ValidateFloatMin(form) &amp;&amp; iesvn_ValidateDate(form);
+	 }
+ }
+ 
+ function validGhiNhan() {
+ if (document.getElementById(prefix_component + 'HOANUNG_MA').value == '') {
+ 	document.getElementById(prefix_component + 'HOANUNG_MA_old').value = '';
+ }
+	 if((document.getElementById(prefix_component + 'HOANUNG_MA').value != '' 
+	 			&amp;&amp; document.getElementById(prefix_component + 'HOANUNG_MA').value 
+	 			!= document.getElementById(prefix_component + 'HOANUNG_MA_old').value)
+	 	|| (document.getElementById(prefix_component + 'HSBA_SOVAOVIEN').value 
+	 			!= document.getElementById(prefix_component + 'HSBA_SOVAOVIEN_old').value)		
+	 	|| (document.getElementById(prefix_component + 'HOANUNG_KHOA').value 
+	 			!= document.getElementById(prefix_component + 'HOANUNG_KHOA_old').value)
+	 	|| !iesvn_ValidateForm(document.forms[0])) {
+	 		return false;
+	 	}
+	 	
+	 return true;
+}		
+ function checkChitra(textbox) {	 
+	 var nSodu = parseInt(document.getElementById(prefix_component + '__sodu').value,10);	 	 
+	 if (nSodu &lt; 0) {
+		 var strSodu = document.getElementById(prefix_component + '__sodu').value;		 
+		 strSodu = strSodu.replace(/,/g,""); 		 	
+		 nSodu = parseInt(strSodu,10) * (-1);
+		 var chitra = textbox.value;
+		 if (chitra != '') {
+			 chitra = chitra.replace(/,/g,"");
+			 if (parseInt(chitra,10) &gt; nSodu) {
+				 	textbox.value = nSodu;
+			 	} else {
+				 	textbox.value = parseInt(chitra,10); 
+			 	}
+		 }	 	 
+	 } else {		 
+		 textbox.value = "0";
+	 }
+	 /*var chitra = textbox.value;
+	 if (chitra != '') {
+		 chitra = chitra.replace(/,/g,"");		
+	 	var daung = document.getElementById(prefix_component + 'HSTHTOAN_TAMUNG').value;
+	 	var datra = document.getElementById(prefix_component + 'HSTHTOAN_HOANUNG').value;	 	 	
+	 	daung = daung.replace(/,/g,"");
+		datra = datra.replace(/,/g,"");		
+		//alert("bntra = " + bntra);		 	
+	 	var nDaung = (daung != '' ? parseInt(daung,10) : 0);
+	 	var nDatra = (datra != '' ? parseInt(datra,10) : 0);	 	
+	 	//alert("nBntra = " + nBntra);
+	 	if (parseInt(chitra,10) &gt; (nDaung - nDatra)) {
+		 	textbox.value = nDaung - nDatra;
+	 	} else {
+		 	textbox.value = parseInt(chitra,10); 
+	 	}
+	 }
+	 */
+ }
+ function setReadOnly_Chitra() {
+	 // Khi lay thong tin theo so phieu, thi khong cho chinh sua so lieu chi tra
+	 var nSodu = parseInt(document.getElementById(prefix_component + '__sodu').value,10);
+	 document.getElementById(prefix_component + 'HOANUNG_SOTIEN').readOnly = ((!(nSodu &lt; 0)) ||(document.getElementById(prefix_component + 'HOANUNG_MA').value != '' &amp;&amp; document.getElementById(prefix_component + 'HSBA_SOVAOVIEN').value != ''));
+	 document.getElementById(prefix_component + '__ghinhan').disabled = document.getElementById(prefix_component + 'HOANUNG_SOTIEN').readOnly;
+ }
+		</script>
+<div id="ajax_error_display" style="position:absolute; top:30px; left:578px; width:200px; height:50px"/>		
+<div id="sync_error_display" style="position:absolute; top:40px; left:578px; width:200px; height:50px"/>
+
+<body onkeydown="enterToTab();">
+	<h:form id="_form" name="_form">
+    <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_VienPhi_ThuVienPhi.xhtml" /></div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="42%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						<h:outputText value="#{msg.CHI_TRA_BOT_TIEN_TAM_UNG}" />
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>    
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="965px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr style=" height : 5px;">
+    		<td width="100%" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 0px" colspan="3" align="center">  
+    		      	<a4j:outputPanel id="__messagesPanel">
+        				<h:messages styleClass="mynull"/>
+					</a4j:outputPanel>
+    		</td>    		
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px" width="100%" >
+    			<!-- Main Area -->    		
+    	<table cellspacing="0" cellpadding="0" border="0" width="95%" align="center">
+    				<tr style="height: 25px;">
+    					<td align="right" width="15%">
+    						<h:outputText value="#{msg.Ngay}" styleClass="mytext" style="margin-left: 5px; margin-right: 5px;display:none;"/>
+    						<h:outputText value="#{msg.Phieu_so}" styleClass="mytext" style="margin-left: 5px; margin-right: 5px"/>
+    					</td>
+    					<td align="left">
+    						<h:inputText onkeypress="return being_wellformed_Date(this, event)" onblur="return is_wellformed_Date(this)"  tabindex="1" value="" id="HOANUNG_NGAYGIO"  maxlength="10" style=" width : 70px;display:none;" styleClass="myinput" ><s:convertDateTime type="date" pattern="dd/MM/yyyy" /></h:inputText>
+<a hideFocus="true" onclick="gfPop.fPopCalendar(document.getElementById(prefix_component + 'HOANUNG_NGAYGIO'));document.getElementById(prefix_component + 'HOANUNG_NGAYGIO').setActive();return false;" href="javascript:void(0)" style="text-decoration:none;" ><h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0;display:none;" border="0" name="popcal"/>
+</a>	
+							
+    						<h:outputText value="#{msg.Phieu_so}" styleClass="mytext" style="margin-left: 50px; margin-right: 5px;display:none;"/>
+
+    						<h:inputHidden  value="#{B3216_ChiTraTienTamUng.getHoanUng(true).hoanungMa}" id="HOANUNG_MA_old"  style=" width : 121px;" styleClass="myinput" />
+    						<h:inputText  value="#{B3216_ChiTraTienTamUng.getHoanUng(true).hoanungMa}" tabindex="2" id="HOANUNG_MA"  style=" width : 121px;" styleClass="myinput" ><a4j:support event="onblur"  action="#{B3216_ChiTraTienTamUng.layTheoHoanUngMa}"  onsubmit="if(document.getElementById(prefix_component + 'HOANUNG_MA').value == '') return false;" oncomplete="myOnblurTextbox(prefix_component + 'HOANUNG_KHOA',prefix_component + 'DM_KHOA');onCompleteGetInfor(); setReadOnly_Chitra();"  reRender="HOANUNG_KHOA_old,HSBA_SOVAOVIEN_old,HOANUNG_MA_old,HOANUNG_NGAYGIO,HOANUNG_MA,HOANUNG_KHOA,HSBA_SOVAOVIEN,BENHNHAN_HOTEN,DMGT_MASO,BENHNHAN_TUOI,BENHNHAN_NGAYSINH,TINH_MA,DMTINH_TEN,HUYEN_MA,DMHUYEN_TEN,XA_MA,DMXA_TEN,BENHNHAN_DIACHI,HSBABHYT_SOTHEBH,HSBABHYT_MAKCB,DTDMKCBBHYT_TEN,DANTOC_MA,DMDANTOC_TEN,HSBABHYT_TUYEN,HSTHTOAN_TAMUNG,HSTHTOAN_HOANUNG,__sodu,HOANUNG_SOTIEN,HOANUNG_LYDO,ghiNhanException,__donViTuoi,__inan,__messagesPanel,__ghinhan" /></h:inputText>
+							
+							<h:outputText value="#{msg.Thu_ngan}" styleClass="mytext" style="margin-right: 5px; margin-left: 5px;"/>
+    					
+    						<h:inputText readonly="true"  value="#{B3216_ChiTraTienTamUng.nhanVienThungan.dtdmnhanvienTen}" id="DT_DM_NHAN_VIEN__1"  style="width: 230px;" styleClass="myreadonly" onkeydown="return disabledBackSpace();" />
+    					</td>
+    					
+    					
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right" width="15%">
+    						<h:outputText value="#{msg.Khoa_phong}" styleClass="mytext" style="margin-left: 5px; margin-right: 5px"/>
+    						
+    					</td>
+    					<td align="left">
+<h:inputHidden value="#{B3216_ChiTraTienTamUng.getHoanUng(true).getHoanungKhoa(true).dmkhoaMa}" id="HOANUNG_KHOA_old" />    						
+    						<h:inputText  onblur="myOnblurTextbox(prefix_component + 'HOANUNG_KHOA',prefix_component + 'DM_KHOA')"  value="#{B3216_ChiTraTienTamUng.getHoanUng(true).getHoanungKhoa(true).dmkhoaMa}" tabindex="3" id="HOANUNG_KHOA"  style=" width : 30px" styleClass="myinput" />
+    						
+			<h:inputHidden value="#{B3216_ChiTraTienTamUng.getHoanUng(true).getHoanungKhoa(true).dmkhoaMaso}" id="HOANUNG_KHOA_pk" />
+    					 	
+    					 	<h:inputText tabindex="4"  id="DM_KHOA"   style="width: 200px;" styleClass="mycbogear"/>
+    					 	<h:outputText value="*" styleClass="mynull"	style="margin-left: 2px;" />
+
+    						<h:outputText value="#{msg.So_benh_an}" styleClass="mytext" style="margin-left: 15px; margin-right: 5px"/>
+<h:inputHidden  value="#{B3216_ChiTraTienTamUng.getHoanUng(true).getHsbaSovaovien(true).hsbaSovaovien}" id="HSBA_SOVAOVIEN_old" />
+    						<h:inputText  value="#{B3216_ChiTraTienTamUng.getHoanUng(true).getHsbaSovaovien(true).hsbaSovaovien}" tabindex="5" id="HSBA_SOVAOVIEN"  style=" width : 121px;" styleClass="myinput"><a4j:support event="onblur"  action="#{B3216_ChiTraTienTamUng.layTheoSoVaoVien}"  oncomplete="getLiDo();setReadOnly_Chitra()" onsubmit="if(this.value == '') return false;" reRender="HOANUNG_KHOA_old,HSBA_SOVAOVIEN_old,HSBA_SOVAOVIEN,BENHNHAN_HOTEN,DMGT_MASO,BENHNHAN_TUOI,BENHNHAN_NGAYSINH,TINH_MA,DMTINH_TEN,HUYEN_MA,DMHUYEN_TEN,XA_MA,DMXA_TEN,BENHNHAN_DIACHI,HSBABHYT_SOTHEBH,HSBABHYT_MAKCB,DTDMKCBBHYT_TEN,DANTOC_MA,DMDANTOC_TEN,HSBABHYT_TUYEN,HSTHTOAN_TAMUNG,HSTHTOAN_HOANUNG,__sodu,__donViTuoi,__inan,__messagesPanel,__ghinhan"/></h:inputText>
+							<h:outputText value="*" styleClass="mynull"	style="margin-left: 2px;" />
+    						<button name="_goiBN" id="__goiBN" value="Gọi BN" onclick="goiBN('HSBA_SOVAOVIEN', 'BENHNHAN_HOTEN');" type="button">Gọi BN</button>
+    						<applet code="com.iesvn.test.testapplet.ClientQuangBaoApplet.class" archive="ClientQuangBao.jar"
+width="1" height="1" id="xyz" name="xyz"></applet>
+							<span id="DM_KHOA_span"/>
+    					</td>
+    					
+    					
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right"> 
+    						<h:outputText value="#{msg.Ho_ten}" styleClass="mytext" style="margin-left: 5px; margin-right: 5px"/>
+    						
+    					</td>
+    					<td align="left" >
+    						<table cellspacing="0" cellpadding="0" border="0" width="100%">
+	    					<tr>
+	    					<td align="left" width="15%">
+	    						<h:inputText value="#{B3216_ChiTraTienTamUng.getBenhNhan(true).benhnhanHoten}" readonly="true" id="BENHNHAN_HOTEN"  style="float: left; width : 150px;" styleClass="myreadonly"/>
+
+	    					</td>
+	    					<td align="left" width="38%">
+	    						<h:outputText value="#{msg.Gioi_tinh}" styleClass="mytext" style="float: left; padding-top:3px; margin-left: 35px; margin-right: 0px;"/>
+	    						<h:selectOneRadio disabled="true" value="#{B3216_ChiTraTienTamUng.getBenhNhan(true).getDmgtMaso(true).dmgtMaso}" id="DMGT_MASO">
+						        	<f:selectItem id="__namItems" itemValue="2" itemLabel="Nam" styleClass="mycheck"   />					    
+						        	<f:selectItem id="__nuItems" itemValue="1" itemLabel="Nữ" styleClass="mycheck" />
+						    	</h:selectOneRadio>
+	    					</td>
+	    					<td align="left">
+		    					<h:outputText value="#{msg.Tuoi}" styleClass="mytext" style=" margin-left: 16px; margin-right: 5px;"/>
+	    						<h:inputText readonly="true"  value="#{B3216_ChiTraTienTamUng.getBenhNhan(true).benhnhanTuoi}" id="BENHNHAN_TUOI"  style="margin-right: 3px; width : 30px;" styleClass="myreadonly"/>
+
+	    						
+	    						<h:outputText value="#{B3216_ChiTraTienTamUng.donViTuoi}" id="__donViTuoi" styleClass="mytext" style="margin-left: 5px;margin-right: 5px;"/> 		
+	    						
+	    						<h:inputText readonly="true" value="#{B3216_ChiTraTienTamUng.getBenhNhan(true).benhnhanNgaysinh}"   id="BENHNHAN_NGAYSINH"   style=" width : 70px;" styleClass="myreadonly" ><s:convertDateTime type="date" pattern="dd/MM/yyyy" /></h:inputText> 
+<!-- 
+<a hideFocus="true" href="javascript:void(0)"  ><h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/>
+</a>
+ -->	
+	    					</td>
+	    				</tr>
+	    			</table>
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right"> 
+    						<h:outputText value="#{msg.ia_chi}" styleClass="mytext" style="margin-left: 5px; margin-right: 5px"/>
+    					
+    					</td>
+    					<td  align="left">
+    					<h:inputText  readonly="true" value="#{B3216_ChiTraTienTamUng.getBenhNhan(true).getTinhMa(true).dmtinhMa}" id="TINH_MA"  style=" width : 30px" styleClass="myreadonly"   />
+
+    					
+    					<h:inputText readonly="true" value="#{B3216_ChiTraTienTamUng.getBenhNhan(true).getTinhMa(true).dmtinhTen}" id="DMTINH_TEN"  styleClass="myreadonly" style="width: 150px;margin-right:3px;"/>
+
+    					<h:inputText readonly="true" value="#{B3216_ChiTraTienTamUng.getBenhNhan(true).getHuyenMa(true).dmhuyenMa}" id="HUYEN_MA"  style=" width : 43px" styleClass="myreadonly"  />
+
+    					
+    					<h:inputText readonly="true" styleClass="myreadonly" value="#{B3216_ChiTraTienTamUng.getBenhNhan(true).getHuyenMa(true).dmhuyenTen}" id="DMHUYEN_TEN"   style="width: 163px; margin-right: 3px"/>
+
+    					
+    					<h:inputText  readonly="true" value="#{B3216_ChiTraTienTamUng.getBenhNhan(true).getXaMa(true).dmxaMa}" id="XA_MA"  style=" width : 60px" styleClass="myreadonly"   />
+
+    					 
+    					 <h:inputText readonly="true" value="#{B3216_ChiTraTienTamUng.getBenhNhan(true).getXaMa(true).dmxaTen}" id="DMXA_TEN"  styleClass="myreadonly" style="width: 139px;"/>
+						 <span id="DM_TINH_span"/>
+    					<span id="DM_HUYEN_span"/>
+    					<span id="DM_XA_span"/>
+    					</td>
+    				</tr>
+    				
+    				<tr style="height: 25px;">
+    					<td align="right"> 
+    						
+    					</td>
+    					<td align="left">
+    					<h:inputText value="#{B3216_ChiTraTienTamUng.getBenhNhan(true).benhnhanDiachi}" readonly="true" id="BENHNHAN_DIACHI"  style=" width : 401px;" styleClass="myreadonly" />
+
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right">
+    						<h:outputText value="#{msg.The_BHYT_ngheo}" styleClass="mytext" style="margin-left: 0px; margin-right: 5px"/>
+    						
+    					</td>
+    					<td align="left">
+    						<h:inputText value="#{B3216_ChiTraTienTamUng.soTheBH_SoTheNgheo}"  readonly="true" id="HSBABHYT_SOTHEBH"  style=" width : 120px;" styleClass="myreadonly"/>
+
+    						<h:outputText value="#{msg.KCB}" styleClass="mytext" style="margin-left: 38px; margin-right: 5px"/>
+    						<h:inputText  value="#{B3216_ChiTraTienTamUng.getHsbaBhyt(true).getHsbabhytMakcb(true).dmbenhvienMa}" readonly="true" id="HSBABHYT_MAKCB" style="width: 43px;" styleClass="myreadonly"/>
+
+    						<span id="DT_DM_KCB_BHYT_span" />
+    						<h:inputText  value="#{B3216_ChiTraTienTamUng.getHsbaBhyt(true).getHsbabhytMakcb(true).dmbenhvienTen}" readonly="true" id="DTDMKCBBHYT_TEN"  style="width: 163px;" styleClass="myreadonly"/>
+
+    						<h:outputText value="#{msg.Dan_toc}" styleClass="mytext" style="margin-left: 20px; margin-right: 5px"/>
+    					
+    					<h:inputText  value="#{B3216_ChiTraTienTamUng.getBenhNhan(true).getDantocMa(true).dmdantocMa}" readonly="true" id="DANTOC_MA" style="width: 30px;" styleClass="myreadonly"/>
+
+    					<span id="DM_DAN_TOC_span"/>
+    					<h:inputText readonly="true" value="#{B3216_ChiTraTienTamUng.getBenhNhan(true).getDantocMa(true).dmdantocTen}" id="DMDANTOC_TEN"   style="width: 105px;" styleClass="myreadonly"/>
+
+    					
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right">
+    						<h:outputText value="#{msg.Tuyen}" styleClass="mytext" style="margin-left: 5px; margin-right: 5px"/>
+    						
+    					</td>
+    					<td align="left">
+    						<h:inputText value="#{B3216_ChiTraTienTamUng.getHsbaBhyt(true).hsbabhytTuyen}"  readonly="true" id="HSBABHYT_TUYEN"  style=" width : 30px;" styleClass="myreadonly"/>
+
+    						<h:outputText value="#{msg.a_ung}" styleClass="mytext" style="margin-left: 21px; margin-right: 5px"/>
+    						<h:inputText value="#{B3216_ChiTraTienTamUng.daUng}"  readonly="true" id="HSTHTOAN_TAMUNG"  style=" width : 120px;" styleClass="myreadonlyso"><f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" /></h:inputText>
+
+    						<h:outputText value="#{msg.a_tra}" styleClass="mytext" style="margin-left: 20px; margin-right: 5px"/>
+    						<h:inputText value="#{B3216_ChiTraTienTamUng.daTra}"  readonly="true" id="HSTHTOAN_HOANUNG"  style=" width : 122px;" styleClass="myreadonlyso"><f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" /></h:inputText>
+
+    						
+    						
+    						<h:outputText value="#{msg.So_du}" styleClass="mytext" style="margin-left: 29px; margin-right: 5px"/>
+    						<h:inputText value="#{B3216_ChiTraTienTamUng.soDu}"  readonly="true" id="__sodu"  style="width: 140px;" styleClass="myreadonlyso" ><f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" /></h:inputText>
+
+    					
+    					</td>
+    				</tr>    				
+    				<tr style="height: 25px;">
+    					<td align="right">
+    						<h:outputText value="#{msg.Chi_tra}" styleClass="mytext" style="margin-left: 5px; margin-right: 5px"/>
+    						
+    					</td>
+    					<td align="left" colspan="3">
+    						<h:inputText value="#{B3216_ChiTraTienTamUng.getHoanUng(true).hoanungSotien}"  onkeypress="iesvn_InputInKeys('0123456789')" tabindex="6" id="HOANUNG_SOTIEN" onfocus="numberFormatFocus(this);" onblur="numberFormatBlur(this);"  style=" width : 120px;" styleClass="myinputso" onchange="checkChitra(this);" maxlength="10"><f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" /></h:inputText>
+							<h:outputText value="*" styleClass="mynull"	style="margin-left: 2px;" />
+    						<h:outputText  value="#{msg.Ly_do_tra}" styleClass="mytext" style="margin-left: 10px; margin-right: 5px"/>
+    						<h:inputText  value="#{B3216_ChiTraTienTamUng.getHoanUng(true).hoanungLydo}" tabindex="7" id="HOANUNG_LYDO"  style=" width : 420px;" styleClass="myinput" maxlength="512"/>
+
+    					
+    					</td>
+    				</tr>
+    				
+    				<tr style="height: 25px;"> 
+    					<td align="right"> 
+    						
+    					</td>	
+    					<td align="right" style="padding-left: 200px; padding-top: 10px">
+    						<div style="float: left;">
+    							
+    								<a4j:commandButton  tabindex="8" id="__ghinhan" disabled="#{B3216_ChiTraTienTamUng.disabledGhinhan}"  value="#{msg.Ghi_nhan}" style="width: 70px; margin-left:3px" styleClass="mybton_b" action="#{B3216_ChiTraTienTamUng.ghinhan}" onclick="if(!validGhiNhan()){return false;} else this.disabled=true;" oncomplete="this.disabled=false;document.getElementById(prefix_component + 'ghiNhanException').value='#{B3216_ChiTraTienTamUng.getGhiNhanException()}';"  reRender="HOANUNG_MA_old,HOANUNG_MA,ghiNhanException,__inan,__messagesPanel" />
+
+    							
+    						</div>
+    						<div  style=" float: left;">
+    							
+    								<a4j:commandButton  tabindex="9" id="__tieptucnhap"   
+    								value="#{msg.Nhap_moi}" style="width: 70px; margin-left:3px" 
+    								styleClass="mybton_b" action="#{B3216_ChiTraTienTamUng.nhaplai}" 
+    								oncomplete="myOnblurTextbox(prefix_component + 'HOANUNG_KHOA',prefix_component + 'DM_KHOA');"
+    								focus="HOANUNG_KHOA" 
+    								reRender="HOANUNG_KHOA_old,HSBA_SOVAOVIEN_old,HOANUNG_MA_old,HOANUNG_NGAYGIO,HOANUNG_MA,HOANUNG_KHOA,HSBA_SOVAOVIEN,BENHNHAN_HOTEN,DMGT_MASO,BENHNHAN_TUOI,BENHNHAN_NGAYSINH,TINH_MA,DMTINH_TEN,HUYEN_MA,DMHUYEN_TEN,XA_MA,DMXA_TEN,BENHNHAN_DIACHI,HSBABHYT_SOTHEBH,HSBABHYT_MAKCB,DTDMKCBBHYT_TEN,DANTOC_MA,DMDANTOC_TEN,HSBABHYT_TUYEN,HSTHTOAN_TAMUNG,HSTHTOAN_HOANUNG,__sodu,HOANUNG_SOTIEN,HOANUNG_LYDO,ghiNhanException,__donViTuoi,__inan,__messagesPanel,__ghinhan" />
+
+    						
+    						</div> 
+    						
+    						<div style="float: left;">
+    							
+    								<a4j:commandButton   tabindex="10" id="__inan" name="__inan"  value="#{msg.In_an}" disabled="#{B3216_ChiTraTienTamUng.disabledPrinting}" action="#{B3216_ChiTraTienTamUng.xuatReport}" style="width: 80px; margin-left:3px" styleClass="mybton_b"/>
+
+    						
+    						</div>
+    					<h:inputHidden value="#{B3216_ChiTraTienTamUng.ghiNhanException}"  id="ghiNhanException" style=" width : 100px;" styleClass="myinputso"/>
+    					<h:inputHidden value="#{B3216_ChiTraTienTamUng.maPhu}"  id="MAPHU" style=" width : 100px;" styleClass="myinputso"/>
+    					
+    					</td>
+    									
+    				</tr>
+    			</table>		
+    							
+    		</td>
+    	</tr>
+    </table>
+   </h:form>
+   </body>
+   <iframe id="gToday:normal:agenda.js" style="Z-INDEX:999;LEFT:-500px;VISIBILITY:visible;POSITION:absolute;TOP:0px" name="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" frameBorder="0" width="180" scrolling="no" height="147"></iframe>
+    <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/vienphi/B3216_Chitrabottientamung_gears.js"></script>
+   <script> 
+   		var prefix_component = document.forms[0].id + ":";
+    	A4J.AJAX.onError = function(req,status, message){
+    		//window.alert('Custom onError handler '+message);
+    		ajax_error_display.innerHTML = khong_tim_thay_du_lieu; 
+    	};
+    	A4J.AJAX.onExpired = function(loc,expiredMsg){
+          //window.alert('Custom onExpired handler '+message);
+          ajax_error_display.innerHTML = can_dang_nhap_lai;
+		};
+    	dojo.addOnLoad( function() {
+			 myOnblurTextbox(prefix_component + 'HOANUNG_KHOA',prefix_component + 'DM_KHOA');
+		} )
+		setReadOnly_Chitra();
+</script> 
+</ui:define> 
+</ui:composition>
+
+

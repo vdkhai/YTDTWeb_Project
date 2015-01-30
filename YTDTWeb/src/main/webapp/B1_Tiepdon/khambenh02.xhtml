@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich">
+<ui:define name="khambenh02">	
+	<!-- Bat dau -->
+	<table width="778px" cellpadding="0" cellspacing="0" border="1">
+		<tr style="height: 25px;">
+			<td align="right" style="padding-right: 5px; width: 14%"><h:outputText
+				value="Họ tên" styleClass="mytext" /></td>
+			<td align="left">
+			<table cellspacing="0" cellpadding="0" border="0" width="100%">
+				<tr>
+					<td width="27%"><h:inputText value=""
+						onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); formatHoTen(); checkForGioi();'
+						tabindex="5" id="BENHNHAN_HOTEN" name="_BENHNHAN_HOTEN"
+						style="width: 176px;" styleClass="myinput" maxlength="128"
+						onchange="temp();" /> <h:outputText value="*" styleClass="mynull"
+						style="margin-right: 5px; margin-left: 2px;" /></td>
+					<td style="width: 26%;"><h:outputText value="Giới tính"
+						styleClass="mytext"
+						style=" margin-left: 4px; margin-right: 2px;float:left;padding-top: 3px;" />
+
+					<h:selectOneRadio id="BENHNHAN_GIOI_TEMP" tabindex="6"
+						style="float:left;">
+						<f:selectItem id="NAM" itemValue="1" itemLabel="Nam"
+							styleClass="mycheck" />
+						<f:selectItem id="NU" itemValue="0" itemLabel="Nữ"
+							styleClass="mycheck" />
+					</h:selectOneRadio></td>
+					<td align="left"><h:outputText value="Ngày sinh"
+						styleClass="mytext" style="margin-left:0px; margin-right: 3px" />
+
+					<h:inputText onchange=""
+						onkeypress="return being_wellformed_Date(this, event)"
+						onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); set_tuoi_has_namsinh(prefix_component+ "BENHNHAN_TUOI",prefix_component+ "BENHNHAN_NGAYSINH",prefix_component+ "BENHNHAN_DONVITUOI_TEMP",prefix_component+ "BENHNHAN_NAMSINH");return is_wellformed_Date(this)'
+						tabindex="7" type="text" id="BENHNHAN_NGAYSINH"
+						name="_BENHNHAN_NGAYSINH" maxlength="10" style=" width : 70px;"
+						class="myinput" /><a hideFocus="true" href="javascript:void(0)"
+						onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + 'BENHNHAN_NGAYSINH'));document.getElementById(prefix_component + 'DANTOC_MA').focus();return false;"><h:graphicImage
+						value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0"
+						border="0" name="popcal" /></a> <h:outputText value="Năm sinh"
+						styleClass="mytext" style="margin-left:35px; margin-right: 5px" />
+					<h:inputText value=""
+						onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); set_tuoi_from_namsinh(prefix_component+ "BENHNHAN_TUOI",prefix_component+ "BENHNHAN_NAMSINH",prefix_component+ "BENHNHAN_DONVITUOI_TEMP")'
+						tabindex="8" id="BENHNHAN_NAMSINH" name="_BENHNHAN_NAMSINH"
+						style="width: 30px;" styleClass="myinput" maxlength="4" /></td>
+				</tr>
+			</table>
+			</td>
+		</tr>
+		<tr style="height: 25px;">
+			<td align="right" style="padding-right: 5px"><h:outputText
+				value="Tuổi" styleClass="mytext"
+				style="margin-left: 0px; margin-right: 5px;" /></td>
+			<td align="left"><h:inputText
+				onkeypress="iesvn_InputInKeys('1234567890');" maxlength="3" value=""
+				tabindex="9" id="BENHNHAN_TUOI" name="_BENHNHAN_TUOI"
+				style=" width : 30px; margin-right:0px; float:left"
+				styleClass="myinput" /> <h:outputText value="*" styleClass="mynull"
+				style="margin-left: 2px; float:left" /> <h:selectOneRadio
+				onblur="set_ngaysinh_namsinh(prefix_component+ 'BENHNHAN_TUOI',prefix_component+ 'BENHNHAN_NGAYSINH',prefix_component+ 'BENHNHAN_NAMSINH');"
+				id="BENHNHAN_DONVITUOI_TEMP" value="" tabindex="10"
+				style="float:left">
+				<f:selectItem id="__namtuoi" itemValue="1" itemLabel="Năm"
+					styleClass="mycheck" />
+				<f:selectItem id="__thangtuoi" itemValue="2" itemLabel="Tháng"
+					styleClass="mycheck" />
+				<f:selectItem id="__ngaytuoi" itemValue="3" itemLabel="Ngày"
+					styleClass="mycheck" />
+			</h:selectOneRadio> <h:outputText value="Dân tộc" styleClass="mytext"
+				style="margin-left:5px;margin-right:5px;" /> <h:inputText
+				id="DANTOC_MA" name="_DANTOC_MA" style=" width : 40px"
+				onblur="myOnblurTextbox(this.id,'DM_DAN_TOC')" maxlength="10"
+				tabindex="11" styleClass="myinput" /> <span id="DM_DAN_TOC_span" />
+			<input id="DM_DAN_TOC" name="DM_DAN_TOC" tabindex="12"
+				style="width: 75px;" class="mycbogear" /> <h:outputText value="*"
+				styleClass="mynull" style="margin-right: 2px; margin-left: 2px;" />
+
+			</td>
+		</tr>
+		<tr style="height: 25px;">
+			<td align="right" style="padding-right: 5px"><h:outputText
+				value="Địa chỉ" styleClass="mytext" /></td>
+			<td align="left" style="padding-left: 0px"><!-- from --> <h:inputHidden
+				id="TINH_MA_pk" /> <h:inputText id="TINH_MA" name="_TINH_MA"
+				styleClass="myinput" style=" width : 30px"
+				onblur="myOnblurTextbox(this.id,'DM_TINH')" maxlength="10"
+				tabindex="60" /> <span id="DM_TINH_span" /> <input id="DM_TINH"
+				name="DM_TINH" tabindex="61" style="width: 140px;" class="mycbogear" />
+
+			<h:inputHidden id="HUYEN_MA_pk" /> <h:inputText id="HUYEN_MA"
+				name="_HUYEN_MA" style="margin-left:11px; width : 40px"
+				onblur="myOnblurTextboxJSF_Huyen_Xa(this.id,'DM_HUYEN', 'TINH_MA','DMTINH_MASO')"
+				maxlength="10" tabindex="62" styleClass="myinput" /> <span
+				id="DM_HUYEN_span" /> <input id="DM_HUYEN" name="DM_HUYEN"
+				tabindex="63" style="width: 143px;" class="mycbogear" /> <h:inputText
+				id="XA_MA" name="_XA_MA" style="width : 61px;margin-left:5px;"
+				styleClass="myinput"
+				onblur="myOnblurTextboxJSF_Huyen_Xa(this.id, 'DM_XA', 'HUYEN_MA','DMHUYEN_MASO')"
+				maxlength="10" tabindex="18" /> <span id="DM_XA_span" /> <input
+				id="DM_XA" name="DM_XA" tabindex="19" style="width: 177px;"
+				class="mycbogear" /> <!-- to--></td>
+		</tr>
+		<tr>
+		<td colspan="3">
+		<table cellspacing="0" cellpadding="0" border="1" width="100%">
+				<tr style="height: 25px;">
+    					<td align="right" style="padding-right: 5px; width:14%" >
+    						<h:outputText value="Đối tượng" styleClass="mytext" style="margin-left: 16px; margin-right: 5px"/>
+    					 	
+    					</td>
+    					<td align="left" >
+    						
+    					 	<h:inputText value="" id="DOITUONG_MA" name="_DOITUONG_MA" style="width: 30px" onblur="myOnblurTextbox_DoiTuong(this.id,'DM_DOI_TUONG',prefix_component + '__tylebntra',prefix_component + 'TIEPDON_TYLEBH')" maxlength="11" tabindex="13" styleClass="myinput"/>
+    					 	<span id="DM_DOI_TUONG_span"/>
+    					 	<input id="DM_DOI_TUONG" name="DM_DOI_TUONG" tabindex="14" style="width: 127px;" class="mycbogear"/>	
+    						<h:outputText value="*" styleClass="mynull"
+								style="margin-right: 5px; margin-left: 2px;" />    						
+    					</td>    					
+    				</tr> 
+    				<tr style="height: 25px;">
+    					<td align="right">
+    						&#160;
+    					</td>
+    					<td align="left">
+    					
+    						<h:outputText value="Biên lai:" styleClass="mytext_b"  style="margin-left:11px; margin-right: 30px;" />
+    						<h:outputText value="Ký hiệu" styleClass="mytext" style="margin-right: 5px;" />    						
+    						<h:inputText value="" maxlength="8" tabindex="28" id="TIEPDON_KYHIEU" name="_TIEPDON_KYHIEU"  style="width: 70px;" styleClass="myinput" />
+    						<h:outputText value="Quyển" styleClass="mytext" style="margin-left: 10px;margin-right: 5px;"/>
+    						<h:inputText value="" maxlength="8" tabindex="29" id="TIEPDON_QUYEN" name="_TIEPDON_QUYEN"  style="width: 40px;" styleClass="myinput" />
+    						<h:outputText value="Số" styleClass="mytext" style="margin-left:10px;margin-right: 5px;" />
+    						<h:inputText value="" maxlength="8" tabindex="30" id="TIEPDON_BIENLAI" name="_TIEPDON_BIENLAI"  style="width: 38px;" styleClass="myinput" />
+    					</td>
+    				</tr>
+			</table>
+		</td>
+		</tr>
+	</table>
+	<!-- Ket thuc -->
+</ui:define>
+</ui:composition>
+

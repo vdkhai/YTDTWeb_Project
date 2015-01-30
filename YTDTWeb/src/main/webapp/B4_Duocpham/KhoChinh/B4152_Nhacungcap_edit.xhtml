@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:c="http://java.sun.com/jstl/core" 
+                template="/layout/mytemplate_danhmuc.xhtml">
+
+<ui:define name="body">	
+<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+<h:form id="_form" name="_form">
+<div style="width:100%; position: absolute; z-index:99; margin-top:-6px">
+		<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoChinh.xhtml" />
+</div>
+<table style="margin-top:10px" cellspacing="0" cellpadding="0" border="0" width="777">
+	<tr>
+    	<td colspan="3" height="50px">
+    		<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    			<tr>
+    				<td height="50px" width="310px" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    					<h:graphicImage value="../../images/white_light.gif" width="43" height="16" />
+    					CẬP NHẬP NƠI BÁN
+    				</td> 
+    				<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    				</td>
+    			</tr>
+    		</table>			
+    	</td>    		    	
+	</tr>    
+    <tr>
+    	<td width="13px" height="12px" class="mytdl"></td>
+    	<td style="background-color: #c9daea;" width="965px" height="12px" ></td>
+    	<td width="11px" height="12px" class="mytdr"></td>
+    </tr> 
+    <tr>
+    	<td colspan="3" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 5px" width="100%" >
+    		<table width="100%">
+    			<tr align="center">
+			    	<td>
+			    		<a4j:outputPanel id="message_infor">
+							<tr>
+								<td>
+									<h:messages style="color:Red;font-weight:bold;font-style:italic;text-decoration:none;"/>
+								</td>
+							</tr>
+						</a4j:outputPanel>
+			    	</td>
+			    </tr>
+    			<tr>
+    				<td>
+    					<h:outputText value="Mã" style="margin: 0px 5px 0 116px;"/>
+    					<h:inputText id="__ma" value="#{DmNhaCungCap_edit.nhacungcap.dmnhacungcapMa}" 
+    						style="width:100px;" styleClass="myinput" maxlength="10" disabled="true"/>
+    					<h:outputText value="*" style="color:red;margin-left:2px;"/>
+    				</td>
+    			</tr>
+    			<tr>
+    				<td>
+    					<h:outputText value="Tên" style="margin: 0 5px 0 111px;"/>
+    					<h:inputText id="__ten" value="#{DmNhaCungCap_edit.nhacungcap.dmnhacungcapTen}" 
+    						style=" width : 230px;" styleClass="myinput" maxlength="45"/>
+    					<h:outputText value="*" style="color:red;margin-left:2px;"/>  					
+    				</td>
+    			</tr>
+    			<tr>
+    				<td>
+    					<h:outputText value="Tỉnh" style="margin: 0 5px 0 108px;"/>
+    					
+    					<h:selectOneMenu id="__tinh" value="#{DmNhaCungCap_edit.nhacungcap.getDmtinhMaso(true).dmtinhMaso}">
+    						<f:selectItems value="#{DmNhaCungCap_edit.listTinh}"/>
+    					</h:selectOneMenu>
+   					 	
+    					<h:outputText value="*" style="color:red;margin-left:2px;"/>
+    				</td>
+    			</tr>
+    			<tr>
+    				<td>
+    					<h:outputText value="Nguồn chuơng trình" style="margin: 0 5px 0 23px;"/>
+    					
+    					<h:selectOneMenu id="__nguonchuongtrinh" value="#{DmNhaCungCap_edit.nhacungcap.getDmnctMaso(true).dmnctMaso}">
+    						<f:selectItems value="#{DmNhaCungCap_edit.listNguonChuongTrinh}"/>
+    					</h:selectOneMenu>
+						
+    					<h:outputText value="*" style="color:red;margin-left:2px;"/>
+    				</td>
+    			</tr>
+    			<tr>
+    				<td>
+    					<h:outputText value="Địa chỉ" style="margin: 0 5px 0 93px;"/>
+    					<h:inputText id="__diachi" value="#{DmNhaCungCap_edit.nhacungcap.dmnhacungcapDiachi}" 
+    						style=" width : 227px;" styleClass="myinput" maxlength="30"/>
+    				</td>
+    			</tr>
+    			<tr>
+    				<td>
+    					<h:outputText value="Điện thoại" style="float:left;margin: 0 5px 0 75px;"/>
+    					<h:inputText id="__dienthoai" value="#{DmNhaCungCap_edit.nhacungcap.dmnhacungcapDienthoai}" 
+    						style=" width : 227px;" styleClass="myinput" maxlength="18"/>
+    				</td>
+    			</tr>
+    		</table>   		
+    	</td>    	
+    </tr>
+    
+    <tr>
+    	<td colspan="3" style="background-color: #c9daea; padding-top: 5px; padding-bottom: 10px" width="100%" >
+    		<table width="100%">
+    			<tr>
+    				<td>
+    					<a4j:commandButton styleClass="mybton_b" value="Ghi nhận" id="__ghinhan" style="cursor:pointer;margin:0 0 0 170px;"
+    						onclick="if (!checkInput()) return false;"
+    						action="#{DmNhaCungCap_edit.save(DmNhaCungCap_edit.nhacungcap.dmtinhMaso.dmtinhMaso, DmNhaCungCap_edit.nhacungcap.dmnctMaso.dmnctMaso)}"
+    					    oncomplete="oncompleteGhinhan();LoadCatalogFromServer_each(DmNhaCungCap,'GetNoiBanAction');"
+    						reRender="message_infor,__ma,__ten,__tinh,__nguonchuongtrinh,__diachi,__dienthoai"/>
+    						
+    					<s:button styleClass="mybton_b" value="Quay lại" id="__quaylai" style="cursor:pointer;margin:0 0 0 5px;"
+    						action="/B4_Duocpham/KhoChinh/B4152_Nhacungcap"/>
+    				</td>
+    			</tr>
+    		</table>   		
+    	</td>    	
+    </tr>
+</table>
+
+
+</h:form>
+
+<script type="text/javascript">
+
+function init(){
+	setInfo();
+}
+
+function setInfo(){	
+	document.getElementById(prefix_component + '__ten').focus();
+}
+
+function iesvn_Required() {
+	this.aa = new Array(prefix_component + "__ma", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Mã nhà cung cấp'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+	this.ab = new Array(prefix_component + "__ten", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Tên nhà cung cấp'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+	this.ac = new Array(prefix_component + "__tinh", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='TỈnh'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+	this.ad = new Array(prefix_component + "__nguonchuongtrinh", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Nguồn chuơng trình'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+	
+	
+}
+
+function checkInput(){
+	var form = document.forms[0];
+	var valid = true;
+	valid = iesvn_ValidateRequired(form);	
+
+	return valid;
+}
+
+function oncompleteGhinhan(){
+	document.getElementById(prefix_component + '__ten').focus();
+}
+
+function oncompleteNhapmoi(){
+	document.getElementById(prefix_component + '__ten').focus();
+}
+
+</script>
+</ui:define> 
+</ui:composition>
+
+

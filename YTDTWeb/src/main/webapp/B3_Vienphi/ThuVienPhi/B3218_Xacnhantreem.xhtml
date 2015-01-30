@@ -1,0 +1,346 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                xmlns:rich="http://richfaces.org/rich"
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">	
+<f:loadBundle basename="com.iesvn.yte.UIResources" var="msg" />
+		<script type="text/javascript">
+		
+		function checkForGiaTri2(mythis){
+			var myreturn = is_wellformed_Date(mythis);
+			if (myreturn == true){
+				document.getElementById(prefix_component + 'HSBABHYT_GIATRI2').value =  getDateSystem_dd_MM_yyyy();// gia tri hien tai
+				document.getElementById(prefix_component + 'HSBABHYT_GIATRI3').value = document.getElementById(prefix_component + 'HSBABHYT_GIATRI1').value;
+			}
+			return myreturn;
+		
+		}
+		function checkEmpty(id){
+			if ( document.getElementById(id).value == null || document.getElementById(id).value == "" ){
+			
+				if(document.getElementById(id).className.match(/focus/gi))
+              		document.getElementById(id).className = document.getElementById(id).className.replace(/focus/gi,"");
+				return false;
+			}
+			return true;
+		}
+		function enterToTab(){
+		
+		  		  if(
+		          	 	(document.getElementById(prefix_component + "__tieptucnhap") == null ||document.getElementById(prefix_component + "__tieptucnhap").alt != 1 ) &amp;&amp; 
+		           		(document.getElementById(prefix_component + "__ghinhan") == null ||document.getElementById(prefix_component + "__ghinhan").alt ) != 1  
+		           		
+		           ) {
+		           
+		                  if(window.event.keyCode == 13){
+		                         window.event.keyCode = 9;
+		                   }
+		           }
+		}
+		
+		var bCancel = false;
+		function iesvn_Required() {
+		this.a1 = new Array(prefix_component + "HSBABHYT_NGAYGIOCN", "<h:outputFormat value="#{msg.common_requireField}"><f:param value="#{msg.Ngay}" /></h:outputFormat>", new Function ("varName",  "return this[varName];"));
+		this.a2 = new Array(prefix_component + "HSBA_KHOADANGDT", "<h:outputFormat value="#{msg.common_requireField}"><f:param value="#{msg.Khoa_phong}" /></h:outputFormat>", new Function ("varName",  "return this[varName];"));
+		this.a4 = new Array(prefix_component + "HSBA_SOVAOVIEN", "<h:outputFormat value="#{msg.common_requireField}"><f:param value="#{msg.So_benh_an}" /></h:outputFormat>", new Function ("varName",  "return this[varName];"));
+		}
+		
+		function iesvn_DateValidations() {
+		this.a1 = new Array(prefix_component + "HSBABHYT_NGAYGIOCN", "<h:outputFormat value="#{msg.common_invalidOrUnformatDate}"><f:param value="#{msg.Ngay}" /></h:outputFormat>", new Function ("varName",  "this.datePatternStrict='dd/MM/yyyy';return this[varName];"));
+		this.a2 = new Array(prefix_component + "HSBABHYT_GIATRI0", "<h:outputFormat value="#{msg.common_invalidOrUnformatDate}"><f:param value="#{msg.Thoi_gian_gia_tri_0}" /></h:outputFormat>", new Function ("varName",  "this.datePatternStrict='dd/MM/yyyy';return this[varName];"));
+		this.a3 = new Array(prefix_component + "HSBABHYT_GIATRI1", "<h:outputFormat value="#{msg.common_invalidOrUnformatDate}"><f:param value="#{msg.Thoi_gian_gia_tri_1}" /></h:outputFormat>", new Function ("varName",  "this.datePatternStrict='dd/MM/yyyy';return this[varName];"));
+		this.a4 = new Array(prefix_component + "HSBABHYT_GIATRI2", "<h:outputFormat value="#{msg.common_invalidOrUnformatDate}"><f:param value="#{msg.Ngay_gia_tri_BHYT_tai_BV_2}" /></h:outputFormat>", new Function ("varName",  "this.datePatternStrict='dd/MM/yyyy';return this[varName];"));
+		this.a5 = new Array(prefix_component + "HSBABHYT_GIATRI3", "<h:outputFormat value="#{msg.common_invalidOrUnformatDate}"><f:param value="#{msg.Ngay_gia_tri_BHYT_tai_BV_3}" /></h:outputFormat>", new Function ("varName",  "this.datePatternStrict='dd/MM/yyyy';return this[varName];"));
+		}
+
+function iesvn_ComparedDates() {
+this.a1 = new Array([prefix_component + "HSBABHYT_NGAYGIOCN", "", "=="], "<h:outputFormat value="#{msg.common_compareCurDate}"><f:param value="#{msg.Ngay}" /></h:outputFormat>", new Function ("varName",  "this.datePatternStrict='dd/MM/yyyy';return this[varName];"));
+this.a2 = new Array([prefix_component + "HSBABHYT_GIATRI0", "", "=="], "<h:outputFormat value="#{msg.common_compareCurDate}"><f:param value="#{msg.Thoi_gian_gia_tri_0}" /></h:outputFormat>", new Function ("varName",  "this.datePatternStrict='dd/MM/yyyy';return this[varName];"));
+this.a2 = new Array(["", prefix_component + "HSBABHYT_GIATRI1", "=="], "<h:outputFormat value="#{msg.common_compareCurDate1}"><f:param value="#{msg.Thoi_gian_gia_tri_1}" /></h:outputFormat>", new Function ("varName",  "this.datePatternStrict='dd/MM/yyyy';return this[varName];"));
+this.a3 = new Array([prefix_component + "HSBABHYT_GIATRI2", "", "=="], "<h:outputFormat value="#{msg.common_compareCurDate}"><f:param value="#{msg.Ngay_gia_tri_BHYT_tai_BV_2}" /></h:outputFormat>", new Function ("varName",  "this.datePatternStrict='dd/MM/yyyy';return this[varName];"));
+this.a3 = new Array(["", prefix_component + "HSBABHYT_GIATRI3", "=="], "<h:outputFormat value="#{msg.common_compareCurDate1}"><f:param value="#{msg.Ngay_gia_tri_BHYT_tai_BV_3}" /></h:outputFormat>", new Function ("varName",  "this.datePatternStrict='dd/MM/yyyy';return this[varName];"));
+this.a4 = new Array([prefix_component + "HSBABHYT_GIATRI0", prefix_component + "HSBABHYT_GIATRI1", "=="], "<h:outputFormat value="#{msg.common_compareDates}"><f:param value="#{msg.Thoi_gian_gia_tri_0}" /><f:param value="#{msg.Thoi_gian_gia_tri_1}" /></h:outputFormat>", new Function ("varName",  "this.datePatternStrict='dd/MM/yyyy';return this[varName];"));
+this.a5 = new Array([prefix_component + "HSBABHYT_GIATRI2", prefix_component + "HSBABHYT_GIATRI3", "=="], "<h:outputFormat value="#{msg.common_compareDates}"><f:param value="#{msg.Ngay_gia_tri_BHYT_tai_BV_2}" /><f:param value="#{msg.Ngay_gia_tri_BHYT_tai_BV_3}" /></h:outputFormat>", new Function ("varName",  "this.datePatternStrict='dd/MM/yyyy';return this[varName];"));
+}
+function iesvn_ValidateForm(form) {
+ if (bCancel) {
+ return true;
+ } else {
+ return iesvn_ValidateRequired(form) &amp;&amp; iesvn_ValidateDate(form) &amp;&amp; iesvn_ValidateComparedDates(form);
+ }
+ }
+
+function validGhiNhan() {
+	 if((document.getElementById(prefix_component + 'HSBA_SOVAOVIEN').value 
+	 			!= document.getElementById(prefix_component + 'HSBA_SOVAOVIEN_old').value)		
+	 	|| (document.getElementById(prefix_component + 'HSBA_KHOADANGDT').value 
+	 			!= document.getElementById(prefix_component + 'HSBA_KHOADANGDT_old').value)
+	 	|| !iesvn_ValidateForm(document.forms[0])) {
+	 		return false;
+	 	}
+	 	
+	 return true;
+}		
+ 
+
+</script>
+<div id="ajax_error_display" style="position:absolute; top:30px; left:578px; width:200px; height:50px"/>		
+<div id="sync_error_display" style="position:absolute; top:40px; left:578px; width:200px; height:50px"/>
+<body onkeydown="enterToTab();">
+	<h:form id="_form" name="_form">
+    <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_VienPhi_ThuVienPhi.xhtml" /></div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="42%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						<h:outputText value="#{msg.XAC_NHAN_TRE_EM}" />
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>    
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="965px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr style=" height : 5px;">
+    		<td width="100%" style="background-color: #c9daea;" colspan="3" align="center">  
+    		      	<a4j:outputPanel id="__messagesPanel">
+        				<h:messages styleClass="mynull"/>
+					</a4j:outputPanel>
+    		</td>    		
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px" width="100%" >
+    			<!-- Main Area -->    		
+    			<table cellspacing="0" cellpadding="0" border="0" width="95%" align="center" >
+    				<tr style="height: 25px;">
+    					<td align="left" style="padding-left:65px;" >
+    						<h:outputText value="#{msg.Ngay}" styleClass="mytext" style="margin-right:5px;" />
+    						<h:inputText onkeypress="return being_wellformed_Date(this, event)" onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); return is_wellformed_Date(this)'  tabindex="1" value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).hsbabhytNgaygiocn}" id="HSBABHYT_NGAYGIOCN"  maxlength="10" style=" width : 70px;" styleClass="myinput" ><s:convertDateTime type="date" pattern="dd/MM/yyyy" /></h:inputText>
+<a hideFocus="true" onclick="gfPop.fPopCalendar(document.getElementById(prefix_component + 'HSBABHYT_NGAYGIOCN'));document.getElementById(prefix_component + 'HSBABHYT_NGAYGIOCN').setActive();return false;" href="javascript:void(0)" style="text-decoration: none;" ><h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/>
+</a>	
+							<h:outputText value="*" styleClass="mynull"	style="margin-left: 2px;" />
+							<iframe id="gToday:normal:agenda.js" style="Z-INDEX:999;LEFT:-500px;VISIBILITY:visible;POSITION:absolute;TOP:0px" name="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" frameBorder="0" width="180" scrolling="no" height="147"></iframe>
+    					
+    						<h:outputText value="#{msg.Khoa_phong}" styleClass="mytext" style="margin-left:15px;margin-right: 5px;"/>
+<h:inputHidden value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).getHsbaSovaovien(true).getHsbaKhoadangdt(true).dmkhoaMa}" id="HSBA_KHOADANGDT_old" />
+    						<h:inputText value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).getHsbaSovaovien(true).getHsbaKhoadangdt(true).dmkhoaMa}" tabindex="2" id="HSBA_KHOADANGDT" onblur="myOnblurTextbox(prefix_component + 'HSBA_KHOADANGDT',prefix_component + 'DM_KHOA')" style=" width : 33px" maxlength="11"  styleClass="myinput"/>
+					<h:inputHidden value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).getHsbaSovaovien(true).getHsbaKhoadangdt(true).dmkhoaMaso}" id="HSBA_KHOADANGDT_pk" />
+    					 	<span id="DM_KHOA_span"/> 
+    					 	<h:inputText tabindex="3"  id="DM_KHOA"   style="width: 200px;" styleClass="mycbogear"/>
+							<h:outputText value="*" styleClass="mynull"	style="margin-left: 2px;" />
+    						    					
+    						<h:outputText value="#{msg.So_benh_an}" styleClass="mytext" style="margin-left:15px;margin-right:5px;" />
+<h:inputHidden  value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).getHsbaSovaovien(true).hsbaSovaovien}" id="HSBA_SOVAOVIEN_old" />    						
+    						<h:inputText  value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).getHsbaSovaovien(true).hsbaSovaovien}" 
+    						tabindex="4" id="HSBA_SOVAOVIEN"  style=" width : 92px;" styleClass="myinput">
+    						
+    						<a4j:support event="onblur"  action="#{B3218_XacNhanTreEm.layTheoSoVaoVien}"  
+    						onsubmit="if (! checkEmpty(prefix_component + 'HSBA_SOVAOVIEN')) { return false; } if(this.value == '' || document.getElementById(prefix_component + 'HSBA_KHOADANGDT_pk').value == '') return false;" 
+    						oncomplete="document.getElementById(prefix_component + 'HSBA_KHOADANGDT_old').value 
+	 			= document.getElementById(prefix_component + 'HSBA_KHOADANGDT').value; myOnblurTextbox(prefix_component + 'HSBABHYT_MAKCB', prefix_component +  'DT_DM_KCB_BHYT');" 
+	 			reRender="HSBA_KHOADANGDT_old,HSBA_SOVAOVIEN_old,HSBABHYT_NGAYGIOCN,HSBA_SOVAOVIEN,BENHNHAN_HOTEN,DMGT_MASO,BENHNHAN_TUOI,BENHNHAN_NGAYSINH,DANTOC_MA,DM_DAN_TOC,TINH_MA,DMTINH_TEN,HUYEN_MA,DMHUYEN_TEN,XA_MA,DMXA_TEN,BENHNHAN_DIACHI,HSBA_NGAYGIOVAOV,HSBABHYT_KHAISINH,HSBABHYT_CHUNGSINH,HSBABHYT_CNXA,HSBABHYT_GIAMHO,HSBABHYT_SOTHETE,HSBABHYT_GIATRI0,HSBABHYT_GIATRI1,HSBABHYT_GIATRI2,HSBABHYT_GIATRI3,HSBABHYT_MAKCB,HSBABHYT_TUYEN,HSBABHYT_XNMIENTN,ghiNhanException,__donViTuoi,__messagesPanel"
+	 			focus="HSBABHYT_SOTHETE"
+	 			/></h:inputText>
+    						<h:outputText value="*" styleClass="mynull"	style="margin-left: 2px;" />
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="left" style="padding-left: 57px;">
+    						<h:outputText value="#{msg.Ho_ten}" styleClass="mytext" style="margin-right:5px;float:left;" />
+    						<h:inputText  value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).getHsbaSovaovien(true).getBenhnhanMa(true).benhnhanHoten}" readonly="true" id="BENHNHAN_HOTEN"  style=" width : 160px;float:left;" styleClass="myreadonly"/>    					
+    							
+</td>    					
+</tr>
+    				<tr style="height: 25px;">
+    					<td align="left" style="padding-left: 30px;">
+    						<h:outputText value="#{msg.Gioi_tinh}" styleClass="mytext" style="margin-left:17px;margin-top:3px;float:left;" />    						
+    						<h:selectOneRadio disabled="true" readonly="true" value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).getHsbaSovaovien(true).getBenhnhanMa(true).getDmgtMaso(true).dmgtMaso}" id="DMGT_MASO" style="float:left;" >
+        						<f:selectItem id="NAM" itemValue="2" itemLabel="Nam" styleClass="mycheck" />
+        						<f:selectItem id="NU" itemValue="1" itemLabel="Nữ" styleClass="mycheck"/>
+    						</h:selectOneRadio>
+    						<h:outputText value="#{msg.Tuoi}" styleClass="mytext" style="margin-top:3px;margin-right:5px;margin-left:21px;float:left;" />
+    						<h:inputText value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).getHsbaSovaovien(true).getBenhnhanMa(true).benhnhanTuoi}"  readonly="true" id="BENHNHAN_TUOI"  style=" width : 30px;float:left;" styleClass="myreadonly"/>
+
+    						<h:outputText value="#{B3218_XacNhanTreEm.donViTuoi}" id="__donViTuoi" styleClass="mytext" style="margin-left: 5px;margin-right: 5px;float:left;"/>
+   						<h:inputText readonly="true" value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).getHsbaSovaovien(true).getBenhnhanMa(true).benhnhanNgaysinh}"   id="BENHNHAN_NGAYSINH"   style=" width : 70px;float:left;" styleClass="myreadonly" ><s:convertDateTime type="date" pattern="dd/MM/yyyy" /></h:inputText>
+<!-- 
+<a hideFocus="true" href="javascript:void(0)" style="text-decoration:none;" ><h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0;float:left;" border="0" name="popcal"/>
+</a>
+ -->
+
+    						<h:outputText value="#{msg.Dan_toc}" styleClass="mytext" style="margin-left:56px;margin-right: 5px;float:left;"/>
+    						<h:inputText value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).getHsbaSovaovien(true).getBenhnhanMa(true).getDantocMa(true).dmdantocMa}" readonly="true" id="DANTOC_MA" style=" width : 30px;float:left;"   styleClass="myreadonly"/>
+
+    					 	<span id="DM_DAN_TOC_span"/>
+    					 	<h:inputText readonly="true" value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).getHsbaSovaovien(true).getBenhnhanMa(true).getDantocMa(true).dmdantocTen}" id="DM_DAN_TOC"   style="width: 125px;float:left;margin-left:3px;" styleClass="myreadonly"/>
+
+    					</td>    					
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="left" style="padding-left: 50px;">
+    						<h:outputText value="#{msg.ia_chi}" styleClass="mytext" style="margin-right: 5px; margin-left: 5px;"/>
+    						<h:inputText value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).getHsbaSovaovien(true).getBenhnhanMa(true).getTinhMa(true).dmtinhMa}" readonly="true" id="TINH_MA"  style=" width : 30px"   styleClass="myreadonly"/>
+
+    					 	<span id="DM_TINH_span"/>
+    					 	<h:inputText readonly="true" value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).getHsbaSovaovien(true).getBenhnhanMa(true).getTinhMa(true).dmtinhTen}" id="DMTINH_TEN"   style="width: 150px;" styleClass="myreadonly"/>
+
+    					 	<h:inputText value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).getHsbaSovaovien(true).getBenhnhanMa(true).getHuyenMa(true).dmhuyenMa}" readonly="true" id="HUYEN_MA"  style=" width : 40px;margin-left:3px;"   styleClass="myreadonly"/>
+
+    					 	<span id="DM_HUYEN_span"/>
+    					 	<h:inputText readonly="true" value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).getHsbaSovaovien(true).getBenhnhanMa(true).getHuyenMa(true).dmhuyenTen}" id="DMHUYEN_TEN"   style="width: 150px;" styleClass="myreadonly"/>
+
+    					 	<h:inputText value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).getHsbaSovaovien(true).getBenhnhanMa(true).getXaMa(true).dmxaMa}" readonly="true" id="XA_MA"  style=" width : 60px;margin-left:3px;"   styleClass="myreadonly"/>
+
+    					 	<span id="DM_XA_span"/>
+    					 	<h:inputText readonly="true" value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).getHsbaSovaovien(true).getBenhnhanMa(true).getXaMa(true).dmxaTen}" id="DMXA_TEN"   style="width: 162px;" styleClass="myreadonly"/>
+    					 	
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="left" style="padding-left: 98px;">
+    						<h:inputText value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).getHsbaSovaovien(true).getBenhnhanMa(true).benhnhanDiachi}"  readonly="true" id="BENHNHAN_DIACHI"  style=" width : 250px;" styleClass="myreadonly"/>
+
+    				
+    						<h:outputText value="#{msg.Ngay_vao_vien}" styleClass="mytext" style="margin-right:4px; margin-left:14px;" />
+    						<h:inputText    readonly="true" value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).getHsbaSovaovien(true).hsbaNgaygiovaov}" id="HSBA_NGAYGIOVAOV"   style=" width : 70px;" styleClass="myreadonly" ><s:convertDateTime type="date" pattern="dd/MM/yyyy" /></h:inputText>
+<!-- 
+<a hideFocus="true"  href="javascript:void(0)" style="text-decoration: none;" ><h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/>
+</a>
+ -->								
+    					
+    						
+
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="left" >
+    						<h:outputText value="#{msg.So_the_tre_em}" styleClass="mytext" style="margin-right:5px;margin-left:20px;" />
+    						<h:inputText value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).hsbabhytSothete}"  tabindex="5" id="HSBABHYT_SOTHETE"  style="width: 120px;" styleClass="myinput"/>
+    						<h:outputText value="#{msg.Khai_sinh}" styleClass="mytext" style="margin-right:5px; margin-left:15px;" />
+    						<h:inputText value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).hsbabhytKhaisinh}"  tabindex="6" id="HSBABHYT_KHAISINH"  styleClass="myinput" style="width: 146px;"/>
+    						<h:outputText value="#{msg.Chung_sinh}" styleClass="mytext" style="margin-left:15px;margin-right: 5px;"/>
+    						<h:inputText value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).hsbabhytChungsinh}"  tabindex="7" id="HSBABHYT_CHUNGSINH"  styleClass="myinput" style=" width : 190px;"/>
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="left" >
+    						<h:outputText value="#{msg.Chung_nhan_xa}" styleClass="mytext" style="margin-left:9px;margin-right: 5px;"/>
+    						<h:inputText value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).hsbabhytCnxa}"  tabindex="8" id="HSBABHYT_CNXA"  styleClass="myinput" style="width: 190px;"/>
+							
+							<h:outputText value="#{msg.Giam_ho}" styleClass="mytext" style="margin-left:114px;margin-right: 5px;"/>
+    						<h:inputText value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).hsbabhytGiamho}"  tabindex="9" id="HSBABHYT_GIAMHO"  styleClass="myinput" style="width: 190px;margin-right:3px;"/>	
+    					</td>
+    				</tr>    				
+    				<tr style="height: 25px;">
+    					<td align="left" style="padding-left: 8px;">
+    						<h:outputText value="#{msg.Thoi_gian_gia_tri}" styleClass="mytext" style="margin-right:5px;" />
+    						<h:inputText onkeypress="return being_wellformed_Date(this, event)" onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); return is_wellformed_Date(this)'  tabindex="10" value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).hsbabhytGiatri0}" id="HSBABHYT_GIATRI0"  maxlength="10" style="width:70px" styleClass="myinput" ><s:convertDateTime type="date" pattern="dd/MM/yyyy" /></h:inputText>
+<a hideFocus="true" onclick="gfPop.fPopCalendar(document.getElementById(prefix_component + 'HSBABHYT_GIATRI0'));document.getElementById(prefix_component + 'HSBABHYT_GIATRI0').setActive();return false;" href="javascript:void(0)" style="text-decoration: none;" ><h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/>
+</a>	
+							<h:inputText onkeypress="return being_wellformed_Date(this, event)" onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); return checkForGiaTri2(this)'   tabindex="11" value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).hsbabhytGiatri1}" id="HSBABHYT_GIATRI1"  maxlength="10" style="width:70px" styleClass="myinput" ><s:convertDateTime type="date" pattern="dd/MM/yyyy" /></h:inputText>
+<a hideFocus="true" onclick="gfPop.fPopCalendar(document.getElementById(prefix_component + 'HSBABHYT_GIATRI1'));document.getElementById(prefix_component + 'HSBABHYT_GIATRI1').setActive();return false;" href="javascript:void(0)" style="text-decoration: none;"><h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/>
+</a>	
+						
+    						<h:outputText value="#{msg.Ngay_gia_tri_BHYT_tai_BV}" styleClass="mytext" style="margin-left:32px;margin-right:5px;" />
+    						<h:inputText onkeypress="return being_wellformed_Date(this, event)" onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); return is_wellformed_Date(this)'  tabindex="12" value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).hsbabhytGiatri2}" id="HSBABHYT_GIATRI2"  maxlength="10" style="width:70px" styleClass="myinput" ><s:convertDateTime type="date" pattern="dd/MM/yyyy" /></h:inputText>
+<a hideFocus="true" onclick="gfPop.fPopCalendar(document.getElementById(prefix_component + 'HSBABHYT_GIATRI2'));document.getElementById(prefix_component + 'HSBABHYT_GIATRI2').setActive();return false;" href="javascript:void(0)" style="text-decoration: none;"><h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/>
+</a>	
+							<h:inputText onkeypress="return being_wellformed_Date(this, event)" onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); return is_wellformed_Date(this)'  tabindex="13" value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).hsbabhytGiatri3}" id="HSBABHYT_GIATRI3"  maxlength="10" style=" width : 70px;" styleClass="myinput" ><s:convertDateTime type="date" pattern="dd/MM/yyyy" /></h:inputText>
+<a hideFocus="true" onclick="gfPop.fPopCalendar(document.getElementById(prefix_component + 'HSBABHYT_GIATRI3'));document.getElementById(prefix_component + 'HSBABHYT_GIATRI3').setActive();return false;" href="javascript:void(0)"><h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/>
+</a>	
+							
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="left" >
+    						<h:outputText value="#{msg.Noi_ang_ky_KCB_}" styleClass="mytext" style="margin-right:5px;float:left;" />    						
+    						<h:inputText value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).getHsbabhytMakcb(true).dmbenhvienMa}" tabindex="14" id="HSBABHYT_MAKCB" onblur="myOnblurTextbox(prefix_component + 'HSBABHYT_MAKCB',prefix_component + 'DM_BENH_VIEN')" style=" width : 30px;float:left;" maxlength="11"  styleClass="myinput"/>
+							<h:inputHidden value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).getHsbabhytMakcb(true).dmbenhvienMaso}" id="HSBABHYT_MAKCB_pk" />
+    						<span id="DT_DM_KCB_BHYT_span"/>
+    					 	<h:inputText tabindex="15" id="DM_BENH_VIEN" name="DM_BENH_VIEN" style="width: 157px;float:left;" styleClass="mycbogear"/>
+    					 	
+    						<h:outputText value="#{msg.Tuyen}" styleClass="mytext" style="margin-right:5px;margin-left:127px;float:left;" />    						
+    						<h:inputText value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).hsbabhytTuyen}"  tabindex="16" id="HSBABHYT_TUYEN"  style="width : 30px;float:left;" styleClass="myinput"/>
+    						    					
+    						<h:selectBooleanCheckbox tabindex="17" value="#{B3218_XacNhanTreEm.getHsbaBhyt(true).hsbabhytXnmientn}" id="HSBABHYT_XNMIENTN" style="float:left;" >
+        						 <h:outputText value="#{msg.Xac_inh_dien_mien_tre_em}" style="float:left;margin-left:16px;" />    
+    						</h:selectBooleanCheckbox>
+    					</td>
+    				</tr>
+    				<tr style="height: 40px;">
+    					<td  align="center" colspan="3" style="padding-left: 255px">
+    					<div style="float: left;">
+    							
+    								<a4j:commandButton  tabindex="18" id="__ghinhan"  
+    								
+    								value="#{msg.Ghi_nhan}" style="width: 60px; margin-left:3px;" styleClass="mybton_b" 
+    								
+    								action="#{B3218_XacNhanTreEm.ghinhan}" onclick="if(!validGhiNhan()){this.alt = 0;  return false;} else this.disabled=true;" 
+    								focus="HSBA_KHOADANGDT"
+    								oncomplete="highlightOnFocus();this.alt = 0; this.disabled=false;document.getElementById(prefix_component + 'ghiNhanException').value='#{B3218_XacNhanTreEm.getGhiNhanException()}';" reRender="ghiNhanException,__messagesPanel" />
+
+    							
+    						</div>  
+    						<div style="float: left;">
+    							
+    								<a4j:commandButton  tabindex="19" id="__tieptucnhap"  
+    								
+    								value="#{msg.Nhap_moi}" style="width: 90px; margin-left:3px;" styleClass="mybton_b" 
+    								focus="HSBA_KHOADANGDT"
+    								action="#{B3218_XacNhanTreEm.nhaplai}" oncomplete="highlightOnFocus();myOnblurTextbox(prefix_component + 'HSBA_KHOADANGDT',prefix_component + 'DM_KHOA');myOnblurTextbox(prefix_component + 'HSBABHYT_MAKCB',prefix_component + 'DT_DM_KCB_BHYT');" 
+    								reRender="HSBA_KHOADANGDT_old,HSBA_SOVAOVIEN_old,HSBABHYT_NGAYGIOCN,HSBA_KHOADANGDT,HSBA_SOVAOVIEN,BENHNHAN_HOTEN,DMGT_MASO,BENHNHAN_TUOI,BENHNHAN_NGAYSINH,DANTOC_MA,DM_DAN_TOC,TINH_MA,DMTINH_TEN,HUYEN_MA,DMHUYEN_TEN,XA_MA,DMXA_TEN,BENHNHAN_DIACHI,HSBA_NGAYGIOVAOV,HSBABHYT_KHAISINH,HSBABHYT_CHUNGSINH,HSBABHYT_CNXA,HSBABHYT_GIAMHO,HSBABHYT_SOTHETE,HSBABHYT_GIATRI0,HSBABHYT_GIATRI1,HSBABHYT_GIATRI2,HSBABHYT_GIATRI3,HSBABHYT_MAKCB,HSBABHYT_TUYEN,HSBABHYT_XNMIENTN,ghiNhanException,__donViTuoi,__messagesPanel" />
+
+    							
+    						</div> 
+    						
+    						
+    						<h:inputHidden value="#{B3218_XacNhanTreEm.ghiNhanException}"  id="ghiNhanException" style=" width : 100px;" styleClass="myinputso"/>
+    						
+    					</td> 					
+    				</tr>
+    			</table>					
+    		</td>
+    	</tr>
+    </table>
+    <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/vienphi/B3218_Xacnhantreem_gears.js"></script>
+    <script> 
+    	A4J.AJAX.onError = function(req,status, message){
+    		//window.alert('Custom onError handler '+message);
+    		ajax_error_display.innerHTML = khong_tim_thay_du_lieu; 
+    	};
+    	A4J.AJAX.onExpired = function(loc,expiredMsg){
+          //window.alert('Custom onExpired handler '+message);
+          ajax_error_display.innerHTML = can_dang_nhap_lai;
+		};
+    	
+</script>
+   </h:form>
+   </body>
+</ui:define> 
+</ui:composition>
+
+

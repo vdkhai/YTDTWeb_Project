@@ -1,0 +1,493 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                xmlns:c="http://java.sun.com/jstl/core"
+                template="/layout/mytemplate.xhtml">
+
+    <ui:define name="body">
+
+
+        <f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+
+        <script type="text/javascript">
+        function checkEmpty(id){
+                if ( document.getElementById(id).value == null || document.getElementById(id).value == "" ){
+
+                        if(document.getElementById(id).className.match(/focus/gi))
+                document.getElementById(id).className = document.getElementById(id).className.replace(/focus/gi,"");
+                        return false;
+                }
+                return true;
+                }
+                function enterToTab(){
+		
+                                  if(
+                                        (document.getElementById(prefix_component + "__tieptucnhap") == null ||document.getElementById(prefix_component + "__tieptucnhap").alt != 1 ) &amp;&amp;
+                                        (document.getElementById(prefix_component + "__ghinhan") == null ||document.getElementById(prefix_component + "__ghinhan").alt ) != 1
+                           ) {
+		           
+                                  if(window.event.keyCode == 13){
+                                         window.event.keyCode = 9;
+                                   }
+                           }
+                }
+                var bCancel = false;
+                var bSave = false;
+		
+                function setSave() {
+                        bSave = true;
+                }
+                function setCancel(){
+                        bCancel = true;
+                }
+		
+                function iesvn_Required() {
+	
+                        this.aa = new Array(prefix_component + "__sobenhan", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Số bệnh án'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+	
+                        this.ab = new Array(prefix_component + "__hoten", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Họ tên'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+	
+	
+	 		
+                        this.ac= new Array(prefix_component + "__tuoi",
+                                                                "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Tuổi'/>  </h:outputFormat>",
+                                                                new Function ("varName",  "return this[varName];"));
+ 	 							
+                        var ngaysinh = document.getElementById(prefix_component + "__namsinh").value;
+                        var namsinh = document.getElementById(prefix_component + "BENHNHAN_NAMSINH").value;
+ 	
+                        if (
+                         ( ngaysinh == null  || ngaysinh == '' ) &amp;&amp;
+                         ( namsinh == null || namsinh ==''	 )
+                        ){
+                                this.ad = new Array(prefix_component + "__namsinh",
+                                                                "<h:outputFormat value='#{msg.ngaysinh_hoac_namsinh_required}' >  </h:outputFormat>",
+                                                                new Function ("varName",  "return this[varName];"));
+ 	 		
+                        }
+                     // phuc.lc
+             	 		if (document.getElementById(prefix_component + "BENHNHAN_DONVITUOI_TEMP:1").checked ||
+               	   			document.getElementById(prefix_component + "BENHNHAN_DONVITUOI_TEMP:2").checked) {
+             	 			this.ba = new Array(prefix_component + "__hotenchame", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Họ tên cha/mẹ'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+             	 		}
+                }
+		
+                function iesvn_IntRange(){
+                        this.aa = new Array(prefix_component + "__giovao", "<h:outputFormat value='#{msg.common_in_range}' >  <f:param value='Giờ vào viện'/>  <f:param value='0'/>  <f:param value='23'/></h:outputFormat>", new Function ("varName", " this.min='0'; this.max='23'; return this[varName];"));
+                        this.ac = new Array(prefix_component + "__tuoi", "<h:outputFormat value='#{msg.common_in_range}' >  <f:param value='Tuổi'/>  <f:param value='0'/>  <f:param value='366'/></h:outputFormat>", new Function ("varName", " this.min='0'; this.max='366'; return this[varName];"));
+                }
+		
+                function iesvn_ComparedDates() {
+                        this.aa = new Array([prefix_component + "__ngayvv",prefix_component + "__ngayhientai", "=="], "<h:outputFormat value='#{msg.common_compareCurDate}' > <f:param value='Ngày vào viện'/> </h:outputFormat>", new Function ("varName", "this.datePatternStrict='dd/MM/yyyy';  return this[varName];"));
+                        document.getElementById(prefix_component + "__ngayvv").focus();
+                }
+		
+                function onSubmitTmp(){
+                        setSave() ;
+                        return onSubmit();
+                }
+		
+	
+                function onSubmit() {
+                        var form = document.forms[0];
+                        var valid = true;
+                        if (bSave){
+                        bSave = false;
+                        valid = iesvn_ValidateRequired(form)  ;
+                        if (valid == true){
+                                valid = iesvn_ValidateIntRange(form)  ;
+                        }
+                        //if (valid == true){
+                        //	valid = iesvn_ValidateDate(form)  ;
+                        //}
+                        if (valid == true){
+                                valid = iesvn_ValidateComparedDates(form);
+                        }
+		    	 		    	     	
+                    }
+                    if (bCancel){
+                        bCancel = false;
+                    }
+                    return valid;
+			
+                }
+                function xoa_ngay_sinh(ngaysinhId,tuoiId, namsinhId) {
+                        if (namsinhId.value != '') {
+                                document.getElementById(ngaysinhId).value = '';
+                                document.getElementById(tuoiId).value = '';
+                        }
+                }
+                function checkValidNam(textbox) {
+			
+                        if (textbox.value != '') {
+                            	var nam = parseInt(textbox.value,10);
+                                var ngayhientai = document.getElementById(prefix_component+ "__ngayhientai").value;
+                                var namhientai = ngayhientai.substring(6);
+                                
+                                if (nam &lt; 1900 || nam &gt; parseInt(namhientai,10)) {
+                					alert("Năm sinh phải lớn hơn 1900 và nhỏ hơn hoặc bằng " + parseInt(namhientai,10));							
+                					textbox.value = namhientai;
+                					textbox.focus();
+                					document.getElementById(prefix_component+ "__tuoi").focus();
+                					textbox.focus();
+                				}
+                        }
+                }
+                function checkValidTuoiAndDonViTuoi(tuoiControl) {
+           	   		if (tuoiControl.value == '') return;
+           	   		var tuoi = parseInt(tuoiControl.value, 10);
+           	   	    var mod = 0;
+           			if(document.getElementById(prefix_component + "BENHNHAN_DONVITUOI_TEMP:1").checked) { // Chon don vi tuoi la thang
+           	   			// Neu cho don vi tuoi la thang va nhap lon hon 72 thi chuyen thanh nam
+           	   			
+           	   			if (tuoi &gt; 72) { // 72 thang = 6 nam   	   	   			
+           	   	   			// Lon hon 72 thang thi chuyen thanh nam
+           	   	   			mod = tuoi % 12;
+           	   	   			tuoiControl.value = (((tuoi / 12) - ((tuoi % 12) / 12)) + (mod &gt; 0 ? 1 : 0 ));
+           	   	   			document.getElementById(prefix_component + "BENHNHAN_DONVITUOI_TEMP:0").checked = true;
+           	   			}
+           			} else if (document.getElementById(prefix_component + "BENHNHAN_DONVITUOI_TEMP:2").checked) { // Chon don vi tuoi la ngay
+           			// Neu cho don vi tuoi la ngay va nhap lon hon 30 thi chuyen thanh thang
+           	   			if(tuoi &gt; 30) {   	   				
+           	   				mod = tuoi % 30;
+        	   	   			tuoiControl.value = (((tuoi / 30) - ((tuoi % 30) / 30)) + (mod &gt; 0 ? 1 : 0 ));
+        	   	   			document.getElementById(prefix_component + "BENHNHAN_DONVITUOI_TEMP:1").checked = true;
+           	   			}
+           			}
+           			
+           		}
+           		function displayParentInfo() {   	   		
+           			if (document.getElementById(prefix_component + "__tuoi").value != "") {
+	           	   		if (document.getElementById(prefix_component + "BENHNHAN_DONVITUOI_TEMP:1").checked ||
+	           	   			document.getElementById(prefix_component + "BENHNHAN_DONVITUOI_TEMP:2").checked) {
+	           	   			//Hien thi truong nhap ten cha/me
+	           	   			document.getElementById("parentInfo").style.display = "block";
+	           	   		} else {
+	           	   			document.getElementById(prefix_component + "__hotenchame").value = "";
+	           	   			document.getElementById("parentInfo").style.display = "none";
+	           	   		}
+           			}else {
+           	   			document.getElementById(prefix_component + "__hotenchame").value = "";
+           	   			document.getElementById("parentInfo").style.display = "none";
+           	   		}
+           		}
+        </script>
+        <body onkeydown="enterToTab();">
+            <h:form id="_form" name="_form">
+                <div style="width:778px; position:absolute; z-index:99">
+
+
+
+                    <c:if test="#{tenChuongTrinh.equals(YTDT_Menu.thuVienPhi)}">
+                        <ui:include src="/layout/mymenu_YTDT_VienPhi_ThuVienPhi.xhtml" />
+                    </c:if>
+
+                    <c:if test="#{tenChuongTrinh.equals(YTDT_Menu.dieuTri)}">
+                        <ui:include src="/layout/mymenu_YTDT_DieuTriNoiTru.xhtml" />
+                    </c:if>
+
+
+                </div>
+                <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+                    <tr>
+                        <td colspan="3" height="50px">
+                            <table cellspacing="0" cellpadding="0" border="0" width="100%" >
+                                <tr>
+                                    <td height="50px" width="65%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >
+                                        <h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						CẬP NHẬT THÔNG TIN HÀNH CHÍNH BỆNH NHÂN
+                                    </td>
+                                    <td valign="top">
+                                        <table cellspacing="0" cellpadding="0" width="100%" >
+                                            <tr>
+                                                <td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+                                                    &#160;
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="13px" height="12px" class="mytdl">
+                        </td>
+                        <td style="background-color: #c9daea;" width="985px" height="12px" >
+                        </td>
+                        <td width="11px" height="12px" class="mytdr">
+                        </td>
+                    </tr>
+                    <tr style=" height : 5px;">
+                        <td width="100%" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 0px" colspan="3" align="center">
+                            <a4j:outputPanel id="message_infor">
+                                <h:messages styleClass="mynull"/>
+                            </a4j:outputPanel>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 15px" width="100%" align="center">
+                            <!-- Main Area -->
+                            <table cellspacing="0" cellpadding="0" border="0" width="97%">
+                                <tr style="height: 25px;">
+                                    <td align="right" style="width: 13%;">
+                                        <h:outputText value="Số bệnh án" styleClass="mytext" style="margin-right: 5px;"/>
+
+                                    </td>
+                                    <td align="left" style="padding-right: 25px;">
+                                        <h:inputText value="#{B216_Capnhatthongtinhanhchanhbenhnhan.hoSoBenhAn.hsbaSovaovien}" tabindex="1" id="__sobenhan" name="_sobenhan" style=" width : 185px;" styleClass="myinput">
+                                            <a4j:support event="onblur" oncomplete="highlightOnFocus();onCompleteGetInfor();displayParentInfo();" focus="__giovao"
+
+                                                         action="#{B216_Capnhatthongtinhanhchanhbenhnhan.displayInfor}"
+                                                         onsubmit="if (! checkEmpty(prefix_component + '__sobenhan')) { return false; } "
+                                                         reRender="BENHNHAN_NAMSINH,__gioitinh,__tuoi,BENHNHAN_DONVITUOI_TEMP,message_infor,__giovao,__ngayvv,__sobenhan,__hoten,__tuoi,__namsinh,TINH_MA,HUYEN_MA,XA_MA,__sonhaduong,DM_DAN_TOC_MA,DM_TAI_NAN_MA,DM_PHUONG_TIEN_MA,DIADIEM_MA,__hotenchame"/>
+
+                                        </h:inputText>
+                                        <h:outputText value="*" styleClass="mynull" style="margin-right: 2px; margin-left: 2px;" />
+
+                                        <h:outputText value="Vào viện lúc" styleClass="mytext" style="margin-right: 5px; margin-left: 31px;"/>
+
+                                        <h:inputText   maxlength="5"  onkeypress="iesvn_InputInKeys('1234567890:');"
+                                                       value="#{B216_Capnhatthongtinhanhchanhbenhnhan.gioVaoVien}" tabindex="2" id="__giovao"
+                                                       name="_giovao" style="width: 30px;" styleClass="myinput"  onkeyup="checkHour(this);"
+                                                       onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); checkHourBlur(this)'/>
+                                        <h:outputText value="GG:pp" styleClass="mytext" style="margin-left: 2px; margin-right: 2px"/>
+
+                                        <h:inputText  value="#{B216_Capnhatthongtinhanhchanhbenhnhan.ngayVaoVien}"
+                                                      onkeypress="return being_wellformed_Date(this, event)"
+                                                      onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,"");  return is_wellformed_Date(this)' tabindex="3" type="text" id="__ngayvv" name="_ngayvv" maxlength="10" style=" width : 70px;" styleClass="myinput"/>
+                                        <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__ngayvv'));document.getElementById(prefix_component + '__hoten').focus();return false;" ><h:graphicImage style="margin:0 0 -4px -5px" value="/resources/calendar/cal.gif" border="0" name="popcal"/></a>
+                                        <button name="_goiBN" id="__goiBN" value="Gọi BN" onclick="goiBN('__sobenhan', '__hoten');" style="margin-left: 10px;" type="button">Gọi BN</button>
+                                        <applet code="com.iesvn.test.testapplet.ClientQuangBaoApplet.class" archive="ClientQuangBao.jar"
+                                                width="1" height="1" id="xyz" name="xyz"></applet>
+                                    </td>
+                                </tr>
+                                <tr style="height: 25px;">
+                                    <td align="right">
+                                        <h:outputText value="Họ tên" styleClass="mytext" style="margin-left: 5px; margin-right: 5px"/>
+
+                                    </td>
+                                    <td align="left" >
+                                        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                                            <tr>
+                                                <td align="left" width="20%">
+                                                    <h:inputText value="#{B216_Capnhatthongtinhanhchanhbenhnhan.benhNhan.benhnhanHoten}" tabindex="4" id="__hoten" name="_hoten" onblur="formatHoTenUpperCase(this.id);" style="width : 185px;" styleClass="myinput"/>
+                                                    <h:outputText value="*" styleClass="mynull" style="margin-left: 2px;"/>
+
+                                                </td>
+                                                <td align="left" >
+                                                    <h:outputText value="Giới tính" styleClass="mytext" style="padding-top: 3px; margin-left: 31px;float:left;"/>
+                                                    <h:selectOneRadio id="__gioitinh"
+                                                                      value="#{B216_Capnhatthongtinhanhchanhbenhnhan.benhNhan.getDmgtMaso(true).dmgtMa}"
+                                                                      tabindex="5" style="float:left;">
+                                                        <f:selectItem id="__nam" itemValue="1" itemLabel="Nam" styleClass="mycheck" />
+                                                        <f:selectItem id="__nu" itemValue="0" itemLabel="Nữ" styleClass="mycheck"/>
+                                                    </h:selectOneRadio>
+
+                                                    <h:outputText value="Ngày sinh" styleClass="mytext" style="margin-left:10px;"/>
+                                                    <h:inputText
+                                                        value="#{B216_Capnhatthongtinhanhchanhbenhnhan.ngaySinh}"
+                                                        onkeypress="return being_wellformed_Date(this, event)"
+                                                        onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); if(is_wellformed_Date(this)) { set_tuoi_has_namsinh(prefix_component+ "__tuoi",prefix_component+ "__namsinh",prefix_component+ "BENHNHAN_DONVITUOI_TEMP",prefix_component+ "BENHNHAN_NAMSINH"); displayParentInfo(); }'
+                                                        tabindex="6" type="text" id="__namsinh" name="_namsinh" maxlength="10" style="width:70px;margin-left:5px;" class="myinput"/>
+                                                    <a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__namsinh'));document.getElementById(prefix_component + '__gioitinh').focus();return false;" ><h:graphicImage style="margin:0 0 -4px -5px;" value="/resources/calendar/cal.gif" border="0" name="popcal"/></a>
+
+                                                    <h:outputText value="Năm sinh" styleClass="mytext" style="margin-left:5px; margin-right: 5px"/>
+                                                    <h:inputText value="#{B216_Capnhatthongtinhanhchanhbenhnhan.benhNhan.benhnhanNamsinh}"
+                                                                 onchange='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); checkValidNam(this);xoa_ngay_sinh(prefix_component+ "__namsinh",prefix_component+ "__tuoi", this); set_tuoi_from_namsinh(prefix_component+ "__tuoi",prefix_component+ "BENHNHAN_NAMSINH",prefix_component+ "BENHNHAN_DONVITUOI_TEMP");displayParentInfo();'
+                                                                 tabindex="7" id="BENHNHAN_NAMSINH" name="_BENHNHAN_NAMSINH"
+                                                                 style="width: 30px;" styleClass="myinput" maxlength="4" />
+
+
+
+
+
+
+
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <tr style="height: 25px;">
+                                    <td align="right">
+                                        <h:outputText  value="Tuổi" styleClass="mytext" style="margin-right: 5px; margin-left: 5px;"/>
+
+                                    </td>
+                                    <td align="left" >
+                                        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                                            <tr>
+                                                <td align="left" width="20%">
+                                                    <h:inputText
+                                                        onkeypress="iesvn_InputInKeys('1234567890');" maxlength="3"  value="#{B216_Capnhatthongtinhanhchanhbenhnhan.benhNhan.benhnhanTuoi}" onchange="checkValidTuoiAndDonViTuoi(this);set_ngaysinh_namsinh(prefix_component+ '__tuoi',prefix_component+ '__namsinh',prefix_component+ 'BENHNHAN_NAMSINH');displayParentInfo();"
+                                                        tabindex="8" id="__tuoi" name="_tuoi"  style=" width : 25px;float:left;" styleClass="myinput"/>
+                                                    <h:outputText value="*" styleClass="mynull" style="margin-left: 2px;float:left;"/>
+                                                    <h:selectOneRadio value="#{B216_Capnhatthongtinhanhchanhbenhnhan.benhNhan.benhnhanDonvituoi}" id="BENHNHAN_DONVITUOI_TEMP"
+
+                                                                      onclick="set_ngaysinh_namsinh(prefix_component+ '__tuoi',prefix_component+ '__namsinh',prefix_component+ 'BENHNHAN_NAMSINH'); displayParentInfo();"
+
+
+                                                                      tabindex="9" style="float:left;">
+                                                        <f:selectItem id="__namtuoi" itemValue="1" itemLabel="Năm" styleClass="mycheck" />
+                                                        <f:selectItem id="__thangtuoi" itemValue="2" itemLabel="Tháng" styleClass="mycheck"/>
+                                                        <f:selectItem id="__ngaytuoi" itemValue="3" itemLabel="Ngày" styleClass="mycheck"/>
+                                                    </h:selectOneRadio>
+                                                </td>
+                                                <td align="left" >
+
+
+
+
+
+
+
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr style="height: 25px;display:none;" id="parentInfo">
+    					<td align="right" style="padding-right: 5px" >
+    						<h:outputText value="Họ tên cha/mẹ" styleClass="mytext" style="margin-left: 0px; margin-right: 0px;"/>    					
+    					
+    					</td>
+    					<td align="left" >
+    						
+    						<h:inputText value="#{B216_Capnhatthongtinhanhchanhbenhnhan.benhNhan.benhnhanHotenchame}" id="__hotenchame" name="_hotenchame" 
+    						style="width: 176px;" styleClass="myinput" maxlength="100"/>
+    						<h:outputText value="*" styleClass="mynull"
+								style="margin-left: 2px;" />
+							  						
+    					</td>    					
+    				</tr>
+                                <tr style="height: 25px;">
+                                    <td align="right">
+                                        <h:outputText value="Dân tộc" styleClass="mytext" style="margin-left:15px;margin-right:5px;" />
+
+                                    </td>
+                                    <td align="left" style="padding-right: 25px;">
+                                        <h:inputHidden id="DM_DAN_TOC_MA_pk" value="#{B216_Capnhatthongtinhanhchanhbenhnhan.benhNhan.dantocMa.dmdantocMaso}"/>
+                                        <h:inputText  value="#{B216_Capnhatthongtinhanhchanhbenhnhan.benhNhan.dantocMa.dmdantocMaso}"
+                                                      id="DM_DAN_TOC_MA" name="DM_DAN_TOC_MA" style=" width : 30px;float:left;margin-right:3px;"
+                                                      onblur="myOnblurTextbox(this.id, 'DM_DAN_TOC')" maxlength="10" tabindex="10" styleClass="myinput" />
+                                        <span id="DM_DAN_TOC_span"/>
+                                        <input id="DM_DAN_TOC" name="DM_DAN_TOC"  tabindex="11" style="width: 104px;float:left;"/>
+
+                                    </td>
+                                </tr>
+                                <tr style="height: 25px;">
+                                    <td align="right">
+                                        <h:outputText value="Địa chỉ" styleClass="mytext" style="margin-left:5px;margin-right:5px;"/>
+                                    </td>
+                                    <td align="left" >
+                                        <!-- from -->
+                                        <h:inputHidden id="TINH_MA_pk" value="#{B216_Capnhatthongtinhanhchanhbenhnhan.benhNhan.tinhMa.dmtinhMaso}"/>
+                                        <h:inputText id="TINH_MA"  name="_TINH_MA" value="#{B216_Capnhatthongtinhanhchanhbenhnhan.benhNhan.tinhMa.dmtinhMa}"  styleClass="myinput" style=" width : 30px" onblur="myOnblurTextbox(this.id,'DM_TINH')" maxlength="10" tabindex="12"/>
+                                        <span id="DM_TINH_span"/>
+                                        <input id="DM_TINH" name="DM_TINH" tabindex="13" style="width: 150px;" class="mycbogear" />
+                                        <h:outputText value="*" styleClass="mynull" style="margin-right: 2px; margin-left: 2px;" />
+
+                                        <h:inputHidden id="HUYEN_MA_pk" value="#{B216_Capnhatthongtinhanhchanhbenhnhan.benhNhan.huyenMa.dmhuyenMaso}"/>
+                                        <h:inputText id="HUYEN_MA" name="_HUYEN_MA"  value="#{B216_Capnhatthongtinhanhchanhbenhnhan.benhNhan.huyenMa.dmhuyenMa}" style=" width : 40px" onblur="myOnblurTextboxJSF_Huyen_Xa(this.id,'DM_HUYEN', 'TINH_MA','DMTINH_MASO')" maxlength="10" tabindex="14" styleClass="myinput"/>
+                                        <span id="DM_HUYEN_span"/>
+                                        <input id="DM_HUYEN" name="DM_HUYEN" tabindex="15" style="width: 150px;" class="mycbogear" />
+                                        <h:outputText value="*" styleClass="mynull" style="margin-right: 2px; margin-left: 2px;" />
+
+                                        <h:inputHidden id="XA_MA_pk" value="#{B216_Capnhatthongtinhanhchanhbenhnhan.benhNhan.xaMa.dmxaMaso}"/>
+                                        <h:inputText id="XA_MA" name="_XA_MA"  value="#{B216_Capnhatthongtinhanhchanhbenhnhan.benhNhan.xaMa.dmxaMa}" style="width : 60px" styleClass="myinput" onblur="myOnblurTextboxJSF_Huyen_Xa(this.id, 'DM_XA', 'HUYEN_MA','DMHUYEN_MASO')" maxlength="15" tabindex="16"/>
+                                        <span id="DM_XA_span"/>
+                                        <input id="DM_XA" name="DM_XA" tabindex="17" style="width: 150px;" class="mycbogear" />
+                                        <h:outputText value="*" styleClass="mynull" style="margin-right: 2px; margin-left: 2px;" />
+                                        <!--to-->
+                                    </td>
+                                </tr>
+                                <tr style="height: 25px;">
+                                    <td align="right">
+                                    </td>
+                                    <td align="left" style="padding-right: 25px;">
+                                        <h:inputText  tabindex="18" id="__sonhaduong"  value="#{B216_Capnhatthongtinhanhchanhbenhnhan.benhNhan.benhnhanDiachi}"  name="_sonhaduong" style=" width : 622px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+
+                                <tr style="height: 25px;">
+                                    <td align="right">
+                                        <h:outputText value="Tai nạn" styleClass="mytext" style="margin-left:5px;margin-right:5px;"/>
+                                    </td>
+                                    <td align="left" >
+                                        <h:inputHidden id="DM_TAI_NAN_MA_pk" value="#{B216_Capnhatthongtinhanhchanhbenhnhan.hoSoBenhAn.tainanMa.dmtainanMaso}"/>
+
+                                        <h:inputText  value="#{B216_Capnhatthongtinhanhchanhbenhnhan.hoSoBenhAn.tainanMa.dmtainanMa}"
+                                                      id="DM_TAI_NAN_MA" name="DM_PL_TAI_NAN_MA" style=" width : 30px" styleClass="myinput"
+                                                      onblur="myOnblurTextbox(this.id,'DM_PHAN_LOAI_TAI_NAN')" maxlength="10" tabindex="19"/>
+                                        <span id="DM_TAI_NAN_span"/>
+                                        <input tabindex="20" id="DM_TAI_NAN" name="DM_TAI_NAN" style="width: 200px;"/>
+
+                                        <h:outputText value="Phương tiện" styleClass="mytext" style="margin-right: 5px; margin-left: 52px;"/>
+                                        <h:inputHidden id="DM_PHUONG_TIEN_MA_pk" value="#{B216_Capnhatthongtinhanhchanhbenhnhan.hoSoBenhAn.dmptgtnMaso.dmptgtnMaso}"/>
+                                        <h:inputText value="#{B216_Capnhatthongtinhanhchanhbenhnhan.hoSoBenhAn.dmptgtnMaso.dmptgtnMa}" valueChangeListener="alert(123456)"
+                                                     id="DM_PHUONG_TIEN_MA" name="DM_PHUONG_TIEN_MA" style=" width : 30px;margin-right:1px;" styleClass="myinput"
+                                                     onblur="myOnblurTextbox(this.id, 'DM_PHUONG_THUC_GAY_TAI_NAN')" maxlength="10" tabindex="21"/>
+                                        <span id="DM_PHUONG_TIEN_span"/>
+                                        <input tabindex="22" id="DM_PHUONG_THUC_GAY_TAI_NAN" name="DM_PHUONG_THUC_GAY_TAI_NAN" style="width: 221px;"/>
+                                    </td>
+                                </tr>
+                                <tr style="height: 25px;">
+                                    <td align="right">
+                                        <h:outputText value="Địa điểm" styleClass="mytext" style="margin-right: 5px; margin-left: 5px;"/>
+                                    </td>
+                                    <td align="left">
+                                        <h:inputHidden id="DIADIEM_MA_pk" value="#{B216_Capnhatthongtinhanhchanhbenhnhan.hoSoBenhAn.diadiemMa.dmdiadiemMaso}"/>
+                                        <h:inputText value="#{B216_Capnhatthongtinhanhchanhbenhnhan.hoSoBenhAn.diadiemMa.dmdiadiemMa}" valueChangeListener="alert(123456)"
+                                                     id="DIADIEM_MA" name="DIADIEM_MA" style=" width : 30px;" styleClass="myinput"
+                                                     onblur="myOnblurTextbox(this.id, 'DM_DIA_DIEM')" maxlength="10" tabindex="23"/>
+                                        <span id="DM_DIA_DIEM_span"/>
+                                        <input tabindex="24" id="DM_DIA_DIEM" name="DM_DIA_DIEM" style="width: 200px;"/>
+                                    </td>
+                                </tr>
+                                <tr style="height: 40px;">
+                                    <td align="center"  colspan="2" style="padding-left: 250px;">
+                                        <div  style="float: left;">
+                                            <a4j:commandButton focus="__sobenhan"
+
+                                                               oncomplete="highlightOnFocus();onCompleteGetInfor();displayParentInfo();"
+                                                               action="#{B216_Capnhatthongtinhanhchanhbenhnhan.ghiNhan}"
+                                                               onclick="if (! onSubmitTmp()) { return false; }"
+                                                               reRender="BENHNHAN_NAMSINH,__gioitinh,__tuoi,BENHNHAN_DONVITUOI_TEMP,message_infor,__giovao,__ngayvv,__sobenhan,__hoten,__tuoi,__namsinh,TINH_MA,HUYEN_MA,XA_MA,__sonhaduong,DM_DAN_TOC_MA,DM_TAI_NAN_MA,DM_PHUONG_TIEN_MA,DIADIEM_MA,__hotenchame"
+                                                               tabindex="25" id="__ghinhan" name="_ghinhan" value="Ghi nhận" style="width: 60px;margin-left:3px;" styleClass="mybton_b"/>
+
+                                        </div>
+                                        <div  style="float: left;">
+                                            <a4j:commandButton focus="__sobenhan"
+                                                               oncomplete="highlightOnFocus();onCompleteGetInfor_Reset();displayParentInfo();"
+                                                               action="#{B216_Capnhatthongtinhanhchanhbenhnhan.nhaplai}"
+                                                               onclick="setCancel();"
+                                                               reRender="BENHNHAN_NAMSINH,__gioitinh,__tuoi,BENHNHAN_DONVITUOI_TEMP,message_infor,__giovao,__ngayvv,__sobenhan,__hoten,__tuoi,__namsinh,TINH_MA,HUYEN_MA,XA_MA,__sonhaduong,DM_DAN_TOC_MA,DM_TAI_NAN_MA,DM_PHUONG_TIEN_MA,DIADIEM_MA,__hotenchame"
+                                                               tabindex="26" id="__tieptucnhap" name="_tieptucnhap" value="Nhập mới" style="width: 70px;margin-left:3px;" styleClass="mybton_b"/>
+
+                                            <h:inputHidden id="resultHidden" value="#{B216_Capnhatthongtinhanhchanhbenhnhan.resultHidden}"/>
+                                            <h:inputHidden id="__ngayhientai" name="_ngayhientai" value="#{B216_Capnhatthongtinhanhchanhbenhnhan.ngayhientai}"/>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+        </body>
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/hsba/B216_Capnhatthongtinhanhchinhbenhnhan_gears.js"></script>
+        <iframe width="174" height="189" name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;"/>
+        <script type="text/javascript">
+                     var thi_1 = "thị";
+                     var thi_2 = "Thị"
+        </script>
+    </ui:define>
+</ui:composition>
+

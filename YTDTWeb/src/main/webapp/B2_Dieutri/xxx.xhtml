@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                xmlns:rich="http://richfaces.org/rich"
+                template="/layout/mytemplate.xhtml">
+                
+                                 
+
+<ui:define name="body">	
+    <style type="text/css">
+	  @import "pathtodojo/dijit/themes/nihilo/nihilo.css";
+	</style>
+	<style type="text/css">
+	    @import "/moin_static163/js/dojo/trunk/dijit/themes/nihilo/nihilo.css";
+	    @import "/moin_static163/js/dojo/trunk/dojox/grid/resources/nihiloGrid.css";
+	</style>
+	 <link href="" rel="stylesheet" type="text/css" />
+   
+	
+	<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+
+	<script type="text/javascript">
+    	
+	
+		
+		
+		function enterToTab(){
+          
+		} 
+		function init() {
+		
+		}
+	</script>
+	<body class="nihilo" onkeydown="enterToTab();">
+	
+<span dojoType="dojo.data.ItemFileWriteStore"
+    jsId="store3" url="http://docs.dojocampus.org/moin_static163/js/dojo/trunk/dijit/tests/_data/countries.json">
+</span>
+
+<div>
+    This example shows, how to make the column "Type" editable.
+    In order to select a new value, you have to double click on the current value in the second column.
+</div>
+
+	<h:form id="_form" name="_form">
+	
+<table dojoType="dojox.grid.DataGrid"
+    jsId="grid3"
+    store="store3"
+    query="{ name: '*' }"
+    rowsPerPage="20"
+    clientSort="true"
+    style="width: 400px; height: 200px;"
+    rowSelector="20px">
+    <thead>
+        <tr>
+            <th width="200px"
+                field="name">Country/Continent Name</th>
+            <th width="auto"
+                field="type"
+                cellType="dojox.grid.cells.Select"
+                options="country,city,continent"
+                editable="true">Type</th>
+        </tr>
+    </thead>
+</table>
+	</h:form>
+	
+	</body>
+</ui:define> 
+</ui:composition>
+
+

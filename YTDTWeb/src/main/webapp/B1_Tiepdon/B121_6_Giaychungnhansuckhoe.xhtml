@@ -1,0 +1,579 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                template="/layout/mytemplate.xhtml">
+
+    <ui:define name="body" >
+        <f:loadBundle basename="com.iesvn.yte.UIResources" var="msg" />
+        <script type="text/javascript">
+
+        function checkEmpty(id){
+        //alert(document.getElementById(prefix_component +"MUCAN_MA_pk").value);
+                if ( document.getElementById(id).value == null || document.getElementById(id).value == "" ){
+
+                        if(document.getElementById(id).className.match(/focus/gi))
+                document.getElementById(id).className = document.getElementById(id).className.replace(/focus/gi,"");
+                        return false;
+                }
+                return true;
+        }
+        var enableEntToTab = true;
+        function setEnableEntToTab(value) {
+            enableEntToTab = value;
+        }
+        function checkMaxLength(field,maxlen) {
+            if(field.value.length >= maxlen){
+                field.value = field.value.substring(0,maxlen);                          }
+        }
+        function enterToTab(){
+
+                          if(
+                                (document.getElementById(prefix_component + "__ghinhan") == null ||document.getElementById(prefix_component + "__ghinhan").alt ) != 1  &amp;&amp;
+                                (document.getElementById(prefix_component + "__inphieu") == null ||document.getElementById(prefix_component + "__inphieu").alt ) != 1
+                        )
+                    {
+                          if(window.event.keyCode == 13 &amp;&amp; enableEntToTab){
+                                 window.event.keyCode = 9;
+                           }
+                   }
+        }
+
+        var bCancel = false;
+        var bSave = false;
+
+        function setSave() {
+                bSave = true;
+        }
+        function setCancel(){
+                bCancel = true;
+        }
+
+        function iesvn_Required() {
+                this.aa = new Array(prefix_component + "__lidochuyenvien", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Lí do'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+
+        }
+
+        function checkPrint()
+        {
+                var maPhieu =  document.getElementById(prefix_component + "__maphieu").value;
+                if (maPhieu == null || maPhieu == ""){
+                  alert("Vui lòng nhập mã phiếu");
+                  return false;
+                }
+                return true;
+        }
+
+        function onSubmitTmp(){
+                setSave() ;
+                var maPhieu =  document.getElementById(prefix_component + "__maphieu").value;
+                var resultHidden = document.getElementById(prefix_component + "resultHidden").value;
+
+                //if (maPhieu != null &amp;&amp; maPhieu != "" &amp;&amp; resultHidden != "success"){
+                  //alert("Không được phép chỉnh sửa phiếu.");
+                  //return false;
+                //}
+                return onSubmit();
+        }
+
+        function onSubmit() {
+                changeCursorWait ();
+                var form = document.forms[0];
+                var valid = true;
+                if (bSave){
+                bSave = false;
+                valid = iesvn_ValidateRequired(form)  ;
+            }
+
+            if (bCancel){
+                bCancel = false;
+            }
+            if (valid == false){
+                changeCursorDefault ();
+        }
+            return valid;
+
+        }
+
+        // Phuc add code below
+
+        function iesvn_ValidateForm(form) {
+                        var valid = true;
+                        if (bSave) {
+                                valid = iesvn_ValidateRequired(form);
+                    }
+                        bSave = false;
+                    return valid;
+                }
+                function iesvn_Required() {
+                        this.aa = new Array(prefix_component + "DT_DM_NHAN_VIEN_MA_1", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Bác sĩ điều trị'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+                }    		
+		
+
+		
+        </script>
+        <body onkeydown="enterToTab();">
+            <h:form id="_form" name="_form" onsubmit="return iesvn_ValidateForm(this)">
+                <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_TiepDon.xhtml" /></div>
+                <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+                    <tr>
+                        <td colspan="3" height="50px">
+                            <table cellspacing="0" cellpadding="0" border="0" width="100%" >
+                                <tr>
+                                    <td height="50px" width="60%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >
+                                        <h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						GIẤY CHỨNG NHẬN SỨC KHỎE
+                                    </td>
+                                    <td valign="top">
+                                        <table cellspacing="0" cellpadding="0" width="100%" >
+                                            <tr>
+                                                <td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+                                                    &#160;
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="13px" height="12px" class="mytdl">
+                        </td>
+                        <td style="background-color: #c9daea;" width="965px" height="12px" >
+                        </td>
+                        <td width="11px" height="12px" class="mytdr">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 10px" width="100%" >
+                            <!-- Main Area -->
+                            <h:inputHidden id="goToGiayChungNhanSucKhoe" value="#{goToGiayChungNhanSucKhoe}"/>
+                            <table cellspacing="0" cellpadding="0" border="0" width="75%" align="center" >
+                                <tr>
+                                    <td colspan="2" align="center">
+                                        <a4j:outputPanel id="message_infor">
+                                            <h:messages  class ="mynull"/>
+                                        </a4j:outputPanel>
+                                    </td>
+                                </tr>
+                                <tr style="height: 25px;">
+                                    <td  align="right" style="width:25%;" >
+                                        <h:outputText value="Mã khám bệnh vào viện" styleClass="mytext" style="margin-left:0px;margin-right:5px;" />
+                                    </td>
+                                    <td  align="left" >
+                                        <h:inputText tabindex="1"  id="__maphieu" value="#{B121_6_Giaychungnhansuckhoe.maPhieuKhamBenhVaoVien}" name="_maphieu" style=" width : 95px;" styleClass="myreadonly" readonly="true">
+                                            <a4j:support oncomplete="onCompleteGetInfor();visibleButton();"  event="onblur"
+                                                         onsubmit="if (! checkEmpty(prefix_component + '__maphieu')) { return false; } "
+                                                         focus="__ghinhan" action="#{B120_Phieukhambenhvaovien.displayInfor()}"
+                                                         reRender="message_infor,__maphieu, hid_ShowPrint, hid_ShowDel, __bidanh, __quequan, __tiensubanthan, __vongnguctb, __lucboptaythuan, __lucboptaykhongthuan, __luckeothan, __matphaikhongkinh, __matphaicokinh, __mattraikhongkinh, __mattraicokinh, __kinhloai,__so, __sacgiac, __benhomat, __taiphainghenoithuong, taiphainghenoitham, __taitrainghenoithuong, __taitrainghenoitham, __benhtai, __benhmui,__benhhong, __hamtren, __hamduoi, _dongkinh, __phanxatay, __phanxachan, __benhvethankinh, __benhvetamthan, __benhtim, __benhmachmau, __khop, __xuongco, __hohap, __tieuhoa, __tietnieusinhduc, __benhngoaida, __cacbophankhac, __canlamsang, __ketluan, DT_DM_NHAN_VIEN_MA_1"/>
+                                        </h:inputText>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" >
+                                        <h:outputText value="Mã tiếp đón" styleClass="mytext" style="margin-left:0px;margin-right:5px;" />
+                                    </td>
+                                    <td align="left">
+                                        <h:inputText tabindex="2" value="#{B121_6_Giaychungnhansuckhoe.thamkham.tiepdonMa.tiepdonMa}"  id="__matiepdon" name="_matiendon" style=" width : 143px;" styleClass="myreadonly" readonly="true"/>
+                                        <h:outputText value="Mã bệnh nhân" styleClass="mytext" style="margin-left:8px;margin-right:5px;" />
+                                        <h:inputText tabindex="3" value="#{B121_6_Giaychungnhansuckhoe.thamkham.tiepdonMa.benhnhanMa.benhnhanMa}" id="__mabenhnhan" name="_mabenhnhan"  style=" width : 143px;" styleClass="myreadonly" readonly="true"/>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td align="right" >
+                                        <h:outputText value="Họ tên" styleClass="mytext" style="margin-left:0px;margin-right:5px;" />
+                                    </td>
+                                    <td align="left">
+                                        <h:inputText tabindex="4" value="#{B121_6_Giaychungnhansuckhoe.thamkham.tiepdonMa.benhnhanMa.benhnhanHoten}"  id="__hoten" name="_hoten"  style=" width : 143px;" styleClass="myreadonly" readonly="true"/>
+                                        <h:outputText value="Tuổi" styleClass="mytext" style="margin-left:62px; margin-right:5px;" />
+                                        <h:inputText tabindex="5" value="#{B121_6_Giaychungnhansuckhoe.thamkham.tiepdonMa.benhnhanMa.benhnhanTuoi}"  id="__tuoi" name="_tuoi" style="width: 35px;margin-right:3px;" styleClass="myreadonly" readonly="true"/>
+                                        <h:outputText value="(Năm)" id="__donViTuoi" styleClass="mytext" />
+                                        <h:inputHidden id = "__donViTuoiHid" value = "#{B121_6_Giaychungnhansuckhoe.benhNhan.benhnhanDonvituoi}"/>
+                                        <h:inputHidden id = "__namsinhHid" value= "#{B121_6_Giaychungnhansuckhoe.benhNhan.benhnhanNamsinh}"/>
+                                        <h:inputText tabindex="6" readonly="true"  value="#{B121_6_Giaychungnhansuckhoe.ngaySinh}" onblur="return is_wellformed_Date(this)" type="text" id="__ngaytg" name="_ngaytg" maxlength="10" style="margin-left:3px;width : 65px;" styleClass="myreadonly"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" >
+                                        <h:outputText value="Giới tính" styleClass="mytext" style="margin-left:0px;margin-right:5px;" />
+                                    </td>
+                                    <td align="left">
+                                        <h:selectOneRadio tabindex="7" disabled="true" id="__gioitinh" value="#{B121_6_Giaychungnhansuckhoe.gioi}" style="float: left;" >
+                                            <f:selectItem id="__nam" itemValue="r1" itemLabel="Nam" styleClass="myreadonly" />
+                                            <f:selectItem id="__nu" itemValue="r2" itemLabel="Nữ" styleClass="myreadonly"/>
+                                        </h:selectOneRadio>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="3" style="background-color: #ffffff; padding-top: 10px; padding-bottom: 10px" width="100%" >
+                            <table cellspacing="0" cellpadding="0" border="0" width="100%" align="center" >
+                                <tr style="height: 25px;" align="center">
+                                    <td align="right" style="padding-top:0px;" width="27%">
+                                        <h:outputText value="Bí danh" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" width="20%">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskBidanh}" tabindex="8" id="__bidanh" name="_qtbenhly"  style="margin-left:3px;width : 150px;" styleClass="myinput"/>
+                                    </td>
+                                    <td width="25%" align="right">
+                                        <h:outputText value="Quê quán" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td align="left">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskQuequan}" tabindex="9" id="__quequan" name="_qtbenhly"  style="margin-left:3px;width : 150px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Tiền sử bản thân" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputTextarea  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskTiensubanthan}" tabindex="10" id="__tiensubanthan" name="__tiensubanthan"  rows="3" style="height:38px; margin-left:3px;width : 476px;" styleClass="myinput"  onkeydown="setEnableEntToTab(false)" onblur="setEnableEntToTab(true)" onkeyup="checkMaxLength(this,1020)" />
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td  align="right"  style="padding-top:0px;" >
+                                        <h:outputText value="Vòng ngực trung bình(cm)" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td align="left" colspan="3" >
+                                        <h:inputText onkeypress="iesvn_InputInKeys('1234567890.');" maxlength="3" value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskVongnguctb}" tabindex="11" id="__vongnguctb" name="__vongnguctb" styleClass="myinput" style="margin-left:3px;width: 40px;"/>
+                                        <h:outputText value="Lực bóp tay thuận(kg)" styleClass="mytext" style="margin-left: 3px;"/>
+                                        <h:inputText onkeypress="iesvn_InputInKeys('1234567890.');" maxlength="3" value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskLucboptaythuan}" tabindex="12" id="__lucboptaythuan" name="__lucboptaythuan" styleClass="myinput" style="width: 40px;margin-left: 3px;"/>
+                                        <h:outputText value="Lực bóp tay không thuận(kg)" styleClass="mytext" style=" margin-left:3px;"/>
+                                        <h:inputText maxlength="2" onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,"");'
+                                                     onkeypress="iesvn_InputInKeys('1234567890.');"  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskLucboptaykhongthuan}" tabindex="13" id="__lucboptaykhongthuan" name="__lucboptaykhongthuan" styleClass="myinput" style="width: 40px;margin-left: 3px;"/>
+                                        <h:outputText value="Lực kéo thân(kg)" styleClass="mytext" style=" margin-left:3px;"/>
+                                        <h:inputText maxlength="2" onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); '
+                                                     onkeypress="iesvn_InputInKeys('1234567890.');"  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskLuckeothan}" tabindex="14" id="__luckeothan" name="__luckeothan" styleClass="myinput" style="width: 40px;margin-left: 3px;"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Mắt phải không kính" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" width="20%">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskMatphaikhongkieng}" tabindex="15" id="__matphaikhongkinh" name="__matphaikhongkinh"  style="margin-left:3px;width : 150px;" styleClass="myinput"/>
+                                    </td>
+                                    <td width="10%" align="right">
+                                        <h:outputText value="Có kính" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td align="left">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskMatphaicokieng}" tabindex="16" id="__matphaicokinh" name="_qtbenhly"  style="margin-left:3px;width : 150px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Mắt trái không kính" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" width="20%">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskMattraikhongkieng}" tabindex="17" id="__mattraikhongkinh" name="_qtbenhly"  style="margin-left:3px;width : 150px;" styleClass="myinput"/>
+                                    </td>
+                                    <td width="10%" align="right">
+                                        <h:outputText value="Có kính" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td align="left">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskMattraicokieng}" tabindex="18" id="__mattraicokinh" name="__mattraicokinh"  style="margin-left:3px;width : 150px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Kính loại" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" width="20%">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskKiengloai}" tabindex="19" id="__kinhloai" name="_qtbenhly"  style="margin-left:3px;width : 150px;" styleClass="myinput"/>
+                                    </td>
+                                    <td width="10%" align="right">
+                                        <h:outputText value="Số" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td align="left">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskSo}" tabindex="20" id="__so" name="__so"  style="margin-left:3px;width : 150px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Sắc giác" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskSacgiac}" tabindex="21" id="__sacgiac" name="__sacgiac"  style="margin-left:3px;width : 476px;" styleClass="myinput"/>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Bệnh ở mắt" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskBenhomat}" tabindex="22" id="__benhomat" name="__benhomat"  style="margin-left:3px;width : 476px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Tai phải nghe nói thường cách(m)" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" width="20%">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskTaiphainghenoibt}" onkeypress="iesvn_InputInKeys('1234567890.');"  tabindex="23" id="__taiphainghenoithuong" name="_qtbenhly"  style="margin-left:3px;width : 50px;" styleClass="myinput"/>
+                                    </td>
+                                    <td width="10%" align="right">
+                                        <h:outputText value="Nghe nói thầm thì cách(m)" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td align="left">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskTaiphainghenoitham}" onkeypress="iesvn_InputInKeys('1234567890.');"  tabindex="24" id="taiphainghenoitham" name="_qtbenhly"  style="margin-left:3px;width : 50px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Tai trái nghe nói thường cách(m)" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" width="20%">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskTaitrainghenoibt}" onkeypress="iesvn_InputInKeys('1234567890.');"  tabindex="25" id="__taitrainghenoithuong" name="__taitrainghenoithuong"  style="margin-left:3px;width : 50px;" styleClass="myinput"/>
+                                    </td>
+                                    <td width="10%" align="right">
+                                        <h:outputText value="Nghe nói thầm thì cách(m)" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td align="left">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskTaitrainghenoitham}" onkeypress="iesvn_InputInKeys('1234567890.');"  tabindex="26" id="__taitrainghenoitham" name="__taitrainghenoitham"  style="margin-left:3px;width : 50px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Bệnh tai" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskBenhtai}" tabindex="27" id="__benhtai" name="__benhtai"  style="margin-left:3px;width : 476px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Bệnh mũi" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskBenhmui}" tabindex="28" id="__benhmui" name="__benhmui"  style="margin-left:3px;width : 476px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Bệnh họng" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskBenhhong}" tabindex="28" id="__benhhong" name="__benhhong"  style="margin-left:3px;width : 476px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Hàm trên" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskHamtren}" tabindex="29" id="__hamtren" name="__hamtren"  style="margin-left:3px;width : 476px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Hàm dưới" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskHamduoi}" tabindex="30" id="__hamduoi" name="__hamduoi"  style="margin-left:3px;width : 476px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Động kinh" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" width="20%">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskDongkinh}" tabindex="31" id="_dongkinh" name="_dongkinh"  style="margin-left:3px;width : 150px;" styleClass="myinput"/>
+                                    </td>
+                                    <td width="10%" align="right">
+                                        <h:outputText value="Tê liệt" styleClass="mytext" style=" margin-right: 5px"/>
+                                    </td>
+                                    <td align="left">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskTeliet}" tabindex="32" id="_teliet" name="_teliet"  style="margin-left:3px;width : 150px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Phản xạ tay" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskPxtay}" tabindex="33" id="__phanxatay" name="__phanxatay"  style="margin-left:3px;width : 476px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Phản xạ chân" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskPxchan}" tabindex="34" id="__phanxachan" name="__phanxachan"  style="margin-left:3px;width : 476px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Bệnh về thần kinh" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskBenhthankinh}" tabindex="35" id="__benhvethankinh" name="__benhvethankinh"  style="margin-left:3px;width : 476px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Bệnh về tâm thần" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskBenhtamthan}" tabindex="36" id="__benhvetamthan" name="__benhvetamthan"  style="margin-left:3px;width : 476px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Bệnh tim" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskBenhtim}" tabindex="37" id="__benhtim" name="__benhtim"  style="margin-left:3px;width : 476px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Bệnh mạch máu" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskBenhmachmau}" tabindex="38" id="__benhmachmau" name="__benhmachmau"  style="margin-left:3px;width : 476px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Khớp" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskKhop}" tabindex="39" id="__khop" name="__khop"  style="margin-left:3px;width : 476px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Xương cơ" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskXuongco}" tabindex="40" id="__xuongco" name="__xuongco"  style="margin-left:3px;width : 476px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Hô hấp" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskHohap}" tabindex="41" id="__hohap" name="__hohap"  style="margin-left:3px;width : 476px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Tiêu hóa" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskTieuhoa}" tabindex="42" id="__tieuhoa" name="__tieuhoa"  style="margin-left:3px;width : 476px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Tiết niệu sinh dục" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskTietnieusd}" tabindex="43" id="__tietnieusinhduc" name="__tietnieusinhduc"  style="margin-left:3px;width : 476px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Bệnh ngoài da, hoa liễu" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskBenhngoaidadlhl}" tabindex="44" id="__benhngoaida" name="__benhngoaida"  style="margin-left:3px;width : 476px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Các bộ phận khác" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskCacbophankhac}" tabindex="45" id="__cacbophankhac" name="__cacbophankhac"  style="margin-left:3px;width : 476px;" styleClass="myinput"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Các xét nghiệm cận lâm sàng" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputTextarea  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskXncanlamsang}" tabindex="46" id="__canlamsang" name="__canlamsang"  rows="3" style="height:38px; margin-left:3px;width : 476px;" styleClass="myinput"  onkeydown="setEnableEntToTab(false)" onblur="setEnableEntToTab(true)" onkeyup="checkMaxLength(this,1020)" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Kết luận" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputTextarea  value="#{B121_6_Giaychungnhansuckhoe.objGiayCnSucKhoe.gcnskKetluan}" tabindex="47" id="__ketluan" name="__ketluan"  rows="3" style="height:38px; margin-left:3px;width : 476px;" styleClass="myinput"  onkeydown="setEnableEntToTab(false)" onblur="setEnableEntToTab(true)" onkeyup="checkMaxLength(this,1020)" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" style="padding-top:0px;" width="25%">
+                                        <h:outputText value="Bác sĩ điều trị" styleClass="mytext" style=" margin-right: 1px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputHidden id="DT_DM_NHAN_VIEN_MA_1_pk" value="#{B121_6_Giaychungnhansuckhoe.maSoBacSi}" />
+                                        <h:inputText  value="#{B121_6_Giaychungnhansuckhoe.maBacSi}"
+                                                      id="DT_DM_NHAN_VIEN_MA_1" name="DT_DM_NHAN_VIEN_MA_1" tabindex="48"  style=" width : 50px" styleClass="myinput"
+                                                      onblur="myOnblurTextbox(this.id,'DT_DM_NHAN_VIEN__1')" maxlength="10" />
+                                        <span id="DT_DM_NHAN_VIEN_span1"/>
+                                        <input id="DT_DM_NHAN_VIEN__1"  tabindex="49" class="myinput" name="DT_DM_NHAN_VIEN"  style="width: 175px;"/>
+                                    </td>
+                                </tr>
+                                <tr style="height: 40px;" align="center">
+                                    <td colspan="6" style="padding-left: 220px" align="center">
+                                        <div id="__divSave" style="float: left;">
+                                            <a4j:commandButton action="#{B121_6_Giaychungnhansuckhoe.ghiNhan}"
+                                                               oncomplete="changeCursorDefault();visibleButton(); this.alt = 0; highlightOnFocus();onCompleteGetInfor();"
+                                                               reRender="message_infor,__maphieu, hid_ShowPrint, hid_ShowDel, __bidanh, __quequan, __tiensubanthan, __vongnguctb, __lucboptaythuan, __lucboptaykhongthuan, __luckeothan, __matphaikhongkinh, __matphaicokinh, __mattraikhongkinh, __mattraicokinh, __kinhloai,__so, __sacgiac, __benhomat, __taiphainghenoithuong, taiphainghenoitham, __taitrainghenoithuong, __taitrainghenoitham, __benhtai, __benhmui,__benhhong, __hamtren, __hamduoi, _dongkinh, __phanxatay, __phanxachan, __benhvethankinh, __benhvetamthan, __benhtim, __benhmachmau, __khop, __xuongco, __hohap, __tieuhoa, __tietnieusinhduc, __benhngoaida, __cacbophankhac, __canlamsang, __ketluan, DT_DM_NHAN_VIEN_MA_1"
+                                                               tabindex="50"  id="__ghinhan" name="_ghinhan" value="Ghi nhận" styleClass="mybton_b" style="width:70px; margin-right: 3px"
+                                                               onclick="setSave()"/>
+                                        </div>
+
+                                        <div id="__divBack" style="float: left;">
+                                            <h:commandButton action="#{B120_Phieukhambenhvaovien.quayLai()}" tabindex="51" id="__quaylai" name="_quaylai"
+                                                             type="submit" value="Quay lại" style="width: 60px; margin-right:3px;" styleClass="mybton_b"/>
+                                        </div>
+
+                                        <div id="__divDelete" style="float: left;">
+                                            <a4j:commandButton tabindex="52" id="__huyphieu" action="#{B121_6_Giaychungnhansuckhoe.huyPhieu}"
+                                                               focus="DT_DM_NHAN_VIEN_MA_1" name="__huyphieu"
+                                                               oncomplete="highlightOnFocus();onCompleteGetInfor();visibleButton();"
+                                                               reRender="message_infor,__maphieu, hid_ShowPrint, hid_ShowDel, __bidanh, __quequan, __tiensubanthan, __vongnguctb, __lucboptaythuan, __lucboptaykhongthuan, __luckeothan, __matphaikhongkinh, __matphaicokinh, __mattraikhongkinh, __mattraicokinh, __kinhloai,__so, __sacgiac, __benhomat, __taiphainghenoithuong, taiphainghenoitham, __taitrainghenoithuong, __taitrainghenoitham, __benhtai, __benhmui,__benhhong, __hamtren, __hamduoi, _dongkinh, __phanxatay, __phanxachan, __benhvethankinh, __benhvetamthan, __benhtim, __benhmachmau, __khop, __xuongco, __hohap, __tieuhoa, __tietnieusinhduc, __benhngoaida, __cacbophankhac, __canlamsang, __ketluan, DT_DM_NHAN_VIEN_MA_1"
+                                                               value="Hủy phiếu" onclick="setCancel();"
+                                                               style="width: 70px; margin-right: 3px;" styleClass="mybton_b" />
+                                        </div>
+
+                                        <div id="__divPrint" style="float: left;">
+                                            <a4j:commandButton action="#{B121_6_Giaychungnhansuckhoe.thuchienAction}" onclick="setSave();" tabindex="53" id="__inphieu"
+                                                               name="_inphieu" value="In phiếu" style="width: 60px;margin-left:1px;" styleClass="mybton_b"
+                                                               reRender="__benhsu,__dauhieulamsan,__cacxutri,__messagePanel"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                </table>
+                <h:inputHidden id="hid_ShowPrint" value="#{B120_Phieukhambenhvaovien.showPrint}"/>
+                <h:inputHidden id="hid_ShowDel" value="#{B120_Phieukhambenhvaovien.showDel}"/>
+            </h:form>
+        </body>
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/tiepdon/B121_6_Giaychungnhansuckhoe_gears.js"></script>
+        <iframe width="174" height="189" name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;"/>
+
+    </ui:define>
+</ui:composition>
+
+

@@ -1,0 +1,75 @@
+﻿<rich:toolBar style="margin:-5px 0px; height:32px"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:rich="http://richfaces.org/rich">
+    <rich:dropDownMenu event="onclick" style="cursor:hand" disabled="#{identity.hasRole('NV_KhoaDuoc') eq false  &amp;&amp; identity.hasRole('NV_KhoLe') eq false}" >
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="Nhập kho"/>
+	    	</h:panelGroup>		        	   
+	    	 
+	    </f:facet>
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4163_Phieudutrulanhthuoc.init('NT','KC')}" id="QuanLyKhoChinh_LapPhieuLinhThuocTuKhoChinh_id" submitMode="ajax" value="Lập phiếu lĩnh thuốc từ kho chính" />
+		<!-- <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{Xacnhanphieunhantrahang.init('KNT','TuTruc')}" id="QuanLyKhoChinh_NhapKhoChinh_TuTrucTraLaiHang_id" submitMode="ajax" value="Tủ trực các khoa phòng trả hàng" /> --> 
+		<!-- <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{Xacnhanphieunhantrahang.init('KNT','TuTruc')}" id="QuanLyKhoChinh_NhapKhoChinh_TraHangTuPhieuDuTru_id" submitMode="ajax" value="Trả hàng từ phiếu dự trù" /> --> 
+		
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4165_Phieutrahangtutruc.init('KhoNoiTru')}" id="QuanLyKhoChinh_NhapKhoChinh_TuTrucTraLaiHang_id" submitMode="ajax" value="Tủ trực các khoa phòng trả hàng" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4113_Phieutrahangkhoa.init('KhoNoiTru')}" id="QuanLyKhoChinh_NhapKhoChinh_CacKhoaPhongTraLaiHangTheoPhieuDuTru_id" submitMode="ajax" value="Trả hàng từ phiếu dự trù" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4167_TuyenDuoiTraHang.init('NT')}" id="QuanLyKhoChinh_NhapKhoChinh_TuyenDuoiTraHang_id" submitMode="ajax" value="Đơn vị tuyến dưới trả hàng" />
+		</rich:dropDownMenu>
+    
+	<rich:dropDownMenu event="onclick" style="cursor:hand" disabled="#{identity.hasRole('NV_KhoaDuoc') eq false   &amp;&amp; identity.hasRole('NV_KhoLe') eq false}">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="Xuất kho nội trú"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4122_Xuathangtheophieudt.init('KhoNoiTru')}" id="QuanLyKhoChinh_XuatKhoChinh_XuatHangTheoPhieuDuTru_id" submitMode="ajax" value="Xuất thuốc theo phiếu Dự trù" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4164_Phieuxuathangtutruc.init('KhoNoiTru')}" id="QuanLyKhoChinh_XuatKhoChinh_XuatHangDenTuTrucCacKhoaPhong_id" submitMode="ajax" value="Xuất đến tủ trực các khoa phòng" />	
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4123_Phieuxuathangkhoaphong.init('NT','TD')}" id="QuanLyKhoChinh_XuatKhoChinh_XuatHangDenCacDonViTuyenDuoi_id" submitMode="ajax" value="Xuất các đơn vị tuyến dưới" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4444_Phieutrahangbhytchokhochinh.init('KC','NT')}"  id="QuanLyKhoChinh_XuatKhoChinh_TraKhoChinhDuTru_id" submitMode="ajax" value="Trả kho chính" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4311_Xuathangchobenhnhan.init('NT')}"  id="QuanLyKhoChinh_XuatKhoChinh_XuatThuocBHYTNGT_id" submitMode="ajax" value="Xuất thuốc BHYT Ngoại trú" />		
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4166_Xuathangchobenhnhan.init('NT')}"  id="QuanLyKhoChinh_XuatKhoChinh_XuatThuocBHYTNT_id" submitMode="ajax" value="Xuất thuốc BHYT Nội trú" />
+		<rich:menuSeparator />
+		<rich:menuItem style="padding:0px 4px 0px 0px; "  action="#{Timkiemphieuxuat.init('NT')}" id="QuanLyKhoChinh_NhapKhoChinh_TimKiemPhieuXuat_id" submitMode="ajax" value="Tìm kiếm phiếu xuất" />
+	</rich:dropDownMenu>
+	
+	<rich:dropDownMenu event="onclick" style="cursor:hand" disabled="#{identity.hasRole('QT_HT_Duoc') eq false  &amp;&amp; identity.hasRole('NV_KhoLe') eq false}">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="Truy xuất thông tin kho nội trú"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4131_Inbaocaonhapxuattrongngay.init('NT')}" id="QuanLyKhoChinh_TruyXuatThongTinKhoChinh_InBaoCaoNhapXuatTrongNgay_id" submitMode="ajax" value="In báo cáo nhập xuất trong ngày" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4133_inthephieu.init('NT')}" id="QuanLyKhoChinh_TruyXuatThongTinKhoChinh_InTheKho_id" submitMode="ajax" value="In thẻ kho" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4134_Tinhtonkhovagiatri.init('NT')}" id="QuanLyKhoChinh_TruyXuatThongTinKhoChinh_TinhTonKhoVaGiaTri_id" submitMode="ajax" value="Tính tồn kho và giá trị" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4135_BCnhapxuat1mathang.init('NT')}" id="QuanLyKhoChinh_TruyXuatThongTinKhoChinh_InChiTietNhapXuatMotMatHang_id" submitMode="ajax" value="In chi tiết nhập, xuất một mặt hàng thuốc" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4137_Canhbaohangganhethan.init('NT')}" id="QuanLyKhoChinh_TruyXuatThongTinKhoChinh_CanhBaoMatHangGanHetHan_id" submitMode="ajax" value="Cảnh báo thuốc gần hết hạn" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4138_Indstonkhokhonghandung.init('NT')}" id="QuanLyKhoChinh_TruyXuatThongTinKhoChinh_CanhBaoMatHangTonKhoKhongHanDung_id" submitMode="ajax" value="Cảnh báo thuốc tồn kho không hạn dùng" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4136_Mathangkhongsd.init('NT')}" id="QuanLyKhoChinh_TruyXuatThongTinKhoChinh_CanhBaoMatHangKhongSuDung_id" submitMode="ajax" value="Cảnh báo thuốc không sử dụng" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4161_Canhbaoluongtonkho.init('NT')}" id="QuanLyKhoChinh_TruyXuatThongTinKhoChinh_CanhBaoLuongTonKho_id" submitMode="ajax" value="Cảnh báo lượng tồn kho" />
+	</rich:dropDownMenu>
+	
+	<rich:dropDownMenu event="onclick" style="cursor:hand" disabled="#{identity.hasRole('QT_HT_Duoc') eq false   &amp;&amp; identity.hasRole('NV_KhoLe') eq false}">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="Kiểm kê kho nội trú"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+	    
+	    <!-- <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4142_Indanhsachtondau.init('KhoNoiTru')}" id="QuanLyKhoChinh_KiemKeKhoChinh_InDanhSachTonDau_id" submitMode="ajax" value="In danh sách tồn đầu" />-->		
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{Timkiembangkiemke.init('KhoNoiTru')}"  id="QuanLyKhoChinh_KiemKeKhoChinh_TimkiemBangKiemKeDinhKy_id" submitMode="ajax" value="Tìm kiếm bảng kiểm kê định kỳ" />	
+		<!-- rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4144b_CapNhatSoLieuThucTe.init('KhoNoiTru')}"  id="QuanLyKhoChinh_KiemKeKhoChinh_CapNhatSoLieuKiemKeThucTe_id" submitMode="ajax" value="Cập nhật số liệu kiểm kê thực tế" /> -->		
+		<!-- rich:menuItem style="padding:0px 4px 0px 0px; " action="#{CapNhatSoLieuKiemKeThucTeAction.init('KhoNoiTru')}"  id="QuanLyKhoChinh_KiemKeKhoChinh_CapNhatSoLieuKiemKeThucTe_file_id" submitMode="ajax" value="Cập nhật số liệu kiểm kê thực tế (File)" /> -->		
+		<!-- <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B4145_Inbangkiemke.init('KhoNoiTru')}" id="QuanLyKhoChinh_KiemKeKhoChinh_InBangKiemKe_id" submitMode="ajax" value="In bảng kiểm kê" /> -->				
+	</rich:dropDownMenu>
+	
+
+	
+
+</rich:toolBar>
+

@@ -1,0 +1,1 @@
+﻿({"previousMessage":"<< Quay về","nextMessage":"Tiếp theo >>"})

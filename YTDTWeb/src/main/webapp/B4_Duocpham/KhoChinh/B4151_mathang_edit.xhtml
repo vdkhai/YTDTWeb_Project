@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:c="http://java.sun.com/jstl/core" 
+                template="/layout/mytemplate.xhtml">
+
+
+<ui:define name="body">	
+<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+<h:form id="_form" name="_form"> 
+	<div style="width:100%; position: absolute; z-index:99; margin-top:-6px">
+		<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoChinh.xhtml" />
+	</div>
+	<table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+	<tr>
+    	<td colspan="3" height="50px">
+    		<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    			<tr>
+    				<td height="50px" width="300px" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    					<h:graphicImage value="../../images/white_light.gif" width="43" height="16" />
+    					CHỈNH SỬA THUỐC   
+    				</td> 
+    				<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" border="0">
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    								
+    							</td>
+    						</tr>
+    						
+    					</table> 
+    				</td>
+    			</tr>
+    		</table>			
+    	</td>    		    	
+	</tr>    
+    <tr>
+    	<td width="13px" height="12px" class="mytdl"></td>
+    	<td style="background-color: #c9daea;" width="965px" height="12px" ></td>
+    	<td width="11px" height="12px" class="mytdr"></td>
+    </tr> 
+    <tr>
+    	<td colspan="3" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 5px" width="100%" >
+    		<table width="100%">
+    			<tr align="center">
+			    	<td>
+			    		<a4j:outputPanel id="message_infor">
+							<tr>
+								<td>
+									<h:messages style="color:Red;font-weight:bold;font-style:italic;text-decoration:none;"/>
+								</td>
+							</tr>
+						</a4j:outputPanel>
+			    	</td>
+			    </tr>
+			    </table>
+			    <table style=" width : 756px;">
+    			<tr>
+    				
+    				<td><h:outputText value="Mã"/></td>
+    				<td><h:inputText id="__ma" value="#{B4151_Mathang_Edit.mathang.dmthuocMa}" style="width:200px;" styleClass="myinput" readonly="true" maxlength="8"/>
+    					<h:outputText value="*" style="color:red;margin-left:2px;"/>
+    				</td>
+    				
+    				<td><h:outputText value="Tên"/></td>
+    				<td><h:inputText id="__ten" value="#{B4151_Mathang_Edit.mathang.dmthuocTen}" style="width:200px;" styleClass="myinput"/>
+    					<h:outputText value="*" style="color:red;margin-left:2px;"/>
+    				</td>
+
+    			</tr>
+    			<tr>
+ 					<td><h:outputText value="Đơn vị tính" /></td>
+    				<td><h:selectOneMenu style="width: 200px" value="#{B4151_Mathang_Edit.mathang.getDmdonvitinhMaso(true).dmdonvitinhMaso}">
+    						<f:selectItems value="#{B4151_Mathang_Edit.listB4151_Donvitinh}" id="_donvitinh"/>
+    					</h:selectOneMenu>
+    				</td>
+    			<td><h:outputText value="Bảo quản" /></td>
+    				<td><h:selectOneMenu style="width: 200px" value="#{B4151_Mathang_Edit.mathang.getDmbaoquanMaso(true).dmbaoquanthuocMaso}">
+    						<f:selectItems value="#{B4151_Mathang_Edit.listB4151_Baoquan}"/>
+    					</h:selectOneMenu>
+    				</td>
+    			</tr>
+    			<tr>
+					 <td><h:outputText value="Nhóm thuốc" /></td>
+    				<td><h:selectOneMenu style="width: 200px" value="#{B4151_Mathang_Edit.mathang.getDmphannhomthuocMaso(true).dmphannhomthuocMaso}">
+    						<f:selectItems value="#{B4151_Mathang_Edit.listB4151_Nhomthuoc}"/>
+    					</h:selectOneMenu>
+    				</td>
+    				<td><h:outputText value="Cách dùng" /></td>
+    				<td><h:selectOneMenu style="width: 200px" value="#{B4151_Mathang_Edit.mathang.getDmcachdungMaso(true).dmcachdungthuocMaso}">
+    						<f:selectItems value="#{B4151_Mathang_Edit.listB4151_Cachdung}"/>
+    					</h:selectOneMenu>
+    				</td>
+    			</tr>    			
+    			<tr>
+    				<td><h:outputText value="Nhà sản xuất" /></td>
+    				<td><h:selectOneMenu style="width: 200px" value="#{B4151_Mathang_Edit.mathang.getDmnhasanxuatMaso(true).dmnhasanxuatMaso}">
+    						<f:selectItems value="#{B4151_Mathang_Edit.listB4151_Nhasanxuat}"/>
+    					</h:selectOneMenu>
+    				</td>
+    				<td><h:outputText value="Nước sản xuất" /></td>
+    				<td><h:selectOneMenu style="width: 200px" value="#{B4151_Mathang_Edit.mathang.getDmthuocNuocdefa(true).dmquocgiaMaso}">
+    						<f:selectItems value="#{B4151_Mathang_Edit.listB4151_QuocGia}"/>
+    					</h:selectOneMenu>
+    				</td> 
+    			</tr>    			
+    			<tr>
+    				<td><h:outputText value="Trong danh mục" /></td>
+    				<td><h:selectBooleanCheckbox  style="width: 20px" value="#{B4151_Mathang_Edit.mathang.dmthuocIndanhmuc}"/></td>
+    			
+    			<td><h:outputText value="Số đăng ký"/></td>
+    				<td><h:inputText id="__sodangky" value="#{B4151_Mathang_Add.mathang.dmthuocSoDangKy}" style="width:200px;" styleClass="myinput"	/>
+    					</td>
+    				
+    			</tr>
+				<tr>
+    				<td><h:outputText value="Giá trúng thầu" /></td>
+    				
+    				<td><h:inputText id="__giatrungthau" 
+    				value="#{B4151_Mathang_Add.mathang.dmthuocDonGiaDauThau}" 
+    				onblur="numberFormatBlur(this);"
+    				onfocus="numberFormatFocus(this); " 
+    				style="text-align: right; padding-right: 2px; width: 70px;"
+    				styleClass="myinput"	>
+    				<f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" />
+    				</h:inputText>
+    				</td>
+    				<td><h:outputText value="Không xuất"/></td>
+    					
+    				<td><h:selectBooleanCheckbox  style="width: 20px" value="#{B4151_Mathang_Add.mathang.dmthuocKhongXuat}"/>
+    				</td>    				
+    			</tr>
+    			<tr>
+    				<td><h:outputText value="Phân loại thuốc" /></td>
+    				<td colspan="3"><h:selectOneMenu id="__phanloaithuoc" style="width: 200px" value="#{B4151_Mathang_Edit.mathang.dmthuocPlbhyt}">
+    						<f:selectItems value="#{B4151_Mathang_Edit.listB4151_Loaithuoc}"/>
+    						<a4j:support event="onchange" reRender="__phannhonthuoc" action="#{B4151_Mathang_Edit.onChangeLoaithuoc}"/>
+    					</h:selectOneMenu>
+    					<h:outputText value="*" style="color:red;margin-left:2px;"/>
+    				</td>
+    			</tr>
+    			<tr>    				
+    				<td><h:outputText value="Phân nhóm thuốc" /></td>
+    				<td colspan="3"><h:selectOneMenu id="__phannhonthuoc" style="width: 570px" value="#{B4151_Mathang_Edit.mathang.getDmphanloaithuocMaso(true).dmphanloaithuocMaso}">
+    						<f:selectItems value="#{B4151_Mathang_Edit.listB4151_Phanloaithuoc}"/>
+    					</h:selectOneMenu>
+    				</td>
+    			</tr>
+    	</table>   		
+    	</td>    	
+    </tr>
+    
+    <tr>
+    	<td colspan="3" style="background-color: #c9daea; padding-top: 5px; padding-bottom: 10px" width="100%" >
+    		<table width="100%">
+    			<tr align="center">
+    				<td align="right">
+    					<a4j:commandButton styleClass="mybton_b" value="Ghi nhận" id="__ghinhan" style="cursor:pointer;margin:0 30 0 0px;"
+    						onclick="if (!checkInput()) return false;"
+    						action="#{B4151_Mathang_Edit.save}"
+    						oncomplete="oncompleteGhinhan();"
+    						reRender="message_infor"/>
+    				</td>
+    				<td align="left">
+    					<a4j:commandButton styleClass="mybton_b" value="Quay lại" id="__quaylai" style="cursor:pointer;margin:0 30 0 0px;" action="/B4_Duocpham/KhoChinh/B4151_mathang" />
+    				</td>
+    			</tr>
+    		</table>   		
+    	</td>    	
+    </tr>
+</table>
+</h:form>
+<!-- <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/duocpham/B4151_Mathang_Edit_gears.js"></script> -->
+<script>
+function init(){
+	setInfo();
+}
+
+function setInfo(){	
+	document.getElementById(prefix_component + '__ma').focus();
+}
+
+function iesvn_Required() {
+	this.aa = new Array(prefix_component + "__ma", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Mã thuốc'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+	this.ab = new Array(prefix_component + "__ten", "<h:outputFormat value='#{msg.common_requireField}'> <f:param value='Tên thuốc'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+	this.ac = new Array(prefix_component + "__phanloaithuoc", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Phân loại thuốc'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+}
+
+function checkInput(){
+	var form = document.forms[0];
+	var valid = true;
+	valid = iesvn_ValidateRequired(form);	
+    return valid;
+}
+
+function oncompleteGhinhan(){
+	LoadCatalogFromServer_each(DmThuoc,"GetDanhMucThuocAction");
+	document.getElementById(prefix_component + '__ten').focus();
+}
+
+function oncompleteNhapmoi(){
+	document.getElementById(prefix_component + '__ten').focus();
+}
+</script>
+</ui:define> 
+</ui:composition>
+
+

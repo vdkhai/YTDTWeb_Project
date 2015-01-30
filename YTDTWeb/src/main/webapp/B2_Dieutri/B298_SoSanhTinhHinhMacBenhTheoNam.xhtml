@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                xmlns:rich="http://richfaces.org/rich"
+                  xmlns:c="http://java.sun.com/jstl/core"
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">
+	<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+	<script type="text/javascript">
+	var bCancel = false;
+		var bSave = false;
+		
+		function setSave() {
+			bSave = true;
+		}
+		function setCancel(){
+			bCancel = true;
+		}		
+		
+		function iesvn_Required() { 
+			this.ab = new Array(prefix_component + "__tunam", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Từ năm'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+ 	 		this.ac = new Array(prefix_component + "__dennam", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Đến năm'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+		}	
+				
+		
+		function onSubmit() {
+			var form = document.forms[0];
+			var valid = true;			
+			if (bSave){
+		    	bSave = false;	    	    	
+		    	valid = iesvn_ValidateRequired(form)  ;   
+		    	 	
+		    } 	    	    
+		    if (bCancel){
+		    	bCancel = false;
+		    }
+		    return valid;
+		}
+		
+		
+		function enterToTab(){
+          	if((document.getElementById(prefix_component +"__tienhanh").alt != 1) &amp;&amp; 
+          	(document.getElementById(prefix_component +"__chonlai").alt != 1)) {
+                 if(window.event.keyCode == 13){
+                        window.event.keyCode = 9;
+                  }
+         	}
+		} 
+		function checkyear(textbox) {
+			var namhientai = parseInt(document.getElementById(prefix_component + "__namhientai").value, 10);
+			if (textbox.value == '') {
+				textbox.value = namhientai;
+			} else {
+				var nam = parseInt(textbox.value, 10);
+				if (nam &gt; namhientai) {
+					textbox.value = namhientai;
+				} else {
+					textbox.value = nam;
+				}
+			}
+		}
+	</script>
+	<body onkeydown="enterToTab();">
+	<h:form id="_form" name="_form" onsubmit="return onSubmit();">	
+	<h:inputHidden id="__resetForm" value="#{resetFormB298}" /> 
+	<h:inputHidden value="#{B298_SoSanhTinhHinhMacBenhTheoNam.namhientai}" id="__namhientai" name="_namhientai"/>   
+    <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_DieuTriNoiTru.xhtml" /></div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="60%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />    						    						 
+						   	SO SÁNH TÌNH HÌNH MẮC BỆNH THEO NĂM						        											        					
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>        	
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="985px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px" width="100%" align="center">
+    			<!-- Main Area -->
+    			<table cellspacing="0" cellpadding="0" border="0" width="56%">
+    				
+    				
+    				<tr style="height: 25px;">  
+    					<td align="left"  >
+    						<h:outputText value="Từ năm" styleClass="mytext" style="margin-left:51px;margin-right: 3px;"/>
+    						<h:inputText value="#{B298_SoSanhTinhHinhMacBenhTheoNam.tunam}" maxlength="4" onchange="checkyear(this)" onkeypress="iesvn_InputInKeys('0123456789')" onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,"");' tabindex="1" id="__tunam" name="_tunam" style="width: 55px;" styleClass="myinput"/>    						    						
+    						<h:outputText value="*" styleClass="mynull" style="margin-right: 5px; margin-left: 2px;" />	
+							<h:outputText value="Đến nam" styleClass="mytext" style="margin-left:30px;margin-right: 3px;" />
+							<h:inputText value="#{B298_SoSanhTinhHinhMacBenhTheoNam.dennam}" maxlength="4" onchange="checkyear(this)" onkeypress="iesvn_InputInKeys('0123456789')" onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,"");' tabindex="2" id="__dennam" name="_dennam" style="width: 55px;" styleClass="myinput"/>													
+							
+    						<h:outputText value="*" styleClass="mynull"
+								style="margin-right: 5px; margin-left: 2px;" />									
+    					</td>					
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="left"  >
+    						<h:outputText value="Khoa ra viện" styleClass="mytext" style="margin-left:24px;margin-right: 5px;"/>
+    						<h:inputHidden id="DM_KHOA_MA_pk" value="#{B298_SoSanhTinhHinhMacBenhTheoNam.khoaMaso}"/>
+    						<h:inputText  value="#{B298_SoSanhTinhHinhMacBenhTheoNam.khoaMa}"    
+    							id="DM_KHOA_MA" name="DM_KHOA_MA" style=" width : 30px" 
+    							onblur="myOnblurTextbox(this.id, 'DM_KHOA')" maxlength="10" tabindex="3" styleClass="myinput"/>      							  						
+    						<input id="DM_KHOA" name="DM_KHOA"  tabindex="4" style="width: 250px;"/>
+    						<span id="DM_KHOA_span"/>
+    					</td>  
+    				</tr>
+    				<tr style="height: 40px;">
+    					<td align="center"  style="padding-left: 130px;">    
+    						<div style="float: left;">
+    							
+    								<a4j:commandButton tabindex="5" id="__tienhanh" name="_tienhanh" 
+    								onclick="javascript:setSave();" 
+    								action="#{B298_SoSanhTinhHinhMacBenhTheoNam.thuchienAction}" 
+    								value="Tiến hành" style="width: 70px; margin-left:3px;" styleClass="mybton_b"/>
+    							
+    						</div> 
+    						<div style="float: left;">
+    							
+    								<a4j:commandButton tabindex="6" id="__chonlai" focus="__thang" 
+    								name="_chonlai" action="#{B298_SoSanhTinhHinhMacBenhTheoNam.resetForm}" 
+    								reRender="__tunam,__dennam,DM_KHOA_MA,DM_KHOA_MA_pk" value="Nhập mới" style="width: 70px;margin-left:3px;" 
+    								styleClass="mybton_b"
+    								oncomplete="onCompleteGetInfor();"/>
+    						
+    						</div> 
+    					</td>
+    				</tr>    				
+    			</table> 		    						
+    		</td>
+    	</tr>	    	
+    </table>     
+    <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/hsba/B298_SoSanhTinhHinhMacBenhTheoNam_gears.js"></script>        
+    </h:form>
+    </body>
+</ui:define> 
+</ui:composition>

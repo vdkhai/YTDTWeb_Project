@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:c="http://java.sun.com/jstl/core" 
+                template="/layout/mytemplate.xhtml">
+
+
+<ui:define name="body">	
+<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+<h:form id="_form" name="_form"> 
+	<div style="width:100%; position: absolute; z-index:99; margin-top:-6px">
+		<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoChinh.xhtml" />
+	</div>
+	<table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+	<tr>
+    	<td colspan="3" height="50px">
+    		<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    			<tr>
+    				<td height="50px" width="350px" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    					<h:graphicImage value="../../images/white_light.gif" width="43" height="16" />
+    					CHỈNH SỬA PHÂN LOẠI THUỐC   
+    				</td> 
+    				<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" border="0">
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    								
+    							</td>
+    						</tr>
+    						
+    					</table> 
+    				</td>
+    			</tr>
+    		</table>			
+    	</td>    		    	
+	</tr>    
+    <tr>
+    	<td width="13px" height="12px" class="mytdl"></td>
+    	<td style="background-color: #c9daea;" width="965px" height="12px" ></td>
+    	<td width="11px" height="12px" class="mytdr"></td>
+    </tr> 
+    <tr>
+    	<td colspan="3" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 5px" width="100%" >
+    		<table width="100%">
+    			<tr align="center">
+			    	<td>
+			    		<a4j:outputPanel id="message_infor">
+							<tr>
+								<td>
+									<h:messages style="color:Red;font-weight:bold;font-style:italic;text-decoration:none;"/>
+								</td>
+							</tr>
+						</a4j:outputPanel>
+			    	</td>
+			    </tr>
+			    </table>
+			    <table style=" margin-left:60px;" width="90%">
+    			<tr>
+    				
+    				<td><h:outputText value="Mã"/></td>
+    				<td><h:inputText id="__ma" value="#{B4168_Nhomhang_Edit.nhomhang.dmphanloaithuocMa}" style="width:200px;" styleClass="myinput" readonly="true" maxlength="8"/>
+    					<h:outputText value="*" style="color:red;margin-left:2px;"/>
+    				</td>
+    				
+    				<td><h:outputText style="margin-left:52px;" value="Tên"/></td>
+    				<td><h:inputText id="__ten" value="#{B4168_Nhomhang_Edit.nhomhang.dmphanloaithuocTen}" tabindex="1" style="width:200px;" styleClass="myinput"/>
+    					<h:outputText value="*" style="color:red;margin-left:2px;"/>
+    				</td>
+
+    			</tr>
+    			<tr>
+ 					<td><h:outputText value="Loại thuốc" /></td>
+    				<td><h:selectOneMenu tabindex="2" style="width: 200px" value="#{B4168_Nhomhang_Edit.nhomhang.getDmloaithuocMaso(true).dmloaithuocMaso}">
+    						<f:selectItems value="#{B4168_Nhomhang_Edit.listLoaiThuocs}" id="_loaithuoc"/>
+    					</h:selectOneMenu>
+    				</td>
+    			<td><h:outputText style="margin-left:52px;" tabindex="3" value="Kho chỉ định phát thuốc" /></td>
+    				<td><h:selectOneMenu style="width: 200px" value="#{B4168_Nhomhang_Edit.nhomhang.dmphanloaithuocNhom2}">
+    						<f:selectItems value="#{B4168_Nhomhang_Edit.listKhoPhats}"/>
+    					</h:selectOneMenu>
+    				</td>
+    			</tr>
+    			
+    			<tr>
+    				<td><h:outputText value="Hiển thị" /></td>
+    				<td><h:selectBooleanCheckbox  style="width: 20px" value="#{B4168_Nhomhang_Edit.nhomhang.dmphanloaithuocDt}"/></td>
+    				<td><h:outputText style="margin-left:52px;" value="Làm tròn khi tổng hợp thuốc" /></td>
+    				<td> <h:selectBooleanCheckbox tabindex="6" style="width: 20px" value="#{B4168_Nhomhang_Edit.lamtron}" id="__lamtronTHThuoc"/>  					    					
+    				</td> 				
+    			</tr>				
+    	</table>   		
+    	</td>    	
+    </tr>
+    
+    <tr>
+    	<td colspan="3" style="background-color: #c9daea; padding-top: 5px; padding-bottom: 10px" width="100%" >
+    		<table width="100%">
+    			<tr align="center">
+    				<td align="right">
+    					<a4j:commandButton styleClass="mybton_b" value="Ghi nhận" id="__ghinhan" style="cursor:pointer;margin:0 30 0 0px;"
+    						onclick="if (!checkInput()) return false;"
+    						action="#{B4168_Nhomhang_Edit.save}"
+    						oncomplete="oncompleteGhinhan();"
+    						reRender="message_infor"/>
+    				</td>
+    				<td align="left">
+    					<a4j:commandButton styleClass="mybton_b" value="Quay lại" id="__quaylai" style="cursor:pointer;margin:0 30 0 0px;" action="/B4_Duocpham/KhoChinh/B4168_nhomhang" />
+    				</td>
+    			</tr>
+    		</table>   		
+    	</td>    	
+    </tr>
+</table>
+</h:form>
+<!-- <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/duocpham/B4168_Nhomhang_Edit_gears.js"></script> -->
+<script>
+function init(){
+	setInfo();
+}
+
+function setInfo(){	
+	document.getElementById(prefix_component + '__ma').focus();
+}
+
+function iesvn_Required() {
+	this.aa = new Array(prefix_component + "__ma", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Mã phân loại thuốc'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+	this.ab = new Array(prefix_component + "__ten", "<h:outputFormat value='#{msg.common_requireField}'> <f:param value='Tên phân loại thuốc'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+}
+
+function checkInput(){
+	var form = document.forms[0];
+	var valid = true;
+	valid = iesvn_ValidateRequired(form);	
+    return valid;
+}
+
+function oncompleteGhinhan(){
+	//LoadCatalogFromServer_each(DmThuoc,"GetDanhMucThuocAction");
+	document.getElementById(prefix_component + '__ten').focus();
+}
+
+function oncompleteNhapmoi(){
+	document.getElementById(prefix_component + '__ten').focus();
+}
+</script>
+</ui:define> 
+</ui:composition>
+
+

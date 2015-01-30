@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich">
+
+<ui:define name="thongtinbhyt">	
+	<!-- Bat dau -->
+	<table width="778px" cellpadding="0" cellspacing="0" border="1">
+		<tr style="height: 25px;background-color: #ffffff;">
+    					<td align="right" style="width: 14%">
+    						<h:outputText value="BHYT:" styleClass="mytext_b" />
+    						<h:outputText value="Số thẻ" styleClass="mytext" style="margin-left: 5px; margin-right: 5px"/>
+    					</td>
+    					<td align="left">    						
+    						<h:inputText value="" tabindex="31" 
+    						id="TIEPDON_SOTHEBH" name="_TIEPDON_SOTHEBH" style=" width : 130px;" maxlength="15" styleClass="myinput" 
+    						onchange='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,"");  if (document.getElementById(prefix_component + "BENHNHAN_HOTEN").value == "") {checkSothe =true;sendId_TD(this.value,"GetBenhNhanFromTheBHAction");setCurrentHourDateFromGetTDFromBHYT(); }'
+    						onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); setMaKhoi();checkSoTheBHYT();testBHYTTrungTrongNgay(false);'
+    						/> 
+    					
+    					
+    						<h:outputText value="Đối tượng BHYT" styleClass="mytext" style="margin-left: 30px; margin-right: 5px"/>    					    					 	
+    					 	<h:inputText value="" id="KHOIBHYT_MA" name="_KHOIBHYT_MA" style=" width : 40px" 
+    					 		onblur="myOnblurTextbox(this.id,'DT_DM_KHOI_BHYT');" maxlength="10" tabindex="32" styleClass="myinput" />
+    					 	<span id="DT_DM_KHOI_BHYT_span"/>
+    					 	<input id="DT_DM_KHOI_BHYT" name="DT_DM_KHOI_BHYT" tabindex="33" style="width: 326px;"/>    					 	
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;background-color: #ffffff;">
+    					<td align="right">
+    						<h:outputText value="Tỉnh cấp" styleClass="mytext" style="margin-left: 10px; margin-right: 5px"/>
+    					</td>
+    					<td align="left">    	
+    						<h:inputHidden id="TINHBHYT_MA_pk" />					    						    					
+    						<h:inputText value="" id="TINHBHYT_MA" name="TINHBHYT_MA" style="width: 40px" onblur="myOnblurTextboxTinhBHYT(this.id,'DM_TINH__2')" 
+    						onchange="document.getElementById(prefix_component+'KCBBHYT_MA').value='';myOnblurTextbox(prefix_component + 'KCBBHYT_MA', 'DM_BENH_VIEN');"
+    						maxlength="10" tabindex="64" styleClass="myinput" />
+    					 	<span id="DM_TINH2_span"/>
+    					 	<input id="DM_TINH__2" name="DM_TINH__2" tabindex="65" style="width: 125px;"/>
+    					 	
+    					 	<h:outputText value="Nơi ĐK KCB" styleClass="mytext" style="margin-left: 10px; margin-right: 5px"/>
+    						<h:inputText value="" id="KCBBHYT_MA" name="_KCBBHYT_MA" style="width: 40px" 
+    						onblur="myOnblurTextboxDmNoiDKKCBBD(this.id,'DM_BENH_VIEN',document.getElementById(prefix_component+'TINHBHYT_MA').value)" maxlength="10" tabindex="66" styleClass="myinput" />
+    					 	<span id="DM_BENH_VIEN_span"/>
+    					 	<input id="DM_BENH_VIEN"  alt="getDmBenhVien_search_with_tinh(document.getElementById('DM_BENH_VIEN').value,document.getElementById(prefix_component+'TINHBHYT_MA').value)"  name="DM_BENH_VIEN" tabindex="67" style="width: 326px;"/>
+    					 	
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;background-color: #ffffff;">
+    					<td align="right">
+    						<h:outputText value="Giá trị thẻ:" styleClass="mytext_b" style="margin-left:0px;" />
+    						<h:outputText value="Từ" styleClass="mytext" style="margin-left: 5px;margin-right: 5px;" />
+    					</td>
+    					<td align="left">
+    						<h:inputText onkeypress="return being_wellformed_Date(this, event)" 
+    						onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); return checkForGiaTri1(this)' tabindex="40" type="text" id="TIEPDON_GIATRI1" name="_TIEPDON_GIATRI1" maxlength="10" style=" width : 70px;" class="myinput"/><a hideFocus="true" href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + 'TIEPDON_GIATRI1'));return false;" ><h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/></a>
+    						<h:outputText value="Đến" styleClass="mytext" style="margin-left: 22px; margin-right: 5px"/>
+    						
+    						<h:inputText onkeypress="return being_wellformed_Date(this, event)" 
+    						onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); return checkForGiaTri2(this)' tabindex="41" type="text" id="TIEPDON_GIATRI2" name="_TIEPDON_GIATRI2" maxlength="10" style=" width : 70px;" class="myinput"/><a hideFocus="true" href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + 'TIEPDON_GIATRI2'));return false;" ><h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/></a>    						
+    						
+    						<h:outputText value="Giá trị tại BV:" styleClass="mytext_b" style="margin-left:38px;" />
+    						<h:outputText value="Từ" styleClass="mytext" style="margin-left: 5px;margin-right: 5px;" />    						    						    						
+    						<h:inputText onkeypress="return being_wellformed_Date(this, event)" 
+    						onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); return is_wellformed_Date(this)' tabindex="42" type="text" id="TIEPDON_GIATRI3" name="_TIEPDON_GIATRI3" maxlength="10" style=" width : 70px;" class="myinput"/><a hideFocus="true" href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + 'TIEPDON_GIATRI3'));return false;" ><h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/></a>
+    						<h:outputText value="Đến" styleClass="mytext" style="margin-left: 10px; margin-right: 5px"/>
+
+    						<h:inputText onkeypress="return being_wellformed_Date(this, event)" 
+    						onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); return is_wellformed_Date(this)' tabindex="43" type="text" id="TIEPDON_GIATRI4" name="_TIEPDON_GIATRI4" maxlength="10" style=" width : 70px;" class="myinput"/><a hideFocus="true" href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + 'TIEPDON_GIATRI4'));return false;" ><h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/></a>
+
+    						
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;background-color: #ffffff;">
+    					<td align="right">    						
+    						<h:outputText value="Mốc 1" styleClass="mytext" style="margin-left:5px;margin-right: 5px;" />    						    					    						    						
+    					</td>
+    					<td align="left">    					    						    						    						
+	    					<h:inputText onkeypress="return being_wellformed_Date(this, event)" 
+	    					onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); return is_wellformed_Date(this)' tabindex="44" type="text" id="TIEPDON_MOC1" name="TIEPDON_MOC1" maxlength="10" style="width: 70px;" class="myinput" /><a hideFocus="true" href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + 'TIEPDON_MOC1'));return false;" style="text-decoration:none;" >
+	    						<h:graphicImage value="/resources/calendar/cal.gif" style="margin: 0px 0px -3px 0" border="0" name="popcal"/>
+	    					</a>
+	    					
+	    					<h:outputText value="Mốc 2" styleClass="mytext" style="margin-left: 10px;margin-right: 5px;" />
+	    					<h:inputText onkeypress="return being_wellformed_Date(this, event)" 
+	    					onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); return is_wellformed_Date(this)' tabindex="45" type="text" id="TIEPDON_MOC2" name="TIEPDON_MOC2" maxlength="10" style="width: 70px;margin-right:-3px" class="myinput"/>
+	    					<a hideFocus="true" href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + 'TIEPDON_MOC2'));return false;" style="text-decoration:none;" >
+	    						<h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/>
+	    					</a>   
+	    					<h:outputText value="Mốc 3" styleClass="mytext" style="margin-left: 95px;margin-right: 5px;" />
+	    					<h:inputText onkeypress="return being_wellformed_Date(this, event)" 
+	    					onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); return is_wellformed_Date(this)' tabindex="46" type="text" id="TIEPDON_MOC3" name="TIEPDON_MOC3" maxlength="10" style="width: 70px;margin-right:-3px" class="myinput"/>
+	    					<a hideFocus="true" href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + 'TIEPDON_MOC3'));return false;" style="text-decoration:none;" >
+	    						<h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/>
+	    					</a>  
+	    				</td>
+    				</tr>    	
+    				<tr style="height: 25px;background-color: #ffffff;">
+    					<td align="right">
+    						
+    						<h:outputText value="Cơ quan" styleClass="mytext" style="margin-left:5px; margin-right: 5px"/>
+    						 								
+    					</td>
+    					<td>
+	    						<h:inputText value="" tabindex="47" id="TIEPDON_MACOQUAN" name="_TIEPDON_MACOQUAN" style=" width : 445px;" maxlength="1024" styleClass="myinput"/> 		    										
+    						
+	    				</td>
+    				</tr>				    				    				    				
+    				<tr style="height: 25px;background-color: #ffffff;">
+    					<td align="right">
+    						<h:outputText value="Số thẻ TE" styleClass="mytext" style="margin-left: 11px; margin-right: 5px"/>    								
+    					</td>
+    					<td>
+	    					<h:inputText value="" maxlength="16" tabindex="48" id="TIEPDON_SOTHETE" name="_TIEPDON_SOTHETE" style="width:130px;" styleClass="myinput"/>		    						
+    						<h:outputText value="Khai sinh" styleClass="mytext" style="margin-right: 5px;margin-left:126px;"/>
+    						<h:inputText value="" maxlength="15" tabindex="49" id="TIEPDON_KHAISINH" name="_TIEPDON_KHAISINH" style="width:130px;;" styleClass="myinput"/>    						    					
+    					</td>
+    				</tr>	    				
+    				<tr style="height: 25px;background-color: #ffffff;">
+    					<td align="right">
+    						<h:outputText value="Chứng sinh" styleClass="mytext" style="margin-left: 0px; margin-right: 5px"/>    						
+    					</td>
+    					<td align="left">
+    						<h:inputText value="" maxlength="20" tabindex="50" id="TIEPDON_CHUNGSINH" name="_TIEPDON_CHUNGSINH" style=" width:130px;" styleClass="myinput"/>
+    						<h:outputText value="Thẻ nghèo" styleClass="mytext" style="margin-left: 119px; margin-right: 5px"/>
+    						<h:inputText value="" maxlength="18" tabindex="51" id="TIEPDON_THENGHEO" name="_TIEPDON_THENGHEO" style="width:130px;" styleClass="myinput"/>
+    						   
+    						<h:outputText value="Có giấy chuyển viện" styleClass="mytext" style="margin-left: 50px;"/>										
+						<h:selectBooleanCheckbox  title="Có giấy chuyển viện" label="Có giấy chuyển viện" 
+						id="TIEPDON_CO_GIAY_GIOI_THIEU_TEMP"   style="margin-left: 5px;"  tabindex="52">
+						</h:selectBooleanCheckbox> 
+						
+						<h:inputHidden id="TIEPDON_CO_GIAY_GIOI_THIEU"/>  						
+    					</td>
+    				</tr>
+    				    				
+    				<tr style="height: 40px;background-color: #ffffff;">    					
+    					<td  align="left" style="padding-left:270px;" colspan="3">    	
+    			
+    			<input id="__ghinhan" name="_ghinhan" 
+    			type="button" value="Ghi nhận" style="width: 70px; margin-right: 3px;" class="button" 
+    			onclick="luuTruGiaTriClientDefaultForBanKham();setSave(); testBHYTTrungTrongNgay(true);" tabindex="53" />
+    		
+    			<input id="__nhaplai" name="_nhaplai"  type="button" value="Nhập mới" 
+    			style="width: 70px; margin-right: 3px;" class="button" tabindex="54" onclick="setCancel(); sua_lai_event();" />
+    		
+    			<input id="__huykham" name="_huykham"  value="Hủy khám" style="width: 70px;" 
+    			type="button" class="button" tabindex="55" onclick="setSave(); huy_kham_event();" 
+    			/>
+    		
+    
+    	
+    	</td>
+    	</tr> 
+	</table>
+	<!-- Ket thuc -->
+</ui:define>
+</ui:composition>
+

@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	template="/layout/mytemplate.xhtml"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+	<ui:define name="body">
+
+		<script type="text/javascript">
+		var popupwd = null;
+		function popup(url) 
+		{
+			if(!searchAction())
+			{
+				return;
+			}
+ 			var width  = 770;
+ 			var height = 300;
+ 			var left   = (screen.width  - width)/2;
+ 			var top    = (screen.height - height)/2;
+ 			var params = 'width='+width+', height='+height;
+ 			params += ', top='+top+', left='+left;
+ 			params += ', directories=no';
+ 			params += ', location=no';
+ 			params += ', menubar=no';
+ 			params += ', resizable=no';
+ 			params += ', scrollbars=no';
+ 			params += ', status=no';
+ 			params += ', toolbar=no';
+ 			popupwd=window.open(url,'windowname5', params);
+ 			if (window.focus) {popupwd.focus()}
+ 			return false;
+		}
+		function enterToTab(){
+          	if((document.getElementById(prefix_component +"__ghinhan").alt != 1) &amp;&amp; (document.getElementById(prefix_component +"__huykham").alt != 1)) {
+                 if(window.event.keyCode == 13){
+                        window.event.keyCode = 9;
+                  }
+         	}
+		} 
+	</script>
+
+		<body onkeydown="enterToTab();">
+		<h:form id="_form" name="_form">
+			<div style="width: 778px; position: absolute"><ui:include
+				src="/layout/mymenu_YTDT_TiepDon.xhtml" /></div>
+			<table style="margin-top: 20px" cellspacing="0" cellpadding="0"
+				border="0" width="777">
+				<tr>
+					<td colspan="3" height="50px">
+					<table cellspacing="0" cellpadding="0" border="0" width="100%">
+						<tr>
+							<td height="50px" width="35%"
+								style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;">
+							<h:graphicImage value="/images/white_light.gif" width="43"
+								height="16" /> TÌM KIẾM BỆNH NHÂN</td>
+							<td valign="top">
+							<table cellspacing="0" cellpadding="0" width="100%">
+								<tr>
+									<td
+										style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;"
+										valign="bottom">&#160;</td>
+								</tr>
+							</table>
+							</td>
+						</tr>
+					</table>
+					</td>
+				</tr>
+				<tr>
+					<td width="13px" height="12px" class="mytdl"></td>
+					<td style="background-color: #c9daea;" width="965px" height="12px">
+					</td>
+					<td width="11px" height="12px" class="mytdr"></td>
+				</tr>
+				<tr>
+					<td colspan="3"
+						style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px" width="100%"><!-- Main Area -->
+					<table cellspacing="0" cellpadding="0" border="0" width="97%" align="center">
+
+						<tr style="height: 25px;">
+							<td align="right" style="width: 12%; padding-right: 5px">
+								<h:outputText value="Mã bệnh nhân" styleClass="mytext" style="margin-left: 0px;" />
+							</td>
+							<td align="left" style="width: 61%; padding-left: 0px" colspan="3">
+								<h:inputText maxlength="17" value="#{B113_Timkiembenhnhan.benhNhan.benhnhanMa}" tabindex="1" id="__mabenhnhan" name="_mabenhnhan" style=" width : 100px;" styleClass="myinput" />
+								<h:outputText value="Họ" styleClass="mytext" style="margin-left:10px;margin-right:5px;padding-top:3px;" />
+								<h:inputText value="" tabindex="2" id="__ho" name="_ho" style=" width : 127px;" styleClass="myinput" />
+								<h:outputText value="Tên" styleClass="mytext" style="margin-left:10px;margin-right:5px;padding-top:3px;" />
+								<h:inputText value="" tabindex="3" id="__ten" name="_ten" style=" width : 127px;" styleClass="myinput" />
+								<h:outputText value="Mã tiếp đón" styleClass="mytext" style="margin-left:10px;" />
+								<h:inputText maxlength="17" value="#{B113_Timkiembenhnhan.tiepDon.tiepdonMa}" tabindex="4" id="__matiepdon" name="_matiepdon" style=" width : 100px; margin-left:7px;" styleClass="myinput" />
+							</td>
+						</tr>
+
+
+					</table>
+					</td>
+				</tr>
+
+				<tr>
+					<td colspan="3"
+						style="background-color: #ffffff; border-right: solid 1px #00529c; border-left: solid 1px #00529c; border-bottom: solid 1px #00529c; padding-top: 10px; padding-bottom: 15px" width="100%" ><!-- Main Area -->
+					<table cellspacing="0" cellpadding="0" border="0" width="97%"
+						align="center">
+						<tr style="height: 25px;">
+						
+							<td align="right" style="padding-right:5px;">
+								<h:outputText value="Họ tên" styleClass="mytext" />
+							</td>
+							
+							<td align="left">
+							
+							<table cellspacing="0" cellpadding="0" border="0" width="100%">
+							<tr>
+								<td>
+									<h:inputText readonly="true" value="#{B113_Timkiembenhnhan.benhNhan.benhnhanHoten}" id="__hoten" name="_hoten" style=" width : 196px;" styleClass="myinput" />
+									<h:outputText value="Giới tính" styleClass="mytext" style="margin-left:15px;padding-top:3px;" />
+								</td>
+								
+								<td>
+									<h:selectOneRadio disabled="true" value="#{B113_Timkiembenhnhan.formatGtBenhNhan(B113_Timkiembenhnhan.benhNhan.dmgtMaso.dmgtMa)}" id="__gioitinh" style="float:left;" readonly="true">
+										<f:selectItem id="__gtnam" itemValue="nam" itemLabel="Nam&#160;&#160;" styleClass="mycheck" />
+										<f:selectItem id="__gtnu" itemValue="nu" itemLabel="Nữ" styleClass="mycheck" />
+									</h:selectOneRadio> 
+									<h:outputText value="Ngày sinh" styleClass="mytext" style="margin-left:30px;margin-right:5px;" /> 
+									<h:inputText value="#{B113_Timkiembenhnhan.formatDate(B113_Timkiembenhnhan.benhNhan.benhnhanNgaysinh)}" readonly="true" type="text" id="__ngaysinh" name="_ngaysinh" maxlength="10" style=" width : 70px;" class="myinput" />
+									<h:outputText value="Tuổi" styleClass="mytext" style="margin-left: 7px; margin-right: 5px;" /> 
+									<h:inputText value="#{B113_Timkiembenhnhan.benhNhan.benhnhanTuoi}" id="__tuoi" name="_tuoi" style=" width : 30px;" styleClass="myinput" readonly="true" />
+								</td>
+							</tr>
+							</table>
+							
+							</td>
+							
+						</tr>
+
+						<tr style="height: 25px;">
+							<td align="right" style="padding-right: 5px"><h:outputText
+								value="Dân tộc" styleClass="mytext" /></td>
+							<td align="left"><h:inputText
+								value="#{B113_Timkiembenhnhan.benhNhan.dantocMa.dmdantocMa}"
+								id="DANTOC_MA" style=" width : 30px;" styleClass="myinput"
+								readonly="true" /> <span id="DM_DAN_TOC_span" /> <input
+								id="DM_DAN_TOC" name="DM_DAN_TOC" style="width: 160px;"
+								class="mycbogear" readonly="true" /> <h:inputHidden
+								id="__namsinhHid"
+								value="#{B113_Timkiembenhnhan.benhNhan.benhnhanNamsinh}" /> <h:outputText
+								value="Đối tượng" styleClass="mytext"
+								style="margin-left: 75px;margin-right:5px;" /> <h:inputText
+								value="#{B113_Timkiembenhnhan.tiepDon.doituongMa.dmdoituongMa}"
+								id="DOITUONG_MA" style=" width : 30px;" styleClass="myinput"
+								readonly="true" /> <span id="DM_DOI_TUONG_span" /> <input
+								id="DM_DOI_TUONG" name="DM_DOI_TUONG" style="width: 237px;"
+								class="mycbogear" readonly="true" /></td>
+						</tr>
+						<tr style="height: 25px;">
+							<td align="right" style="padding-right: 5px"><h:outputText
+								value="Địa chỉ" styleClass="mytext" /></td>
+							<td align="left"><h:inputText
+								value="#{B113_Timkiembenhnhan.benhNhan.tinhMa.dmtinhMa}"
+								id="TINH_MA" style="width : 30px;" styleClass="myinput"
+								readonly="true" /> <span id="DM_TINH_span" /> <input
+								id="DM_TINH" name="DM_TINH"
+								style="width: 160px; margin-right: 3px;" class="mycbogear"
+								readonly="true" /> <h:inputText
+								value="#{B113_Timkiembenhnhan.benhNhan.huyenMa.dmhuyenMa}"
+								id="HUYEN_MA" style="width : 40px;" styleClass="myinput"
+								readonly="true" /> <span id="DM_HUYEN_span" /> <input
+								id="DM_HUYEN" name="DM_HUYEN"
+								style="width: 150px; margin-right: 3px;" class="mycbogear"
+								readonly="true" /> <h:inputText
+								value="#{B113_Timkiembenhnhan.benhNhan.xaMa.dmxaMa}" id="XA_MA"
+								style="width: 50px;" styleClass="myinput" readonly="true" /> <span
+								id="DM_XA_span" /> <input id="DM_XA" name="DM_XA"
+								style="width: 150px;" class="mycbogear" readonly="true" /></td>
+
+						</tr>
+						<tr style="height: 25px;">
+							<td align="right" style="padding-right: 5px">&#160;</td>
+							<td align="left"><h:inputText
+								value="#{B113_Timkiembenhnhan.benhNhan.benhnhanDiachi}"
+								id="__sonhaduong" name="_sonhaduong" style=" width :397px;"
+								styleClass="myinput" readonly="true" /></td>
+
+						</tr>
+						<tr style="height: 25px;">
+							<td align="right" style="padding-right: 5px;"><h:outputText
+								value="BHYT:" styleClass="mytext_b" style="margin-right:5px;" />
+							<h:outputText value="Số thẻ" styleClass="mytext"
+								style="margin-left: 5px;" /></td>
+							<td align="left"><h:inputText readonly="true"
+								value="#{B113_Timkiembenhnhan.tiepDon.tiepdonSothebh}"
+								id="__sothe" name="_sothe" style=" width : 130px;"
+								styleClass="myinput" /> <h:outputText value="Đối tượng BHYT"
+								styleClass="mytext" style="margin-left: 22px;margin-right:5px;" />
+							<h:inputText readonly="true"
+								value="#{B113_Timkiembenhnhan.tiepDon.getKhoibhytMa(true).dtdmkhoibhytTen}"
+								id="__khoi" name="_khoi" style=" width : 360px;"
+								styleClass="myinput" /></td>
+
+						</tr>
+						<tr style="height: 25px;">
+							<td align="right" style="padding-right: 5px"><h:outputText
+								value="Tỉnh cấp" styleClass="mytext"
+								style="margin-left: 15px;" /></td>
+							<td align="left"><h:inputText readonly="true"
+								value="#{B113_Timkiembenhnhan.tiepDon.getTinhbhytMa(true).dmtinhTen}"
+								id="__tinhbhyt" name="_tinhbhyt" style=" width : 130px;"
+								styleClass="myinput" /> 
+								<h:outputText value="Nơi ĐK KCB" style="margin-left: 43px; margin-right: 5px" styleClass="mytext" /> 
+								<h:inputText readonly="true"
+								value="#{B113_Timkiembenhnhan.tiepDon.getKcbbhytMa(true).dmbenhvienMa}"
+								id="KCB_BHYT_MA" style=" width : 50px;" styleClass="myinput" />
+							<span id="DT_DM_KHOI_BHYT_span" /> <input readonly="true"
+								id="DM_BENH_VIEN" name="DM_BENH_VIEN" style="width: 305px;"
+								class="mycbogear" /></td>
+						</tr>
+						<tr style="height: 25px;">
+							<td align="right" style="padding-right: 5px;"><h:outputText
+								value="Khai sinh" styleClass="mytext" /></td>
+							<td align="left"><h:inputText readonly="true"
+								value="#{B113_Timkiembenhnhan.tiepDon.tiepdonKhaisinh}"
+								id="__khaisinh" name="_khaisinh" style=" width : 130px;"
+								styleClass="myinput" /> <h:outputText value="Chứng sinh"
+								styleClass="mytext" style="margin-left: 46px;margin-right:5px;" />
+							<h:inputText readonly="true"
+								value="#{B113_Timkiembenhnhan.tiepDon.tiepdonChungsinh}"
+								id="__chungsinh" name="_chungsinh" style=" width : 150px;"
+								styleClass="myinput" /><h:outputText value="Số thẻ TE"
+								styleClass="mytext" style="margin-left: 25px;margin-right:5px;" />
+							<h:inputText readonly="true"
+								value="#{B113_Timkiembenhnhan.tiepDon.tiepdonSothete}"
+								id="__sothete" name="_sothete" style=" width : 94px;"
+								styleClass="myinput" /></td>
+						</tr>
+						<tr style="height: 25px;">
+							<td align="right" style="padding-right: 0px"><h:outputText
+								value="Thời gian giá trị:" styleClass="mytext_b" /> <h:outputText
+								value="Từ" styleClass="mytext" style="margin:0 5px;" /></td>
+							<td align="left"><h:inputText
+								value="#{B113_Timkiembenhnhan.formatDate(B113_Timkiembenhnhan.tiepDon.tiepdonGiatri1)}"
+								readonly="true" type="text" id="__tungaydt" name="_tungaydt"
+								maxlength="10" style=" width : 70px;" class="myinput" /><a
+								hideFocus="true"><h:graphicImage
+								value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0"
+								border="0" name="popcal" /></a><h:outputText value="Đến"
+								styleClass="mytext" style="margin-left:20px;margin-right:5px;"/>
+							<h:inputText
+								value="#{B113_Timkiembenhnhan.formatDate(B113_Timkiembenhnhan.tiepDon.tiepdonGiatri2)}"
+								readonly="true" type="text" id="__denngaydt" name="_denngaydt"
+								maxlength="10" style=" width : 70px;" class="myinput" /><a
+								hideFocus="true"><h:graphicImage
+								value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0"
+								border="0" name="popcal" /></a></td>
+						</tr>
+						<tr style="height: 25px;">
+							<td align="right" style="padding-right: 5px;"><h:outputText
+								value="Cơ quan" styleClass="mytext" /></td>
+							<td align="left" colspan="2"><h:inputText readonly="true"
+								value="#{B113_Timkiembenhnhan.tiepDon.tiepdonMacoquan}"
+								id="__coquan" name="_coquan" style=" width : 397px;"
+								styleClass="myinput" /></td>
+						</tr>
+						<tr style="height: 25px;">
+							<td align="right" style="padding-right: 5px;"><h:outputText
+								value="Thẻ nghèo" styleClass="mytext" /></td>
+							<td align="left" colspan="3"><h:inputText readonly="true"
+								value="#{B113_Timkiembenhnhan.tiepDon.tiepdonThengheo}"
+								id="__thengheo" name="_thengheo" style=" width : 130px;"
+								styleClass="myinput" /></td>
+						</tr>
+						<tr style="height: 35px;">
+							<td align="left" valign="bottom" style="padding-left: 300px;"
+								colspan="3"><a4j:commandButton tabindex="3" id="__ghinhan"
+								name="_ghinhan" value="Tìm kiếm" type="button"
+								oncomplete="highlightOnFocus();"
+								style=" width :70px; margin-right: 3px;" styleClass="mybton_b"
+								onclick="popup('#{facesContext.externalContext.requestContextPath}/danhsachbenhnhan.seam')" />
+
+							<a4j:commandButton tabindex="5" id="__huykham" name="_huykham"
+								value="Nhập mới" style="width: 70px;" styleClass="mybton_b"
+								action="#{B113_Timkiembenhnhan.resetValue}" type="button"
+								reRender="__namsinhHid,__mabenhnhan,__hoten,__ho,__ten,__gioitinh,__tuoi,__ngaysinh,DANTOC_MA,__matiepdon,DOITUONG_MA,TINH_MA,HUYEN_MA,XA_MA,__sonhaduong,__tylebnvhitra,__nam,__tinhbhyt,__khoi,__coquan,__sothe,__sothete,__khaisinh,__chungsinh,__thengheo,__tungaydt,__denngaydt,KCB_BHYT_MA,__tuyen"
+								oncomplete="myOnblurTextbox(prefix_component + 'KCB_BHYT_MA','DM_BENH_VIEN');highlightOnFocus();onCompleteChonLai();"
+								focus="__mabenhnhan" /></td>
+
+
+
+						</tr>
+					</table>
+
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3"
+						style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px"
+						width="100%"><!-- Main Area --></td>
+				</tr>
+			</table>
+			<h:inputHidden id="result" />
+			<a4j:commandButton style="display: none" id="refresh"
+				onclick="popupwd.close();" action="#{B113_Timkiembenhnhan.refresh}"
+				reRender="__namsinhHid,__mabenhnhan,__hoten,__ho,__ten,__gioitinh,__tuoi,__ngaysinh,DANTOC_MA,__matiepdon,DOITUONG_MA,TINH_MA,HUYEN_MA,XA_MA,__sonhaduong,__tylebnvhitra,__nam,__tinhbhyt,__khoi,__coquan,__sothe,__sothete,__khaisinh,__chungsinh,__thengheo,__tungaydt,__denngaydt,KCB_BHYT_MA,__tuyen"
+				oncomplete="onCompleteRefresh()" focus="__mabenhnhan" />
+
+		</h:form>
+		</body>
+		<script type="text/javascript"
+			src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/tiepdon/B113_Timkiembenhnhan_gears.js"></script>
+	</ui:define>
+</ui:composition>
+
+

@@ -1,0 +1,377 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                xmlns:rich="http://richfaces.org/rich"
+                template="/layout/mytemplate.xhtml">
+
+    <ui:define name="body">
+        <f:loadBundle basename="com.iesvn.yte.UIResources" var="msg" />
+
+        <script type="text/javascript">
+        var bCancel = false;
+		
+        function iesvn_Required() {
+        //this.a1 = new Array(prefix_component + "TAMUNGKHAM_NGAY", "<h:outputFormat value='#{msg.common_requireField}'><f:param value='#{msg.Ngay}' /></h:outputFormat>", new Function ("varName",  "return this[varName];"));
+        this.a2 = new Array(prefix_component + "TIEPDON_MA", "<h:outputFormat value='#{msg.common_requireField}'><f:param value='#{msg.Ma_tiep_don}' /></h:outputFormat>", new Function ("varName",  "return this[varName];"));
+        this.a3 = new Array(prefix_component + "TAMUNGKHAM_SOTIEN", "<h:outputFormat value='#{msg.common_requireField}'><f:param value='#{msg.Tam_ung}' /></h:outputFormat>", new Function ("varName",  "return this[varName];"));
+        //this.a4 = new Array(prefix_component + "DT_DM_NHAN_VIEN_MA_1", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Thu ngân'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+
+        }
+
+        function iesvn_FloatValidations() {
+        this.a1 = new Array(prefix_component + "TAMUNGKHAM_SOTIEN", "<h:outputFormat value="#{msg.common_float}"><f:param value="#{msg.Tam_ung}" /></h:outputFormat>", new Function ("varName",  "return this[varName];"));
+        }
+        function iesvn_FloatMin () {
+        this.a1 = new Array(prefix_component + "TAMUNGKHAM_SOTIEN", "<h:outputFormat value="#{msg.common_gt_min}"><f:param value="#{msg.Tam_ung}" /><f:param value='0' /></h:outputFormat>", new Function ("varName",  "this.min='0';return this[varName];"));
+        }
+        function iesvn_DateValidations() {
+        //this.a1 = new Array(prefix_component + "TAMUNGKHAM_NGAY", "<h:outputFormat value="#{msg.common_invalidOrUnformatDate}"><f:param value="#{msg.Ngay}" /></h:outputFormat>", new Function ("varName",  "this.datePatternStrict='dd/MM/yyyy';return this[varName];"));
+        }
+        function iesvn_ValidateForm(form) {
+         if (bCancel) {
+                return true;
+         } else {
+                return iesvn_ValidateRequired(form) &amp;&amp; iesvn_ValidateFloat(form) &amp;&amp; iesvn_ValidateFloatMin(form) &amp;&amp; iesvn_ValidateDate(form);
+         }
+        }
+
+        function validGhiNhan() {
+        if (document.getElementById(prefix_component + 'TAMUNGKHAM_MA').value == '') {
+        document.getElementById(prefix_component + 'TAMUNGKHAM_MA_old').value = '';
+        }
+         if((document.getElementById(prefix_component + 'TAMUNGKHAM_MA').value != ''
+                                &amp;&amp; document.getElementById(prefix_component + 'TAMUNGKHAM_MA').value
+                                != document.getElementById(prefix_component + 'TAMUNGKHAM_MA_old').value)
+                || (document.getElementById(prefix_component + 'TIEPDON_MA').value
+                                != document.getElementById(prefix_component + 'TIEPDON_MA_old').value)
+                || !iesvn_ValidateForm(document.forms[0])) {
+                        return false;
+                }
+
+         return true;
+        }
+        var enableEntToTab = true;
+        function setEnableEntToTab(value) {
+            enableEntToTab = value;
+        }
+        function checkMaxLength(field,maxlen) {
+            if(field.value.length >= maxlen){
+                field.value = field.value.substring(0,maxlen);                          }
+        }
+        function enterToTab(){
+			
+        if(
+            (document.getElementById(prefix_component + "__tieptucnhap") == null ||document.getElementById(prefix_component + "__tieptucnhap").alt != 1 ) &amp;&amp;
+            (document.getElementById(prefix_component + "__ghinhan") == null ||document.getElementById(prefix_component + "__ghinhan").alt  != 1 )  &amp;&amp;
+            (document.getElementById(prefix_component + "__inan") == null ||document.getElementById(prefix_component + "__inan").alt  != 1 )
+
+        ) {
+
+
+
+        if(window.event.keyCode == 13 &amp;&amp; enableEntToTab){
+        //alert("statusEnterAnhTabForChon:"+statusEnterAnhTabForChon +","+ "xyz:"+xyz);
+             window.event.keyCode = 9;
+        }
+        }
+        }
+ 
+        </script>
+        <div id="sync_error_display" style="position:absolute; top:20px; left:578px; width:200px; height:50px"/>
+        <div id="ajax_error_display" style="position:absolute; top:40px; left:578px; width:200px; height:50px"/>
+        <body onkeydown="enterToTab();">
+            <h:form id="_form" name="_form">
+                <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_VienPhi_ThuVienPhi.xhtml" /></div>
+                <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+                    <tr>
+                        <td colspan="3" height="50px">
+                            <table cellspacing="0" cellpadding="0" border="0" width="100%" >
+                                <tr>
+                                    <td height="50px" width="40%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >
+                                        <h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+                                        <h:outputText value="#{msg.CAP_NHAT_TIEN_TAM_UNG}"/>
+                                    </td>
+                                    <td valign="top">
+                                        <table cellspacing="0" cellpadding="0" width="100%" >
+                                            <tr>
+                                                <td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+                                                    &#160;
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="13px" height="12px" class="mytdl">
+                        </td>
+                        <td style="background-color: #c9daea;" width="965px" height="12px" >
+                        </td>
+                        <td width="11px" height="12px" class="mytdr">
+                        </td>
+                    </tr>
+                    <tr style=" height : 5px;">
+                        <td width="100%" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 0px" colspan="3" align="center">
+                            <a4j:outputPanel id="__messagesPanel">
+                                <h:messages styleClass="mynull"/>
+                            </a4j:outputPanel>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px" width="100%" >
+                            <!-- Main Area -->
+                            <table cellspacing="0" cellpadding="0" border="0" width="95%" align="center">
+                                <tr style="height: 25px;">
+                                    <td align="right" width="15%">
+                                        <h:outputText value="#{msg.Ngay}" styleClass="mytext" style="margin-left: 5px; margin-right: 5px;display:none;"/>
+                                        <h:outputText value="#{msg.Phieu_so}" styleClass="mytext" style="margin-left: 5px; margin-right: 5px"/>
+                                    </td>
+                                    <td align="left">
+                                        <h:inputText onkeypress="return being_wellformed_Date(this, event)" onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,"");return is_wellformed_Date(this)'  value=""   tabindex="1" id="TAMUNGKHAM_NGAY" name="TAMUNGKHAM_NGAY" maxlength="10" style=" width : 70px;display:none;" class="myinput"  ><s:convertDateTime type="date" pattern="dd/MM/yyyy" /></h:inputText>
+                                        <a hideFocus="true" onclick="gfPop.fPopCalendar(document.getElementById(prefix_component + 'TAMUNGKHAM_NGAY'));document.getElementById(prefix_component + 'TAMUNGKHAM_NGAY').setActive();return false;" href="javascript:void(0)" style="text-decoration:none;" >
+                                            <h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0;display:none;" border="0" name="popcal"/>
+                                        </a>
+                                        <iframe id="gToday:normal:agenda.js" style="Z-INDEX:999;LEFT:-500px;VISIBILITY:visible;POSITION:absolute;TOP:0px" name="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" frameBorder="0" width="180" scrolling="no" height="147"></iframe>
+                                        <h:outputText value="#{msg.Phieu_so}" styleClass="mytext" style="margin-left: 5px; margin-right: 5px;display:none;"/>
+                                        <h:inputHidden  value="#{B3234_CapNhatTienTamUngPCC.getTamUngKham(true).tamungkhamMa}" id="TAMUNGKHAM_MA_old"  />
+                                        <h:inputText  value="#{B3234_CapNhatTienTamUngPCC.getTamUngKham(true).tamungkhamMa}" tabindex="2" id="TAMUNGKHAM_MA" style=" width : 120px;" styleClass="myinput" ><a4j:support event="onblur"  action="#{B3234_CapNhatTienTamUngPCC.layTheoTamUngMa}"  onsubmit="if(document.getElementById(prefix_component + 'TAMUNGKHAM_MA').value == '') return false;" oncomplete="document.getElementById(prefix_component + 'TAMUNGKHAM_SOTIEN').setActive();document.getElementById(prefix_component + 'TAMUNGKHAM_SOTIEN').blur();document.getElementById(prefix_component + '__bangchu').setActive();document.getElementById(prefix_component + '__bangchu').blur();onCompleteGetInfor();" reRender="DT_DM_NHAN_VIEN_1,TIEPDON_MA_old,TAMUNGKHAM_MA_old,BENHNHAN_HOTEN,DMGT_MASO,BENHNHAN_TUOI,BENHNHAN_NGAYSINH,TINH_MA,DMTINH_TEN,HUYEN_MA,DMHUYEN_TEN,XA_MA,DMXA_TEN,BENHNHAN_DIACHI,TIEPDON_SOTHEBH,KCBBHYT_MA,DTDMKCBBHYT_TEN,DANTOC_MA,DMDANTOC_TEN,TIEPDON_TUYEN,HSTHTOAN_HOANUNG,__sodu,TAMUNGKHAM_NGAY,TAMUNGKHAM_SOTIEN,MAPHU,TAMUNGKHAM_MA,TIEPDON_MA,__donViTuoi,__inan,__messagesPanel,__lidonop,__lanTamung" /></h:inputText>
+
+                                        <h:outputText value="#{msg.Thu_ngan}" styleClass="mytext" style="margin-right: 5px; margin-left: 5px;"/>
+                                        <h:inputText readonly="true"  value="#{B3234_CapNhatTienTamUngPCC.nhanVienThungan.dtdmnhanvienTen}" id="DT_DM_NHAN_VIEN_1"  style="width: 230px;" styleClass="myreadonly" onkeydown="return disabledBackSpace();" />
+                                    </td>
+
+
+                                </tr>
+                                <tr style="height: 25px;">
+                                    <td align="right" width="15%">
+                                        <h:outputText value="#{msg.Ma_tiep_don}" styleClass="mytext" style="margin-left: 5px; margin-right: 5px"/>
+
+                                    </td>
+                                    <td align="left">
+                                        <h:inputHidden  value="#{B3234_CapNhatTienTamUngPCC.getTamUngKham(true).getTiepdonMa(true).tiepdonMa}" id="TIEPDON_MA_old" />
+
+                                        <h:inputText  value="#{B3234_CapNhatTienTamUngPCC.getTamUngKham(true).getTiepdonMa(true).tiepdonMa}"   tabindex="3" id="TIEPDON_MA" style=" width : 120px;" styleClass="myinput" >
+                                            <a4j:support event="onblur"  action="#{B3234_CapNhatTienTamUngPCC.layTheoTiepDonMa}"
+                                                         onsubmit="if(this.value == '') return false;"
+                                                         oncomplete="setValueOnComplete();" onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,"");'
+                                                         reRender="__namsinhHid,TIEPDON_MA_old,BENHNHAN_HOTEN,DMGT_MASO,BENHNHAN_TUOI,BENHNHAN_NGAYSINH,TINH_MA,DMTINH_TEN,HUYEN_MA,DMHUYEN_TEN,XA_MA,DMXA_TEN,BENHNHAN_DIACHI,TIEPDON_SOTHEBH,KCBBHYT_MA,DTDMKCBBHYT_TEN,DANTOC_MA,DMDANTOC_TEN,TIEPDON_TUYEN,HSTHTOAN_HOANUNG,__sodu,TIEPDON_MA,ghiNhanException,__donViTuoi,__inan,__messagesPanel,TAMUNGKHAM_MA_old,TAMUNGKHAM_MA,TAMUNGKHAM_SOTIEN,__bangchu,__lanTamung" />
+                                        </h:inputText>
+                                        <h:outputText value="*" styleClass="mynull"	style="margin-left: 2px;" />
+                                        <button name="_goiBN" id="__goiBN" value="Gọi BN" onclick="goiBN('TIEPDON_MA', 'BENHNHAN_HOTEN');" type="button">Gọi BN</button>
+                                        <applet code="com.iesvn.test.testapplet.ClientQuangBaoApplet.class" archive="ClientQuangBao.jar"
+                                                width="1" height="1" id="xyz" name="xyz"></applet>
+
+                                    </td>
+
+
+                                </tr>
+                                <tr style="height: 25px;">
+                                    <td align="right">
+                                        <h:outputText value="#{msg.Ho_ten}" styleClass="mytext" style="margin-left: 5px; margin-right: 5px"/>
+
+                                    </td>
+                                    <td align="left" >
+                                        <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                                            <tr>
+                                                <td align="left" width="15%">
+                                                    <h:inputText value="#{B3234_CapNhatTienTamUngPCC.getTiepDon(true).getBenhnhanMa(true).benhnhanHoten}" readonly="true" id="BENHNHAN_HOTEN" name="BENHNHAN_HOTEN" style="float: left; width : 150px;" styleClass="myreadonly"/>
+
+                                                </td>
+                                                <td align="left" width="38%">
+                                                    <h:outputText value="#{msg.Gioi_tinh}" styleClass="mytext" style="float: left; padding-top:3px; margin-left: 38px; margin-right: 0px;"/>
+                                                    <h:selectOneRadio disabled="true" value="#{B3234_CapNhatTienTamUngPCC.getTiepDon(true).getBenhnhanMa(true).dmgtMaso.dmgtMaso}" id="DMGT_MASO" name="DMGT_MASO">
+                                                        <f:selectItem id="__namItems" itemValue="2" itemLabel="Nam" styleClass="mycheck" />
+                                                        <f:selectItem id="__nuItems" itemValue="1" itemLabel="Nữ" styleClass="mycheck" />
+                                                    </h:selectOneRadio>
+                                                </td>
+                                                <td align="left">
+                                                    <h:outputText value="#{msg.Tuoi}" styleClass="mytext" style=" margin-left: 16px; margin-right:5px;"/>
+                                                    <h:inputText readonly="true"  value="#{B3234_CapNhatTienTamUngPCC.getTiepDon(true).getBenhnhanMa(true).benhnhanTuoi}" id="BENHNHAN_TUOI" name="BENHNHAN_TUOI" style="margin-left: 0px; margin-right: 3px; width : 30px;" styleClass="myreadonly"/>
+
+
+                                                    <h:outputText value="#{B3234_CapNhatTienTamUngPCC.donViTuoi}" id="__donViTuoi" styleClass="mytext" style="margin-left: 5px;margin-right: 5px;"/>
+
+
+                                                    <h:inputHidden id = "__namsinhHid" value= "#{B3234_CapNhatTienTamUngPCC.getTiepDon(true).getBenhnhanMa(true).benhnhanNamsinh}"/>
+
+
+                                                    <h:inputText readonly="true" value="#{B3234_CapNhatTienTamUngPCC.getTiepDon(true).getBenhnhanMa(true).benhnhanNgaysinh}" onkeypress="return being_wellformed_Date(this, event)" onblur="return is_wellformed_Date(this)" id="BENHNHAN_NGAYSINH" name="BENHNHAN_NGAYSINH" maxlength="10" style=" width : 70px;" styleClass="myreadonly"  ><s:convertDateTime type="date" pattern="dd/MM/yyyy" /></h:inputText>
+                                                    <!--
+                                                    <a hideFocus="true" href="javascript:void(0)"  >
+                                                    <h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/>
+                                                    </a>
+                                                    -->
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr style="height: 25px;">
+                                    <td align="right">
+                                        <h:outputText value="#{msg.ia_chi}" styleClass="mytext" style="margin-left: 5px; margin-right: 5px"/>
+
+                                    </td>
+                                    <td  align="left">
+                                        <h:inputText  readonly="true" value="#{B3234_CapNhatTienTamUngPCC.getTiepDon(true).getBenhnhanMa(true).getTinhMa(true).dmtinhMa}" id="TINH_MA" name="TINH_MA" style=" width : 30px" styleClass="myreadonly"  maxlength="10" />
+
+                                        <span id="DM_TINH_span"/>
+                                        <h:inputText readonly="true" value="#{B3234_CapNhatTienTamUngPCC.getTiepDon(true).getBenhnhanMa(true).getTinhMa(true).dmtinhTen}" id="DMTINH_TEN" name="DMTINH_TEN" class="myreadonly" style="width: 150px;margin-right:3px;"/>
+
+                                        <h:inputText readonly="true" value="#{B3234_CapNhatTienTamUngPCC.getTiepDon(true).getBenhnhanMa(true).getHuyenMa(true).dmhuyenMa}" id="HUYEN_MA" name="HUYEN_MA" style=" width : 43px" styleClass="myreadonly" maxlength="10"/>
+
+                                        <span id="DM_HUYEN_span"/>
+                                        <h:inputText readonly="true" class="myreadonly" value="#{B3234_CapNhatTienTamUngPCC.getTiepDon(true).getBenhnhanMa(true).getHuyenMa(true).dmhuyenTen}" id="DMHUYEN_TEN" name="DMHUYEN_TEN"  style="width: 163px; margin-right: 3px"/>
+
+
+                                        <h:inputText  readonly="true" value="#{B3234_CapNhatTienTamUngPCC.getTiepDon(true).getBenhnhanMa(true).getXaMa(true).dmxaMa}" id="XA_MA" name="XA_MA" style=" width : 60px" styleClass="myreadonly" maxlength="10" />
+
+                                        <span id="DM_XA_span"/>
+                                        <h:inputText readonly="true" value="#{B3234_CapNhatTienTamUngPCC.getTiepDon(true).getBenhnhanMa(true).getXaMa(true).dmxaTen}" id="DMXA_TEN" name="DMXA_TEN" class="myreadonly" style="width: 138px;"/>
+
+
+                                    </td>
+                                </tr>
+
+                                <tr style="height: 25px;">
+                                    <td align="right">
+
+                                    </td>
+                                    <td align="left">
+                                        <h:inputText value="#{B3234_CapNhatTienTamUngPCC.getTiepDon(true).getBenhnhanMa(true).benhnhanDiachi}" readonly="true" id="BENHNHAN_DIACHI" name="BENHNHAN_DIACHI" style=" width : 401px;" styleClass="myreadonly" />
+
+                                    </td>
+                                </tr>
+                                <tr style="height: 25px;">
+                                    <td align="right">
+                                        <h:outputText value="#{msg.The_BHYT_ngheo}" styleClass="mytext" style="margin-left: 0px; margin-right: 5px"/>
+
+                                    </td>
+                                    <td align="left">
+                                        <h:inputText value="#{B3234_CapNhatTienTamUngPCC.soTheBH_SoTheNgheo}" readonly="true" id="TIEPDON_SOTHEBH" name="TIEPDON_SOTHEBH" style=" width : 120px;" styleClass="myreadonly"/>
+
+                                        <h:outputText value="#{msg.KCB}" styleClass="mytext" style="margin-left: 38px; margin-right: 5px"/>
+                                        <h:inputText  value="#{B3234_CapNhatTienTamUngPCC.getTiepDon(true).getKcbbhytMa(true).dmbenhvienMa}" name="KCBBHYT_MA" readonly="true" id="KCBBHYT_MA" style="width: 43px;" styleClass="myreadonly"/>
+
+                                        <span id="DT_DM_KCB_BHYT_span" />
+                                        <h:inputText  value="#{B3234_CapNhatTienTamUngPCC.getTiepDon(true).getKcbbhytMa(true).dmbenhvienTen}" readonly="true" id="DTDMKCBBHYT_TEN" name="DTDMKCBBHYT_TEN" style="width: 163px;" styleClass="myreadonly" />
+
+                                        <h:outputText value="#{msg.Dan_toc}" styleClass="mytext" style="margin-left: 21px; margin-right: 5px"/>
+
+                                        <h:inputText  value="#{B3234_CapNhatTienTamUngPCC.getTiepDon(true).getBenhnhanMa(true).getDantocMa(true).dmdantocMa}"
+                                                      name="DANTOC_MA" readonly="true" id="DANTOC_MA" style="width: 30px;" styleClass="myreadonly" />
+
+                                        <span id="DM_DAN_TOC_span"/>
+                                        <h:inputText readonly="true"
+                                                     value="#{B3234_CapNhatTienTamUngPCC.getTiepDon(true).getBenhnhanMa(true).getDantocMa(true).dmdantocTen}"
+                                                     id="DMDANTOC_TEN" name="DMDANTOC_TEN"  style="width: 103px; " styleClass="myreadonly" />
+
+
+                                    </td>
+                                </tr>
+                                <tr style="height: 25px;">
+                                    <td align="right">
+                                        <h:outputText value="#{msg.Tuyen}" styleClass="mytext" style="margin-left: 5px; margin-right: 5px"/>
+
+                                    </td>
+                                    <td align="left">
+                                        <h:inputText readonly="true" value="#{B3234_CapNhatTienTamUngPCC.getTiepDon(true).tiepdonTuyen}"  id="TIEPDON_TUYEN" name="TIEPDON_TUYEN" style=" width : 30px;" class="myreadonly"/>
+
+                                        <h:outputText value="#{msg.Tam_ung_Hoan_ung}" styleClass="mytext" style="margin-left: 44px; margin-right: 5px"/>
+                                        <h:inputText readonly="true" value="#{B3234_CapNhatTienTamUngPCC.tamUng_HoanUng}"  id="HSTHTOAN_HOANUNG" name="HSTHTOAN_HOANUNG" style=" width : 211px;" class="myreadonlyso"/>
+
+                                        <h:outputText value="#{msg.So_du}" styleClass="mytext" style="margin-left: 30px; margin-right: 5px"/>
+                                        <h:inputText readonly="true" value="#{B3234_CapNhatTienTamUngPCC.soDu}" id="__sodu" name="_SODU" style="width: 138px;" class="myreadonlyso"/>
+
+
+                                    </td>
+                                </tr>
+                                <tr style="height: 25px;">
+                                    <td align="right">
+                                        <h:outputText value="#{msg.Tam_ung}" styleClass="mytext" style="margin-left: 5px; margin-right: 5px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputText value="#{B3234_CapNhatTienTamUngPCC.getTamUngKham(true).tamungkhamSotien}" tabindex="4" id="TAMUNGKHAM_SOTIEN" name="TAMUNGKHAM_SOTIEN" onkeypress="iesvn_InputInKeys('0123456789')" onfocus="numberFormatFocus(this);"  onblur="document.getElementById(prefix_component + '__bangchu').value=readNumNotLess1000(this.value);numberFormatBlur(this);" style=" width : 100px;" styleClass="myinputso" maxlength="10"><f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" /></h:inputText>
+                                        <h:outputText value="*" styleClass="mynull"	style="margin-left: 2px;" />
+                                        <h:outputText  value="Số lần tạm ứng" styleClass="mytext" style="margin-left: 273px; margin-right: 5px"/>
+                                        <h:inputText value="#{B3234_CapNhatTienTamUngPCC.lanTamung}" id="__lanTamung"  readonly="true" style=" width : 50px;" styleClass="myreadonly"/>
+                                    </td>
+                                </tr>
+                                <tr style="height: 25px;">
+                                    <td align="right">
+                                        <h:outputText value="#{msg.Tien_bang_chu}" styleClass="mytext" style="margin-left: 5px; margin-right: 5px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputText value="#{B3234_CapNhatTienTamUngPCC.tienBangChu}" onfocus="this.readOnly=true;this.blur();"  id="__bangchu"  readonly="true" style=" width : 325px;" styleClass="myreadonly"/> (<h:outputText  value="#{msg.dong}" />)
+                                    </td>
+                                </tr>
+                                <tr style="height: 25px;">
+                                    <td align="right">
+                                        <h:outputText value="Lí do nộp" styleClass="mytext" style="margin-left: 5px; margin-right: 5px"/>
+                                    </td>
+                                    <td align="left" colspan="3">
+                                        <h:inputTextarea value="#{B3234_CapNhatTienTamUngPCC.liDoNop}" tabindex="5"  rows="3" id="__lidonop" name="__lidonop" onblur='if(this.className.match(/focus/gi))    this.className = this.className.replace(/focus/gi,""); setEnableEntToTab(true);'  style="height: 50px; width : 392px;" styleClass="myinput"  onkeydown="setEnableEntToTab(false)" onkeyup="checkMaxLength(this,510)" />
+                                    </td>
+                                </tr>
+                                <tr style="height: 25px;">
+                                    <td align="right">
+
+                                    </td>
+                                    <td align="right" style="padding-left: 180px; padding-top: 10px">
+                                        <div style="float: left;">
+
+                                            <a4j:commandButton  tabindex="6" id="__ghinhan" name="__ghinhan" type="submit"
+                                                                value="#{msg.Ghi_nhan}" style="width: 70px; margin-left:3px;" styleClass="mybton_b"
+                                                                action="#{B3234_CapNhatTienTamUngPCC.ghinhan}" onclick="if(!validGhiNhan()){return false;} else this.disabled=true;" oncomplete="this.disabled=false;document.getElementById(prefix_component + 'ghiNhanException').value='#{B3234_CapNhatTienTamUngPCC.getGhiNhanException()}';" reRender="DT_DM_NHAN_VIEN_1,TAMUNGKHAM_MA_old,TAMUNGKHAM_MA,__inan,__messagesPanel" />
+
+                                        </div>
+                                        <div  style="float: left;">
+
+                                            <a4j:commandButton  tabindex="7" id="__tieptucnhap" name="_tieptucnhap" type="submit"
+                                                                value="#{msg.Nhap_moi}" style="width: 70px; margin-left:3px;" styleClass="mybton_b"
+                                                                action="#{B3234_CapNhatTienTamUngPCC.nhaplai}"
+                                                                focus="TIEPDON_MA"
+                                                                oncomplete="setValueOnComplete();document.getElementById(prefix_component + '__thuchien').value=readNumNotLess1000(this.value)"
+                                                                reRender="DT_DM_NHAN_VIEN_1,__namsinhHid,TIEPDON_MA_old,TAMUNGKHAM_MA_old,BENHNHAN_HOTEN,DMGT_MASO,BENHNHAN_TUOI,BENHNHAN_NGAYSINH,TINH_MA,DMTINH_TEN,HUYEN_MA,DMHUYEN_TEN,XA_MA,DMXA_TEN,BENHNHAN_DIACHI,TIEPDON_SOTHEBH,KCBBHYT_MA,DTDMKCBBHYT_TEN,DANTOC_MA,DMDANTOC_TEN,TIEPDON_TUYEN,HSTHTOAN_HOANUNG,__sodu,TAMUNGKHAM_NGAY,TAMUNGKHAM_SOTIEN,MAPHU,TAMUNGKHAM_MA,TIEPDON_MA,__bangchu,__donViTuoi,__inan,__messagesPanel,__lidonop,__lanTamung"/>
+
+                                        </div>
+
+                                        <div style="float: left;">
+
+                                            <a4j:commandButton  disabled="#{B3234_CapNhatTienTamUngPCC.disabledPrinting}"
+                                                                tabindex="8" id="__inan" type="submit" value="#{msg.In_an}"
+                                                                action="#{B3234_CapNhatTienTamUngPCC.xuatReport}" style="width: 60px; margin-left:3px;" styleClass="mybton_b"/>
+
+
+                                        </div>
+                                        <h:inputHidden value="#{B3234_CapNhatTienTamUngPCC.ghiNhanException}"  id="ghiNhanException" name="ghiNhanException" style=" width : 100px;" styleClass="myinputso"/>
+                                        <h:inputHidden value="#{B3234_CapNhatTienTamUngPCC.maPhu}"  id="MAPHU" name="MAPHU" style=" width : 100px;" styleClass="myinputso"/>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+        </body>
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/vienphi/B3234_Capnhattientamung_pcc_gears.js"></script>
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/readNumber.js"></script>
+        <script>
+             A4J.AJAX.onError = function(req,status, message){
+                     //window.alert('Custom onError handler '+message);
+                     ajax_error_display.innerHTML = khong_tim_thay_du_lieu;
+             };
+             A4J.AJAX.onExpired = function(loc,expiredMsg){
+               //window.alert('Custom onExpired handler '+message);
+               ajax_error_display.innerHTML = can_dang_nhap_lai;
+                     };
+    	
+        </script>
+    </ui:define>
+</ui:composition>

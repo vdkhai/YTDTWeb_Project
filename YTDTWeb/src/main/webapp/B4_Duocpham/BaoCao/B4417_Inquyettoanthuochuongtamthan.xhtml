@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">
+	<h:form id="_form" name="_form">	
+    <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_DuocPham_BaoCao.xhtml" /></div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="52%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						BÁO CÁO THUỐC HƯỚNG TÂM THẦN
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>        	
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="985px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px" width="100%" align="center">
+    			<!-- Main Area -->
+    			<table cellspacing="0" cellpadding="0" border="0" width="66%">
+    				<tr style="height: 25px;">
+    					<td align="right" >
+    						<h:outputText value="Năm" styleClass="mytext" style="margin-right: 5px;"/>
+    					</td>
+    					<td align="left" >
+    						<h:inputText value="" tabindex="1" id="__nam" name="_nam" style="width : 30px;" styleClass="myinput"/>
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right" >
+    						<h:outputText value="Từ tháng" styleClass="mytext"  style="margin-right: 5px;" />
+    					</td>
+    					<td align="left" >    						
+    						<h:inputText value="" tabindex="2" id="__tuthang" name="_tuthang" style="width: 30px;" styleClass="myinput"/>
+    						<h:outputText value="Đến tháng" styleClass="mytext" style="margin-left:15px;margin-right:5px;"/>
+    						<h:inputText value="" tabindex="3" id="__denthang" name="_denthang" style="width: 30px;" styleClass="myinput"/>
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right" >
+    						<h:outputText value="Kho" styleClass="mytext" style="margin-right: 5px;"/>
+    					</td>
+    					<td align="left" >
+    						<h:inputText id="DMKHO_MASO" maxlength="5" name="_makhonhap" style="width : 40px;"
+								onblur="myOnblurTextbox(this.id, 'DT_DM_KHO')" tabindex="4" styleClass="myinput"/> 
+							<span id="DM_KHO_span" /> 
+							<input id="DT_DM_KHO" name="DT_DM_KHO" tabindex="5" style="width: 230px;" />
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right">
+    						<h:outputText value="Phân biệt nội ngoại" styleClass="mytext" style="margin-right: 5px;"/>    						
+    					</td>
+    					<td align="left">    						
+    						<h:inputText value="" tabindex="6" id="__maphanbietnoingoai" name="_maphanbietnoingoai" style="width: 40px;margin-right:4px;" styleClass="myinput"/>
+    						<h:selectOneListbox value="" tabindex="7" id="__phanbietnoingoai" name="_phanbietnoingoai" style="width: 233px; height: 17px;" styleClass="myinput"/>
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right">
+    						<h:outputText value="Chương trình" styleClass="mytext" style="margin-right: 5px;"/>
+    					</td>
+    					<td align="left">
+    						<h:inputText id="DTDMNGUON_MA" name="_machuongtrinh" style=" width : 40px;" maxlength="2" onblur="myOnblurTextbox(this.id, 'DM_NGUON_CHUONG_TRINH')" tabindex="8" styleClass="myinput" />
+							<span id="NGUON_span" />
+							<input id="DM_NGUON_CHUONG_TRINH" name="DM_NGUON_CHUONG_TRINH" tabindex="9" style="width: 230px;" />
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right">
+    						<h:outputText value="Nguồn kinh phí" styleClass="mytext" style="margin-right: 5px;"/>    						
+    					</td>
+    					<td align="left">    						
+    						<h:inputText id="DMKINHPHI_MASO" name="_manguonkp" style="width: 40px;" maxlength="2" onblur="myOnblurTextbox(this.id, 'DM_NGUON_KINH_PHI')" tabindex="10" styleClass="myinput" /> 
+							 <span id="KINH_PHI_span" /> 
+							 <input id="DM_NGUON_KINH_PHI" name="DM_NGUON_KINH_PHI" tabindex="11" style="width: 230px;" />
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right">    						   						    						
+    						<h:outputText value="Phương thức in" styleClass="mytext" style="margin-right: 5px;"/>    						    					
+    					</td>
+    					<td align="left">
+    						<h:inputText value="" tabindex="12" id="__maphuongthucin" name="_maphuongthucin" style="width: 40px;margin-right:4px;" styleClass="myinput"/>
+    						<h:selectOneListbox value="" tabindex="13" id="__phuongthucin" name="_phuongthucin" style="width: 233px; height: 17px;" styleClass="myinput"/>
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					
+    					<td align="right" colspan="2" style="padding-left: 200px; padding-top: 10px;">
+    						<div class="mybton_b_l" style="width: 90px; float: left;">
+    							<div style="background-position: 70px 0px; float: left; padding-right: 5px" class="mybton_b_r">
+    								<h:commandButton tabindex="14" id="__tienhanh" action="#{B4417_Inquyettoanhuongtamthan.thuchienAction}" name="_tienhanh" type="submit" value="Tiến hành" styleClass="mybton_b" style="width:70px;" />
+    							</div>
+   							</div>
+   							<div class="mybton_b_l" style="width: 85px; float: left;">
+    							<div style="background-position: 70px 0px; float: left; padding-right: 5px" class="mybton_b_r">
+    								<h:commandButton tabindex="15" id="__chonlai" name="_chonlai" type="submit" value="Nhập mới" styleClass="mybton_b" style="width:70px;" />
+    							</div>
+   							</div> 
+    					</td>
+    				</tr>
+    			</table> 		    						
+    		</td>
+    	</tr>	    
+    </table>
+    </h:form>
+    <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/duocpham/B4417_Inquyettoanthuochuongtamthan_gears.js"></script>
+</ui:define> 
+</ui:composition>
+
+

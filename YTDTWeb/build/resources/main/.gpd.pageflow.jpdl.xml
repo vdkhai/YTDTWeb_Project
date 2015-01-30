@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root-container name="numberGuess" width="1029" height="619">
+  <node name="displayGuess" x="0" y="0" width="132" height="36"/>
+</root-container>

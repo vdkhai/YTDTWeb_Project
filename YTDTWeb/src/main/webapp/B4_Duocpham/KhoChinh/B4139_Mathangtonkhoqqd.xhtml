@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">	
+	<h:form id="_form" name="_form">
+    <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_DuocPham_KhoChinh.xhtml" /></div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="52%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						THUỐC TỒN KHO QÚA QUY ĐỊNH
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>    
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="965px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px" width="100%" >
+    			<!-- Main Area -->   
+    			<table cellspacing="0" cellpadding="0" border="0" width="55%" align="center">
+    			<tr style="height: 25px;">
+    					<td align="right" style="width:35%" >
+							<h:outputText value="Thời điểm tính" styleClass="mytext" style="margin-right: 5px; margin-left: 5px;"/>
+    					</td>
+    					<td align="left" >
+    						<h:inputText onkeypress="return being_wellformed_Date(this, event)" onblur="return is_wellformed_Date(this)" tabindex="1" type="text" id="__tungay" name="_tungay" value="#{B4136_Mathangkhongsd.tungay}" maxlength="10" style="width:70px;"/>
+    						<a hideFocus="true" href="java_script:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__tungay'));document.getElementById(prefix_component + 'LOAIPHIEU_MA').focus();return false;"><h:graphicImage style="margin:0 0 -3px 0" value="/resources/calendar/cal.gif" border="0" name="popcal"/></a>
+    						<h:outputText value="*" styleClass="mynull"/>    					
+    					</td>
+    					<td align="right">
+    					
+    					
+    					</td>
+    					
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right">
+    						<h:outputText value="Loại" styleClass="mytext" style="margin-right: 5px;"/>
+    					</td>
+    					<td align="left">
+    						<h:inputHidden value="" id="LOAIPHIEU_MA_pk"/>
+    						<h:inputText value="" onblur="myOnblurTextbox(this.id,'DM_LOAI_THUOC')" tabindex="2" id="LOAIPHIEU_MA" style="width:30px;" styleClass="myinput"/>    						
+    						<span id="DM_LOAI_THUOC_span"/>
+    						<input  id="DM_LOAI_THUOC" name="DM_LOAI_THUOC" tabindex="3" style="width: 220px;" class="mycbogear"/>
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right">
+    					<h:outputText value="Phân loại" styleClass="mytext" style="margin-right: 5px; margin-left: 5px;"/>
+    						
+    					</td>
+    					<td align="left" >
+    						<h:inputHidden value="" id="PHANLOAI_MA_pk"/>
+    						<h:inputText value="" onblur="myOnblurTextbox(this.id,'DM_PHAN_LOAI_THUOC')" tabindex="4" id="PHANLOAI_MA" style="width: 30px; " styleClass="myinput"/>
+    						<span id="DM_PHAN_LOAI_THUOC_span"/>
+    						<input id="DM_PHAN_LOAI_THUOC" name="DM_PHAN_LOAI_THUOC" tabindex="5" style="width:220px;" class="mycbogear"/>
+    					</td>
+    					<td align="right" >
+    						
+    						
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right">
+    						<h:outputText value="Kho" styleClass="mytext" style="margin-right: 5px;"/>
+    					</td>
+    					<td align="left">
+    						<h:inputText id="DMKHO_MASO" maxlength="5" name="_makhonhap" style=" width:30px;"
+								onblur="myOnblurTextbox(this.id, 'DT_DM_KHO')" tabindex="6" styleClass="myinput"/> 
+							<span id="DM_KHO_span" /> 
+							<input id="DT_DM_KHO" name="DT_DM_KHO" tabindex="7" style="width: 220px;" />
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right">
+    					<h:outputText value="Chương trình" styleClass="mytext" style="margin-right: 5px; margin-left: 5px;"/>
+    					</td>
+    					<td align="left" >
+    						
+    						<h:inputText id="DTDMNGUON_MA" name="_machuongtrinh" style=" width : 30px;" maxlength="2" onblur="myOnblurTextbox(this.id, 'DM_NGUON_CHUONG_TRINH')" tabindex="8" styleClass="myinput" />
+							<span id="NGUON_span" />
+							<input id="DM_NGUON_CHUONG_TRINH" name="DM_NGUON_CHUONG_TRINH" tabindex="9" style="width: 220px;" />
+    					
+    					</td>
+    					<td align="right">
+    						
+    						
+    					</td>
+    				</tr>
+    				<tr style="height: 25px;">
+    					<td align="right">
+    						<h:outputText value="Nguồn KP" styleClass="mytext" style="margin-right: 5px;"/>
+    					</td>
+    					<td align="left">
+    						<h:inputText id="DMKINHPHI_MASO" name="_manguonkp" style=" width : 30px;" maxlength="2" onblur="myOnblurTextbox(this.id, 'DM_NGUON_KINH_PHI')" tabindex="10" styleClass="myinput" /> 
+							 <span id="KINH_PHI_span" /> 
+							 <input id="DM_NGUON_KINH_PHI" name="DM_NGUON_KINH_PHI" tabindex="11" style="width: 220px;" />
+    					</td>
+    				</tr>    	
+    				<tr style="height: 25px;">
+    					<td align="right">
+    						<h:outputText value="Phương thức in" styleClass="mytext" style="margin-right: 5px;"/>
+    					</td>
+    					<td align="left">
+    						<h:inputText value="" tabindex="12" id="__maphuongthucin" name="_maphuongthucin" style="width: 30px;margin-right:4px;" styleClass="myinput"/>
+    					<h:selectOneListbox value="" tabindex="13" id="__phuongthucin" name="_phuongthucin" style=" width : 100px; height: 20px;" styleClass="myinput"/>
+    					</td>
+    				</tr>			   		
+    				<tr style="height: 35px;" >
+    					<td align="left" colspan="2" style="padding-left: 185px" >
+    						<div class="mybton_b_l" style="width: 90px; float: left;">
+    							<div style="background-position: 70px 0px; float: left; padding-right: 5px" class="mybton_b_r">
+    								<h:commandButton tabindex="12" id="__tienhanh" action="#{B4132_BCxuattrongngay.thuchienAction}" name="_tienhanh" type="submit" value="Tiến hành" style="width: 70px;" styleClass="mybton_b"/>
+    							</div>
+    						</div> 
+    						<div class="mybton_b_l" style="width: 70px; float: left;">
+    							<div style="background-position: 60px 0px; float: left; padding-right: 5px" class="mybton_b_r">
+    								<h:commandButton tabindex="13" id="__chonlai" name="_chonlai" type="submit" value="Nhập mới" style="width: 60px;" styleClass="mybton_b"/>
+    							</div>
+    						</div> 
+    					</td>
+    				</tr>		
+    			</table> 		    			    				    			
+    		</td>
+    	</tr>	
+    </table>
+    <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/duocpham/B4138_Indstonkhokhonghandung_gears.js"></script>
+    <iframe width="174" height="189" name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;"/>
+   </h:form>
+</ui:define> 
+</ui:composition>
+
+

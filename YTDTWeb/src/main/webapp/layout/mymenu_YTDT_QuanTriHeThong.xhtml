@@ -1,0 +1,54 @@
+<rich:toolBar style="margin:-5px 0px; height:32px"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:rich="http://richfaces.org/rich">
+    <f:loadBundle var="msgapp" basename="com.iesvn.yte.ApplicationResources" />
+	<script type="text/javascript">
+	var IPDanhMuc = "#{msgapp.IDDanhMuc}";
+	
+		function goToQuanLyDanhMuc(){
+		
+			javascript:location= IPDanhMuc;
+		
+		}
+	
+	</script>
+    <rich:dropDownMenu event="onclick" style="cursor:hand">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="Quản trị danh sách bảng mã"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.QuanTriHeThong}" id="DieuTri_QuanTriDanhSachBangMa_Client" submitMode="ajax" value="Cập nhật danh sách bảng mã tại máy khách" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " onclick="goToQuanLyDanhMuc();" id="DieuTri_QuanTriDanhSachBangMa_Server" submitMode="ajax" value="Cập nhật danh sách bảng mã tại máy chủ" />
+	
+	</rich:dropDownMenu>
+		
+	<rich:dropDownMenu event="onclick" style="cursor:hand">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="Quản lý người dùng"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+	   	<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B263_NhanVien.init}" id="DieuTri_QuanTriDanhSachBanMa_NhanVien_id_1" submitMode="ajax" value="Nhân viên" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.QuanTriHeThong_NguoiDung}" id="QuanTriHeThong_NguoiDung_Id" submitMode="ajax" value="Đăng ký người dùng" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.QuanTriHeThong_Quyen_NguoiDung}" id="QuanTriHeThong_Quyen_NguoiDung_Id" submitMode="ajax" value="Quản trị quyền" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.QuanTriHeThong_PhanCongCumThuPhi}" id="QuanTriHeThong_PhanCongCumThuPhi_Id" submitMode="ajax" value="Phân công cụm thu phí" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.QuanTriHeThong_QLPhanCongCumThuPhi}" id="QuanTriHeThong_QLPhanCongCumThuPhi_Id" submitMode="ajax" value="QL phân công cụm thu phí" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{changepassword.init('admin')}" id="QuanTriHeThong_DoiMatKhau_Id" submitMode="ajax" value="Đổi mật khẩu" />
+	</rich:dropDownMenu>	
+		
+	<rich:dropDownMenu event="onclick" style="cursor:hand">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="Quản lý hệ thống"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+	   	<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{admin_cauhinh_client.init}" id="DieuTri_QuanTri_CauHinhHeThong_id" submitMode="ajax" value="Cấu hình" />
+	  	</rich:dropDownMenu>		
+</rich:toolBar>
+  

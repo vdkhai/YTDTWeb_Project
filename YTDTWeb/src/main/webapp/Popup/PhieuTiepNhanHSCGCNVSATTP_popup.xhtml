@@ -1,0 +1,192 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                template="/layout/mytemplate_notgears.xhtml">
+
+<ui:define name="body">
+<h:form >
+	<table width="815" border="0" align="center" cellspacing="0" cellpadding="0">
+		<tr>
+			<td>
+			<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#fbf9fc">
+				<tr>					
+					<td >					
+						<table width="70%" border="0" cellspacing="0" cellpadding="0" align="center">
+						<tr>
+						<td style="height: 100px">
+						&#160;
+						</td>
+						</tr>
+						<tr>
+						<td>
+						&#160;
+						</td>
+						</tr>
+						
+						<tr>
+						<td align="center">
+						<h:outputText value="CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM" styleClass="mytext_b" style="margin-right: 5px;"/>
+								 
+						</td>
+						</tr>
+						<tr>
+						<td align="center">
+						<h:outputText value="Độc lập - Tự do - Hạnh phúc" styleClass="mytext_b" style="margin-right: 5px;"/>
+								  
+						</td>
+						</tr>
+						<tr>
+						<td>
+						&#160;
+						</td>
+						</tr>
+						<tr>
+						<td>
+						&#160;
+						</td>
+						</tr>
+						<tr>
+						<td align="center">
+						 <h:outputText value="PHIẾU TIẾP NHẬN HỒ SƠ ĐỀ NGHỊ CẤP" styleClass="mytext_b" style="margin-right: 5px;font-size : 18px"/><br/>
+						<h:outputText value="CHỨNG NHẬN VỆ SINH AN TOÀN THỰC PHẨM" styleClass="mytext_b" style="margin-right: 5px;font-size : 18px"/>
+								  	  	 
+						</td>
+						</tr>
+						
+						<tr>
+						<td>
+						&#160;
+						</td>
+						</tr>
+						<tr style="height: 25px;">
+						<td>
+						 <h:inputText value="#{hscn.cgcnvsattpDvn}" id="__txt_1" name="_txt_1" tabindex="1" readonly="true"  styleClass="textfield3" style=" width : 558px;text-align:center" />
+								  
+						</td>
+						</tr>
+						
+						<tr style="height: 25px;">
+						<td>
+						&#160;
+						</td>
+						</tr>
+						<tr style="height: 25px;">
+						<td align="left">
+						<h:outputText value="Ông (bà) :" styleClass="mytext" style="margin-right: 5px;"/>
+						<h:inputText value="#{hscn.cgcnvsattpNguoinop}" id="__txt_2" name="_txt_2"  tabindex="2" readonly="true"  styleClass="textfield3" style=" width : 500px;"/>
+								  
+						</td>
+						</tr>
+						<tr style="height: 25px;">
+						<td>
+						<h:outputText value="Địa chỉ :" styleClass="mytext" style="margin-right: 5px;"/>
+						<h:inputText value=" #{TTHoSoCapGiay.diachi}, #{TTHoSoCapGiay.xaMa}, #{TTHoSoCapGiay.huyenMa}, #{TTHoSoCapGiay.tinhMa}" id="__txt_3" name="_txt_3"  tabindex="3" styleClass="textfield3" readonly="true" style=" width : 511px;"/>
+								  
+						</td>
+						</tr>
+						<tr style="height: 25px;">
+						<td>
+						<h:outputText value="Điện thoại :" styleClass="mytext" style="margin-right: 5px;"/>
+						<h:inputText value="#{TTHoSoCapGiay.dienthoai}" id="__txt_4" name="_txt_4"  readonly="true"  tabindex="4" styleClass="textfield3" style=" width : 492px;"/>
+                                 
+						</td>
+						</tr>
+						<tr style="height: 25px;">
+						<td>
+						<h:outputText value="Loại hình sản xuất kinh doanh :" styleClass="mytext" style="margin-right: 5px;"/>
+						<h:inputText value="#{TTHoSoCapGiay.loaiHinhSXKD}" id="__txt_5" name="_txt_5"  readonly="true"  tabindex="5" styleClass="textfield3" style=" width : 385px;"/>
+                                    
+						</td>
+						</tr>
+						<tr style="height: 25px;">
+						<td>
+						<h:outputText value="Số phiếu tiếp nhận :" styleClass="mytext" style="margin-right: 5px;"/>
+								<h:inputText value="#{TTHoSoCapGiay.result}" id="__txt_6" name="_txt_6" readonly="true"  tabindex="6" styleClass="textfield3" style=" width : 445px;"/>
+                                 	 
+						</td>
+						</tr>
+						<tr style="height: 25px;">
+						<td>
+						<h:outputText value="Ngày giao chứng nhận :" styleClass="mytext" style="margin-right: 5px;"/>
+						<h:inputText value="#{ngayhentraHSCN}" id="__txt_7" name="_txt_7" readonly="true"   tabindex="7" styleClass="textfield3" style=" width : 425px;"/>
+								 		  
+						</td>
+						</tr>
+						
+						
+						<tr style="height: 25px;">
+						<td>
+						&#160;	 
+						</td>
+						</tr>
+						<tr style="height: 25px;">
+						<td>
+						&#160;
+						</td>
+						</tr>
+						<tr style="height: 25px;">
+						<td>
+						&#160;
+						</td>
+						</tr>
+						<tr style="height: 25px;">
+						<td align="right">
+									<h:outputText value="Nha Trang, ngày" styleClass="mytext" style="margin-right: 5px;"/>
+								  <h:inputText value="#{ngaytraHSCN}" id="__txt_9" readonly="true"  name="_txt_9"  tabindex="9" styleClass="textfield3" style=" width : 50px;"/>
+								   <h:outputText value="tháng" styleClass="mytext"   style="margin-right: 5px;"/>
+								  <h:inputText value="#{thangtraHSCN}" readonly="true" id="__txt_10" name="_txt_10"  tabindex="10" styleClass="textfield3" style=" width : 50px;"/>
+								  <h:outputText value="năm" styleClass="mytext" style="margin-right: 5px;"/>
+								  <h:inputText value="#{namtraHSCN}" readonly="true" id="__txt_11" name="_txt_11"  tabindex="11" styleClass="textfield3" style=" width : 50px; margin-right: 5px"/>
+								 
+						</td>
+						</tr>
+						<tr style="height: 25px;">
+						<td align="right">
+						 <h:outputText value="Người tiếp nhận hồ sơ" styleClass="mytext" style="margin-right:95px;"/>  
+						</td>
+						</tr>
+						<tr style="height: 25px;">
+						<td>
+						&#160;
+						</td>
+						</tr>
+						<tr style="height: 25px;">
+						<td>
+						&#160;
+						</td>
+						</tr>
+						<tr style="height: 25px;">
+						<td>
+						&#160;
+						</td>
+						</tr>
+						<tr>
+						<td>
+						&#160;
+						</td>
+						</tr>
+						<tr>
+						<td style="height: 170px">
+						&#160;
+						</td>
+						</tr>
+						</table>							
+					</td>					
+				</tr>
+			</table>
+			</td>
+		</tr>
+	</table>
+	</h:form>
+	<script type="text/javascript">
+        function init(){}
+        window.print();
+    </script>
+</ui:define>	
+</ui:composition>
+

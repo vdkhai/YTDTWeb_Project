@@ -1,0 +1,423 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">	
+
+
+<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+	<script type="text/javascript">
+		var mabenhvien="#{msg.MA_BENH_VIEN}";
+		var tinhbenhvien="#{msg.TINH_BENH_VIEN}";
+		var soThuTu = "#{msg.SO_THU_TU}";
+		//alert(soThuTu);
+		var s_sothebhytdasudungvoimatiepdon= "Số thẻ BHYT đã sử dụng với Mã tiếp đón: ";
+		var s_benhnhanchuadenngaytaikham= "Bệnh nhân chưa đến ngày tái khám. Ngày tái khám: ";
+		
+		var s_ngaygio = " Ngày giờ: ";
+		var s_bankham = " Bàn khám: ";
+		function checkEmpty(id){
+			if ( document.getElementById(id).value == null || document.getElementById(id).value == "" ){
+			
+				if(document.getElementById(id).className.match(/focus/gi))
+              		document.getElementById(id).className = document.getElementById(id).className.replace(/focus/gi,"");
+				return false;
+			}
+			return true;
+		}
+    	var tiepdonfail = "#{msg.MATIEPDON_NULL}";
+    	var huyfail = "#{msg.CANT_CANCEL}";
+    	var success = "#{msg.common_success}";
+    	var commonFail = "#{msg.common_fail}";
+    	var commonLabelMaTiepDon = "#{msg.Ma_tiep_don}";
+
+    	var checkSothe = false;
+		var bCancel = false;
+		var bSave = false;
+		var valid = true;
+		var validateBH = false;
+		var validateTP = false;
+		var validateMP = false;
+		var validateTE = false;
+		var validateTEMsg = "<h:outputFormat value='#{msg.TIEPDON_TE_NULL}' />";
+		
+		function getMsgHuyKhamThanhCong(val1, val2) {
+			return msg = "<h:outputFormat value='#{msg.huykham_thanhcong}' > <f:param value='" + val1 + "'/> <f:param value='" + val2 + "'/> </h:outputFormat>";
+		}
+		
+		function getMsgDkkbThanhCong(val1, val2) {
+			return msg = "<h:outputFormat value='#{msg.dangkykb_thanhcong}' > <f:param value='" + val1 + "'/> <f:param value='" + val2 + "'/> </h:outputFormat>";
+		}
+		
+		function setMessage(name1,name2) {
+			var ret = "<h:outputFormat value='#{msg.NOT_FOUND}' > <f:param value='" + name1 + "'/> <f:param value='" + name2 + "'/> </h:outputFormat>";
+			//alert(ret);
+			return ret;
+		}
+		
+		function setSave() {
+			bSave = true;
+		}
+		function setCancel(){
+			bCancel = true;
+		}		
+		
+		function iesvn_Required() {
+			this.aa = new Array(prefix_component + "BENHNHAN_HOTEN", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Họ tên'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+ 	 		this.ab = new Array(prefix_component + "TIEPDON_LOAIKHAM", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Loại khám'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+ 	 		this.ac = new Array(prefix_component + "TIEPDON_BANKHAM", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Bàn khám'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+ 	 		
+ 	 		this.ad = new Array(prefix_component + "GIO", 
+ 	 							"<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Thời gian'/> </h:outputFormat>", 
+ 	 							new Function ("varName",  "return this[varName];"));
+ 	 		this.ae = new Array("NGAYTG", 
+ 	 							"<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Ngày'/> </h:outputFormat>", 
+ 	 							new Function ("varName",  "return this[varName];"));
+ 	 		this.af = new Array(prefix_component + "BENHNHAN_TUOI", 
+ 	 							"<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Tuổi'/> </h:outputFormat>", 
+ 	 							new Function ("varName",  "return this[varName];"));
+ 	 		
+ 	 		var ngaysinh = document.getElementById(prefix_component + "BENHNHAN_NGAYSINH").value;
+ 	 		var namsinh = document.getElementById(prefix_component + "BENHNHAN_NAMSINH").value;
+ 	 		
+ 	 		
+ 	 		if (
+ 	 		 ( ngaysinh == null  || ngaysinh == '' ) &amp;&amp;
+ 	 		 ( namsinh == null || namsinh ==''	 )		
+ 	 		){
+ 	 			this.ag = new Array(prefix_component + "BENHNHAN_NGAYSINH", 
+ 	 							"<h:outputFormat value='#{msg.ngaysinh_hoac_namsinh_required}' >  </h:outputFormat>", 
+ 	 							new Function ("varName",  "return this[varName];"));
+ 	 		
+ 	 		}
+ 	 		
+ 	 		
+ 	 		this.ah = new Array(prefix_component + "DANTOC_MA", 
+ 	 							"<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Dân tộc'/> </h:outputFormat>", 
+ 	 							new Function ("varName",  "return this[varName];"));
+ 	 		this.al = new Array(prefix_component + "DOITUONG_MA", 
+ 	 							"<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Đối tượng'/> </h:outputFormat>", 
+ 	 							new Function ("varName",  "return this[varName];"));
+ 	 		//this.am = new Array(prefix_component + "TINH_MA", 
+ 	 		//					"<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Tỉnh'/> </h:outputFormat>", 
+ 	 		//					new Function ("varName",  "return this[varName];"));
+ 	 		var tinh = DmTinh.getByFieldValue("Ma", document.getElementById(prefix_component + "TINH_MA").value);
+ 	 		if (tinh) {
+ 	 			if (tinh.DMHUYEN_MA == 1) {
+ 	 				this.an = new Array(prefix_component + "HUYEN_MA", 
+ 	 							"<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Huyện'/> </h:outputFormat>", 
+ 	 							new Function ("varName",  "return this[varName];"));
+ 	 			}
+ 	 			if (tinh.DMHUYEN_MA == 1) {
+ 	 				this.ao = new Array(prefix_component + "XA_MA", 
+ 	 							"<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Xã'/> </h:outputFormat>", 
+ 	 							new Function ("varName",  "return this[varName];"));
+ 	 			}
+ 	 		}
+ 	 		
+ 	 		/*
+ 	 		this.ap = new Array(prefix_component + "BENHNHAN_DIACHI", 
+ 	 							"<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Địa chỉ'/> </h:outputFormat>", 
+ 	 							new Function ("varName",  "return this[varName];"));
+ 	 		*/
+ 	 		if (validateTP) {
+ 	 			//this.ap = new Array(prefix_component + "TIEPDON_KYHIEU", 
+ 	 			//				"<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Ký hiệu'/> </h:outputFormat>", 
+ 	 			//				new Function ("varName",  "return this[varName];"));
+ 	 			//this.aq = new Array(prefix_component + "TIEPDON_QUYEN", 
+ 	 			//				"<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Quyển'/> </h:outputFormat>", 
+ 	 			//				new Function ("varName",  "return this[varName];"));
+ 	 			//this.ar = new Array(prefix_component + "TIEPDON_BIENLAI", 
+ 	 			//				"<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Biên lai'/> </h:outputFormat>", 
+ 	 			//				new Function ("varName",  "return this[varName];"));
+ 	 			return;
+ 	 		}
+ 	 		
+ 	 		if (validateBH) {
+ 	 			this.ap = new Array(prefix_component + "KHOIBHYT_MA", 
+ 	 							"<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Khối BHYT'/> </h:outputFormat>", 
+ 	 							new Function ("varName",  "return this[varName];"));
+ 	 			this.aq = new Array(prefix_component + "TIEPDON_SOTHEBH", 
+ 	 							"<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Số thẻ BHYT'/> </h:outputFormat>", 
+ 	 							new Function ("varName",  "return this[varName];"));
+ 	 			
+ 	 		}
+ 	 		if (validateTE) {
+ 	 			
+ 	 		}
+ 	 		if (validateMP) {
+ 	 			//this.ap = new Array(prefix_component + "TIEPDON_THENGHEO", 
+ 	 			//				"<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Số thẻ nghèo'/> </h:outputFormat>", 
+ 	 			//				new Function ("varName",  "return this[varName];"));
+ 	 		}
+ 	 	}
+		
+		
+		
+		//function iesvn_DateValidations(){
+		//    this.aa = new Array(prefix_component + "__namsinh", 
+		//    					"<h:outputFormat value='#{msg.namsinh}' />", 
+		//    					new Function ("varName", "this.datePatternStrict='dd/MM/yyyy';  return this[varName];"));
+		//} 
+		
+		function iesvn_ComparedDates() {
+			//alert(document.getElementById(prefix_component + "__ngayhientai").value);
+			//this.aa = new Array([prefix_component + "TIEPDON_GIATRI1",prefix_component + "TIEPDON_GIATRI2", "=="], "<h:outputFormat value='#{msg.common_compareCurDate}' > <f:param value='Thời gian giá trị BHYT'/> </h:outputFormat>", new Function ("varName", "this.datePatternStrict='dd/MM/yyyy';  return this[varName];"));
+			this.aa = new Array([prefix_component + "BENHNHAN_NGAYSINH",prefix_component + "__ngayhientai", "=="], 
+								"<h:outputFormat value='#{msg.common_compareCurDate}' > <f:param value='Ngày sinh'/> </h:outputFormat>", 
+								new Function ("varName", "this.datePatternStrict='dd/MM/yyyy';  return this[varName];"));
+			
+			this.ab = new Array(["NGAYTG",prefix_component + "__ngayhientai", "=="], 
+								"<h:outputFormat value='#{msg.common_compareCurDate}' > <f:param value='Ngày đăng ký'/> </h:outputFormat>", 
+								new Function ("varName", "this.datePatternStrict='dd/MM/yyyy';  return this[varName];"));
+			
+			this.ac = new Array([prefix_component + "TIEPDON_GIATRI1",prefix_component + "TIEPDON_GIATRI2", "=="], 
+									"<h:outputFormat value='#{msg.common_compareDates}' > <f:param value='Từ ngày'/> <f:param value='Đến ngày'/> </h:outputFormat>", 
+									new Function ("varName", "this.datePatternStrict='dd/MM/yyyy';  return this[varName];"));
+			this.ad = new Array([prefix_component + "BENHNHAN_NGAYSINH", "NGAYTG", "=="], 
+									"<h:outputFormat value='#{msg.common_compareDates}' > <f:param value='Ngày sinh'/> <f:param value='Ngày đăng ký'/> </h:outputFormat>", 
+									new Function ("varName", "this.datePatternStrict='dd/MM/yyyy';  return this[varName];"));
+			this.ae = new Array([prefix_component + "TIEPDON_GIATRI3", prefix_component + "TIEPDON_GIATRI4", "=="], 
+									"<h:outputFormat value='#{msg.common_compareDates}' > <f:param value='Từ ngày'/> <f:param value='Đến ngày'/> </h:outputFormat>", 
+									new Function ("varName", "this.datePatternStrict='dd/MM/yyyy';  return this[varName];"));
+			
+		}
+		
+		function iesvn_IntRange(){
+	  	 	this.aa = new Array(prefix_component + "BENHNHAN_TUOI", "<h:outputFormat value='#{msg.common_in_range}' >  <f:param value='Tuổi'/>  <f:param value='0'/>  <f:param value='366'/></h:outputFormat>", new Function ("varName", " this.min='0'; this.max='366'; return this[varName];"));
+		}
+		
+		function checkForGiaTri1(mythis){
+			var myreturn = is_wellformed_Date(mythis);
+			if (myreturn == false){
+				return false;
+				//document.getElementById(prefix_component + 'TIEPDON_GIATRI3').value = document.getElementById(prefix_component + 'TIEPDON_GIATRI1').value;
+			}
+			// Giá trị thẻ: nhập giá trị từ, tự động hiển thị giá trị đến cộng 1 năm
+			//
+			var giatriTu = document.getElementById(prefix_component + 'TIEPDON_GIATRI1').value;
+			if (giatriTu != null &amp;&amp; giatriTu != ''){  //ex  30/02/2009
+				var myDay = giatriTu.substring(0,2);
+				var myMonth = giatriTu.substring(3,5);
+				var myYear = giatriTu.substring(6,10);
+				
+				var myDate = new Date();
+				myDate.setDate(parseInt(myDay,10));
+				myDate.setMonth(parseInt(myMonth,10) - 1); // true month
+				myDate.setFullYear(parseInt(myYear,10) + 1); // add 1 year
+				
+				myDate.setDate(myDate.getDate() - 1);
+				var sMyDay = "" + parseInt(myDate.getDate(),10);
+				if (sMyDay.length == 1){
+					sMyDay = "0" + sMyDay;
+				}
+				
+				var sMyMonth = "" + ( parseInt(myDate.getMonth(),10) + 1 );
+				if (sMyMonth.length == 1){
+					sMyMonth = "0" + sMyMonth;
+				}
+				
+				var giaTriDen = sMyDay + "/" + sMyMonth + "/" + myDate.getFullYear() ;
+				document.getElementById(prefix_component + 'TIEPDON_GIATRI2').value = giaTriDen;
+				
+				//
+				// mốc 1: từ ngày + 150 ngày, mốc 2: từ ngày + 240 ngày, mốc 3 : từ ngày +1065 ngày.
+				//
+			
+				myDate = new Date();
+				
+				myDate.setMonth(parseInt(myMonth,10) - 1); // true month
+				myDate.setFullYear(parseInt(myYear,10)); 
+				myDate.setDate(parseInt(myDay,10)+150);
+				
+				var sMyDay = "" + parseInt(myDate.getDate(),10);
+				if (sMyDay.length == 1){
+					sMyDay = "0" + sMyDay;
+				}
+				
+				var sMyMonth = "" + ( parseInt(myDate.getMonth(),10) + 1 );
+				if (sMyMonth.length == 1){
+					sMyMonth = "0" + sMyMonth;
+				}
+				
+				var giaTriDen = sMyDay + "/" + sMyMonth + "/" + myDate.getFullYear() ;
+				document.getElementById(prefix_component + 'TIEPDON_MOC1').value = giaTriDen;
+				
+				
+				myDate = new Date();
+				
+				myDate.setMonth(parseInt(myMonth,10) - 1); // true month
+				myDate.setFullYear(parseInt(myYear,10)); 
+				myDate.setDate(parseInt(myDay,10)+240);
+				
+				var sMyDay = "" + parseInt(myDate.getDate(),10);
+				if (sMyDay.length == 1){
+					sMyDay = "0" + sMyDay;
+				}
+				
+				var sMyMonth = "" + ( parseInt(myDate.getMonth(),10) + 1 );
+				if (sMyMonth.length == 1){
+					sMyMonth = "0" + sMyMonth;
+				}
+				
+				var giaTriDen = sMyDay + "/" + sMyMonth + "/" + myDate.getFullYear() ;
+				document.getElementById(prefix_component + 'TIEPDON_MOC2').value = giaTriDen;
+				
+				////////////////////
+				myDate = new Date();
+				
+				myDate.setMonth(parseInt(myMonth,10) - 1); // true month
+				myDate.setFullYear(parseInt(myYear,10)); 
+				myDate.setDate(parseInt(myDay,10)+1065);
+				
+				var sMyDay = "" + parseInt(myDate.getDate(),10);
+				if (sMyDay.length == 1){
+					sMyDay = "0" + sMyDay;
+				}
+				
+				var sMyMonth = "" + ( parseInt(myDate.getMonth(),10) + 1 );
+				if (sMyMonth.length == 1){
+					sMyMonth = "0" + sMyMonth;
+				}
+				
+				var giaTriDen = sMyDay + "/" + sMyMonth + "/" + myDate.getFullYear() ;
+				document.getElementById(prefix_component + 'TIEPDON_MOC3').value = giaTriDen;
+				
+			}			
+			
+			
+			return myreturn;
+		
+		}
+		function checkForGiaTri2(mythis){
+			var myreturn = is_wellformed_Date(mythis);
+			if (myreturn == true){
+				var valueGT1 = document.getElementById(prefix_component + 'TIEPDON_GIATRI1').value;
+				var valueHienTai = getDateSystem_dd_MM_yyyy();
+				
+				if (iesvn_CompareDate(valueGT1, valueHienTai) == 1){
+					document.getElementById(prefix_component + 'TIEPDON_GIATRI3').value = valueGT1;
+				}else{
+					document.getElementById(prefix_component + 'TIEPDON_GIATRI3').value =  getDateSystem_dd_MM_yyyy();// gia tri hien tai
+				}
+				
+				
+				document.getElementById(prefix_component + 'TIEPDON_GIATRI4').value = document.getElementById(prefix_component + 'TIEPDON_GIATRI2').value;
+			}
+			return myreturn;
+		
+		}
+		
+		function enterToTab(){
+		//alert(document.getElementById("__ghinhan").alt);
+          	if((document.getElementById("__ghinhan").alt != 1) &amp;&amp; (document.getElementById("__nhaplai").alt != 1) 
+          	&amp;&amp; (document.getElementById("__huykham").alt != 1)) {
+                 //alert(document.getElementById("__ghinhan").alt);
+                 if(window.event.keyCode == 13){
+                        window.event.keyCode = 9;
+                  }
+         	}
+		} 
+	</script>
+	<div id="sync_error_display" style="position:absolute; top:20px; left:578px; width:200px; height:50px"/>
+	<body onkeydown="enterToTab();">
+	<h:form id="_form" name="_form" >
+	<div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_TiepDon.xhtml" /></div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="35%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						ĐĂNG KÝ KHÁM BỆNH
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								<u>&amp;</u>#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>    
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="965px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr>
+			<td width="100%" style="background-color: #c9daea; " colspan="3" align="center">
+				<div id="__msg" class="mynull"></div>
+			</td>
+		</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 15px" width="100%" >
+    			<!-- Main Area -->    		
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    				<td>
+    				<ui:insert name="khambenh01" />
+    				</td>
+    				</tr>
+    				<tr>
+    				<td>
+    				<ui:insert name="khambenh02" />
+    				</td>
+    				</tr>
+    				<tr>
+    				<td>
+    				<ui:insert name="thongtinbhyt" />
+    				</td>
+    				</tr>  	
+    			</table>
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" bgcolor="#ffffff">   				
+    				<tr>
+    				<td height='20px'>
+    				<ui:insert name="thongtinbhyt" />
+    				</td>
+    				</tr>  	
+    			</table>
+    		</td>
+    	</tr>	    	    	
+    </table>
+    <h:inputHidden id="MAPHU" name="MAPHU"/>
+    <h:inputHidden id="MAPHU1" name="MAPHU1"/> 
+    <h:inputHidden id="TIEPDON_NGAYGIO" name="_TIEPDON_NGAYGIO" value =""/>  
+    <h:inputHidden id="BENHNHAN_GIOI" name="BENHNHAN_GIOI" value =""/> 
+    <h:inputHidden id="BENHNHAN_DONVITUOI" name="BENHNHAN_DONVITUOI" value =""/>    
+    <h:inputHidden id="__ngayhientai" name="_ngayhientai" value =""/>  
+    <h:inputHidden id="__maphu_in" name="_maphu_in" value =""/>  
+    
+    <h:inputHidden id="TIEPDON_TUYEN"/>
+   </h:form>
+   </body>
+   <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/tiepdon/B111_Dangkykhambenh_gears.js"></script>
+   <iframe width="174" height="189" name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;"/>
+   <script type="text/javascript">
+		var thi_1 = "thị";
+		var thi_2 = "Thị"
+		
+		var van_1 = "văn";
+		var van_2 = "Văn";
+		
+		
+		
+
+	</script>
+</ui:define> 
+</ui:composition>
+
+

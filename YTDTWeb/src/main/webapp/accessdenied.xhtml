@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      template="/layout/myTemplateWithoutGearBanner.xhtml">
+<ui:define name="body">
+<h:form id="__form" name="_form">
+  <div style="margin-top:1px; width:100%; height:30px; text-align:center">
+      <h:messages styleClass="mynull"/></div>
+      <center>
+	 <h:commandLink  action="#{accessdenied.MyMainForm()}" value="Nhấn vào đây để đăng nhập." style="color: #1a6fa2; text-decoration: none; font-size:13px; font-family:tahoma"/>
+ 		</center>
+ 	</h:form>	
+ </ui:define>    
+</ui:composition>
+

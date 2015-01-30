@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                template="/layout/mytemplate.xhtml">
+    <ui:define name="body">
+        <script type="text/javascript">
+        function enterToTab(){
+                        //alert(document.getElementById(prefix_component +"__tienhanh").alt);
+                        //alert(document.getElementById(prefix_component +"__chonlai").alt);
+                if((document.getElementById(prefix_component +"__tienhanh").alt != 1) &amp;&amp;
+                (document.getElementById(prefix_component +"__chonlai").alt != 1) ) {
+                 if(window.event.keyCode == 13){
+                        window.event.keyCode = 9;
+                  }
+                }
+                }
+		
+        </script>
+        <body onkeydown="enterToTab();">
+            <h:form id="_form" name="_form">
+                <h:inputHidden id="__resetForm" value="#{resetFormB236}" />
+                <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_DieuTriNoiTru.xhtml" /></div>
+                <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+                    <tr>
+                        <td colspan="3" height="50px">
+                            <table cellspacing="0" cellpadding="0" border="0" width="100%" >
+                                <tr>
+                                    <td height="50px" width="30%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >
+                                        <h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						SỔ RA, VÀO VIỆN
+                                    </td>
+                                    <td valign="top">
+                                        <table cellspacing="0" cellpadding="0" width="100%" >
+                                            <tr>
+                                                <td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+                                                    &#160;
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="13px" height="12px" class="mytdl">
+                        </td>
+                        <td style="background-color: #c9daea;" width="985px" height="12px" >
+                        </td>
+                        <td width="11px" height="12px" class="mytdr">
+                        </td>
+                    </tr>
+                    <tr style=" height : 5px;">
+                        <td width="100%" style="background-color: #c9daea;" colspan="3" align="center">
+                            <a4j:outputPanel id="message_infor">
+                                <h:messages styleClass="mynull"/>
+                            </a4j:outputPanel>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px" width="100%" align="center">
+                            <!-- Main Area -->
+                            <table cellspacing="0" cellpadding="0" border="0" width="40%">
+                                <tr style="height: 25px;">
+                                    <td align="left"  style="padding-left: 18px;">
+                                        <h:outputText value="Từ số bệnh án" styleClass="mytext" style="margin-right: 10px;"/>
+                                        <h:inputText value="#{B236_Soravaovien.sovaovien_tu}"
+                                                     tabindex="1"
+                                                     id="__tusobenhan" name="_tusobenhan"
+
+                                                     style=" width : 120px;" styleClass="myinput">
+
+                                            <a4j:support event="onchange" action="#{B236_Soravaovien.loadSoVaoVienTu()}" reRender="message_infor,__tusobenhan"/>
+
+                                        </h:inputText>
+                                    </td>
+                                </tr>
+                                <tr style="height: 25px;">
+                                    <td align="left"  style="padding-left: 10px;">
+                                        <h:outputText value="Đến số bệnh án" styleClass="mytext" style="margin-right: 10px;"/>
+                                        <h:inputText value="#{B236_Soravaovien.sovaovien_den}" tabindex="2" id="__densobenhan" name="_densobenhan"
+                                                     style="width: 120px;" styleClass="myinput">
+
+                                            <a4j:support event="onchange" action="#{B236_Soravaovien.loadSoVaoVienDen()}"  focus="__tienhanh" reRender="message_infor,__densobenhan"/>
+
+                                        </h:inputText>
+                                    </td>
+                                </tr>
+                                <tr style="height: 40px;">
+                                    <td align="center"  style="padding-left: 90px;">
+                                        <div style="float: left;">
+
+                                            <a4j:commandButton  tabindex="3" id="__tienhanh" name="_tienhanh"
+                                                                action="#{B236_Soravaovien.thuchienAction}" value="Tiến hành"
+                                                                style="width: 70px; margin-left:3px;" styleClass="mybton_b"/>
+
+                                        </div>
+                                        <div  style=" float: left;">
+
+                                            <a4j:commandButton  tabindex="4" id="__chonlai" name="_chonlai"
+                                                                action="#{B236_Soravaovien.resetForm}"
+                                                                reRender="message_infor,__tusobenhan,__densobenhan" value="Nhập mới"
+                                                                focus="__tusobenhan"
+                                                                style="width: 70px; margin-left:3px;" styleClass="mybton_b"/>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+            <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/hsba/B236_soravaovien_gears.js"></script>
+
+        </body>
+    </ui:define>
+</ui:composition>

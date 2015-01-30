@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                template="/layout/mytemplate.xhtml">
+
+<ui:define name="body">	
+	<h:form id="_form" name="_form">
+    <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_DuocPham_KhoBHYT.xhtml" /></div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="100%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						BÁO CÁO NHẬP XUẤT NHIỀU THÁNG
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>    
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="965px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px" width="100%" >
+    			<!-- Main Area -->    		
+    			<table cellspacing="0" cellpadding="0" border="0" width="90%" align="center">
+    			<tr style="height: 25px;">
+    					<td align="right" width="45%">&#160;
+    					<h:outputText value="Năm" styleClass="mytext"/>&#160;&#160;<h:inputText value="" tabindex="1" id="__nam" name="_nam" style="width: 70px;" styleClass="myinput"/>
+    					<h:outputText value="Từ tháng" styleClass="mytext" style="margin-right: 5px; margin-left: 80px;"/>
+    					<h:inputText value="" tabindex="2" id="__tuthang" name="_tuthang" style=" width : 66px;" styleClass="myinput"/>	
+    					</td>
+    					<td align="right" colspan="2" style="padding-right: 286px">
+    					<h:outputText value="Đến tháng" styleClass="mytext"/>&#160;&#160;<h:inputText value="" tabindex="3" id="__denthang" name="_denthang" style=" width : 70px;" styleClass="myinput"/>
+    					
+    					</td>
+    					
+    				</tr>
+    										
+    				<tr style="height: 25px;">
+    					<td align="right">&#160;
+    					<h:outputText value="Loại thuốc" styleClass="mytext"/>&#160;&#160;
+    					<h:inputText value="" tabindex="4" id="__maloaihang" name="_maloaihang" style="width: 68px;" styleClass="myinput"/>&#160;
+    					<h:selectOneListbox value="" tabindex="5" id="__loaihang" name="_loaihang" style=" width : 203px; height: 20px;" styleClass="myinput"/>
+    						
+    					</td>
+    					<td align="right" colspan="2" style="padding-right: 90px">
+    					<h:outputText value="Kho" styleClass="mytext"/>&#160;&#160;<h:inputText value="" tabindex="6" id="__makho" name="_makho" style="width: 70px;" styleClass="myinput"/>&#160;
+    					<h:selectOneListbox value="" tabindex="7" id="__kho" name="_kho" style="width: 193px; height: 20px;" styleClass="myinput"/>
+    					
+    					</td>
+    					
+    				</tr>   
+    				<tr style="height: 25px;">
+    					<td align="right">&#160;
+    					<h:outputText value="Phân loại" styleClass="mytext"/>&#160;&#160;<h:inputText value="" tabindex="8" id="__maphanloai" name="_maphanloai" style="width: 50px;" styleClass="myinput"/>&#160;
+    					<h:inputText value="" tabindex="9" id="__phanloai1" name="_phanloai1" style="width: 50px;" styleClass="myinput"/>&#160;<h:inputText value="" tabindex="10" id="__phanloai2" name="_phanloai2" style="width: 50px;" styleClass="myinput"/>&#160;<h:inputText value="" tabindex="11" id="__phanloai3" name="_phanloai3" style="width: 50px;" styleClass="myinput"/>&#160;<h:inputText value="" tabindex="12" id="__phanloai4" name="_phanloai4" style="width: 47px;" styleClass="myinput"/>
+    					
+    						
+    					</td>
+    					<td align="right" colspan="2" style="padding-right: 90px">
+							<h:outputText value="Nguồn KP" styleClass="mytext"/>&#160;<h:inputText value="" tabindex="13" id="__manguonkp" name="_manguonkp" style="width: 70px;" styleClass="myinput"/>&#160;
+							<h:selectOneListbox value="" tabindex="14" id="__nguonkp" name="_nguonkp" style="width: 193px; height: 20px;" styleClass="myinput"/>
+    					
+    					</td>
+    					
+    				</tr>
+    						
+    				<tr style="height: 25px;">
+    					<td align="right">&#160;
+    					<h:outputText value="Chưong trình" styleClass="mytext"/>&#160;&#160;<h:inputText value="" tabindex="15" id="__machuongtrinh" name="_machuongtrinh" style="width: 70px;" styleClass="myinput"/>&#160;
+    					<h:selectOneListbox value="" tabindex="16" id="__chuongtrinh" name="_chuongtrinh" style=" width : 203px; height: 20px;" styleClass="myinput"/>
+    						
+    					</td>
+    					<td align="right" colspan="2" style="padding-right: 90px">&#160;
+    					<h:outputText value="Phân biệt  nội ngoại" styleClass="mytext"/>&#160;&#160;<h:inputText value="" tabindex="17" id="__maphanbiet" name="_maphanbiet" style="width: 70px;" styleClass="myinput"/>&#160;
+    					<h:selectOneListbox value="" tabindex="18" id="__phanbiet" name="_phanbiet" style="width: 193px; height: 20px;" styleClass="myinput"/>
+    					
+    					
+    					</td>
+    					
+    				</tr>   		
+    				<tr style="height: 25px;">
+    					<td align="right">&#160;
+    					<h:outputText value="Phương thức in" styleClass="mytext" />&#160;&#160;<h:inputText value="" tabindex="19" id="__maphuongthucin" name="_maphuongthuvin" style="width: 70px;" styleClass="myinput"/>&#160;
+    					<h:selectOneListbox value="" tabindex="20" id="__phuongthucin" name="_phuongthucin" style="width: 203px; height: 20px;" styleClass="myinput"/>
+    						
+    					</td>
+    					<td align="left" colspan="2" >&#160;
+    					
+    					
+    					</td>
+    					
+    				</tr>   		
+    				
+    					
+    				<tr style="height: 35px;" >
+    					<td align="right" colspan="3" style="padding-right: 375px" >
+    						<h:commandButton tabindex="21" id="__tienhanh" name="_tienhanh" type="submit" value="Tiến hành" styleClass="mybton" />&#160;&#160;
+    						<h:commandButton tabindex="22" id="__chonlai" name="_chonlai" type="submit" value="Chọn lại" styleClass="mybton" />
+    					</td>
+    				</tr>		
+    			</table>    				    			
+    		</td>
+    	</tr>	
+    </table>
+   </h:form>
+</ui:define> 
+</ui:composition>
+
+

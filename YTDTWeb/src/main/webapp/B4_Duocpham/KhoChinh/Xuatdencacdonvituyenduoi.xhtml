@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                template="/layout/mytemplate.xhtml"
+                 xmlns:c="http://java.sun.com/jstl/core" 
+                xmlns:a4j="http://richfaces.org/a4j">
+
+<ui:define name="body">	
+
+<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />	 
+	<script type="text/javascript">
+	
+		var bSave = false;
+		
+		function setSave() {
+			bSave = true;
+		}
+	
+		function iesvn_Required() {
+		
+		
+		
+			this.ab = new Array(prefix_component + "__ngaytra", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Ngày xuất'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+			this.ac = new Array(prefix_component + "KHONHAP_MA", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Kho nhận'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+			this.ad = new Array(prefix_component + "KHOATRA_MA", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Khoa trả'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+			this.ae = new Array(prefix_component +  "NGUOINHAP_MA", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Người nhập'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+		}
+									
+		function onSubmitTmp(){
+			setSave() ;
+			return onSubmit();
+		}
+		
+		function onSubmit() {
+		changeCursorWait ();
+			var form = document.forms[0];
+			var valid = true;		
+			if (bSave){
+		    	bSave = false;	
+		    	valid = iesvn_ValidateRequired(form);	
+		    }
+		      if (valid == false){
+	    			changeCursorDefault ();
+	    		}
+    		return valid;
+		}
+	function enterToTab(){
+			    if((document.getElementById(prefix_component +"__ghinhan").alt != 1) &amp;&amp; (document.getElementById(prefix_component +"__inphieu").alt != 1) &amp;&amp; (document.getElementById(prefix_component +"__tieptucnhap").alt != 1)) {
+			       if(window.event.keyCode == 13){
+			            window.event.keyCode = 9;
+			       }
+			    }
+			} 
+	</script>
+	<body onkeydown="enterToTab();">
+	<h:form id="_form" name="_form" >
+    <div style="width:778px; position:absolute; z-index:99">
+    <c:if test="#{tenChuongTrinh.equals('QuanLyKhoNoiTru')}">
+    	<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoNoiTru.xhtml" />
+    </c:if>
+    <c:if test="#{tenChuongTrinh.equals('QuanLyKhoBHYT')}">
+    	<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoBHYT.xhtml" />
+    </c:if>
+      <c:if test="#{tenChuongTrinh.equals('QuanLyKhoChinh')}">
+    	<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoChinh.xhtml" />
+    </c:if>
+    <c:if test="#{tenChuongTrinh.equals('QuanLyKhoTE')}">
+		<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoTE.xhtml" />
+	</c:if>
+    </div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="71%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						 <c:if test="#{tenChuongTrinh.equals('QuanLyKhoChinh')}">
+    								XUẤT ĐẾN CÁC ĐƠN VỊ TUYẾN DƯỚI
+    								
+    							</c:if>
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								&#160;
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>    
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="965px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr>
+    	<td colspan="3" style="background-color: #c9daea;" width="100%" align="center" >
+    		<a4j:outputPanel id="message_infor">
+    			<h:messages styleClass="mynull"/>
+    		</a4j:outputPanel>
+    	</td>
+    	</tr>
+    	<tr>
+    	<td colspan="3"  width="100%" align="center" >
+    		ĐANG HIỆN THỰC...
+    	</td>
+    	</tr>
+     </table>
+   <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/duocpham/Xuatdendonvituyenduoi.js"></script>
+   </h:form>
+   </body>
+    
+   
+</ui:define> 
+</ui:composition>

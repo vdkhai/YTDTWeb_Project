@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:rich="http://richfaces.org/rich"
+                template="/layout/mytemplate.xhtml"
+                xmlns:a4j="http://richfaces.org/a4j" >
+
+<ui:define name="body">	
+	<h:form id="_form" name="_form">
+    <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_TiepDon.xhtml" /></div>
+    <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+    	<tr>
+    		<td colspan="3" height="50px">
+    			<table cellspacing="0" cellpadding="0" border="0" width="100%" >
+    				<tr>
+    					<td height="50px" width="45%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >    			
+    						<h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+    						DANH SÁCH BỆNH NHÂN
+    					</td>
+    					<td valign="top">
+    					<table cellspacing="0" cellpadding="0" width="100%" >
+    						<tr>
+    							<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+    								
+    							</td>
+    						</tr>
+    					</table> 
+    					</td>
+    				</tr>
+    			</table>			
+    		</td>    		    	
+    	</tr>    
+    	<tr>
+    		<td width="13px" height="12px" class="mytdl">    			
+    		</td>
+    		<td style="background-color: #c9daea;" width="965px" height="12px" >       			   			 		 		 		 	
+    		</td>
+    		<td width="11px" height="12px" class="mytdr">    			
+    		</td>
+    	</tr>
+    	<tr>
+    		<td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px" width="100%" >
+    			<!-- Main Area -->    		
+    			<table cellspacing="0" cellpadding="0" border="0" width="99%" style="border: solid 1px #7a9dba;">
+	    			<tr style=" height : 20px;" class="mycol">
+    					<td align="center" style="width: 10%; border-right: solid 1px; border-color:#ffffff;">
+    						<h:outputText value="Mã BN"/>
+    					</td>    					   					
+    					
+    					<td align="center" style="width: 15%; border-right: solid 1px; border-color:#ffffff;">
+    						<h:outputText value="Họ và tên"/>
+    					</td>
+    					
+    					<td align="center" style="width :5%; border-right: solid 1px; border-color:#ffffff;">
+    						<h:outputText value="GT"/>
+    					</td>
+    					
+    					<td align="center" style="width: 5%; border-right: solid 1px; border-color:#ffffff;">
+    						<h:outputText value="Tuổi"/>
+    					</td>
+    					
+    					<td align="center" style="width:10%; border-right: solid 1px; border-color:#ffffff;">
+    						<h:outputText value="Ngày sinh" />
+    					</td>  
+    					 <td align="center" style="width:10%; border-right: solid 1px; border-color:#ffffff;">
+    						<h:outputText value="Dân tộc" />
+    					</td> 
+    					<td align="center" style="width:12%; border-right: solid 1px; border-color:#ffffff;">
+    						<h:outputText value="Mã tiếp đón" />
+    					</td>
+    					<td align="center" style="width:12%; border-right: solid 1px; border-color:#ffffff;">
+    						<h:outputText value="Đối tượng" />
+    					</td>
+    					<td align="center" style="width:12%; border-right: solid 1px; border-color:#ffffff;">
+    						<h:outputText value="Địa chỉ" />
+    					</td>
+    					<td align="center" style="border-right: solid 1px; border-color:#ffffff;">
+    						<h:outputText value="Tỉ lệ %" />
+    					</td>			    								
+    				</tr>
+	    			
+	    		<tr>
+    				<td colspan="13" >		
+	    				
+	    					
+     			<div style="overflow-y: scroll; overflow-x: hidden; height:200px; border: solid 0px #54779f; width: 100%">    		
+    			 <table cellspacing="0" cellpadding="0" width="98%" style="float: left;">
+    				
+    				<tr style="margin: 0px;" class="myrow2">
+    				
+    			<h:panelGroup id="listKetqua">
+    					
+                     <rich:dataTable value="">
+                        <rich:column style="width:10%">
+                            <h:outputText id="ms" value=" " />                            
+                        </rich:column>
+                        <rich:column style="width:15%">
+                           <h:outputText id="hoten" value="" /> 
+                        </rich:column>
+                        <rich:column style="width:15%">
+                            <h:outputText id="gioitinh" value="" />          
+                        </rich:column>
+                        <rich:column style="width:8%">
+                             <h:outputText id="tuoi" value="" />      
+                        </rich:column>
+                         <rich:column style="width:10%">
+                         	<h:outputText id="ngaysinh" value="" />                      
+                        </rich:column>
+                         <rich:column style="width:10%">
+                         	<h:outputText id="dantoc" value="" />                      
+                        </rich:column>
+                         <rich:column style="width:10%">
+                         	<h:outputText id="matiepdon" value="" />                      
+                        </rich:column>
+                         <rich:column style="width:6%">
+                         	<h:outputText id="doituong" value="" />                      
+                        </rich:column>
+                         <rich:column style="width:6%">
+                         	<h:outputText id="diachi" value="" />                      
+                        </rich:column>
+                         <rich:column style="width:6%">
+                         	<h:outputText id="tile" value="" />                      
+                        </rich:column>
+                        <rich:column id="column_deletect"  style="width:5%" align="left">                                                    	                        
+	                        <a onclick="javascript:delRow(#{listXntn.rowIndex + 1});" href="javascript:void(0);"><h:graphicImage value="/images/icon_delete2.gif" style="width: 19px; height: 16px;cursor: hand;"/></a>	                                
+	                    </rich:column>
+                         
+                   </rich:dataTable>
+				</h:panelGroup>
+				</tr>
+				</table>
+    			</div>
+				</td>
+				</tr>
+				
+				</table>						
+    		</td>
+    	</tr>
+    	
+    </table>
+   </h:form>
+   <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/tiepdon/B114_indsbnkhamthutien_gears.js"></script>
+</ui:define> 
+</ui:composition>
+
+

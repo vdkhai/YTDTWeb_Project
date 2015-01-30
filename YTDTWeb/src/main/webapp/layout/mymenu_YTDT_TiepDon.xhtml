@@ -1,0 +1,145 @@
+﻿<rich:toolBar style="margin:-5px 0px; height:32px"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:a4j="http://richfaces.org/a4j" 
+    xmlns:rich="http://richfaces.org/rich">
+
+<script type="text/javascript">
+   // 
+
+function setPortNameToId(loaikham){ //loaikham = '' or loaikham = 'CCL'
+	var portname = "";// COM1 or COM2
+	var congquangbaoClientDefault = DtDmClientDefault.getByFieldValue("Ma", "GiaTriCongQuangBao");
+	if (congquangbaoClientDefault) {
+		portname = congquangbaoClientDefault.Ten;
+		//document.getElementById( "__portname").value = portname ;
+	}
+	//alert(portname);
+	//alert("sss:"+document.getElementById( "__portname").value);
+	if (portname == "COM1"){
+		
+		gotothamkhamCom(1,loaikham);
+	}else if (portname == "COM2"){
+		gotothamkhamCom(2,loaikham);
+	}else if (portname == "COM3"){
+		gotothamkhamCom(3,loaikham);
+	}else if (portname == "COM4"){
+		gotothamkhamCom(4,loaikham);
+	}else if (portname == "COM5"){
+		gotothamkhamCom(5,loaikham);
+	}else if (portname == "COM6"){
+		gotothamkhamCom(6,loaikham);
+	}else if (portname == "COM7"){
+		gotothamkhamCom(7,loaikham);
+	}else if (portname == "COM8"){
+		gotothamkhamCom(8,loaikham);
+	}else if (portname == "COM9"){
+		gotothamkhamCom(9,loaikham);
+	}else {
+		gotothamkhamCom(0,loaikham);
+	}
+	return true;
+}
+function gotothamkhamCom(comnumber,loaikham){
+	//alert(loaikham);	
+	if (document.getElementById(prefix_component + "DT_DM_BAN_KHAM_MA_1") != null) {
+		document.getElementById(prefix_component + "DT_DM_BAN_KHAM_MA_1").value = loaikham;
+	}
+	if (loaikham == 'CCL'){
+		document.getElementById( "gotothamkhamCCLCom" + comnumber).onclick();	
+	}else{
+	
+		document.getElementById( "gotothamkhamCom" + comnumber).onclick();	
+	}	
+}
+
+</script>
+
+    
+    <rich:dropDownMenu event="onclick" style="cursor:hand">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="Tiếp đón bệnh nhân"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+		<rich:menuItem style="padding:0px 4px 0px 0px" action="/B1_Tiepdon/B110_Dangkykhambenh.xhtml" id="TiepDon_TiepDonBenhNhan_DangKyKhamBenh_new_id" submitMode="ajax" value="Đăng ký khám bệnh" />
+<!--    <rich:menuItem style="padding:0px 4px 0px 0px" action="#{YTDT_Menu.TiepDon_TiepDonBenhNhan_DangKyKhamBenh}" id="TiepDon_TiepDonBenhNhan_DangKyKhamBenh_id" submitMode="ajax" value="Đăng ký khám bệnh (cũ)" /> -->
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B113_Timkiembenhnhan.init()}" id="TiepDon_TiepDonBenhNhan_TimKiemBenhNhan_id" submitMode="ajax" value="Tìm kiếm bệnh nhân" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="TiepDon_TiepDonBenhNhan_InDanhSachBNKhamThuTien" id="TiepDon_TiepDonBenhNhan_InDanhSachBNKhamThuTien_id" submitMode="ajax" value="In danh sách BN khám" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{InDSBNDKOnline.init()}" id="TiepDon_TiepDonBenhNhan_InDSBNDKOnline_id" submitMode="ajax" value="In danh sách BN đăng ký khám bệnh trực tuyến" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B115_Lichsubenhnhan.init()}" id="TiepDon_TiepDonBenhNhan_LichSuBenhNhan_id" submitMode="ajax" value="Lịch sử bệnh nhân" />
+	</rich:dropDownMenu>
+	
+	<rich:dropDownMenu event="onclick" style="cursor:hand">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="Khám bệnh"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+	    
+	    <!-- <rich:menuItem style="padding:0px 4px 0px 0px"  action="#{B121_Thamkhamvaxutri.init('NoCCL', '')}" onclick="if (! setPortNameToId('')) { return false; }"  id="TiepDon_KhamBenh_ThamKhamXuTri_id" submitMode="ajax" value="Thăm khám và xử trí" /> -->
+		<rich:menuItem style="padding:0px 4px 0px 0px" onclick="if (! setPortNameToId('')) { return false; }"  id="TiepDon_KhamBenh_ThamKhamXuTri_id" submitMode="ajax" value="Thăm khám và xử trí" />
+		
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3235_Thanhtoanphongcapcuu.init('TiepNhanKhamBenh')}" id="TiepDon_KhamBenh_XemChiPhiDieuTri_id" submitMode="ajax" value="Xem chi phí điều trị" />
+		<!-- rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B123_Inphieulinhthuoc.init()}" id="TiepDon_KhamBenh_InPhieuLinhThuoc_id" submitMode="ajax" value="In phiếu lĩnh thuốc" /-->
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B124_Tonghopthuocvtthdadung.init('NoCCL')}" id="TiepDon_KhamBenh_TongHopThuocVTTHDaDung_id" submitMode="ajax" value="Tổng hợp thuốc, VTTH đã dùng" />
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3142_PhieulanhthuoctutrucNGT.init('NGT','KC','BHYT')}" id="VienPhiTaiKhoa_SoLieuCLSPhauThuat_LapPhieuDuTruLanhThuocTuTrucNGT_id" submitMode="ajax" value="Lập phiếu lĩnh thuốc tủ trực" />  	    		
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3143_Phieutrathuoctutruc.init('NGT','KC','BHYT')}" id="VienPhiTaiKhoa_SoLieuCLSPhauThuat_LapPhieuDuTruTraThuocTuTruc_id" submitMode="ajax" value="Lập phiếu trả thuốc tủ trực" />			
+	
+		</rich:dropDownMenu>
+	
+		 <c:if test="#{'YES'.equals('YES')}">
+			<rich:dropDownMenu event="onclick" style="cursor:hand">
+			    <f:facet name="label">
+			    	<h:panelGroup>  
+			    		<h:outputText value="Tiếp đón - Khám bệnh cấp cứu"/>
+			    	</h:panelGroup>		        	    
+			    </f:facet>
+			    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.TiepDon_TiepDonKhamBenhCapCuu_DangKyKhamBenhCapCuu}" id="TiepDon_TiepDonKhamBenhCapCuu_DangKyKhamBenhCapCuu_id" submitMode="ajax" value="Đăng ký khám bệnh cấp cứu" />
+				<!--  <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B121_Thamkhamvaxutri.init('CCL', '')}" onclick="if (! setPortNameToId('CCL')) { return false; }"   id="TiepDon_KhamBenh_ThamKhamXuTri_id_2" submitMode="ajax" value="Thăm khám và xử trí" />-->
+				<rich:menuItem style="padding:0px 4px 0px 0px; " onclick="if (! setPortNameToId('CCL')) { return false; }"   id="TiepDon_KhamBenh_ThamKhamXuTri_id_2" submitMode="ajax" value="Thăm khám và xử trí" />
+				<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B3235_Thanhtoanphongcapcuu.init('TiepNhanKhamBenh')}" id="TiepDon_KhamBenh_XemChiPhiDieuTri_id_2" submitMode="ajax" value="Xem chi phí điều trị" />
+				<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B131_Indanhsachbenhnhancapcuu.init()}" id="TiepDon_TiepDonKhamBenhCapCuu_InDanhSachBenhNhanCapCuu_id" submitMode="ajax" value="In danh sách bệnh nhân cấp cứu" />
+		
+				<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B135_Denghitamungthanhtoan.init()}" id="TiepDon_TiepDonKhamBenhCapCuu_DeNghiTamUngThanhToan_id" submitMode="ajax" value="Đề nghị tạm ứng, thanh toán" />
+				
+				<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B124_Tonghopthuocvtthdadung.init('CCL')}" id="TiepDon_TiepDonKhamBenhCapCuu_TongHopThuocVTTHDaDung_id" submitMode="ajax" value="Tổng hợp thuốc, VTTH đã dùng" />
+<!--			<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B138_Chuyensolieuvaonoitru.init()}" id="TiepDon_TiepDonKhamBenhCapCuu_ChuyenSoLieuVaoNoiTru_id" submitMode="ajax" value="Chuyển số liệu vào nội trú" /> -->
+			
+			</rich:dropDownMenu>
+		</c:if>
+	
+		<rich:dropDownMenu event="onclick" style="cursor:hand">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="Phân tích, Báo cáo"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+	    <rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B141_Phantichbenhnhankhambenh.init('noccl')}" id="TiepDon_PhanTichBaoCao_PhanTichBenhNhanKhamBenh_id" submitMode="ajax" value="Phân tích bệnh nhân khám bệnh" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B141_Phantichbenhnhankhambenh.init('ccl')}" id="TiepDon_PhanTichBaoCao_PhanTichBenhNhanKhamBenh_cc_id" submitMode="ajax" value="Phân tích bệnh nhân vào cấp cứu" />
+	
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B147_1_Insoluutru_bhyt_thuphi.init('bhyt')}" id="TiepDon_PhanTichBaoCao_InSoLuuTru_bhyt_id" submitMode="ajax" value="In sổ lưu trữ (BN BHYT)" />
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{B147_1_Insoluutru_bhyt_thuphi.init('thuphi')}" id="TiepDon_PhanTichBaoCao_InSoLuuTru_thuphi_id" submitMode="ajax" value="In sổ lưu trữ (BN Thu Phí)" />
+	
+	</rich:dropDownMenu>	
+	
+	<rich:dropDownMenu event="onclick" style="cursor:hand">
+	    <f:facet name="label">
+	    	<h:panelGroup>  
+	    		<h:outputText value="Quản trị danh sách bảng mã"/>
+	    	</h:panelGroup>		        	    
+	    </f:facet>
+	 	
+		<rich:menuItem style="padding:0px 4px 0px 0px; " action="#{YTDT_Menu.QuanTriHeThong_TiepDon}" id="DieuTri_QuanTriDanhSachBangMa_Client" submitMode="ajax" value="Cập nhật danh sách bảng mã" />
+	    
+	    
+	</rich:dropDownMenu>
+	
+	
+</rich:toolBar>
+
+

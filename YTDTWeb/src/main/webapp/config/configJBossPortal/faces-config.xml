@@ -1,0 +1,559 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="1.2"
+              xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+
+	<application>
+	   <locale-config>
+	      <default-locale>en</default-locale>
+	      <supported-locale>bg</supported-locale>
+	      <supported-locale>de</supported-locale>
+	      <supported-locale>en</supported-locale>
+	      <supported-locale>fr</supported-locale>
+	      <supported-locale>tr</supported-locale>
+	   </locale-config>
+	   <view-handler>org.jboss.portletbridge.application.PortletViewHandler</view-handler>
+       <state-manager>org.jboss.portletbridge.application.PortletStateManager</state-manager>
+	</application>
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>thamdinhcosocongbo</from-outcome>
+			<to-view-id>/C1_VSATTP/C115_ThamDinhCoSoCapGiayCN.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		
+		
+		<navigation-case>
+			<from-outcome>inphieutiepnhanhosocongbo</from-outcome>
+			<to-view-id>/C1_VSATTP/PhieuTiepNhanHoSoDeNghiCapGiayChungNhanTieuChuanSP.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>traketquahosocongbo</from-outcome>
+			<to-view-id>/C1_VSATTP/C117_Traketqua.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>inphieuchungnhancongboSP</from-outcome>
+			<to-view-id>/C1_VSATTP/GiayChungNhanTieuChuanSanPham.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>thamdinhhosocongbo</from-outcome>
+			<to-view-id>/C1_VSATTP/C114_ThamDinhHoSoXinCongBoTCVSATTP.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>nhapchitietcongbo</from-outcome>
+			<to-view-id>/C1_VSATTP/C113A_thongtinchitiethscongbotieuchuansp.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>cadichbenh</from-outcome>
+			<to-view-id>/C2_BenhTN/C202_QuanLyCaBenhTruyenNhiem.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>inphieuchungnhan</from-outcome>
+			<to-view-id>/C1_VSATTP/PhieuTiepNhanHoSoDeNghiCapGiayChungNhanVeSinhAnToanThucPham.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<!-- manh  begin-->
+		<navigation-case>
+			<from-outcome>clsthuthat</from-outcome>
+			<to-view-id>/B1_Tiepdon/B121_2_Canlamsangphauthuat.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>ghinhan</from-outcome>
+			<to-view-id>/B1_Tiepdon/B121_Thamkhamvaxutri.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>thamkham</from-outcome>
+			<to-view-id>/B1_Tiepdon/B121_1_Thamkham.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>ketoave</from-outcome>
+			<to-view-id>/B1_Tiepdon/B121__5_Ketoabntumua.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<!-- manh  end-->
+		
+		<!--Start faces config menu-->
+		<!--Start YTDT_Menu-->
+		<navigation-case>
+			<from-outcome>BangMa_DanhSachBangMaChung</from-outcome>
+			<to-view-id></to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>BangMa_DanhSachBangMaQuanLy</from-outcome>
+			<to-view-id></to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>BangMa_DanhSachBangMaDieuTri</from-outcome>
+			<to-view-id></to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>BangMa_DanhSachBangMaDuPhong</from-outcome>
+			<to-view-id></to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>BangMa_QuanTriNguoiDung</from-outcome>
+			<to-view-id></to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>TiepDon_TiepDonBenhNhan_DangKyKhamBenh</from-outcome>
+			<to-view-id>/B1_Tiepdon/B111_Dangkykhambenh.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>TiepDon_KhamBenh_ThamKhamXuTri</from-outcome>
+			<to-view-id>/B1_Tiepdon/B121_Thamkhamvaxutri.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>TiepDon_PhanTichBaoCao_PhanTichSoLieuCanLamSan</from-outcome>
+			<to-view-id>/B1_Tiepdon/B145_Phantichsolieuclsngoaitru.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>DieuTri_CapNhat_CapNhatThongTinChung</from-outcome>
+			<to-view-id>/B2_Dieutri/B211_Capnhathosobenhan.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>DieuTri_CapNhat_CapNhatThongTinMo</from-outcome>
+			<to-view-id>/B2_Dieutri/B211_1_Capnhathongtinmo.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>DieuTri_CapNhat_CapNhatThongTinNhapVien</from-outcome>
+			<to-view-id>/B2_Dieutri/B212_Capnhatthongtinnhapvien.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>DieuTri_BaoCaoHoatDongDieuTri_BaoCaoBenhAnDangCapNhat</from-outcome>
+			<to-view-id>/B2_Dieutri/B221_Baocaobenhandangcapnhat.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>DieuTri_SoLieuBenhNhanSuDung_ThuocYDungCuSuDung</from-outcome>
+			<to-view-id>/B3_Vienphi/B3111_Thuocydungcusudung.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>VienPhi_SoLieuCanLamSanPhauThuat_LapPhieuDuTru</from-outcome>
+			<to-view-id>/B3_Vienphi/B3125_Lapphieudutru.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>VienPhi_SoLieuKhamBenh_CanLamSanPhongKham</from-outcome>
+			<to-view-id>/B3_Vienphi/B3232_Canlamsanphongkham.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>VienPhi_SoLieuBenhNhanSuDung_ThuocYDungCuSuDung</from-outcome>
+			<to-view-id>/B3_Vienphi/B3111_Thuocydungcusudung.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>VienPhi_ThanhToanRaVien_ThanhToanRaVien</from-outcome>
+			<to-view-id>/B3_Vienphi/B3241_Thanhtoanravien.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>VienPhi_HoSoBaoCao_SoLieuCanLamSanNoiTruNgoaiTru</from-outcome>
+			<to-view-id>/B3_Vienphi/B3322_Solieuclsngoaitru.xhtml</to-view-id>
+			
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>DuocPham_NhapKho_NhapHangTuNhaCungCap</from-outcome>
+			<to-view-id>/B4_Duocpham/B4111_phieunhapkhochinh.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>DuocPham_XuatKho_XuatHangTheoPhieuDuTru</from-outcome>
+			<to-view-id>/B4_Duocpham/B4122_Xuathangtheophieudutru.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>DuocPham_XuatKho_XuatHangDenKhoKhacKhoBHYT</from-outcome>
+			<to-view-id>/B4_Duocpham/B4121_Phieuxuathangkhole.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>DuocPham_XuatKho_XuatHangchoBenhNhanBHYT</from-outcome>
+			<to-view-id>/B4_Duocpham/B4311_Xuathangchobenhnhan.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>DuocPham_BaoCaoKho_TinhTonKhoVaGiaTri</from-outcome>
+			<to-view-id>/B4_Duocpham/B4134_Tinhtonkhovagiatri.xhtml</to-view-id>
+			                       
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>DuocPham_BaoCaoKho_BaoCaoNhapXuat</from-outcome>
+			<to-view-id>/B4_Duocpham/B4412_Inbaocaonhapxuatthang.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>			
+		<!--End YTDT_Menu-->
+		
+		<!--Start YTDP_Menu-->
+		<navigation-case>
+			<from-outcome>VeSinhATTP_CongBoTCSP</from-outcome>
+			<to-view-id>/C1_VSATTP/C110_CongBoTieuChuanSanPhamMain.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>VeSinhATTP_DuDieuKienVSATTP</from-outcome>
+			<to-view-id>/C1_VSATTP/C130_CapGiayChungNhanDuDieuKienMain.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>VeSinhATTP_QuanLySoLieu_TinhHinhKinhPhi</from-outcome>
+			<to-view-id>/C1_VSATTP/C168_TinhHinhKinhPhi.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>VeSinhATTP_QuanLySoLieu_TinhHinhXayDungMoHinhDiem</from-outcome>
+			<to-view-id>/C1_VSATTP/C167_TTXayDungMoHinhDiem.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>VeSinhATTP_QuanLySoLieu_CongTacXetNghiem</from-outcome>
+			<to-view-id>/C1_VSATTP/C166_CongTacXetNghiem.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>VeSinhATTP_QuanLySoLieu_ThongTinQuangCaoSanPham</from-outcome>
+			<to-view-id>/C1_VSATTP/C169_TTQuangCaoSanPham.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>VeSinhATTP_QuanLySoLieu_CongTacChiDaoTuyenTruyenThanhKiemTra</from-outcome>
+			<to-view-id>/C1_VSATTP/C164_Congtacchidaotuyentruyenthanhkiemtra.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>VeSinhATTP_TongHopBaoCao</from-outcome>
+			<to-view-id>/C1_VSATTP/C160_BaoCaoTongHop.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>BenhTruyenNhiem_HoSoDichBenh_NhapMoi</from-outcome>
+			<to-view-id>/C2_BenhTN/C211_HoSoDichBenh.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>BenhTruyenNhiem_HoSoDichBenh_TimKiem</from-outcome>
+			<to-view-id>/C2_BenhTN/C214_TimKiemHoSoDichBenh.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>BenhTruyenNhiem_CaBenhTruyenNhiem_NhapMoi</from-outcome>
+			<to-view-id>/C2_BenhTN/C202_QuanLyCaBenhTruyenNhiem.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>BenhTruyenNhiem_CaBenhTruyenNhiem_TimKiem</from-outcome>
+			<to-view-id>/C2_BenhTN/C212_TimKiemCaBenhTruyenNhiem.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>BenhTruyenNhiem_TongHopBaoCao</from-outcome>
+			<to-view-id>/C2_BenhTN/C230_BaoCaoTongHop.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>CSSKSS_SucKhoeBaMe_PhaThai</from-outcome>
+			<to-view-id>/C3_CSSKSS/C311A_ThongTinPhaThai.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>CSSKSS_KeHoachHoaGiaDinh_DungBCS</from-outcome>
+			<to-view-id>/C3_CSSKSS/C332A_TheoDoiKhachHangDungbaoCaoSu.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>CSSKSS_SoLieuCSSKSS_SoLieuChuongTrinhCSSKSS</from-outcome>
+			<to-view-id>/C3_CSSKSS/C344A_SLcongtacchamsocsuckhoesinhsan.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>CSSKSS_TongHopBaoCao</from-outcome>
+			<to-view-id>/C3_CSSKSS/C340_BaoCaoTongHop.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+				
+		<navigation-case>
+			<from-outcome>MTYTQuocGia_TiemChungMoRong_KetQuaTiemChungTreEm</from-outcome>
+			<to-view-id>/C5_MuctieuYTQG/C5161B_KetQuaTiemChungTreEm.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>			
+				
+		<!--End YTDP_Menu-->
+		<!--End faces config menu-->
+					
+	</navigation-rule>
+		
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>B145_Chonmenuxuattaptin</from-outcome>
+			<to-view-id>/B1_Tiepdon/B145_Chonmenuxuattaptin.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>B145_Phantichsolieuclsngoaitru</from-outcome>
+			<to-view-id>/B1_Tiepdon/B145_Phantichsolieuclsngoaitru.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>B4311_Chonmenuxuattaptin</from-outcome>
+			<to-view-id>/B4_Duocpham/B4311_Chonmenuxuattaptin.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>B4311_Xuathangchobenhnhan</from-outcome>
+			<to-view-id>/B4_Duocpham/B4311_Xuathangchobenhnhan.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>B4134_Chonmenuxuattaptin</from-outcome>
+			<to-view-id>/B4_Duocpham/B4134_Chonmenuxuattaptin.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>B4134_Tinhtonkhovagiatri</from-outcome>
+			<to-view-id>/B4_Duocpham/B4134_Tinhtonkhovagiatri.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>B4412_Chonmenuxuattaptin</from-outcome>
+			<to-view-id>/B4_Duocpham/B4412_Chonmenuxuattaptin.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>B4412_Inbaocaonhapxuatthang</from-outcome>
+			<to-view-id>/B4_Duocpham/B4412_Inbaocaonhapxuatthang.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>B4134_Tinhtonkhovagiatri</from-outcome>
+			<to-view-id>/B4_Duocpham/B4134_Tinhtonkhovagiatri.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>B4122_Chonmenuxuattaptin</from-outcome>
+			<to-view-id>/B4_Duocpham/B4122_Chonmenuxuattaptin.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>B4122_Xuathangtheophieudutru</from-outcome>
+			<to-view-id>/B4_Duocpham/B4122_Xuathangtheophieudutru.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>B4121_Chonmenuxuattaptin</from-outcome>
+			<to-view-id>/B4_Duocpham/B4121_Chonmenuxuattaptin.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>B4121_Phieuxuathangkhole</from-outcome>
+			<to-view-id>/B4_Duocpham/B4121_Phieuxuathangkhole.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>B3322_Chonmenuxuattaptin</from-outcome>
+			<to-view-id>/B3_Vienphi/B3322_Chonmenuxuattaptin.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>B3322_Solieuclsngoaitru</from-outcome>
+			<to-view-id>/B3_Vienphi/B3322_Solieuclsngoaitru.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>B3125_Chonmenuxuattaptin</from-outcome>
+			<to-view-id>/B3_Vienphi/B3125_Chonmenuxuattaptin.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>B3125_Lapphieudutru</from-outcome>
+			<to-view-id>/B3_Vienphi/B3125_Lapphieudutru.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>B3241_Thanhtoanravien</from-outcome>
+			<to-view-id>/B3_Vienphi/B3241_Thanhtoanravien.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>B3241_Chonmenuxuattaptin</from-outcome>
+			<to-view-id>/B3_Vienphi/B3241_Chonmenuxuattaptin.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+		<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>B221_Chonmenuxuattaptin</from-outcome>
+			<to-view-id>/B2_Dieutri/B221_Chonmenuxuattaptin.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>B221_Baocaobenhandangcapnhat</from-outcome>
+			<to-view-id>/B2_Dieutri/B221_Baocaobenhandangcapnhat.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+		<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>B4122_Xuathangtheophieudt</from-outcome>
+			<to-view-id>/B2_Duocpham/B4122_Xuathangtheophieudutru.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>	
+	
+</faces-config>
+
+

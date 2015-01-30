@@ -1,0 +1,301 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/layout/mytemplate.xhtml">
+	<ui:define name="body">
+		<style type="text/css">
+#TiepNhan_div {
+	position: absolute;
+	width: 105px;
+	height: 23px;
+	z-index: 1;
+	margin-left: 186px;
+	margin-top: 145px;
+}
+
+#DieuTri_div {
+	position: absolute;
+	width: 105px;
+	height: 23px;
+	z-index: 1;
+	margin-left: 186px;
+	margin-top: 230px;
+}
+
+#Quantri_div {
+	position: absolute;
+	width: 105px;
+	height: 23px;
+	z-index: 1;
+	margin-left: 186px;
+	margin-top: 296px;
+}
+
+#VienPhiTaiKhoa_div {
+	position: absolute;
+	width: 105px;
+	height: 15px;
+	z-index: 1;
+	margin-left: 185px;
+	margin-top: 248px;
+}
+
+#BenhAn_div {
+	position: absolute;
+	width: 105px;
+	height: 15px;
+	z-index: 1;
+	margin-left: 185px;
+	margin-top: 233px;
+}
+
+#BaoCaoVienPhi_div {
+	position: absolute;
+	width: 105px;
+	height: 15px;
+	z-index: 1;
+	margin-left: 442px;
+	margin-top: 195px;
+}
+
+#ThuVienPhi_div {
+	position: absolute;
+	width: 105px;
+	height: 15px;
+	z-index: 1;
+	margin-left: 325px;
+	margin-top: 195px;
+}
+
+#KhoChinh_div {
+	position: absolute;
+	width: 105px;
+	height: 15px;
+	z-index: 1;
+	margin-left: 324px;
+	margin-top: 307px;
+}
+
+#KhoLe_div {
+	position: absolute;
+	width: 105px;
+	height: 15px;
+	z-index: 1;
+	margin-left: 442px;
+	margin-top: 307px;
+}
+
+#KhoBHYT_div {
+	position: absolute;
+	width: 105px;
+	height: 15px;
+	z-index: 1;
+	margin-left: 324px;
+	margin-top: 324px;
+}
+
+#BaoCaoDuoc_div {
+	position: absolute;
+	width: 105px;
+	height: 15px;
+	z-index: 1;
+	margin-left: 442px;
+	margin-top: 325px;
+}
+
+#Banner_menu_div {
+	position: absolute;
+	width: 150px;
+	height: 23px;
+	z-index: 1;
+	margin-left: 628px;
+	margin-top: 24px;
+}
+</style>
+		<f:loadBundle var="msg" basename="com.iesvn.yte.UIResources" />
+		<f:loadBundle var="info" basename="com.iesvn.yte.ApplicationResources" />
+		
+		<h:form id="__form" name="_form">
+			<div
+				style="background-image:url(images/#{msg.MAIN_BV}); background-repeat:no-repeat; width:100%; height:424px; text-align:left; background-position:center">
+
+			<div id="Banner_menu_div"><h:commandLink
+				action="#{YTDT_Menu.MyMainForm}" value="&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"
+				style="color: #1a6fa2; text-decoration: none; font-size:13px; font-family:tahoma" />
+			<span
+				style="color: #1a6fa2; text-decoration: none; font-size: 13px; font-family: tahoma">
+			|</span> <a4j:commandLink action="#{identity.logout}" value="Đăng xuất"
+				style="color: #1a6fa2; text-decoration: none; font-size:13px; font-family:tahoma">
+			</a4j:commandLink></div>
+
+			<div id="TiepNhan_div">
+			<c:if test='#{identity.hasRole("NV_TiepDon") or identity.hasRole("QT_PhongKham") }'>
+				<span
+					style="font-weight: bold; color: #FF3300; font-family: tahoma; font-size: 10px">o
+				</span>
+				<h:commandLink
+					action="/B1_Tiepdon/B110_Dangkykhambenh.xhtml"
+					value="Tiếp đón &#160; &#160; &#160; &#160; &#160;"
+					style="color: #1a6fa2; text-decoration: none; font-size:13px; font-family:tahoma" />
+			</c:if>
+			
+			<c:if test='#{identity.hasRole("NV_PhongKham") or identity.hasRole("QT_PhongKham") }'>
+				<span
+					style="font-weight: bold; color: #FF3300; font-family: tahoma; font-size: 10px">o
+				</span>
+				<h:commandLink
+					action="#{B121_Thamkhamvaxutri.init('NoCCL', '')}"
+					value="Thăm khám"
+					style="color: #1a6fa2; text-decoration: none; font-size:13px; font-family:tahoma" />
+			</c:if>
+			
+			<c:if test='#{not ( identity.hasRole("NV_TiepDon") or identity.hasRole("NV_PhongKham")  or identity.hasRole("QT_PhongKham")  ) }'>
+				<h:outputText value="Tiếp nhận &#160;  &#160;  &#160; Khám bệnh"
+					style="color: #999999; text-decoration: none; font-size:13px; font-family:tahoma" />
+
+			</c:if>
+			</div>
+
+			<div id="DieuTri_div"><c:if
+				test='#{identity.hasRole("NV_KhoaNoiTru") or identity.hasRole("QT_KhoaNoiTru")}'>
+				<h:commandLink action="#{B3111_Thuocydungcusudung.init()}"
+					value="Điều trị nội trú"
+					style="color: #1a6fa2; text-decoration: none; font-size:13px; font-family:tahoma" />
+
+			</c:if> <c:if
+				test='#{not (identity.hasRole("NV_KhoaNoiTru") or identity.hasRole("QT_KhoaNoiTru")  ) }'>
+				<h:outputText value="Điều trị nội trú"
+					style="color: #999999; text-decoration: none; font-size:13px; font-family:tahoma" />
+
+			</c:if></div>
+
+			<div id="Quantri_div"><c:if
+				test='#{identity.hasRole("QT_HeThong")}'>
+				<h:commandLink action="#{YTDT_Menu.QuanTriHeThong}"
+					value="Quản trị &#160;  &#160;  &#160;  &#160;  &#160;  &#160; hệ thống"
+					style="color: #1a6fa2; text-decoration: none; font-size:13px; font-family:tahoma" />
+
+			</c:if> <c:if
+				test='#{not (identity.hasRole("QT_HeThong")) and (
+		 	    
+		 	    identity.hasRole("NV_TiepDon")
+		 	    or identity.hasRole("NV_PhongKham") or identity.hasRole("QT_PhongKham")
+		 	    or identity.hasRole("NV_KhoaNoiTru") or identity.hasRole("QT_KhoaNoiTru")
+		 	    or identity.hasRole("NV_KhoaDuoc") or identity.hasRole("QT_HT_Duoc")
+		 	    or identity.hasRole("NV_VienPhi") or identity.hasRole("QT_VienPhi")
+		 	    or identity.hasRole("NV_KhoChinh") or identity.hasRole("NV_KhoLe")
+		 	    or identity.hasRole("NV_KhoBH") or identity.hasRole("NV_KhoTE")
+		 	    ) }'>
+				<h:commandLink action="#{changepassword.init('')}"
+					value="Đổi mật khẩu"
+					style="color: #1a6fa2; text-decoration: none; font-size:13px; font-family:tahoma" />
+
+			</c:if> <br />
+
+			</div>
+
+			<div id="VienPhiTaiKhoa_div"></div>
+
+
+			<div id="BenhAn_div"></div>
+			<div id="BaoCaoVienPhi_div"><span
+				style="font-weight: bold; color: #FF3300; font-family: tahoma; font-size: 10px">o
+			</span> <c:if
+				test='#{identity.hasRole("NV_VienPhi") or identity.hasRole("QT_VienPhi")}'>
+				<h:commandLink
+					action="#{YTDT_Menu.BaoCaoVienPhi_SoLieuThanhToan_BangKeThuChiTamUngTheoNgay}"
+					value="Báo cáo viện phí"
+					style="color: #1a6fa2; text-decoration: none; font-size:11px; font-family:tahoma" />
+			</c:if> <c:if
+				test='#{not (identity.hasRole("NV_VienPhi") or identity.hasRole("QT_VienPhi")  ) }'>
+				<h:outputText value="Báo cáo viện phí"
+					style="color: #999999; text-decoration: none; font-size:11px; font-family:tahoma" />
+
+			</c:if></div>
+
+			<div id="ThuVienPhi_div">
+			<span
+				style="font-weight: bold; color: #FF3300; font-family: tahoma; font-size: 10px">o
+			</span> 
+			<c:if
+				test='#{identity.hasRole("NV_VienPhi") or identity.hasRole("QT_VienPhi")}'>
+				<h:commandLink action="#{B3241_Thanhtoanravien.init('3241','NT')}"
+					value="Thu viện phí"
+					style="color: #1a6fa2; text-decoration: none; font-size:11px; font-family:tahoma" />
+
+			</c:if> <c:if
+				test='#{not (identity.hasRole("NV_VienPhi") or identity.hasRole("QT_VienPhi")  ) }'>
+				<h:outputText value="Thu viện phí"
+					style="color: #999999; text-decoration: none; font-size:11px; font-family:tahoma" />
+
+			</c:if></div>
+
+			<div id="KhoChinh_div">
+				<span style="font-weight: bold; color: #FF3300; font-family: tahoma; font-size: 10px; padding-right: 3px">o</span> 
+				<c:if test='#{identity.hasRole("NV_KhoaDuoc") or identity.hasRole("QT_HT_Duoc") or identity.hasRole("NV_KhoChinh")}'>
+					<h:commandLink action="#{B4122_Xuathangtheophieudt.init('KC')}"
+						value="Kho chính"
+						style="color: #1a6fa2; text-decoration: none; font-size:11px; font-family:tahoma" />
+				</c:if> <c:if
+					test='#{not (identity.hasRole("NV_KhoaDuoc") or identity.hasRole("QT_HT_Duoc") or identity.hasRole("NV_KhoChinh") ) }'>
+					<h:outputText value="Kho chính"
+						style="color: #999999; text-decoration: none; font-size:11px; font-family:tahoma" />
+	
+				</c:if>
+			</div>
+
+			<div id="KhoLe_div">
+				<span style="font-weight: bold; color: #FF3300; font-family: tahoma; font-size: 10px; padding-right: 3px">o</span>
+				<c:if
+					test='#{identity.hasRole("NV_KhoaDuoc") or identity.hasRole("QT_HT_Duoc") or identity.hasRole("NV_KhoLe")}'>
+					<h:commandLink action="#{B4122_Xuathangtheophieudt.init('KhoNoiTru')}"
+						value="Kho nội trú"
+						style="color: #1a6fa2; text-decoration: none; font-size:11px; font-family:tahoma" />
+				</c:if>
+				<c:if
+					test='#{not (identity.hasRole("NV_KhoaDuoc") or identity.hasRole("QT_HT_Duoc") or identity.hasRole("NV_KhoLe") ) }'>
+					<h:outputText value="Kho nội trú"
+						style="color: #999999; text-decoration: none; font-size:11px; font-family:tahoma" />
+				</c:if>
+			</div>
+
+			<div id="KhoBHYT_div">
+				<span style="font-weight: bold; color: #FF3300; font-family: tahoma; font-size: 10px; padding-right: 3px">o</span> 
+				<c:if
+					test='#{identity.hasRole("NV_KhoaDuoc") or identity.hasRole("QT_HT_Duoc") or identity.hasRole("NV_KhoBH")}'>
+					<h:commandLink action="#{B4311_Xuathangchobenhnhan.init('BHYT')}"
+						value="Kho BHYT"
+						style="color: #1a6fa2; text-decoration: none; font-size:11px; font-family:tahoma" />
+				</c:if> 
+				<c:if test='#{not (identity.hasRole("NV_KhoaDuoc") or identity.hasRole("QT_HT_Duoc") or identity.hasRole("NV_KhoBH") ) }'>
+					<h:outputText value="Kho BHYT"	style="color: #999999; text-decoration: none; font-size:11px; font-family:tahoma" />
+				</c:if>
+			</div>
+
+			<div id="KhoTE_div" style="padding: 326px 0 0 443px">
+				<span style="font-weight: bold; color: #FF3300; font-family: tahoma; font-size: 10px; padding-right: 3px">o</span>
+					<c:if test='#{not (identity.hasRole("NV_KhoaDuoc") or identity.hasRole("QT_HT_Duoc") or identity.hasRole("NV_KhoTE") ) }'>
+						<h:outputText value="Kho TE"
+							style="color: #999999; text-decoration: none; font-size:11px; font-family:tahoma" />
+		
+					</c:if> 
+					<c:if
+						test='#{identity.hasRole("NV_KhoaDuoc") or identity.hasRole("QT_HT_Duoc") or identity.hasRole("NV_KhoTE")}'>
+						<h:commandLink action="#{B4311_Xuathangchobenhnhan.init('TE')}"
+							value="Kho TE" style="color: #1a6fa2; text-decoration: none; font-size:11px; font-family:tahoma" />
+					</c:if>
+				</div>
+			</div>
+			<!--  <h:outputText id="__version" value='#{info.VERSION_NAME}' />-->
+			<h:commandButton id="__version" name="_ghinhan" type="submit" value='#{info.VERSION_NAME}' style="width: 70px; display:none" />
+		</h:form>
+		<script type="text/javascript"
+			src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/mymainform_gears.js"></script>
+	</ui:define>
+</ui:composition>
+

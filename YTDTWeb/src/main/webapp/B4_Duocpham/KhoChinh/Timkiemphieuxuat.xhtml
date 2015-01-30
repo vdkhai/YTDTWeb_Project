@@ -1,0 +1,381 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/layout/mytemplate.xhtml">
+
+
+	<ui:define name="body">
+		<f:loadBundle basename="com.iesvn.yte.UIResources" var="msg" />
+		<script type="text/javascript">	
+		
+		function enterToTab(){
+          	if(document.getElementById(prefix_component +"__timkiemphieuxuat") == null || document.getElementById(prefix_component +"__timkiemphieuxuat").alt != 1)  
+          	{
+                 if(window.event.keyCode == 13){
+                        window.event.keyCode = 9;
+                  }
+         	}
+		} 	
+		</script>
+	<body onkeydown="enterToTab();">
+		<div id="sync_error_display" style="position:absolute; top:20px; left:578px; width:200px; height:50px"/>
+		<h:form id="_form" name="_form">
+			<div style="width:778px; position:absolute; z-index:99">
+				<c:if test="#{tenChuongTrinh.equals(YTDT_Menu.quanLyKhoChinh)}">
+					<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoChinh.xhtml" />
+				</c:if>
+				<c:if test="#{tenChuongTrinh.equals('QuanLyKhoNoiTru')}">
+					<ui:include src="/layout/mymenu_YTDT_DuocPham_KhoNoiTru.xhtml" />
+				</c:if>
+			</div>
+			<h:inputHidden id="__ngayhientai" name="_ngayhientai" value="#{Timkiemphieuxuat.ngayHt}" />			
+			<h:inputHidden id="count" value="#{Timkiemphieuxuat.count}" />
+			<table style="margin-top:14px" cellspacing="0" cellpadding="0" border="0" width="777">
+				<tr>
+					<td colspan="3" height="50px">
+					<table cellspacing="0" cellpadding="0" border="0" width="100%">
+						<tr>
+							<td height="50px" width="38%"
+								style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;">
+								<h:graphicImage value="/images/white_light.gif" width="43" height="16" />TÌM KIẾM PHIẾU XUẤT
+							</td>
+							<td valign="top">
+								<table cellspacing="0" cellpadding="0" width="100%">
+									<tr>
+										<td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;"
+											valign="bottom"> &#160; </td>
+									</tr>
+								</table>							
+							</td>
+						</tr>
+					</table>
+					</td>
+				</tr>
+				<tr>					
+					<td style="background-color: #c9daea;" width="965px" height="12px">
+					</td>
+					<td style="background-color: #c9daea;" width="11px" height="12px" class="mytdr"></td>
+				</tr>
+				<tr>
+		    	<td colspan="3" style="background-color: #c9daea;" width="100%" align="center" >
+		    		<a4j:outputPanel id="message_infor">
+		    			<h:messages styleClass="mynull"/>
+		    		</a4j:outputPanel>
+		    	</td>
+		    	</tr>
+				<tr>
+					<td align="center" colspan="3"
+						style="background-color: #c9daea; padding-top: 0px; padding-bottom: 10px"
+						width="100%"><!-- Main Area -->
+						<table cellspacing="0" cellpadding="0" width="98%" border="0">
+						<tr>
+							<td align="right" width="15%"><h:outputText value="Mã phiếu"
+								styleClass="mytext" /> &#160;
+							</td>
+							<td align="left" width="40%">
+								<h:inputText value="#{Timkiemphieuxuat.maPhieu}" id="TIMKIEMPHIEU_MATK"
+									name="timkiem" style=" width : 110px;" maxlength="15"
+									tabindex="1" styleClass="myinput">								
+								</h:inputText>							
+								<h:outputText value="Ngày Lập" styleClass="mytext"
+									style="margin-left: 10px; margin-right: 5px" /> 
+								<h:inputText
+									id="__ngayXuattk" name="timkiem" value="#{Timkiemphieuxuat.ngayHt}" maxlength="10" tabindex="2"
+									style=" width : 70px;" styleClass="myinput" />								
+								<a hideFocus="true"
+									onclick="if(self.gfPop)gfPop.fPopCalendar(document.getElementById(prefix_component + '__ngayxuattk'));return false;"
+									href="javascript:void(0)"> 
+									<h:graphicImage style="margin:0 0 -4px 0" value="/resources/calendar/cal.gif"
+										border="0" name="popcal" />
+								</a>	
+							</td>
+							<td align="right" width="13%"><h:outputText value="Loại phiếu" styleClass="mytext" /> &#160;</td>
+							<td align="left">
+								<h:inputHidden id="DTDMLOAI_MA_pk" value="#{Timkiemphieuxuat.loaiThuocMaSo}" />
+								<h:inputText id="DTDMLOAI_MA" value="#{Timkiemphieuxuat.loaiThuocMa}"
+										name="DTDMLOAI_MA" style=" width : 40px;" maxlength="4" onblur="myOnblurTextbox(this.id, 'DM_LOAI_THUOC')"
+										tabindex="3" styleClass="myinput"/> 
+								<span id="LOAI_span" /> <input id="DM_LOAI_THUOC" name="DM_LOAI_THUOC" tabindex="4"	style="width: 110px;" />
+							</td>
+						</tr>
+						<tr>
+							<td align="right" width="13%"><h:outputText value="Người lập phiếu" styleClass="mytext" /> &#160;</td>
+							<td align="left">
+								<h:inputHidden id="DTDMNHANVIEN_PHAT_pk" value="#{Timkiemphieuxuat.nhanvienLapphieuMaso}" />
+								<h:inputText id="DTDMNHANVIEN_PHAT" value="#{Timkiemphieuxuat.nhanvienLapphieuMa}"
+										name="DTDMNHANVIEN_PHAT" style=" width : 60px;" maxlength="4" onblur="myOnblurTextbox(this.id, 'DT_DM_NHAN_VIEN__1')"
+										tabindex="5" styleClass="myinput"/> 
+								<span id="DT_DM_NHAN_VIEN_span1" /> <input id="DT_DM_NHAN_VIEN__1" name="DT_DM_NHAN_VIEN__1" tabindex="6"	style="width: 200px;" />
+							</td>
+							<td align="right" width="13%"><h:outputText value="Phiếu dự trù" styleClass="mytext" /> &#160;</td>
+							<td align="left">
+								<h:inputText id="SOHOADON" value="#{Timkiemphieuxuat.phieuDuTru}"
+										name="_hoadon" style=" width : 158px;" maxlength="50"
+										tabindex="7" styleClass="myinput"/> 
+							</td>	
+						</tr>
+						<tr>
+							<td align="right" width="13%"><h:outputText value="Người nhập phiếu" styleClass="mytext" /> &#160;</td>
+							<td align="left">
+								<h:inputHidden id="DTDMNHANVIEN_CN_pk" value="#{Timkiemphieuxuat.nhanvienNhapphieuMaso}" />
+								<h:inputText id="DTDMNHANVIEN_CN" value="#{Timkiemphieuxuat.nhanvienNhapphieuMa}"
+										name="DTDMNHANVIEN_CN" style=" width : 60px;" maxlength="4" onblur="myOnblurTextbox(this.id, 'DT_DM_NHAN_VIEN__2')"
+										tabindex="5" styleClass="myinput"/> 
+								<span id="DT_DM_NHAN_VIEN_span2" /> <input id="DT_DM_NHAN_VIEN__2" name="DT_DM_NHAN_VIEN__2" tabindex="6"	style="width: 200px;" />
+							</td>
+							<td align="right" width="13%"><h:outputText value="Kho/Khoa nhận" styleClass="mytext" /> &#160;</td>
+							<td align="left">
+								<h:inputHidden id="DMKHOA_MASO_pk" value="#{Timkiemphieuxuat.khoaNhanMaSo}" />
+								<h:inputText id="DMKHOA_MASO" value="#{Timkiemphieuxuat.khoaNhanMa}"
+										name="DMKHOA_MA" style=" width : 40px;" maxlength="4" onblur="myOnblurTextbox(this.id, 'DM_KHOA')"
+										tabindex="3" styleClass="myinput"/> 
+								<span id="DM_KHOA_span" /> <input id="DM_KHOA" name="DM_KHOA" tabindex="4"	style="width: 180px;" />
+							</td>	
+						</tr>
+						</table>										
+					</td>
+				</tr>
+				<tr style="height: 40px;">
+					<td align="center" colspan="3" style="background-color: white; padding-left:300px;" >
+						<div  id="divtimkiem"  style=" float: left;">    							
+    						<a4j:commandButton id="__timkiemphieuxuat" value="Tìm kiếm" tabindex="8" 
+    								styleClass="mybton_b" action="#{Timkiemphieuxuat.timkiem()}"     								
+    								style="width: 60px; margin-right: 3px;" 
+    								reRender="__myTableTimKiem,__myTable,PHIEUXUATKHO_MA,PHIEUXUATKHO_NGAYGIOCN,TENLOAITHUOC,DTDMNHANVIEN_CN1,DMKHOA_XUAT,DMKHOA_NHAN,DTDMNHANVIEN_BACSI,PHIEUXUATKHO_NGAYLAP,PHIEUXUATKHO_THANHTIEN,PHIEUXUATKHO_LYDO"/>						
+    					
+    						<a4j:commandButton id="__lammoi"     								
+    								value="Làm mới" styleClass="mybton_b"  tabindex="9" 
+    								action="#{Timkiemphieuxuat.reset()}"  style="width: 60px; margin-right: 3px;" 
+    								reRender="__myTableTimKiem,__myTable,PHIEUXUATKHO_MA,PHIEUXUATKHO_NGAYGIOCN,TENLOAITHUOC,DTDMNHANVIEN_CN1,DMKHOA_XUAT,DMKHOA_NHAN,DTDMNHANVIEN_BACSI,PHIEUXUATKHO_NGAYLAP,PHIEUXUATKHO_THANHTIEN,PHIEUXUATKHO_LYDO"/>
+    					</div>
+    				</td>
+				</tr>
+				<tr>
+					<td align="center" colspan="3"
+						style="background-color: white; padding-top: 15px; padding-bottom: 5px;"
+						width="100%">
+						<table border="0" cellspacing="0" cellpadding="0" style="width:98%;" align="center" >
+							<tr>
+								<td colspan="8" style="border:solid 1px #7e9dba;" >	
+										<rich:dataTable headerClass="mycol" id="__myTableTimKiem" var="row" value="#{listResultPhieuXuat}"
+												cellpadding="0" cellspacing="1" rowClasses="myrow1,myrow2" reRender="__ds"
+												border="0" style="width: 100%;" rows="10" >
+										<rich:column style="width:10%;" >
+											<f:facet name="header"><h:outputText value="Mã phiếu"/></f:facet>
+											<h:outputText value="" />		
+												<a4j:commandLink value="#{row.phieuxuatkhoMa}" 
+													action="#{Timkiemphieuxuat.selectPhieuXuat(listResultPhieuXuat.rowIndex)}" style="width:9%;"
+													reRender="__myTable,PHIEUXUATKHO_MA,PHIEUXUATKHO_NGAYGIOCN,TENLOAITHUOC,DTDMNHANVIEN_CN1,DMKHOA_XUAT,DMKHOA_NHAN,DTDMNHANVIEN_BACSI,PHIEUXUATKHO_NGAYLAP,PHIEUXUATKHO_THANHTIEN,PHIEUXUATKHO_LYDO"></a4j:commandLink>					
+										</rich:column>										
+										<rich:column style="width:10%;" align="left" >
+											<f:facet name="header"><h:outputText value="Loại thuốc"/></f:facet>
+											<h:outputText value="#{row.getDmloaithuocMaso(true).dmloaithuocTen}" />					
+										</rich:column>
+										<rich:column style="width:10%;" align="left" >
+											<f:facet name="header"><h:outputText value="Mã phiếu dự trù"/></f:facet>
+											<h:outputText value="#{row.phieudtMa.phieudtMa}" />					
+										</rich:column>
+										<rich:column style="width:19%;" align="left" >
+											<f:facet name="header"><h:outputText value="Kho/Khoa nhận"/></f:facet>
+											<h:outputText value="#{row.dmkhoaNhan.dmkhoaTen}" />					
+										</rich:column>
+										<rich:column style="width: 13%;" >
+											<f:facet name="header"><h:outputText value="Người lập"/></f:facet>
+											<h:outputText value="#{row.dtdmnhanvienPhat.dtdmnhanvienTen}"  />							
+										</rich:column>
+										<rich:column style="width: 13%;" >
+											<f:facet name="header"><h:outputText value="Người nhập"/></f:facet>
+											<h:outputText value="#{row.dtdmnhanvienCn.dtdmnhanvienTen}"  />							
+										</rich:column>
+										<rich:column style="width: 10%;" >
+											<f:facet name="header"><h:outputText value="Ngày nhập"/></f:facet>
+											<h:outputText value="#{row.phieuxuatkhoNgaygiocn}" >
+												<f:converter converterId="com.iesvn.yte.converter.DateConverter" />	
+											</h:outputText>						
+										</rich:column>
+										<rich:column style="width:15%;" align="right" >
+											<f:facet name="header"><h:outputText value="Thành tiền"/></f:facet>
+											<h:outputText value="#{row.phieuxuatkhoThanhtien}">
+												<f:converter converterId="com.iesvn.yte.converter.DoubleConverter2FractionDigits" />
+											</h:outputText>
+										</rich:column>
+										<f:facet name="footer">
+				               				<rich:datascroller id="__ds" renderIfSinglePage="false" ></rich:datascroller>
+				           				</f:facet>
+										</rich:dataTable>
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+						<td width="100%" height="50px" style="BACKGROUND-COLOR: #99c1ee; padding-left: 18px; font-family: Arial; font-size: 16px; color: black; font-weight: bold;">
+							Thông tin chi tiết phiếu xuất kho
+						</td>
+				</tr>
+				<tr>
+					<td align="center" colspan="3"
+						style="background-color: white; padding-top: 15px; padding-bottom: 5px;"
+						width="100%"><!-- Detail Area -->
+						<table cellspacing="0" cellpadding="0" border="0" width="100%">
+							<tr>
+								<table cellspacing="0" cellpadding="0" width="98%" border="0">						
+									<tr>
+										<td align="right" width="13%"><h:outputText value="Mã phiếu" styleClass="mytext" /> &#160;</td>
+										<td align="left" width="30%">
+											<h:inputText readonly="true" value="#{Timkiemphieuxuat.pxk.phieuxuatkhoMa}" id="PHIEUXUATKHO_MA" name="phieunhap" style=" width : 110px;" maxlength="15"
+												styleClass="myinput">										
+											</h:inputText>
+										</td>
+										<td align="right" width="20%"><h:outputText value="Ngày nhập" styleClass="mytext" /> &#160;</td>
+										<td align="left" width="37%">
+											<h:inputText readonly="true" id="PHIEUXUATKHO_NGAYGIOCN" name="phieunhap" value="#{Timkiemphieuxuat.ngaygiocn}" maxlength="10"
+												style=" width : 70px;" styleClass="myinput" />											
+										</td>
+									</tr>
+									<tr>
+										<td align="right" width="13%"><h:outputText value="Loại phiếu" styleClass="mytext" /> &#160;</td>
+										<td align="left" width="30%">
+											<h:inputText readonly="true" id="TENLOAITHUOC" value="#{Timkiemphieuxuat.pxk.dmloaithuocMaso.dmloaithuocTen}" name="DTDMLOAI_MA" style=" width : 170px;" maxlength="4"
+												styleClass="myinput" />
+										</td>
+										<td align="right" width="20%"><h:outputText value="Thủ kho" styleClass="mytext" /> &#160;</td>
+										<td align="left" width="30%">										 									
+											<h:inputText readonly="true" id="DTDMNHANVIEN_CN1" name="phieuxuat" style=" width : 170px;" maxlength="8" value="#{Timkiemphieuxuat.pxk.getDtdmnhanvienCn(true).dtdmnhanvienTen}"
+												styleClass="myinput" />
+										</td>											
+									</tr>
+									<tr>
+										<td align="right" ><h:outputText value="Kho xuất" styleClass="mytext" nowrap="true" />
+										&#160;</td>
+										<td align="left">									
+											<h:inputText readonly="true" id="DMKHOA_XUAT" value="#{Timkiemphieuxuat.pxk.dmkhoaXuat.dmkhoaTen}"
+											name="_machuongtrinh" style=" width : 250px;" maxlength="2"
+											styleClass="myinput" />									
+										</td>
+										<td align="right" style="padding-left: 0px"><h:outputText value="Kho/Khoa nhận" styleClass="mytext" nowrap="true" />	&#160;</td>
+										<td align="left">									
+											<h:inputText readonly="true" id="DMKHOA_NHAN" value="#{Timkiemphieuxuat.pxk.getDmkhoaNhan(true).dmkhoaTen}"
+											name="_makhonhap" style=" width : 170px;" maxlength="5"
+											styleClass="myinput" />									
+										</td>
+									</tr>
+									<tr>
+										<td align="right"><h:outputText value="Người ký" styleClass="mytext" /> &#160;</td>
+										<td align="left">
+											<h:inputText readonly="true" id="DTDMNHANVIEN_BACSI" value="#{Timkiemphieuxuat.pxk.dtdmnhanvienBacsi.dtdmnhanvienTen}"
+												name="_manoiban" style=" width : 250px"
+												maxlength="10" styleClass="myinput" /> 
+										</td>
+										<td align="right"><h:outputText value="Ngày lập" styleClass="mytext" /> &#160;</td>
+										<td align="left">
+											<h:inputText readonly="true" id="PHIEUXUATKHO_NGAYLAP" value="#{Timkiemphieuxuat.ngayLap}"
+												name="_ngaylap" style=" width : 70px"
+												maxlength="10" styleClass="myinput" /> 
+										</td>		
+									</tr>
+									
+									<tr>
+										<td align="right" style="padding-left: 0px"><h:outputText
+											value="Thành tiền" styleClass="mytext"
+											style="margin-right: 5px; margin-left:5px;" /></td>
+										<td align="left">
+											<h:inputText readonly="true" value="#{Timkiemphieuxuat.pxk.phieuxuatkhoThanhtien}" id="PHIEUXUATKHO_THANHTIEN" name="_thanhtien"
+												style=" width : 170px; text-align: right;" styleClass="myinput">
+												<f:converter converterId="com.iesvn.yte.converter.LongDoubleConverter" />
+											</h:inputText>
+										</td>
+										<td align="right"><h:outputText value="Lý do xuất kho" styleClass="mytext" />&#160;</td>
+										<td align="left">
+											<h:inputText readonly="true" value="#{Timkiemphieuxuat.pxk.phieuxuatkhoLydo}" id="PHIEUXUATKHO_LYDO" name="PHIEUXUATKHO_LYDO"
+												style=" width : 170px;text-align: right;" styleClass="myinput">
+											</h:inputText>
+										</td>
+									</tr>
+								</table>
+						</tr>						
+						<tr>
+							<td colspan="2" style="background-color: white; padding-top: 15px; padding-bottom: 5px;" >
+								<table border="0" cellspacing="0" cellpadding="0" style="width:98%;" align="center" >									
+									<tr>
+										<td colspan="8" style="border:solid 1px #7e9dba;" >
+											<rich:dataTable headerClass="mycol" id="__myTable" var="row" value="#{Timkiemphieuxuat.listCtXuatKho}"
+												cellpadding="0" cellspacing="1" rowClasses="myrow1,myrow2"
+												border="0" style="width: 100%;" rows="10" reRender="__dsThuoc">
+												<rich:column style="width:9%;" >
+													<f:facet name="header"><h:outputText value="Mã số"/></f:facet>
+													<h:outputText value="#{row.dmthuocMaso.dmthuocMa}" />							
+												</rich:column>
+						
+												<rich:column style="width:27%;" align="left" >
+													<f:facet name="header"><h:outputText value="Tên thuốc"/></f:facet>
+													<h:outputText value="#{row.dmthuocMaso.dmthuocTen}" />						
+												</rich:column>
+						
+												<rich:column style="width: 10%;" >
+													<f:facet name="header"><h:outputText value="Đơn vị"/></f:facet>
+													<h:outputText value="#{row.dmthuocMaso.getDmdonvitinhMaso(true).dmdonvitinhTen}"  />							
+												</rich:column>
+						
+												<rich:column style="width:13%;" align="right" >
+													<f:facet name="header"><h:outputText value="Số lượng"/></f:facet>
+													<h:outputText value="#{row.ctxuatkhoSoluong}">
+														<f:converter converterId="com.iesvn.yte.converter.DoubleConverter2FractionDigits" />
+													</h:outputText>
+												</rich:column>
+																		
+												<rich:column style="width: 10%;" align="right" >
+													<f:facet name="header"><h:outputText value="Đơn giá"/></f:facet>
+													<h:outputText value="#{row.ctxuatkhoDongia}">
+														<f:converter converterId="com.iesvn.yte.converter.DoubleConverter2FractionDigits" />
+													</h:outputText>							
+												</rich:column>
+												<rich:column style="width: 10%;" align="right" >
+													<f:facet name="header"><h:outputText value="Đơn giá VAT"/></f:facet>
+													<h:outputText value="#{row.ctxuatkhoDongiaban}">
+														<f:converter converterId="com.iesvn.yte.converter.DoubleConverter2FractionDigits" />
+													</h:outputText>							
+												</rich:column>
+												<rich:column style="width: 15%;" align="right" >
+													<f:facet name="header"><h:outputText value="Thành tiền"/></f:facet>
+													<h:outputText id="colTT" value="#{row.ctxuatkhoSoluong * row.ctxuatkhoDongia}">
+														<f:converter converterId="com.iesvn.yte.converter.DoubleConverter2FractionDigits" />
+													</h:outputText>							
+												</rich:column>
+												<f:facet name="footer">
+						               				<rich:datascroller id="__dsThuoc" renderIfSinglePage="false" ></rich:datascroller>
+						           				</f:facet>
+											</rich:dataTable>
+										</td>
+									</tr>
+								</table> 									
+							</td>
+						</tr>
+						
+					</table>					
+					
+					
+					</td>
+				</tr>	
+			</table>
+			<script type="text/javascript"
+			src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/duocpham/TimKiemPhieuXuat_gears.js"></script>
+		<iframe width="174" height="189" name="gToday:normal:agenda.js"
+			id="gToday:normal:agenda.js"
+			src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm"
+			scrolling="no" frameborder="0"
+			style="visibility: visible; z-index: 999; position: absolute; top: -500px; left: -500px;" />
+		</h:form>
+		
+		</body>
+		
+	</ui:define>
+</ui:composition>
+
+

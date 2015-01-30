@@ -1,0 +1,372 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:s="http://jboss.com/products/seam/taglib"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:a4j="https://ajax4jsf.dev.java.net/ajax"
+                xmlns:rich="http://richfaces.org/rich"
+                template="/layout/mytemplate.xhtml">
+
+    <ui:define name="body">
+        <f:loadBundle basename="com.iesvn.yte.UIResources" var="msg" />
+        <script type="text/javascript">
+        var bCancel = false;
+		
+		
+        </script>
+        <div id="ajax_error_display" style="position:absolute; top:30px; left:578px; width:200px; height:50px"/>
+        <div id="sync_error_display" style="position:absolute; top:40px; left:578px; width:200px; height:50px"/>
+
+        <h:form id="_form" name="_form">
+            <div style="width:778px; position:absolute; z-index:99"><ui:include src="/layout/mymenu_YTDT_DieuTriNoiTru.xhtml" /></div>
+            <table style="margin-top:20px" cellspacing="0" cellpadding="0" border="0" width="777">
+                <tr>
+                    <td colspan="3" height="50px">
+                        <table cellspacing="0" cellpadding="0" border="0" width="100%" >
+                            <tr>
+                                <td height="50px" width="100%" style="padding-left: 18px; font-family: Arial; font-size: 18px; color: white; font-weight: bold;" >
+                                    <h:graphicImage value="/images/white_light.gif" width="43" height="16" />
+                                    <h:inputHidden id="B211_2" value="#{goToB211_2}"/>
+                                    <h:outputText value="#{msg.CAP_NHAT_THONG_TIN_SAN}" />
+                                </td>
+                                <td valign="top">
+                                    <table cellspacing="0" cellpadding="0" width="100%" >
+                                        <tr>
+                                            <td style="font-family: Arial; font-size: 12px; color: white; text-align: right; padding-right: 15px; padding-bottom: 2px; height: 25px; border-bottom: solid 1px #97989a;" valign="bottom" >
+
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="13px" height="12px" class="mytdl">
+                    </td>
+                    <td style="background-color: #c9daea;" width="965px" height="12px" >
+                    </td>
+                    <td width="11px" height="12px" class="mytdr">
+                    </td>
+                </tr>
+                <tr style=" height : 5px;">
+                    <td width="100%" style="background-color: #c9daea; padding-top: 0px; padding-bottom: 0px" colspan="3" align="center">
+                        <a4j:outputPanel id="__messagesPanel">
+                            <h:messages styleClass="mynull"/>
+                        </a4j:outputPanel>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="background-color: #c9daea; padding-top: 10px; padding-bottom: 15px" width="100%" >
+                        <!-- Main Area -->
+                        <table cellspacing="0" cellpadding="0" border="0" width="100%" align="center">
+                            <tr style="height: 25px;">
+                                <td align="right" style="width:15%;padding-right: 0px">
+                                    <h:outputText value="#{msg.Khoa}" styleClass="mytext" style="margin-left: 15px; margin-right: 5px;"/>
+                                </td>
+                                <td align="left" >
+                                    <h:inputText value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbacmMa(true).getKhoaMa(true).dmkhoaMa}"  readonly="true" id="DM_KHOA_MA" style="width: 40px;" styleClass="myreadonly"/>
+                                    <h:inputHidden  value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbacmMa(true).getKhoaMa(true).dmkhoaMaso}" id="DM_KHOA_MA_pk" />
+                                    <span id="DM_KHOA_span"/>
+                                    <h:inputText  readonly="true" value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbacmMa(true).getKhoaMa(true).dmkhoaTen}" id="DM_KHOA"  style="width: 225px;" styleClass="myreadonly"/>
+
+                                    <h:outputText value="#{msg.So_benh_an}" styleClass="mytext" style="margin-left: 79px; margin-right: 5px;"/>
+                                    <h:inputText value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbacmMa(true).getHsbaSovaovien(true).hsbaSovaovien}"  readonly="true" id="__sobenhan"   style=" width : 120px;" styleClass="myreadonly"/>
+
+
+                                </td>
+
+                            </tr>
+
+                            <tr style="height: 25px;">
+                                <td align="right">
+                                    <h:outputText value="#{msg.Ho_ten}" styleClass="mytext" style="margin-left: 5px; margin-right: 5px"/>
+
+                                </td>
+                                <td align="left" >
+                                    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+                                        <tr>
+                                            <td align="left" width="32%">
+                                                <h:inputText value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbacmMa(true).getHsbaSovaovien(true).getBenhnhanMa(true).benhnhanHoten}" readonly="true" id="__hoten"  style="float: left; width : 196px;" styleClass="myreadonly"/>
+
+                                            </td>
+                                            <td align="left" width="27%">
+                                                <h:outputText value="#{msg.Gioi_tinh}" styleClass="mytext" style="float: left; padding-top:3px; margin-left: 24px; margin-right: 0px;"/>
+                                                <h:selectOneRadio disabled="true" value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbacmMa(true).getHsbaSovaovien(true).getBenhnhanMa(true).getDmgtMaso(true).dmgtMaso}" id="__gioitinh">
+                                                    <f:selectItem id="__namItems" itemValue="2" itemLabel="Nam" styleClass="mycheck"   />
+                                                    <f:selectItem id="__nuItems" itemValue="1" itemLabel="Nữ" styleClass="mycheck" />
+                                                </h:selectOneRadio>
+                                            </td>
+                                            <td align="left">
+                                                <h:outputText value="#{msg.Tuoi}" styleClass="mytext" style=" margin-left: 5px; margin-right: 4px;"/>
+                                                <h:inputText readonly="true"  value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbacmMa(true).getHsbaSovaovien(true).getBenhnhanMa(true).benhnhanTuoi}" id="__tuoi"  style="margin-left: 0px; margin-right: 3px; width : 35px;" styleClass="myreadonly"/>
+
+                                                <h:outputText value="#{B211_2_CapNhatThongTinSan.donViTuoi}" id="__donViTuoi" styleClass="mytext" style="margin-left: 12px;margin-right: 15px;"/>
+
+                                                <h:inputText readonly="true" value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbacmMa(true).getHsbaSovaovien(true).getBenhnhanMa(true).benhnhanNgaysinh}"   id="__ngaysinh"   style=" width : 70px;" styleClass="myreadonly" ><s:convertDateTime type="date" pattern="dd/MM/yyyy" /></h:inputText>
+                                                <!--
+                                                <a hideFocus="true" href="javascript:void(0)"  ><h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/>
+                                                </a>
+                                                -->
+                                                <iframe id="gToday:normal:agenda.js" style="Z-INDEX:999;LEFT:-500px;VISIBILITY:visible;POSITION:absolute;TOP:0px" name="gToday:normal:agenda.js" src="#{facesContext.externalContext.requestContextPath}/resources/calendar/ipopeng.htm" frameBorder="0" width="180" scrolling="no" height="147"></iframe>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr style="height: 25px;">
+                                <td align="right" style="padding-right: 5px">
+                                    <h:outputText value="#{msg.Dia_chi}" styleClass="mytext"/>
+                                </td>
+                                <td align="left" style="padding-left: 0px">
+                                    <!-- from -->
+                                    <h:inputText readonly="true" value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbacmMa(true).getHsbaSovaovien(true).getBenhnhanMa(true).getTinhMa(true).dmtinhMa}" id="TINH_MA"  styleClass="myreadonly" style=" width : 40px"   />
+
+                                    <span id="DM_TINH_span"/>
+                                    <h:inputText readonly="true" value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbacmMa(true).getHsbaSovaovien(true).getBenhnhanMa(true).getTinhMa(true).dmtinhTen}" id="DM_TINH"   style="width: 150px;" styleClass="myreadonly" />
+                                    <!--
+    					 	<h:outputText value="*" styleClass="mynull"	style="margin-right: 5px; margin-left: 2px;" />
+                                    -->
+                                    <h:inputText readonly="true" value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbacmMa(true).getHsbaSovaovien(true).getBenhnhanMa(true).getHuyenMa(true).dmhuyenMa}" id="HUYEN_MA"  style=" width : 40px"    styleClass="myreadonly"/>
+
+                                    <span id="DM_HUYEN_span"/>
+                                    <h:inputText readonly="true" value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbacmMa(true).getHsbaSovaovien(true).getBenhnhanMa(true).getHuyenMa(true).dmhuyenTen}" id="DM_HUYEN"   style="width: 150px;" styleClass="myreadonly" />
+                                    <!--
+    					 	<h:outputText value="*" styleClass="mynull"	style="margin-right: 5px; margin-left: 2px;" />
+                                    -->
+                                    <h:inputText  readonly="true" value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbacmMa(true).getHsbaSovaovien(true).getBenhnhanMa(true).getXaMa(true).dmxaMa}" id="XA_MA"  style="width : 62px" styleClass="myreadonly"   />
+
+                                    <span id="DM_XA_span"/>
+                                    <h:inputText readonly="true" value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbacmMa(true).getHsbaSovaovien(true).getBenhnhanMa(true).getXaMa(true).dmxaTen}" id="DM_XA"   style="width: 150px;" styleClass="myreadonly" />
+                                    <!--
+    						<h:outputText value="*" styleClass="mynull"	style="margin-right: 5px; margin-left: 2px;" />
+                                    -->
+
+                                    <!-- to-->
+
+                                </td>
+
+                            </tr>
+                            <tr style="height: 25px;">
+                                <td align="right" style="padding-right: 0px">
+
+
+                                </td>
+                                <td align="left" style="padding-left: 0px">
+                                    <h:inputText value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbacmMa(true).getHsbaSovaovien(true).getBenhnhanMa(true).benhnhanDiachi}"  readonly="true" id="BENHNHAN_DIACHI"  style=" width : 400px;"  styleClass="myreadonly"/>
+                                    <!--
+    						<h:outputText value="*" styleClass="mynull"	style="margin-right: 5px; margin-left: 2px;" />
+                                    -->
+                                </td>
+
+                            </tr>
+                            <tr style="height: 25px;">
+                                <td align="right" style="padding-right: 0px">
+                                    <h:outputText value="#{msg.Nghe_nghiep}" styleClass="mytext" style="margin-left: 5px; margin-right: 5px;"/>
+
+
+                                </td>
+                                <td align="left" style="padding-left: 0px">
+                                    <h:inputText readonly="true" value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbacmMa(true).getHsbaSovaovien(true).getBenhnhanMa(true).getBenhnhanNghe(true).dmnghenghiepMa}"  id="NGHENGHIEP_MA"  style=" width : 40px"   styleClass="myreadonly"/>
+
+                                    <span id="DM_NGHE_NGHIEP_span"/>
+                                    <h:inputText readonly="true" value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbacmMa(true).getHsbaSovaovien(true).getBenhnhanMa(true).getBenhnhanNghe(true).dmnghenghiepTen}" id="DM_NGHE_NGHIEP"   style=" width : 230px;" styleClass="myreadonly"/>
+
+
+                                    <h:outputText value="#{msg.Dan_toc}" styleClass="mytext" style=" margin-right: 5px; margin-left:98px;"/>
+                                    <h:inputText  value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbacmMa(true).getHsbaSovaovien(true).getBenhnhanMa(true).getDantocMa(true).dmdantocMa}" readonly="true" id="DM_DAN_TOC_MA"  style=" width : 35px; margin-right:0px;"    styleClass="myreadonly" />
+
+                                    <span id="DM_DAN_TOC_span"/>
+                                    <h:inputText  readonly="true" value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbacmMa(true).getHsbaSovaovien(true).getBenhnhanMa(true).getDantocMa(true).dmdantocTen}" id="DM_DAN_TOC"    style="width: 120px;" styleClass="myreadonly"/>
+
+
+                                </td>
+
+                            </tr>
+
+
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="background-color: white; padding-top: 15px; padding-bottom: 15px;" width="100%">
+                        <!-- Detail Area -->
+                        <table cellspacing="0" cellpadding="0" border="0" width="100%" >
+                            <tr style="height: 25px;">
+
+                                <td align="right">
+                                    <h:outputText value="#{msg.Tre_so_sinh_thu}" styleClass="mytext" style="margin-right: 5px; margin-left: 0px;"/>
+
+                                </td>
+                                <td style="padding-right: 10px;" align="left">
+
+                                    <h:inputText value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).hsbasanLanthu}"  tabindex="1" id="HSBASAN_LANTHU"   style=" width : 40px;" styleClass="myinput"/>
+
+
+                                </td>
+                            </tr>
+
+                            <tr style="height: 25px;">
+
+                                <td width= "15%">
+                                    &#160;
+                                </td>
+                                <td style=" padding-left: 0px;" align="left">
+                                    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+
+
+                                        <tr>
+                                            <td style="margin-right: 5px; margin-left: 0px;" align="left" width="65%">
+                                                <h:selectOneRadio value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).hsbasanThaichet}" tabindex="2" id="HSBASAN_THAICHET">
+                                                    <f:selectItem id="__chetsosinhItems" itemValue="CKS" itemLabel="Chết sơ sinh" styleClass="mycheck"   />
+                                                    <f:selectItem id="__thaichetluuItems" itemValue="TCL" itemLabel="Thai chết lưu" styleClass="mycheck" />
+                                                </h:selectOneRadio>
+                                            </td>
+                                            <td align="left">
+                                                <h:selectOneRadio value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbasanGioi(true).dmgtMaso}" tabindex="3" id="HSBASAN_GIOI">
+                                                    <f:selectItem id="__namItems2" itemValue="2" itemLabel="Nam" styleClass="mycheck"   />
+                                                    <f:selectItem id="__nuItems2" itemValue="1" itemLabel="Nữ" styleClass="mycheck" />
+                                                </h:selectOneRadio>
+                                            </td>
+
+                                        </tr>
+                                    </table>
+
+                                </td>
+                            </tr>
+                            <tr style="height: 25px;">
+
+                                <td align="right">
+                                    <h:outputText value="#{msg.Can_nang}" styleClass="mytext" style="margin-right: 5px; margin-left: 0px;"/>
+
+                                </td>
+                                <td style=" padding-right: 10px;" align="left">
+
+                                    <h:inputText value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).hsbasanCannang}"  tabindex="4" id="HSBASAN_CANNANG"   style=" width : 40px;" styleClass="myinput"/>
+
+
+                                    <h:outputText value="#{msg.Sinh_luc}" styleClass="mytext" style="margin-right: 5px; margin-left: 35px;"/>
+                                    <h:inputText   onkeypress="iesvn_InputInKeys('0123456789:')" tabindex="5" value="#{B211_2_CapNhatThongTinSan.giosinh}" id="__mangaygiosinh"  style="width : 50px;" styleClass="myinput" onkeyup="checkHour(this);" onblur='checkHourBlur(this)'  ><f:converter converterId="com.iesvn.yte.converter.TimeConverter" /></h:inputText>
+
+                                    <h:inputText onkeypress="return being_wellformed_Date(this, event)" onblur="return is_wellformed_Date(this)"  tabindex="6" value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).hsbasanNgaygiosinh}" id="HSBASAN_NGAYGIOSINH"  maxlength="10" style=" width : 80px;" styleClass="myinput" ><s:convertDateTime type="date" pattern="dd/MM/yyyy" /></h:inputText>
+                                    <a hideFocus="true" onclick="gfPop.fPopCalendar(document.getElementById(prefix_component + 'HSBASAN_NGAYGIOSINH'));document.getElementById(prefix_component + 'HSBASAN_NGAYGIOSINH').setActive();return false;" href="javascript:void(0)"><h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/>
+                                    </a>
+
+                                </td>
+                            </tr>
+                            <tr style="height: 25px;">
+
+                                <td align="right">
+                                    <h:outputText value="#{msg.Phuong_thuc_sinh}" styleClass="mytext" style="margin-right: 5px;"/>
+                                </td>
+                                <td style="padding-right: 10px;" align="left">
+                                    <h:inputText value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getDmloaisinhMaso(true).dmloaisinhMa}"  tabindex="7" id="DMLOAISINH_MASO" onblur="myOnblurTextbox(prefix_component + 'DMLOAISINH_MASO',prefix_component + 'DM_LOAI_SINH');"  style=" width : 40px;" styleClass="myinput"/>
+                                    <h:inputHidden value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getDmloaisinhMaso(true).dmloaisinhMaso}" id="DMLOAISINH_MASO_pk" />
+                                    <span id="DM_LOAI_SINH_span" />
+                                    <h:inputText  tabindex="8"  id="DM_LOAI_SINH"   style=" width : 230px;" styleClass="myinput"/>
+
+
+                                </td>
+                            </tr>
+
+
+
+                            <tr style="height: 25px;">
+
+                                <td align="right">
+                                    <h:outputText value="#{msg.Ma_benh}" styleClass="mytext" style="margin-right: 5px;"/>
+                                </td>
+                                <td style=" padding-right: 10px;" align="left">
+
+                                    <h:inputText value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbasanMabenh(true).dmbenhicdMa}"  tabindex="9" id="HSBASAN_MABENH" onblur="myOnblurTextbox(prefix_component + 'HSBASAN_MABENH',prefix_component + 'DM_BENH_ICD');" style="float: left; width : 40px; margin-right: 3px" styleClass="myinput"/>
+                                    <h:inputHidden value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbasanMabenh(true).dmbenhicdMaso}" id="HSBASAN_MABENH_pk" />
+                                    <span id="DM_BENH_ICD_span" />
+                                    <h:inputText  tabindex="10"  id="DM_BENH_ICD" alt="getDmBenhIcd_search(document.getElementById(prefix_component + 'DM_BENH_ICD').value)"  style="float: left; width : 230px; margin-right: 150px" styleClass="myinput"/>
+
+
+                                    <h:selectBooleanCheckbox tabindex="17" id="__tiemchung" style="float:left;" >
+                                        <h:outputText value="#{msg.Tiem_chung_BCG}" style="float:left;margin-left:16px;" styleClass="mycheck" />
+                                    </h:selectBooleanCheckbox>
+                                </td>
+                            </tr>
+
+                            <tr style="height: 25px;">
+
+                                <td align="right">
+                                    <h:outputText value="#{msg.Chuyen_khoa}" styleClass="mytext" style="margin-right: 5px;"/>
+
+                                </td>
+                                <td style=" padding-right: 10px;" align="left">
+
+                                    <h:inputText value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbasanChuyenkhoa(true).dmkhoaMa}"  onblur="myOnblurTextbox(prefix_component + 'HSBASAN_CHUYENKHOA',prefix_component + 'DM_KHOA__2');"  tabindex="11" id="HSBASAN_CHUYENKHOA" style=" width : 40px;" styleClass="myinput"/>
+                                    <h:inputHidden value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbasanChuyenkhoa(true).dmkhoaMaso}" id="HSBASAN_CHUYENKHOA_pk" />
+                                    <span id="DM_KHOA__2_span" />
+                                    <h:inputText   id="DM_KHOA__2"   style=" width : 230px;" styleClass="myinput"/>
+
+                                    <h:outputText value="#{msg.Tu_vong_luc}" styleClass="mytext" style="margin-right: 5px; margin-left: 85px;"/>
+                                    <h:inputText   onkeypress="iesvn_InputInKeys('0123456789:')" tabindex="12" value="#{B211_2_CapNhatThongTinSan.giochet}" id="__matuvongluc"  style="width : 50px;" styleClass="myinput" onkeyup="checkHour(this);" onblur='checkHourBlur(this)'  ><f:converter converterId="com.iesvn.yte.converter.TimeConverter" /></h:inputText>
+
+                                    <h:inputText onkeypress="return being_wellformed_Date(this, event)" onblur="return is_wellformed_Date(this)"  tabindex="13" value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).hsbasanNgaygiochet}" id="HSBASAN_NGAYGIOCHET"  maxlength="10" style=" width : 80px;" styleClass="myinput" ><s:convertDateTime type="date" pattern="dd/MM/yyyy" /></h:inputText>
+                                    <a hideFocus="true" onclick="gfPop.fPopCalendar(document.getElementById(prefix_component + 'HSBASAN_NGAYGIOCHET'));document.getElementById(prefix_component + 'HSBASAN_NGAYGIOCHET').setActive();return false;" href="javascript:void(0)"><h:graphicImage value="/resources/calendar/cal.gif" style="margin:0 0 -3px 0" border="0" name="popcal"/>
+                                    </a>
+
+                                </td>
+                            </tr>
+                            <tr style="height: 25px;">
+
+                                <td align="right">
+                                    <h:outputText value="#{msg.NN_tu_vong}" styleClass="mytext" style="margin-right: 5px;"/>
+                                </td>
+                                <td style="padding-right: 10px;" align="left">
+                                    <h:inputText value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbasanMatuvong(true).dmbenhicdMa}"  tabindex="14" id="HSBASAN_MATUVONG"  onblur="myOnblurTextbox(prefix_component + 'HSBASAN_MATUVONG',prefix_component + 'DM_BENH_ICD__2');" style=" width : 40px;" styleClass="myinput"/>
+                                    <h:inputHidden value="#{B211_2_CapNhatThongTinSan.getHsbaSan(true).getHsbasanMatuvong(true).dmbenhicdMaso}" id="HSBASAN_MATUVONG_pk" />
+
+                                    <span id="DM_BENH_ICD__2_span" />
+                                    <h:inputText  tabindex="15"  id="DM_BENH_ICD__2" alt="getDmBenhIcd_search(document.getElementById(prefix_component + 'DM_BENH_ICD__2').value)"   style=" width : 230px;" styleClass="myinput"/>
+
+
+                                </td>
+                            </tr>
+
+
+                            <tr style="height: 40px;">
+                                <td colspan="3" align="right" style="padding-left: 330px;" >
+                                    <div class="mybton_b_l" style="width: 85px; float: left;">
+                                        <div style="background-position: 70px 0px; float: left ; padding-right: 5px" class="mybton_b_r">
+                                            <a4j:commandButton  tabindex="16" id="__ghinhan" type="submit" value="#{msg.Ghi_nhan}" style="width: 70px;" styleClass="mybton_b" action="#{B211_2_CapNhatThongTinSan.ghinhan}" oncomplete="this.disabled=false;document.getElementById(prefix_component + 'ghiNhanException').value='#{B211_2_CapNhatThongTinSan.getGhiNhanException()}';" reRender="ghiNhanException,__messagesPanel" onclick="this.disabled=true;"/>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="mybton_b_l" style="width: 85px; float: left;">
+                                        <div style="background-position: 70px 0px; float: left ; padding-right: 5px" class="mybton_b_r">
+                                            <a4j:commandButton  tabindex="18" id="__back" type="submit" value="#{msg.Quay_lai}" action="#{B211_2_CapNhatThongTinSan.back}" style="width: 70px;" styleClass="mybton_b"/>
+
+                                        </div>
+                                    </div>
+                                    <h:inputHidden value="#{B211_2_CapNhatThongTinSan.ghiNhanException}"  id="ghiNhanException" name="ghiNhanException" style=" width : 100px;" styleClass="myinputso"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </h:form>
+        <script type="text/javascript" src="#{facesContext.externalContext.requestContextPath}/resources/gears/dieutri/hsba/B211_2_Capnhathongtinsan_gears.js"></script>
+        <script>
+          A4J.AJAX.onError = function(req,status, message){
+                  //window.alert('Custom onError handler '+message);
+                  ajax_error_display.innerHTML = khong_tim_thay_du_lieu;
+          };
+          A4J.AJAX.onExpired = function(loc,expiredMsg){
+            //window.alert('Custom onExpired handler '+message);
+            ajax_error_display.innerHTML = can_dang_nhap_lai;
+                  };
+    
+        </script>
+    </ui:define>
+</ui:composition>
+
+
