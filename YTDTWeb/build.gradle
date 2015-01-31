@@ -23,15 +23,15 @@ buildscript {
 }
 
 configurations {
-    providedRuntime
+   // providedRuntime
 }
+
 
 repositories {
     maven { url "http://repo1.maven.org/maven2" }
     mavenLocal()
     mavenCentral()
 }
-
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
