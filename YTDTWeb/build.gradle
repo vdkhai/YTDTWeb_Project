@@ -1,6 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'war'
-apply plugin: 'com.bmuschko.tomcat'
+//apply plugin: 'com.bmuschko.tomcat'
 sourceCompatibility = 1.5
 version = '1.0'
 
