@@ -116,12 +116,12 @@ function setTextContent(elem, content) {
 
 function setupSample() {
   // Make sure we have Gears. If not, tell the user.
-  if (!window.google || !google.gears) {
+  /*if (!window.google || !google.gears) {
     if (confirm("This demo requires Gears to be installed. Install now?")) {
       location.href = "http://gears.google.com/";
       return;
     }
-  }
+  }*/
 
   var viewSourceElem = getElementById("view-source");
   if (!viewSourceElem) {
