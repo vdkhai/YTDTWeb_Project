@@ -1,57 +1,50 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:ui="http://java.sun.com/jsf/facelets" 
-      xmlns:h="http://java.sun.com/jsf/html" 
-      xmlns:f="http://java.sun.com/jsf/core"
-      template="/layout/mytemplate.xhtml">
+
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:f="http://java.sun.com/jsf/core"
+        template="/layout/mytemplate.xhtml">
+
 <ui:define name="body">
 <f:loadBundle basename="com.iesvn.yte.UIResources" var="msg" />
-<script language="javascript">
+<script type="text/javascript">
 
-function iesvn_Required(){
-			
-					this.aa = new Array(prefix_component + "__tennguoidung", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Tên người dùng'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
- 	 				
- 	 				//this.ab = new Array(prefix_component + "__matma", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Mật khẩu'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
- 	 			
-			
-		}
-		function enterToTab(){
-		/*
-				  if(	document.getElementById(prefix_component + "__ghinhan").alt != 1 
-		           		
-		           		
-		           ) {
+    function iesvn_Required()
+    {
+        this.aa = new Array(prefix_component + "__tennguoidung", "<h:outputFormat value='#{msg.common_requireField}' > <f:param value='Tên người dùng'/> </h:outputFormat>", new Function ("varName",  "return this[varName];"));
+    }
 
-		                  if(window.event.keyCode == 13){
-		                         window.event.keyCode = 9;
-		                  }
-		           }
-		           */
-		}
-		
-		
-function onSubmit_ghinhan(){
+    function enterToTab()
+    {
+    }
+
+    function onSubmit_ghinhan()
+    {
+        // Todo: Tmp code -> will remove
+        return true;
+        // Todo: End
 			
-			var form = document.forms[0];
-			var valid = iesvn_ValidateRequired(form) ; 
-	   
-	    	if (valid == true){
-	    			if(	document.getElementById(prefix_component + "__matma").value == "" ){ 
-		           		
-		           		document.getElementById(prefix_component + "__matma").focus();
-		           		valid = false;
-		            }
-		            if (valid == true){
-	    				hashPassword();
-	    			}
-	    	}
-	    	
-	    	return valid;
-	    	
-		}
-	function hashPassword() {
-		
+		var form = document.forms[0];
+        var valid = iesvn_ValidateRequired(form) ;
+
+        if (valid == true){
+            if(	document.getElementById(prefix_component + "__matma").value == "" ){
+
+                document.getElementById(prefix_component + "__matma").focus();
+                valid = false;
+            }
+            if (valid == true){
+                hashPassword();
+            }
+        }
+
+        return valid;
+    }
+
+	function hashPassword()
+    {
 		document.getElementById(prefix_component + "__matma_hid").value = hex_md5(document.getElementById(prefix_component + "__matma").value);
 	}
 	
@@ -70,16 +63,8 @@ function onSubmit_ghinhan(){
 		//LoadCatalogFromServer_each(DtDmLoiDan,"GetDtDmLoiDanAction");
 		//alert(1);
 
-}
-/*
-function iesvn_InputValidateBelongToSpecialChars() { 
-	hashPassword();
-	this.aa = new Array(prefix_component + "__tennguoidung", 
-	"<h:outputFormat value='#{msg.unformatPhone}' />",  
-	"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-.,", 
-	new Function ("varName", "return this[varName];"));
-}
-*/
+    }
+
 </script>
 <body onkeydown="enterToTab();" >
 <div style="background-image:url(images/#{msg.LOGIN_BV});background-repeat:no-repeat; width:100%; height:424px; text-align:left; background-position:center">
